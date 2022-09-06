@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "elkew_test"
+  title: "Elke Windschitl"
   navbar:
     left:
       - href: index.qmd
