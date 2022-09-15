@@ -1,11 +1,20 @@
 ---
 title: "Elke Windschitl"
+image: Elke.jpg
+about: 
+  template: trestles
+  image-shape: round
+  image-width: 15em
 ---
 
-This is a Quarto website.
+Welcome!
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+.
 
-```{r}
-1 + 1
-```
+.
+
+adding more text
+
+.
+
+more more more text
