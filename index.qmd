@@ -18,3 +18,15 @@ adding more text
 .
 
 more more more text
+
+.
+
+<h1>This is my h1 element</h1>
+
+<h1 class="title">this is a teal h1 element</h1>
+
+<p>this is my paragraph</p>
+
+<p class="title">this is my teal paragraph</p>
+
+<h2 class = "custom-subtitle">hello</h2>
