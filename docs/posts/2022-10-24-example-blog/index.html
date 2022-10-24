@@ -18,6 +18,25 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -150,10 +169,35 @@ ul.task-list{list-style: none;}
 
 
 <p>Hi this is an example blog post, nothing fancy</p>
+<p>Here I am going to cite Sam’s blog post<span class="citation" data-cites="csik2022">(<a href="#ref-csik2022" role="doc-biblioref">Csik 2022</a>)</span></p>
+<p>Another citation<span class="citation" data-cites="ingeman2022">(<a href="#ref-ingeman2022" role="doc-biblioref">Ingeman et al. 2022</a>)</span></p>
+Embedding a tweet
+<blockquote class="twitter-tweet blockquote">
+<p lang="en" dir="ltr">
+Happy Halloween from us at NCEAS - nothing spookier than an error message! 🎃: <a href="https://twitter.com/SamanthaCsik?ref_src=twsrc%5Etfw"><span class="citation" data-cites="SamanthaCsik">(</span></a><a href="#ref-SamanthaCsik" role="doc-biblioref"><strong>SamanthaCsik?</strong></a>) <a href="https://t.co/VuSBelnqu5">pic.twitter.com/VuSBelnqu5</a>
+</p>
+— NCEAS (<span class="citation" data-cites="ucsb_nceas">(<a href="#ref-ucsb_nceas" role="doc-biblioref"><strong>ucsb_nceas?</strong></a>)</span>) <a href="https://twitter.com/ucsb_nceas/status/1584617722930860033?ref_src=twsrc%5Etfw">October 24, 2022</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Lets create a footnote<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{windschitl2022,
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-csik2022" class="csl-entry" role="doc-biblioentry">
+Csik, Samantha. 2022. <span>“Adding a Blog to Your Existing <span>Quarto</span> Website.”</span> October 24, 2022. <a href="https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/">https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/</a>.
+</div>
+<div id="ref-ingeman2022" class="csl-entry" role="doc-biblioentry">
+Ingeman, Kurt E., Lily Z. Zhao, Christopher Wolf, David R. Williams, Amelia L. Ritger, William J. Ripple, Kai L. Kopecky, et al. 2022. <span>“Glimmers of Hope in Large Carnivore Recoveries.”</span> <em>Scientific Reports</em> 12 (1). <a href="https://doi.org/10.1038/s41598-022-13671-7">https://doi.org/10.1038/s41598-022-13671-7</a>.
+</div>
+</div></section><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p>Here is my footnote<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{windschitl2022,
   author = {Elke Windschitl},
   title = {Example {Blog} {Post}},
   date = {2022-10-24},

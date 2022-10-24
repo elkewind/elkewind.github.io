@@ -1,6 +1,8 @@
 [
   {
     "listing": "/blog-settings.html",
-    "items": []
+    "items": [
+      "/posts/2022-10-24-example-blog/index.html"
+    ]
   }
 ]

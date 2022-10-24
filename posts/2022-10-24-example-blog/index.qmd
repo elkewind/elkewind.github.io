@@ -10,8 +10,20 @@ date: 2022-10-24
 categories: [MEDS, Examples, R]
 citation: 
   url: https://elkewind.github.io/posts/2022-10-24-example-blog
+bibliography: references.bib
 image: (put image in folder)
-draft: true
+draft: false
 ---
 
 Hi this is an example blog post, nothing fancy
+
+Here I am going to cite Sam's blog post[@csik2022]
+
+Another citation[@ingeman2022]
+
+Embedding a tweet 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Happy Halloween from us at NCEAS - nothing spookier than an error message! 🎃: <a href="https://twitter.com/SamanthaCsik?ref_src=twsrc%5Etfw">@SamanthaCsik</a> <a href="https://t.co/VuSBelnqu5">pic.twitter.com/VuSBelnqu5</a></p>&mdash; NCEAS (@ucsb_nceas) <a href="https://twitter.com/ucsb_nceas/status/1584617722930860033?ref_src=twsrc%5Etfw">October 24, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Lets create a footnote[^1]
+
+[^1]: Here is my footnote

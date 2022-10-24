@@ -18,6 +18,13 @@
     "href": "blog-settings.html",
     "title": "Blog Posts",
     "section": "",
-    "text": "No matching items"
+    "text": "MEDS\n\n\nExamples\n\n\nR\n\n\n\nthis is a description\n\n\n\nElke Windschitl\n\n\nOct 24, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/2022-10-24-example-blog/index.html",
+    "href": "posts/2022-10-24-example-blog/index.html",
+    "title": "Example Blog Post",
+    "section": "",
+    "text": "Here I am going to cite Sam’s blog post(Csik 2022)\nAnother citation(Ingeman et al. 2022)\nEmbedding a tweet\n\n\nHappy Halloween from us at NCEAS - nothing spookier than an error message! 🎃: (SamanthaCsik?) pic.twitter.com/VuSBelnqu5\n\n— NCEAS ((ucsb_nceas?)) October 24, 2022\n\n\nLets create a footnote1\n\n\n\n\n\nReferences\n\nCsik, Samantha. 2022. “Adding a Blog to Your Existing Quarto Website.” October 24, 2022. https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/.\n\n\nIngeman, Kurt E., Lily Z. Zhao, Christopher Wolf, David R. Williams, Amelia L. Ritger, William J. Ripple, Kai L. Kopecky, et al. 2022. “Glimmers of Hope in Large Carnivore Recoveries.” Scientific Reports 12 (1). https://doi.org/10.1038/s41598-022-13671-7.\n\nFootnotes\n\n\nHere is my footnote↩︎\n\nCitationBibTeX citation:@online{windschitl2022,\n  author = {Elke Windschitl},\n  title = {Example {Blog} {Post}},\n  date = {2022-10-24},\n  url = {https://elkewind.github.io/posts/2022-10-24-example-blog},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nElke Windschitl. 2022. “Example Blog Post.” October 24,\n2022. https://elkewind.github.io/posts/2022-10-24-example-blog."
   }
 ]
