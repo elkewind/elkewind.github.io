@@ -1,0 +1,36 @@
+/*-- scss:defaults --*/
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati&display=swap');
+
+// Colors
+$light-teal: #68b0ac;
+$dark-teal: #243235;
+$cream: #f7f2e6;
+$gray: #212121;
+
+// Base Document Colors 
+$navbar-bg: $dark-teal;
+$body-bg: $cream;
+
+/*-- scss:rules --*/
+
+h1, h3 {
+  letter-spacing: 8px;
+  font-weight: 700;
+  color: $gray;
+}
+
+.title {
+  color: $gray;
+}
+
+.custom-subtitle {
+  font-size: 22px;
+  font-style: italic;
+  color: $gray;
+}
+  
+  
+  
+  

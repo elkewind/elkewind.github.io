@@ -12,8 +12,10 @@ website:
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      - mystyles.scss
+    mainfont: Noto Serif Gujarati
+    #css: styles.css
     toc: true
 
 editor: visual
