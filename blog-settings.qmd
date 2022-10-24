@@ -1,0 +1,10 @@
+---
+title: "Blog Posts"
+author: "Elke Windschitl"
+editor: visual
+listing:
+  type: grid
+  contents: posts
+  sort: "date desc"
+  categories: true
+---

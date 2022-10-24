@@ -1,0 +1,17 @@
+---
+title: "Example Blog Post"
+description: "this is a description"
+author:
+  - name: Elke Windschitl
+    url: https://elkewind.github.io
+    affiliation: MEDS
+    affiliation-url: http://ucsb-meds.github.io
+date: 2022-10-24
+categories: [MEDS, Examples, R]
+citation: 
+  url: https://elkewind.github.io/posts/2022-10-24-example-blog
+image: (put image in folder)
+draft: true
+---
+
+Hi this is an example blog post, nothing fancy
