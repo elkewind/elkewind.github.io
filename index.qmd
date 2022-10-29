@@ -5,20 +5,33 @@ about:
   template: trestles
   image-shape: round
   image-width: 15em
+  links: 
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/elke-windschitl-37a330149/
+    - text: Github
+      href: https://github.com/elkewind
+    - text: Email
+      href: elke@bren.ucsb.edu
 ---
 
 <h2>Welcome!</h2>
 
-<h2 class="custom-subtitle">
+<p>
 
-About me:
+A little bit about me:
 
-</h2>
+I am a master's student studying Environmental Data Science in the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about **marine and wildlife conservation**, and I hope to build a career using data science tools to solve environmental problems.
 
-<p>I am a master's student studying Environmental Data Science in the Bren School of Environmental Science & Management at the University of California, Santa Barbara. \
-\
-I earned my bachelor\'s degree in Biology in 2020 from Iowa State University with a curriculum focus on animal ecology. During my undergraduate studies, I sought out opportunities to connect animal ecology with my passion for marine conservation. I took hands-on marine coursework at the University of Hawaii at Hilo, California State University Monterey Bay, and the University of Southern Mississippi\'s Gulf Coast Research Laboratory. \
-\
-After graduating, I completed a 400-hour Animal Behavior Fellowship at the Virginia Aquarium & Marine Science Center. During the fellowship, I implemented the use of Zoo Monitor - a behavior tracking tool - to monitor harbor seal and American crow behavior. Additionally, my undergraduate capstone project assessed using new technologies (autonomous recording units and Raven Pro sound analysis software) to replace traditional field techniques when monitoring quail coveys. I became enthusiastic about data science when processing data from Zoo Monitor and Raven Pro. \
-\
-My long-term goal is to use data science to inform effective marine wildlife conservation and fisheries management. </p>
+</p>
+
+\-\--
+
+<h2>Education</h2>
+
+<h4>Master's of Environmental Data Science Student</h4>
+
+<p>University of California Santa Barbara \| Expected graduation: June 2023</p>
+
+<h4>Bachelor's of Science in Biology with Honors</h4>
+
+<p>Iowa State University \| 2020</p>

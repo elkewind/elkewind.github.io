@@ -1,33 +1,3 @@
----
-title: "About"
----
-
-<h4>A bit more about who I am, what I do, where I've been, and where I'm headed</h4>
-
-------------------------------------------------------------------------
-
-::: panel-tabset
-## Interests
-
--   Marine & wildlife conservation
--   Remote sensing & geospatial ecology
--   Fisheries management
--   Environmental Justice
-
-## Hobbies
-
--   Hiking, biking, swimming, & spending time outside
--   Digital illustration & graphic design
--   Reading mystery/thriller novels
--   Cooking & baking
-
-## Homes
-
-I grew up in the state of Iowa, but I've moved around a lot in my adult life! Check out all the places I've lived:
-
-```{r}
-#| include: false
-
 #----------- Creating a map of where I've lived ----------------------#
 
 # Load libraries
@@ -38,12 +8,9 @@ library(mapview)
 
 # Read in US city data
 file_path <- "/Users/elkewindschitl/Documents/github-website/data/simplemaps_uscities_basicv1.75/uscities.csv"
+
 us_cities <- read_csv(file_path) %>% 
   select(c(city, state_name, lat, lng))
-```
-
-```{r}
-#| include: false
 
 # Create df for cities I've lived in
 my_cities <- tribble(
@@ -65,12 +32,11 @@ my_cities_lat_lng <- left_join(my_cities, us_cities)
 
 # Map view it
 my_map <- mapview(my_cities_lat_lng, xcol = "lng", ycol = "lat", crs = 4269, grid = FALSE)
-```
 
-```{r}
-#| echo: false
 my_map
-```
 
-Map made using package mapview and data from: <https://simplemaps.com/data/us-cities>
-:::
+
+
+
+
+
