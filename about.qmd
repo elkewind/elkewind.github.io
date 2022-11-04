@@ -7,70 +7,47 @@ title: "About"
 ------------------------------------------------------------------------
 
 ::: panel-tabset
-## Interests
+## Full Bio
+
+<h4>Biography</h4>
+
+I am a master's student studying Environmental Data Science in the Bren School of Environmental Science & Management at the University of California, Santa Barbara. I earned my bachelor's degree in Biology in 2020 from Iowa State University with a curriculum focus on animal ecology. During my undergraduate studies, I sought out opportunities to connect animal ecology with my passion for marine conservation. I took hands-on marine coursework at the University of Hawaii at Hilo, California State University Monterey Bay, and the University of Southern Mississippi's Gulf Coast Research Laboratory.
+
+After graduating, I completed a 400-hour Animal Behavior Fellowship at the Virginia Aquarium & Marine Science Center. During the fellowship, I implemented the use of Zoo Monitor - a behavior tracking tool - to monitor harbor seal and American crow behavior. Additionally, my undergraduate capstone project assessed using new technologies (autonomous recording units and Raven Pro sound analysis software) to replace traditional field techniques when monitoring quail coveys. I became enthusiastic about data science when processing data from Zoo Monitor and Raven Pro. My long-term goal is to use data science to inform effective marine wildlife conservation and fisheries management.
+
+My interests include:
 
 -   Marine & wildlife conservation
 -   Remote sensing & geospatial ecology
--   Fisheries management
+-   Fisheries sustainability
 -   Environmental Justice
 
 ## Hobbies
 
--   Hiking, biking, swimming, & spending time outside
--   Digital illustration & graphic design
--   Reading mystery/thriller novels
--   Cooking & baking
+<h4>My Hobbies!</h4>
+
+What do I do outside of the office and classroom? I love hiking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it's most likely a mystery/thriller novel (find me on [Goodreads](https://www.goodreads.com/user/show/95038298-elke-windschitl)!) I spend a lot of time in the kitchen cooking and baking -- I picked up these two hobbies during the COVID-19 pandemic. Last, I dabble in digital illustration & graphic design. I have been selling prints and stickers since 2017.
+
 
 ## Homes
 
-I grew up in the state of Iowa, but I've moved around a lot in my adult life! Check out all the places I've lived:
+I grew up in the state of Iowa, but I've moved around a lot in my adult life! I participated in multiple National Student Exchange programs, and I moved around for internships and fellowships. Check out all the places I've lived since I started college in 2016 and relatively how long I lived there:
 
 ```{r}
 #| include: false
-
-#----------- Creating a map of where I've lived ----------------------#
-
-# Load libraries
-library(tidyverse)
-library(sf)
-library(tmap)
-library(mapview)
-
-# Read in US city data
-file_path <- "/Users/elkewindschitl/Documents/github-website/data/simplemaps_uscities_basicv1.75/uscities.csv"
-us_cities <- read_csv(file_path) %>% 
-  select(c(city, state_name, lat, lng))
-```
-
-```{r}
-#| include: false
-
-# Create df for cities I've lived in
-my_cities <- tribble(
-  ~city, ~state_name,
-  "Iowa City", "Iowa", 
-  "Tucson", "Arizona",
-  "Ames", "Iowa",
-  "Hilo", "Hawaii",
-  "St. Louis", "Missouri",
-  "Monterey", "California",
-  "Virginia Beach", "Virginia",
-  "Seattle", "Washington",
-  "Santa Barbara", "California"
-)
-my_cities <- as.data.frame(my_cities)
-
-# Left join the data sets
-my_cities_lat_lng <- left_join(my_cities, us_cities)
-
-# Map view it
-my_map <- mapview(my_cities_lat_lng, xcol = "lng", ycol = "lat", crs = 4269, grid = FALSE)
+source("source/map_view.R")
 ```
 
 ```{r}
 #| echo: false
-my_map
+my_leaflet
 ```
 
-Map made using package mapview and data from: <https://simplemaps.com/data/us-cities>
+Map made using package leaflet and data from: <https://simplemaps.com/data/us-cities>
+
+## What's Next
+
+<h4>What's Next for Me?</h4>
+
+Right now I am focusing on finishing my Master's degree and anticipate graduating in June 2023. I will be looking to start work next summer as a data scientist! Broadly, I hope to find a role where I can blend my creative and quantitative talents to contribute to an organization or research group focused on wildlife conservation or fisheries sustainability. I am ideally looking for jobs in Washington, Oregon, California or Hawaii.
 :::

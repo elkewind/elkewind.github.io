@@ -27,7 +27,6 @@ my_cities <- tribble(
     "Seattle", "Washington",
     "Santa Barbara", "California"
 )
-my_cities <- as.data.frame(my_cities)
 
 # Left join the data sets
 my_cities_spatial <- st_as_sf(left_join(my_cities, us_cities_spaital))
