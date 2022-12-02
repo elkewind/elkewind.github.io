@@ -1,0 +1,8 @@
+---
+title: "Predicting IUCN Red List status of fish in Hawaii"
+description: "In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List."
+author:
+  - name: Elke Windschitl
+---
+
+
