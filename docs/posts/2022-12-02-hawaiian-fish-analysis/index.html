@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Elke Windschitl">
+<meta name="dcterms.date" content="2022-12-02">
 <meta name="description" content="In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List.">
 
 <title>Elke Windschitl - Predicting IUCN Red List status of fish in Hawaii</title>
@@ -92,48 +93,98 @@ ul.task-list{list-style: none;}
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Predicting IUCN Red List status of fish in Hawaii</h1>
-                  <div>
-        <div class="description">
-          In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List.
-        </div>
-      </div>
-                </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Elke Windschitl </p>
-            </div>
-    </div>
-      
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Predicting IUCN Red List status of fish in Hawaii</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">MEDS</div>
+    <div class="quarto-category">Statistics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List.
+  </div>
+</div>
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <a href="https://elkewind.github.io">Elke Windschitl</a> 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="http://ucsb-meds.github.io">
+            UCSB Bren School
+            </a>
+          </p>
+      </div>
+    </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 2, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<h3 class="anchored">
+Introduction
+</h3>
+<p>Many species in modern times are faced with the risk of extinction due to global human activity. According to the International Union and Conservation of Nature (IUCN), “More than 41,000 species are threatened with extinction. That is still 28% of all assessed species.” [1]. Increased extinction and loss of biodiversity can have severe ecological, economic, and cultural impacts. Cardinale et al.’s deep dive into biodiversity and ecosystem services research conclude consensus statements that biodiversity loss reduces ecological communities’ efficiency, stability, and productivity. Ecosystem services productivity reductions can have a negative impact on ecosystem economics [2]. Additionally, cultures worldwide have strong ties to local flora and fauna, much of which now face extinction risk. Improving understanding of extinction risk is ecologically, economically, and culturally important.</p>
+<p>Wildlife scientists have been working to understand what ecological traits of vertebrates predict threat level, and what common risk factors drive those threat level rates. Munstermann et al.&nbsp;investigate what terrestrial vertebrate functional groups are most at risk of extinction threat and find that cave dwelling amphibian, arboreal quadrupedal mammals, aerial and scavenging birds, and pedal squamates are at high risk [3]. This knowledge can help inform policies and practices with the goal to decrease threats of extinction of wildlife. However, less comprehensive research has been done to conduct similar analyses on marine species.</p>
+<p>In recent years, the waters surrounding the Hawaiian Islands have been exposed to ecological changes due to mass coral bleaching events, El Nino events, and pollution. Rapidly changing marine ecosystems may pose a threat to Hawaiian fish. Fish hold significant cultural value in Hawaii, and many local people rely on seafood as a major source of protein. However, approximately 72% of fish in Hawaii present in FishBase have been evaluated by the IUCN and have sufficient data to be assessed. Here I run a small-scale analysis to investigate Hawaiian fish ecological traits – such as endemism, size, and reef-association – to predict a binary status on the IUCN red list and predict which unevaluated fish species in Hawaii may be threatened.</p>
+<h3 class="anchored">
+Data
+</h3>
+<p>For my analyses I use the IUCN Red List data accessed via the IUCN Red List API [1] and package rredlist [4]. Consistent with Munstermann et al., living species listed as ‘Vulnerable’, ‘Endangered’, or ‘Critically Endangered’ were categorized as ‘Threatened’. Living species listed as ‘Least Concern’ and ‘Near Threatened’ were categorized as ‘Nonthreatened’ [3]. Extinct species were not evaluated in this analysis. The IUCN Red List data are limited in that many marine species have not been listed yet or have been identified as too data deficient to be evaluated. The lack of data on elusive fish may introduce bias into the model.</p>
+<p>Fish ecological data were accessed from FishBase [5] via package rfishbase [6]. Different species in the FishBase data were originally described by different people, possibly leading to errors or biases. Measurement errors in length may be present, as there are various common ways to measure the length of a fish. The species recorded in FishBase may be biased towards fish with commercial value.</p>
+<h3 class="anchored">
+Methods
+</h3>
+<p>Here I run a logistic regression with a categorical binary response variable of ‘Threatened’ or ‘Nonthreatened’ on species length, coral reef association, and endemism.</p>
+<p>I included length in the model because previous research show that species of extreme sizes have higher risk of extinction. Ripple et al.&nbsp;“found that the probability of being threatened was positively and significantly related to body mass for birds, cartilaginous fishes, and mammals” [7]. While body mass is not the same as length, the FishBase data set had few weight entries and many length entries, and sample size was already limited. Several mass coral bleaching events have occurred in Hawaii in recent decades causing ecosystem disruption [8]. Here I consider if reef-associated fish are more likely to be threatened that fish that are not reef-associated. Last, endemic species – species that are native to a region and occur only in that region – are known to be at high risk of extinction.</p>
+<h3 class="anchored">
+Results &amp; Discussion
+</h3>
+<h3 class="anchored">
+Limitations &amp; Next Steps
+</h3>
+<p>As mentioned above, both the IUCN Red List data and the FishBase data have potential biases and don’t evaluate all species. Additionally, not all listed species had every piece of information, and missing data were removed. With missing data removed, the sample became small. It is possible that endemism plays a bigger role in threat risk than illustrated here by the model. Points of concern with this model include disproportionate data in both the threat level and endemism, and high false negative rates in binary prediction. Future analyses could investigate other potential explanatory variables such as metrics measuring fishing pressure, life cycle characteristics, and range. Additionally, future analyses could expand the area of interest to all of the tropics.</p>
 
 
 
-
-
-
-
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{windschitl2022,
+  author = {Elke Windschitl},
+  title = {Predicting {IUCN} {Red} {List} Status of Fish in {Hawaii}},
+  date = {2022-12-02},
+  url = {https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-windschitl2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Elke Windschitl. 2022. <span>“Predicting IUCN Red List Status of Fish in
+Hawaii.”</span> December 2, 2022. <a href="https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis">https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis</a>.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
