@@ -41,10 +41,6 @@ len_data_space <- gg_len +
               method.args = list(family = "binomial"))
 len_data_space
 
-
-
-
-
 # Run this again, but remove large values to evaluate robustness
 rm_outliers <- rm_len_na %>% 
   filter(length_cm <= 1000)
@@ -63,16 +59,11 @@ mod_rm_out <- glm(is_of_concern ~ length_cm,
 summary(mod_rm_out)
 
 # Plot with regression
-len_rm_out_plot <- gg_len +
+len_rm_out_plot <- gg_rm_out +
   geom_smooth(method = "glm", 
               se = FALSE, color = "#545454", 
               method.args = list(family = "binomial"))
 len_rm_out_plot
-
-
-
-
-
 
 # Make bins
 len_breaks <- rm_len_na %>%
@@ -101,7 +92,7 @@ ggplot(length_plus, aes(x = length_cm, y = y_hat)) +
 length_plus <- length_plus %>% 
   mutate(odds_hat = y_hat / (1 - y_hat)) %>% 
   filter(length_cm <= 1000) # remove outliers for graphing
-ggplot(length_plus, aes(x = length_cm, y = odds_hat)) +
+len_odds_plot <- ggplot(length_plus, aes(x = length_cm, y = odds_hat)) +
   geom_point() + 
   geom_line() + 
   scale_y_continuous("Odds of being threatened")
@@ -214,6 +205,10 @@ summary(mod_status)
 
 # I don't think these last two are correct... ask!!!
 
+
+
+
+
 # Combining it all together (even though)
 mod <- glm(is_of_concern ~ length_cm + reef_associated + is_endemic,
            data = tidy_no_na,
@@ -251,7 +246,27 @@ threat_prob(b0, b1, b2, b3, 450, 1, 1)
 t.test(is_of_concern ~ reef_associated, data = rm_ra_na)
 t.test(is_of_concern ~ is_endemic, data = tidy_fish_data)
 
+### ------------------------ Predictions ------------------------  ###
 
+hi_fish_no_rank <- hi_fish_status %>% 
+  filter(is.na(category) | category == "DD")
+
+tidy_no_rank <- hi_fish_no_rank %>% 
+  mutate(coral_reefs = coral_reefs * - 1) %>% 
+  mutate(reef_associated = case_when(coral_reefs == 1 ~ "yes",
+                                     coral_reefs == 0 ~ "no")) %>% 
+  mutate(is_endemic = case_when(status == "endemic" ~ 1,
+                                status == "native" |
+                                  status == "introduced" ~ 0))
+
+for (i in seq_along(tidy_no_rank$genus_species)) {
+  tidy_no_rank$y_hat[i] <- threat_prob(b0, b1, b2, b3, 
+                                       tidy_no_rank$length_cm[i],
+                                       tidy_no_rank$coral_reefs[i],
+                                       tidy_no_rank$is_endemic[i])
+}
+
+tidy_pred_rank <- tidy_no_rank %>% arrange(desc(y_hat))
 
 
 
