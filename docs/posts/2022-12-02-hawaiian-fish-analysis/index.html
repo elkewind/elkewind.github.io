@@ -8,7 +8,6 @@
 
 <meta name="author" content="Elke Windschitl">
 <meta name="dcterms.date" content="2022-12-02">
-<meta name="description" content="In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List.">
 
 <title>Elke Windschitl - Predicting IUCN Red List status of fish in Hawaii</title>
 <style>
@@ -112,11 +111,6 @@ ul.task-list{list-style: none;}
   </div>
   </div>
 
-<div>
-  <div class="description">
-    In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List.
-  </div>
-</div>
 
 <div class="quarto-title-meta-author">
   <div class="quarto-title-meta-heading">Author</div>
@@ -149,6 +143,7 @@ ul.task-list{list-style: none;}
 
 </header>
 
+<p>“In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List.”</p>
 <h3 class="anchored">
 Introduction
 </h3>
@@ -315,31 +310,6 @@ Results &amp; Discussion
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = is_of_concern ~ length_cm, family = "binomial", 
-    data = rm_len_na)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--2.9160  -0.1892  -0.1653  -0.1565   2.9946  
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept) -4.50545    0.30183 -14.927   &lt;2e-16 ***
-length_cm    0.01093    0.00131   8.339   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 287.44  on 873  degrees of freedom
-Residual deviance: 186.50  on 872  degrees of freedom
-AIC: 190.5
-
-Number of Fisher Scoring iterations: 7</code></pre>
 </div>
 <div class="cell-output-display">
 

@@ -1,6 +1,5 @@
 ---
 title: "Predicting IUCN Red List status of fish in Hawaii"
-description: "In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List."
 author:
   - name: Elke Windschitl
     url: https://elkewind.github.io
@@ -10,7 +9,7 @@ date: 2022-12-02
 categories: [MEDS, Statistics]
 citation: 
   url: https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis
-image: (put image in folder)
+image: dive_mask.JPG
 draft: false
 ---
 
@@ -42,7 +41,13 @@ rm_len_na <- tidy_fish_data %>%
 gg_len <- ggplot(data = rm_len_na, aes(x = length_cm, y = is_of_concern)) +
   geom_jitter(width = 0, height = 0.05, alpha = 0.8, col = "#38b6ba") +
   labs(x = "Species average length", y = "Listed as a concern") +
-  theme_minimal()
+  theme_minimal() +
+  labs(x = "Species length (cm)", y = "Listed as threatened", title = "Fig 2. Probability of being threatened by species length") +
+   theme(panel.background = element_rect(fill = "#f7f2e6"),
+        plot.background = element_rect(fill = "#f7f2e6"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(colour = '#c9c9c9'),
+        panel.border = element_rect(colour = "black", fill=NA, size=1))
 gg_len
 # Log regression length
 mod_length <- glm(is_of_concern ~ length_cm, 
@@ -61,8 +66,13 @@ rm_outliers <- rm_len_na %>%
 # Graph length vs is of concern
 gg_rm_out <- ggplot(data = rm_outliers, aes(x = length_cm, y = is_of_concern)) +
   geom_jitter(width = 0, height = 0.05, alpha = 0.8, col = "#38b6ba") +
-  labs(x = "Species average length", y = "Listed as a concern") +
-  theme_minimal()
+  labs(x = "Species length (cm)", y = "Listed as threatened", title = "Fig 3. Probability of being threatened by species length \n (excluding outliers)") +
+  theme_minimal() +
+theme(panel.background = element_rect(fill = "#f7f2e6"),
+        plot.background = element_rect(fill = "#f7f2e6"),
+        panel.grid.minor = element_blank(),
+       panel.grid.major = element_line(colour = '#c9c9c9'),
+        panel.border = element_rect(colour = "black", fill=NA, size=1))
 gg_rm_out
 # Log regression length
 mod_rm_out <- glm(is_of_concern ~ length_cm, 
@@ -102,7 +112,13 @@ length_plus <- length_plus %>%
 len_odds_plot <- ggplot(length_plus, aes(x = length_cm, y = odds_hat)) +
   geom_point() + 
   geom_line() + 
-  scale_y_continuous("Odds of being threatened")
+  scale_y_continuous("Odds of being threatened") +
+  labs(x = "Species length (cm)", title = "Fig 4. Odds of being threatened by species length") +
+  theme_minimal() +
+  theme(panel.background = element_rect(fill = "#f7f2e6"),
+        plot.background = element_rect(fill = "#f7f2e6"),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1))
 len_odds_plot
 # Pull B1
 len_b1 <- mod_length$coefficients[2]
@@ -239,6 +255,8 @@ tidy_pred_rank <- tidy_no_rank %>% arrange(desc(y_hat)) %>%
                                 status == "introduced" ~ "no"))
 ```
 
+"In this post, I investigate Hawaiian fish ecological traits -- such as size, endemism, and reef-association -- to find their probability of being threatened as ranked by the IUCN Red List."
+
 <h3>Introduction</h3>
 
 Many species in modern times are faced with the risk of extinction due to global human activity. According to the International Union and Conservation of Nature (IUCN), "More than 41,000 species are threatened with extinction. That is still 28% of all assessed species." \[1\]. Increased extinction and loss of biodiversity can have severe ecological, economic, and cultural impacts. Cardinale et al.'s deep dive into biodiversity and ecosystem services research conclude consensus statements that biodiversity loss reduces ecological communities' efficiency, stability, and productivity. Ecosystem services productivity reductions can have a negative impact on ecosystem economics \[2\]. Additionally, cultures worldwide have strong ties to local flora and fauna, much of which now face extinction risk. Improving understanding of extinction risk is ecologically, economically, and culturally important.
@@ -301,7 +319,7 @@ tab_df(threat_tab,
 #| echo: false
 #| warning: false
 ggplot(tidy_fish_data, aes(x = length_cm)) +
-  geom_histogram(fill = "#38b6ba") + 
+  geom_histogram(fill = "#243235") + 
   xlab("Length (cm)") +
   ylab("Count") +
   theme_minimal()
@@ -337,7 +355,7 @@ After aligning the FishBase data with the IUCN Red List data, the data are dispr
 #| echo: false
 #| warning: false
 len_data_space
-summary(mod_length)
+#summary(mod_length)
 tab_model(mod_length,
           transform = NULL,
           pred.labels = c("Intercept", "Length (cm)"),
