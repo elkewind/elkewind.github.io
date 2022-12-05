@@ -10,6 +10,7 @@ categories: [MEDS, Statistics]
 citation: 
   url: https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis
 image: dive_mask.JPG
+toc: true
 draft: false
 ---
 
@@ -71,7 +72,7 @@ gg_rm_out <- ggplot(data = rm_outliers, aes(x = length_cm, y = is_of_concern)) +
 theme(panel.background = element_rect(fill = "#f7f2e6"),
         plot.background = element_rect(fill = "#f7f2e6"),
         panel.grid.minor = element_blank(),
-       panel.grid.major = element_line(colour = '#c9c9c9'),
+        panel.grid.major = element_line(colour = '#c9c9c9'),
         panel.border = element_rect(colour = "black", fill=NA, size=1))
 gg_rm_out
 # Log regression length
@@ -118,6 +119,7 @@ len_odds_plot <- ggplot(length_plus, aes(x = length_cm, y = odds_hat)) +
   theme(panel.background = element_rect(fill = "#f7f2e6"),
         plot.background = element_rect(fill = "#f7f2e6"),
         panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(colour = '#c9c9c9'),
         panel.border = element_rect(colour = "black", fill=NA, size=1))
 len_odds_plot
 # Pull B1
@@ -255,9 +257,13 @@ tidy_pred_rank <- tidy_no_rank %>% arrange(desc(y_hat)) %>%
                                 status == "introduced" ~ "no"))
 ```
 
-"In this post, I investigate Hawaiian fish ecological traits -- such as size, endemism, and reef-association -- to find their probability of being threatened as ranked by the IUCN Red List."
+Description:
 
-<h3>Introduction</h3>
+In this post, I investigate Hawaiian fish ecological traits -- such as size, endemism, and reef-association -- to find their probability of being threatened as ranked by the IUCN Red List.
+
+![School of Hawaiian fish. Elke Windschitl 2018.](fish_pic.JPG)
+
+## Introduction
 
 Many species in modern times are faced with the risk of extinction due to global human activity. According to the International Union and Conservation of Nature (IUCN), "More than 41,000 species are threatened with extinction. That is still 28% of all assessed species." \[1\]. Increased extinction and loss of biodiversity can have severe ecological, economic, and cultural impacts. Cardinale et al.'s deep dive into biodiversity and ecosystem services research conclude consensus statements that biodiversity loss reduces ecological communities' efficiency, stability, and productivity. Ecosystem services productivity reductions can have a negative impact on ecosystem economics \[2\]. Additionally, cultures worldwide have strong ties to local flora and fauna, much of which now face extinction risk. Improving understanding of extinction risk is ecologically, economically, and culturally important.
 
@@ -265,23 +271,13 @@ Wildlife scientists have been working to understand what ecological traits of ve
 
 In recent years, the waters surrounding the Hawaiian Islands have been exposed to ecological changes due to mass coral bleaching events, El Nino events, and pollution. Rapidly changing marine ecosystems may pose a threat to Hawaiian fish. Fish hold significant cultural value in Hawaii, and many local people rely on seafood as a major source of protein. However, approximately 72% of fish in Hawaii present in FishBase have been evaluated by the IUCN and have sufficient data to be assessed. Here I run a small-scale analysis to investigate Hawaiian fish ecological traits -- such as endemism, size, and reef-association -- to predict a binary status on the IUCN red list and predict which unevaluated fish species in Hawaii may be threatened.
 
-<h3>Data</h3>
+![Various Hawaiian fish. Elke Windschitl 2018.](fish_collage.jpg)
+
+## Data
 
 For my analyses I use the IUCN Red List data accessed via the IUCN Red List API \[1\] and package rredlist \[4\]. Consistent with Munstermann et al., living species listed as 'Vulnerable', 'Endangered', or 'Critically Endangered' were categorized as 'Threatened'. Living species listed as 'Least Concern' and 'Near Threatened' were categorized as 'Nonthreatened' \[3\]. Extinct species were not evaluated in this analysis. The IUCN Red List data are limited in that many marine species have not been listed yet or have been identified as too data deficient to be evaluated. The lack of data on elusive fish may introduce bias into the model.
 
 Fish ecological data were accessed from FishBase \[5\] via package rfishbase \[6\]. Different species in the FishBase data were originally described by different people, possibly leading to errors or biases. Measurement errors in length may be present, as there are various common ways to measure the length of a fish. The species recorded in FishBase may be biased towards fish with commercial value.
-
-<h3>Methods</h3>
-
-Here I run a logistic regression with a categorical binary response variable of 'Threatened' or 'Nonthreatened' on species length, coral reef association, and endemism.
-
-I included length in the model because previous research show that species of extreme sizes have higher risk of extinction. Ripple et al. "found that the probability of being threatened was positively and significantly related to body mass for birds, cartilaginous fishes, and mammals" \[7\]. While body mass is not the same as length, the FishBase data set had few weight entries and many length entries, and sample size was already limited. Several mass coral bleaching events have occurred in Hawaii in recent decades causing ecosystem disruption \[8\]. Here I consider if reef-associated fish are more likely to be threatened that fish that are not reef-associated. Last, endemic species -- species that are native to a region and occur only in that region -- are known to be at high risk of extinction.
-
-<h3>Results & Discussion</h3>
-
-#### Data exploration:
-
-##### 1. Tidy data set:
 
 ```{r}
 #| echo: false
@@ -302,7 +298,17 @@ tab_df(tidy_fish_data[1:5,],
        
 ```
 
-##### 2. IUCN Red List Threatened Status
+## Methods
+
+Here I run a logistic regression with a categorical binary response variable of 'Threatened' or 'Nonthreatened' on species length, coral reef association, and endemism.
+
+I included length in the model because previous research show that species of extreme sizes have higher risk of extinction. Ripple et al. "found that the probability of being threatened was positively and significantly related to body mass for birds, cartilaginous fishes, and mammals" \[7\]. While body mass is not the same as length, the FishBase data set had few weight entries and many length entries, and sample size was already limited. Several mass coral bleaching events have occurred in Hawaii in recent decades causing ecosystem disruption \[8\]. Here I consider if reef-associated fish are more likely to be threatened that fish that are not reef-associated. Last, endemic species -- species that are native to a region and occur only in that region -- are known to be at high risk of extinction.
+
+## Results & Discussion
+
+#### Data exploration:
+
+##### 1. IUCN Red List Threatened Status
 
 ```{r}
 #| echo: false
@@ -313,19 +319,25 @@ tab_df(threat_tab,
        col.header = "Nonthreatened", "Threatened")
 ```
 
-##### 3. Fish Length
+##### 2. Fish Length
 
 ```{r}
 #| echo: false
 #| warning: false
 ggplot(tidy_fish_data, aes(x = length_cm)) +
-  geom_histogram(fill = "#243235") + 
+  geom_histogram(fill = "#38b6ba", bins = 60) +
+  theme_minimal() +
+  labs(title = "Fig 1. Histogram of species length") +
+   theme(panel.background = element_rect(fill = "#f7f2e6"),
+        plot.background = element_rect(fill = "#f7f2e6"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(colour = '#c9c9c9'),
+        panel.border = element_rect(colour = "black", fill=NA, size=1)) +
   xlab("Length (cm)") +
-  ylab("Count") +
-  theme_minimal()
+  ylab("Count")
 ```
 
-##### 4. Reef-Association
+##### 3. Reef-Association
 
 ```{r}
 #| echo: false
@@ -335,7 +347,7 @@ tab_df(threat_tab,
        title = "Tbl 3. Reef Associated Counts")
 ```
 
-##### 5. Endemism
+##### 4. Endemism
 
 ```{r}
 #| echo: false
@@ -349,7 +361,7 @@ After aligning the FishBase data with the IUCN Red List data, the data are dispr
 
 #### Analysis
 
-**Length** $$\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length)  +\varepsilon $$
+##### **Length** $$\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length)  +\varepsilon $$
 
 ```{r}
 #| echo: false
@@ -405,7 +417,7 @@ l_con_matrix <- length_plus %>%
 rownames <- c("Actually Nonthreatened", "Actually Threatend")
 colnames <- c("Predicted Nonthreatend", "Predicted Threatened")
 l_con_matrix <- as.data.frame(matrix(c(l_con_matrix[1], 
-                                       l_con_matrix [2], 
+                                       l_con_matrix[2], 
                                        l_con_matrix[3], 
                                        l_con_matrix[4]), 
                                      ncol = 2, 
@@ -419,7 +431,7 @@ tab_df(l_con_matrix,
 
 The accuracy of the model is 97%, but it seems to be more accurate in predicting species that are not actually of concern (true negative rate = 0.99). Species that are threatened have poorer prediction rates (true positive rate = 0.38).
 
-**Full Model** $$\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length) + \beta_2  (Reef) + \beta_3  (Endemic) +\varepsilon $$
+##### **Full Model** $$\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length) + \beta_2  (Reef) + \beta_3  (Endemic) +\varepsilon $$
 
 ```{r}
 #| echo: false
@@ -459,7 +471,7 @@ tab_df(tidy_pred_rank[1:5,],
                           "Threatened"))
 ```
 
-<h3>Limitations & Next Steps</h3>
+## Limitations & Next Steps
 
 As mentioned above, both the IUCN Red List data and the FishBase data have potential biases and don't evaluate all species. Additionally, not all listed species had every piece of information, and missing data were removed. With missing data removed, the sample became small. It is possible that endemism plays a bigger role in threat risk than illustrated here by the model. Points of concern with this model include disproportionate data in both the threat level and endemism, and high false negative rates in binary prediction. Future analyses could investigate other potential explanatory variables such as metrics measuring fishing pressure, life cycle characteristics, and range. Additionally, future analyses could expand the area of interest to all of the tropics.
 

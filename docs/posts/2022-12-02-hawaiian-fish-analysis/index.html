@@ -97,7 +97,17 @@ ul.task-list{list-style: none;}
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#results-discussion" id="toc-results-discussion" class="nav-link" data-scroll-target="#results-discussion">Results &amp; Discussion</a></li>
+  <li><a href="#limitations-next-steps" id="toc-limitations-next-steps" class="nav-link" data-scroll-target="#limitations-next-steps">Limitations &amp; Next Steps</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -143,30 +153,30 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<p>“In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List.”</p>
-<h3 class="anchored">
-Introduction
-</h3>
+<p>Description:</p>
+<p>In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fish_pic.JPG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">School of Hawaiian fish. Elke Windschitl 2018.</figcaption><p></p>
+</figure>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Many species in modern times are faced with the risk of extinction due to global human activity. According to the International Union and Conservation of Nature (IUCN), “More than 41,000 species are threatened with extinction. That is still 28% of all assessed species.” [1]. Increased extinction and loss of biodiversity can have severe ecological, economic, and cultural impacts. Cardinale et al.’s deep dive into biodiversity and ecosystem services research conclude consensus statements that biodiversity loss reduces ecological communities’ efficiency, stability, and productivity. Ecosystem services productivity reductions can have a negative impact on ecosystem economics [2]. Additionally, cultures worldwide have strong ties to local flora and fauna, much of which now face extinction risk. Improving understanding of extinction risk is ecologically, economically, and culturally important.</p>
 <p>Wildlife scientists have been working to understand what ecological traits of vertebrates predict threat level, and what common risk factors drive those threat level rates. Munstermann et al.&nbsp;investigate what terrestrial vertebrate functional groups are most at risk of extinction threat and find that cave dwelling amphibian, arboreal quadrupedal mammals, aerial and scavenging birds, and pedal squamates are at high risk [3]. This knowledge can help inform policies and practices with the goal to decrease threats of extinction of wildlife. However, less comprehensive research has been done to conduct similar analyses on marine species.</p>
 <p>In recent years, the waters surrounding the Hawaiian Islands have been exposed to ecological changes due to mass coral bleaching events, El Nino events, and pollution. Rapidly changing marine ecosystems may pose a threat to Hawaiian fish. Fish hold significant cultural value in Hawaii, and many local people rely on seafood as a major source of protein. However, approximately 72% of fish in Hawaii present in FishBase have been evaluated by the IUCN and have sufficient data to be assessed. Here I run a small-scale analysis to investigate Hawaiian fish ecological traits – such as endemism, size, and reef-association – to predict a binary status on the IUCN red list and predict which unevaluated fish species in Hawaii may be threatened.</p>
-<h3 class="anchored">
-Data
-</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fish_collage.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Various Hawaiian fish. Elke Windschitl 2018.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
 <p>For my analyses I use the IUCN Red List data accessed via the IUCN Red List API [1] and package rredlist [4]. Consistent with Munstermann et al., living species listed as ‘Vulnerable’, ‘Endangered’, or ‘Critically Endangered’ were categorized as ‘Threatened’. Living species listed as ‘Least Concern’ and ‘Near Threatened’ were categorized as ‘Nonthreatened’ [3]. Extinct species were not evaluated in this analysis. The IUCN Red List data are limited in that many marine species have not been listed yet or have been identified as too data deficient to be evaluated. The lack of data on elusive fish may introduce bias into the model.</p>
 <p>Fish ecological data were accessed from FishBase [5] via package rfishbase [6]. Different species in the FishBase data were originally described by different people, possibly leading to errors or biases. Measurement errors in length may be present, as there are various common ways to measure the length of a fish. The species recorded in FishBase may be biased towards fish with commercial value.</p>
-<h3 class="anchored">
-Methods
-</h3>
-<p>Here I run a logistic regression with a categorical binary response variable of ‘Threatened’ or ‘Nonthreatened’ on species length, coral reef association, and endemism.</p>
-<p>I included length in the model because previous research show that species of extreme sizes have higher risk of extinction. Ripple et al.&nbsp;“found that the probability of being threatened was positively and significantly related to body mass for birds, cartilaginous fishes, and mammals” [7]. While body mass is not the same as length, the FishBase data set had few weight entries and many length entries, and sample size was already limited. Several mass coral bleaching events have occurred in Hawaii in recent decades causing ecosystem disruption [8]. Here I consider if reef-associated fish are more likely to be threatened that fish that are not reef-associated. Last, endemic species – species that are native to a region and occur only in that region – are known to be at high risk of extinction.</p>
-<h3 class="anchored">
-Results &amp; Discussion
-</h3>
-<section id="data-exploration" class="level4">
-<h4 class="anchored" data-anchor-id="data-exploration">Data exploration:</h4>
-<section id="tidy-data-set" class="level5">
-<h5 class="anchored" data-anchor-id="tidy-data-set">1. Tidy data set:</h5>
 <div class="cell">
 
 </div>
@@ -234,8 +244,17 @@ Results &amp; Discussion
 </div>
 </div>
 </section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p>Here I run a logistic regression with a categorical binary response variable of ‘Threatened’ or ‘Nonthreatened’ on species length, coral reef association, and endemism.</p>
+<p>I included length in the model because previous research show that species of extreme sizes have higher risk of extinction. Ripple et al.&nbsp;“found that the probability of being threatened was positively and significantly related to body mass for birds, cartilaginous fishes, and mammals” [7]. While body mass is not the same as length, the FishBase data set had few weight entries and many length entries, and sample size was already limited. Several mass coral bleaching events have occurred in Hawaii in recent decades causing ecosystem disruption [8]. Here I consider if reef-associated fish are more likely to be threatened that fish that are not reef-associated. Last, endemic species – species that are native to a region and occur only in that region – are known to be at high risk of extinction.</p>
+</section>
+<section id="results-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="results-discussion">Results &amp; Discussion</h2>
+<section id="data-exploration" class="level4">
+<h4 class="anchored" data-anchor-id="data-exploration">Data exploration:</h4>
 <section id="iucn-red-list-threatened-status" class="level5">
-<h5 class="anchored" data-anchor-id="iucn-red-list-threatened-status">2. IUCN Red List Threatened Status</h5>
+<h5 class="anchored" data-anchor-id="iucn-red-list-threatened-status">1. IUCN Red List Threatened Status</h5>
 <div class="cell">
 <div class="cell-output-display">
 
@@ -255,7 +274,7 @@ Results &amp; Discussion
 </div>
 </section>
 <section id="fish-length" class="level5">
-<h5 class="anchored" data-anchor-id="fish-length">3. Fish Length</h5>
+<h5 class="anchored" data-anchor-id="fish-length">2. Fish Length</h5>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
@@ -263,7 +282,7 @@ Results &amp; Discussion
 </div>
 </section>
 <section id="reef-association" class="level5">
-<h5 class="anchored" data-anchor-id="reef-association">4. Reef-Association</h5>
+<h5 class="anchored" data-anchor-id="reef-association">3. Reef-Association</h5>
 <div class="cell">
 <div class="cell-output-display">
 
@@ -283,7 +302,7 @@ Results &amp; Discussion
 </div>
 </section>
 <section id="endemism" class="level5">
-<h5 class="anchored" data-anchor-id="endemism">5. Endemism</h5>
+<h5 class="anchored" data-anchor-id="endemism">4. Endemism</h5>
 <div class="cell">
 <div class="cell-output-display">
 
@@ -306,7 +325,8 @@ Results &amp; Discussion
 </section>
 <section id="analysis" class="level4">
 <h4 class="anchored" data-anchor-id="analysis">Analysis</h4>
-<p><strong>Length</strong> <span class="math display">\[\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length)  +\varepsilon \]</span></p>
+<section id="length-operatornamelogitplog-leftfracp1-prightbeta_0beta_1-length-varepsilon" class="level5">
+<h5 class="anchored" data-anchor-id="length-operatornamelogitplog-leftfracp1-prightbeta_0beta_1-length-varepsilon"><strong>Length</strong> <span class="math display">\[\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length)  +\varepsilon \]</span></h5>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
@@ -421,7 +441,9 @@ Results &amp; Discussion
 </div>
 </div>
 <p>The accuracy of the model is 97%, but it seems to be more accurate in predicting species that are not actually of concern (true negative rate = 0.99). Species that are threatened have poorer prediction rates (true positive rate = 0.38).</p>
-<p><strong>Full Model</strong> <span class="math display">\[\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length) + \beta_2  (Reef) + \beta_3  (Endemic) +\varepsilon \]</span></p>
+</section>
+<section id="full-model-operatornamelogitplog-leftfracp1-prightbeta_0beta_1-length-beta_2-reef-beta_3-endemic-varepsilon" class="level5">
+<h5 class="anchored" data-anchor-id="full-model-operatornamelogitplog-leftfracp1-prightbeta_0beta_1-length-beta_2-reef-beta_3-endemic-varepsilon"><strong>Full Model</strong> <span class="math display">\[\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length) + \beta_2  (Reef) + \beta_3  (Endemic) +\varepsilon \]</span></h5>
 <div class="cell">
 <div class="cell-output-display">
 
@@ -475,8 +497,9 @@ Results &amp; Discussion
 </div>
 <p>We can see from the output that length remains significant (p-value = 8.83e^-15) even when additional variables are added, making length robust. Endemicity is significantly influencing the model at alpha = 0.90 (p-value = 0.0707). Coral reef association is not significantly impacting the model (p-value = 0.9175).</p>
 </section>
+</section>
 <section id="predicting-probability-solving-for-p" class="level4">
-<h4 class="anchored">Predicting Probability – Solving for p</h4>
+<h4 class="anchored" data-anchor-id="predicting-probability-solving-for-p">Predicting Probability – Solving for p</h4>
 <p>In this model, the smallest fish in the data set – <em>Melamphaes danae</em> at 2.30 cm – has a probability of being threatened of 0.012. The largest fish in the data set – <em>Rhincodon typus</em> at 1700 cm – has a probability of being threatened of 0.99.</p>
 <p>Here I use the model to predict the probabilities of being threatened for unlisted fish. The top five most vulnerable unranked species under this model are:</p>
 <div class="cell">
@@ -542,9 +565,10 @@ Results &amp; Discussion
 
 </div>
 </div>
-<h3 class="anchored" data-anchor-id="predicting-probability-solving-for-p">
-Limitations &amp; Next Steps
-</h3>
+</section>
+</section>
+<section id="limitations-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-next-steps">Limitations &amp; Next Steps</h2>
 <p>As mentioned above, both the IUCN Red List data and the FishBase data have potential biases and don’t evaluate all species. Additionally, not all listed species had every piece of information, and missing data were removed. With missing data removed, the sample became small. It is possible that endemism plays a bigger role in threat risk than illustrated here by the model. Points of concern with this model include disproportionate data in both the threat level and endemism, and high false negative rates in binary prediction. Future analyses could investigate other potential explanatory variables such as metrics measuring fishing pressure, life cycle characteristics, and range. Additionally, future analyses could expand the area of interest to all of the tropics.</p>
 <h3 class="anchored">
 Reference
