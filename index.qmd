@@ -24,7 +24,7 @@ I am a master's student studying Environmental Data Science in the [Bren School 
 
 </p>
 
-\-\--
+---
 
 <h2>Education</h2>
 
