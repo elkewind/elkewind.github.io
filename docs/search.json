@@ -7,27 +7,6 @@
     "text": "Description:\nIn this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Elke Windschitl",
-    "section": "",
-    "text": "A little bit about me:\nI am a master’s student studying Environmental Data Science in the Bren School of Environmental Science & Management at the University of California, Santa Barbara. I am passionate about marine and wildlife conservation, and I hope to build a career using data science tools to solve environmental problems.\n\n\n\nEducation\n\n\nMaster’s of Environmental Data Science Student\n\n\nUniversity of California Santa Barbara | Expected graduation: June 2023\n\n\nBachelor’s of Science in Biology with Honors\n\n\nIowa State University | 2020"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Full BioHobbiesHomesWhat’s Next\n\n\n\nBiography\n\nI am a master’s student studying Environmental Data Science in the Bren School of Environmental Science & Management at the University of California, Santa Barbara. I earned my bachelor’s degree in Biology in 2020 from Iowa State University with a curriculum focus on animal ecology. During my undergraduate studies, I sought out opportunities to connect animal ecology with my passion for marine conservation. I took hands-on marine coursework at the University of Hawaii at Hilo, California State University Monterey Bay, and the University of Southern Mississippi’s Gulf Coast Research Laboratory.\nAfter graduating, I completed a 400-hour Animal Behavior Fellowship at the Virginia Aquarium & Marine Science Center. During the fellowship, I implemented the use of Zoo Monitor - a behavior tracking tool - to monitor harbor seal and American crow behavior. Additionally, my undergraduate capstone project assessed using new technologies (autonomous recording units and Raven Pro sound analysis software) to replace traditional field techniques when monitoring quail coveys. I became enthusiastic about data science when processing data from Zoo Monitor and Raven Pro. My long-term goal is to use data science to inform effective marine wildlife conservation and fisheries management.\nMy interests include:\n\nMarine & wildlife conservation\nRemote sensing & geospatial ecology\nFisheries sustainability\nEnvironmental Justice\n\n\n\n\nMy Hobbies!\n\nWhat do I do outside of the office and classroom? I love hiking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it’s most likely a mystery/thriller novel (find me on Goodreads!) I spend a lot of time in the kitchen cooking and baking – I picked up these two hobbies during the COVID-19 pandemic. Last, I dabble in digital illustration & graphic design. I have been selling prints and stickers since 2017.\n\n\nI grew up in the state of Iowa, but I’ve moved around a lot in my adult life! I participated in multiple National Student Exchange programs, and I moved around for internships and fellowships. Check out all the places I’ve lived since I started college in 2016 and relatively how long I lived there:\n\n\n\n\n\n\nMap made using package leaflet and data from: https://simplemaps.com/data/us-cities\n\n\n\nWhat’s Next for Me?\n\nRight now I am focusing on finishing my Master’s degree and anticipate graduating in June 2023. I will be looking to start work next summer as a data scientist! Broadly, I hope to find a role where I can blend my creative and quantitative talents to contribute to an organization or research group focused on wildlife conservation or fisheries sustainability. I am ideally looking for jobs in Washington, Oregon, California or Hawaii."
-  },
-  {
-    "objectID": "posts.html",
-    "href": "posts.html",
-    "title": "Blog",
-    "section": "",
-    "text": "MEDS\n\n\nStatistics\n\n\n\n\n\n\n\nElke Windschitl\n\n\nDec 2, 2022\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "posts/2022-12-02-hawaiian-fish-analysis/index.html#introduction",
     "href": "posts/2022-12-02-hawaiian-fish-analysis/index.html#introduction",
     "title": "Predicting IUCN Red List status of fish in Hawaii",
@@ -61,5 +40,26 @@
     "title": "Predicting IUCN Red List status of fish in Hawaii",
     "section": "Limitations & Next Steps",
     "text": "Limitations & Next Steps\nAs mentioned above, both the IUCN Red List data and the FishBase data have potential biases and don’t evaluate all species. Additionally, not all listed species had every piece of information, and missing data were removed. With missing data removed, the sample became small. It is possible that endemism plays a bigger role in threat risk than illustrated here by the model. Points of concern with this model include disproportionate data in both the threat level and endemism, and high false negative rates in binary prediction. Future analyses could investigate other potential explanatory variables such as metrics measuring fishing pressure, life cycle characteristics, and range. Additionally, future analyses could expand the area of interest to all of the tropics.\n\nReference\n\n[1] “IUCN,” IUCN Red List of Threatened Species. Version 2022-1, 2022. https://www.iucnredlist.org/ (accessed Dec. 02, 2022).\n[2] B. J. Cardinale et al., “Biodiversity loss and its impact on humanity,” Nature, vol. 486, no. 7401, Art. no. 7401, Jun. 2012, doi: 10.1038/nature11148. [3] M. J. Munstermann et al., “A global ecological signal of extinction risk in terrestrial vertebrates,” Conserv. Biol., vol. 36, no. 3, p. e13852, 2022, doi: 10.1111/cobi.13852.\n[4] “IUCN,” IUCN Red List of Threatened Species. Version 2022-1, 2015. www.iucnredlist.org\n[5] R. Froese and D. Pauly, “FishBase,” 2022. www.fishbase.org\n[6] C. Boettiger, D. Temple Lang, and P. Wainwright, “rfishbase: exploring, manipulating and visualizing FishBase data from R.,” J. Fish Biol., 2012, doi: https://doi.org/10.1111/j.1095-8649.2012.03464.x.\n[7] W. J. Ripple, C. Wolf, T. M. Newsome, M. Hoffmann, A. J. Wirsing, and D. J. McCauley, “Extinction risk is most acute for the world’s largest and smallest vertebrates,” Proc. Natl. Acad. Sci. U. S. A., vol. 114, no. 40, pp. 10678–10683, Oct. 2017, doi: 10.1073/pnas.1702078114.\n[8] K. D. Bahr, P. L. Jokiel, and K. S. Rodgers, “The 2014 coral bleaching and freshwater flood events in Kāneʻohe Bay, Hawaiʻi,” PeerJ, vol. 3, p. e1136, Aug. 2015, doi: 10.7717/peerj.1136."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Elke Windschitl",
+    "section": "",
+    "text": "A little bit about me:\nI am a master’s student studying Environmental Data Science in the Bren School of Environmental Science & Management at the University of California, Santa Barbara. I am passionate about marine and wildlife conservation, and I hope to build a career using data science tools to solve environmental problems.\n\n\n\nEducation\n\n\nMaster’s of Environmental Data Science Student\n\n\nUniversity of California Santa Barbara | Expected graduation: June 2023\n\n\nBachelor’s of Science in Biology with Honors\n\n\nIowa State University | 2020"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Full BioHobbiesHomesWhat’s Next\n\n\n\nBiography\n\nI am a master’s student studying Environmental Data Science in the Bren School of Environmental Science & Management at the University of California, Santa Barbara. I earned my bachelor’s degree in Biology in 2020 from Iowa State University with a curriculum focus on animal ecology. During my undergraduate studies, I sought out opportunities to connect animal ecology with my passion for marine conservation. I took hands-on marine coursework at the University of Hawaii at Hilo, California State University Monterey Bay, and the University of Southern Mississippi’s Gulf Coast Research Laboratory.\nAfter graduating, I completed a 400-hour Animal Behavior Fellowship at the Virginia Aquarium & Marine Science Center. During the fellowship, I implemented the use of Zoo Monitor - a behavior tracking tool - to monitor harbor seal and American crow behavior. Additionally, my undergraduate capstone project assessed using new technologies (autonomous recording units and Raven Pro sound analysis software) to replace traditional field techniques when monitoring quail coveys. I became enthusiastic about data science when processing data from Zoo Monitor and Raven Pro. My long-term goal is to use data science to inform effective marine wildlife conservation and fisheries management.\nMy interests include:\n\nMarine & wildlife conservation\nRemote sensing & geospatial ecology\nFisheries sustainability\nEnvironmental Justice\n\n\n\n\nMy Hobbies!\n\nWhat do I do outside of the office and classroom? I love hiking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it’s most likely a mystery/thriller novel (find me on Goodreads!) I spend a lot of time in the kitchen cooking and baking – I picked up these two hobbies during the COVID-19 pandemic. Last, I dabble in digital illustration & graphic design. I have been selling prints and stickers since 2017.\n\n\nI grew up in the state of Iowa, but I’ve moved around a lot in my adult life! I participated in multiple National Student Exchange programs, and I moved around for internships and fellowships. Check out all the places I’ve lived since I started college in 2016 and relatively how long I lived there:\n\n\n\n\n\n\nMap made using package leaflet and data from: https://simplemaps.com/data/us-cities\n\n\n\nWhat’s Next for Me?\n\nRight now I am focusing on finishing my Master’s degree and anticipate graduating in June 2023. I will be looking to start work next summer as a data scientist! Broadly, I hope to find a role where I can blend my creative and quantitative talents to contribute to an organization or research group focused on wildlife conservation or fisheries sustainability. I am ideally looking for jobs in Washington, Oregon, California or Hawaii."
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Blog",
+    "section": "",
+    "text": "MEDS\n\n\nStatistics\n\n\n\n\n\n\n\nElke Windschitl\n\n\nDec 2, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
