@@ -1,5 +1,5 @@
 ---
-title: "Predicting IUCN Red List status of fish in Hawaii"
+title: "Identifying Key Traits in Hawaiian Fish that Predict Risk of Extinction"
 author:
   - name: Elke Windschitl
     url: https://elkewind.github.io
@@ -10,291 +10,54 @@ categories: [MEDS, Statistics]
 citation: 
   url: https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis
 image: dive_mask.JPG
+format: 
+  html:
+    code-fold: true
 toc: true
 draft: false
 ---
 
 ```{r}
 #| include: false
-### ------------------- EDS 222 Final Project ------------------- ###
-### Identifying key traits in Hawaiian fish to predict risk of extinction ###
-# Load libraries
-library(rfishbase)
-library(tidyverse)
-library(janitor)
-library(jsonlite)
-library(rredlist)
-library(broom)
-library(sjPlot)
-# Set data export location
-datadir <- "/Users/elkewindschitl/Documents/MEDS/eds-222/final-proj/data"
-### ------------------------ Stats Analysis ------------------------  ###
-tidy_fish_data <- read_csv(file.path(datadir, "hi_tidy_fish_data.csv"))
-hi_fish_status <- read_csv(file.path(datadir, "hi_fish_status.csv"))
-
-tidy_fish_data <- tidy_fish_data %>% 
-   mutate(is_threatened = case_when(is_of_concern == 1 ~ "yes",
-                                     is_of_concern == 0 ~ "no"))
-# Here I look at each piece individually, then combine them together later
-rm_len_na <- tidy_fish_data %>% 
-  filter(!length_cm == "NA")
-# Graph length vs is of concern
-gg_len <- ggplot(data = rm_len_na, aes(x = length_cm, y = is_of_concern)) +
-  geom_jitter(width = 0, height = 0.05, alpha = 0.8, col = "#38b6ba") +
-  labs(x = "Species average length", y = "Listed as a concern") +
-  theme_minimal() +
-  labs(x = "Species length (cm)", y = "Listed as threatened", title = "Fig 2. Probability of being threatened by species length") +
-   theme(panel.background = element_rect(fill = "#f7f2e6"),
-        plot.background = element_rect(fill = "#f7f2e6"),
-        panel.grid.minor = element_blank(),
-        panel.grid.major = element_line(colour = '#c9c9c9'),
-        panel.border = element_rect(colour = "black", fill=NA, size=1))
-gg_len
-# Log regression length
-mod_length <- glm(is_of_concern ~ length_cm, 
-                  data = rm_len_na, 
-                  family = "binomial")
-summary(mod_length)
-# Plot with regression
-len_data_space <- gg_len +
-  geom_smooth(method = "glm", 
-              se = FALSE, color = "#545454", 
-              method.args = list(family = "binomial"))
-len_data_space
-# Run this again, but remove large values to evaluate robustness
-rm_outliers <- rm_len_na %>% 
-  filter(length_cm <= 1000)
-# Graph length vs is of concern
-gg_rm_out <- ggplot(data = rm_outliers, aes(x = length_cm, y = is_of_concern)) +
-  geom_jitter(width = 0, height = 0.05, alpha = 0.8, col = "#38b6ba") +
-  labs(x = "Species length (cm)", y = "Listed as threatened", title = "Fig 3. Probability of being threatened by species length \n (excluding outliers)") +
-  theme_minimal() +
-theme(panel.background = element_rect(fill = "#f7f2e6"),
-        plot.background = element_rect(fill = "#f7f2e6"),
-        panel.grid.minor = element_blank(),
-        panel.grid.major = element_line(colour = '#c9c9c9'),
-        panel.border = element_rect(colour = "black", fill=NA, size=1))
-gg_rm_out
-# Log regression length
-mod_rm_out <- glm(is_of_concern ~ length_cm, 
-                  data = rm_outliers, 
-                  family = "binomial")
-summary(mod_rm_out)
-# Plot with regression
-len_rm_out_plot <- gg_rm_out +
-  geom_smooth(method = "glm", 
-              se = FALSE, color = "#545454", 
-              method.args = list(family = "binomial"))
-len_rm_out_plot
-# Make bins
-len_breaks <- rm_len_na %>%
-  pull(length_cm) %>%
-  quantile(probs = 0:10/10)
-
-len_binned_space <- len_data_space + 
-  stat_summary_bin(
-    fun = "mean", color = "red", 
-    geom = "line", breaks = len_breaks
-  )
-len_binned_space
-# Compute fitter probabilities, then graph
-length_plus <- mod_length %>%
-  augment(type.predict = "response") %>%
-  mutate(y_hat = .fitted)
-ggplot(length_plus, aes(x = length_cm, y = y_hat)) +
-  geom_point() +
-  geom_line() +
-  scale_y_continuous("Probabilities of being threatened", 
-                     limits = c(0,1))
-# Compute odds scale and graph it
-length_plus <- length_plus %>% 
-  mutate(odds_hat = y_hat / (1 - y_hat)) %>% 
-  filter(length_cm <= 1000) # remove outliers for graphing
-len_odds_plot <- ggplot(length_plus, aes(x = length_cm, y = odds_hat)) +
-  geom_point() + 
-  geom_line() + 
-  scale_y_continuous("Odds of being threatened") +
-  labs(x = "Species length (cm)", title = "Fig 4. Odds of being threatened by species length") +
-  theme_minimal() +
-  theme(panel.background = element_rect(fill = "#f7f2e6"),
-        plot.background = element_rect(fill = "#f7f2e6"),
-        panel.grid.minor = element_blank(),
-        panel.grid.major = element_line(colour = '#c9c9c9'),
-        panel.border = element_rect(colour = "black", fill=NA, size=1))
-len_odds_plot
-# Pull B1
-len_b1 <- mod_length$coefficients[2]
-len_odds_ratio <- exp(len_b1)
-print(paste0("The model suggests that each additional cm in length is associated with a ",
-             round(len_odds_ratio, 1), "% increase in the odds of being threatened"))
-# Compute log-odds and graph it
-length_plus <- length_plus %>% 
-  mutate(log_odds_hat = log(odds_hat))
-ggplot(length_plus, aes(x = length_cm, y = log_odds_hat)) +
-  geom_point() + 
-  geom_line() + 
-  scale_y_continuous("Log(odds) of being threatened")
-# Create confusion matrix to see how well the model performed
-length_plus <- augment(mod_length, type.predict = "response") %>%
-  mutate(threatened_hat = round(.fitted)) %>%
-  select(is_of_concern, length_cm, .fitted, threatened_hat)
-l_tab <- length_plus %>%
-  select(is_of_concern, threatened_hat) %>%
-  table()
-l_tab
-acc <- (l_tab[1,1] + l_tab[2,2]) / nrow(length_plus) * 100
-print(paste0("The accuracy of this model was ", round(acc), "%")) 
-# Add reef association to the model
-tidy_no_na <- rm_len_na %>% 
-  filter(!coral_reefs == "NA")
-len_reef_mod <- glm(is_of_concern ~ length_cm + reef_associated,
-                    data = tidy_no_na,
-                    family = "binomial")
-len_reef_mod
-print(paste0("Fish that are reef associated see their odds of being threatened decrease by a factor of ", -round(len_reef_mod$coefficients[3], 2), " after controlling for length"))
-# Create confusion matrix to see how well the model performed
-length_reef_plus <- augment(len_reef_mod, type.predict = "response") %>%
-  mutate(threatened_hat = round(.fitted)) %>%
-  select(is_of_concern, length_cm, reef_associated, .fitted, threatened_hat)
-l_r_tab <- length_reef_plus %>%
-  select(is_of_concern, threatened_hat) %>%
-  table()
-l_r_tab # Adding reef did nothing
-# Add endemism to the original length model
-len_end_mod <- glm(is_of_concern ~ length_cm + is_endemic,
-                   data = rm_len_na,
-                   family = "binomial")
-summary(len_end_mod)
-print(paste0("Fish that are endemic see their odds of being threatened increase by a factor of ", round(len_end_mod$coefficients[3], 2), " after controlling for length"))
-# Create confusion matrix to see how well the model performed
-length_end_plus <- augment(len_end_mod, type.predict = "response") %>%
-  mutate(threatened_hat = round(.fitted)) %>%
-  select(is_of_concern, length_cm, is_endemic, .fitted, threatened_hat)
-l_e_tab <- length_end_plus %>%
-  select(is_of_concern, threatened_hat) %>%
-  table()
-l_e_tab # Adding endemism did nothing
-rm_ra_na <- tidy_fish_data %>% 
-  filter(!coral_reefs == "NA")
-# Plot reef associated vs is of concern 
-gg_reef <- ggplot(data = rm_ra_na, aes(x = reef_associated, y = is_of_concern)) +
-  geom_jitter(width = 0.05, height = 0.05, alpha = 0.8, col = "#38b6ba") +
-  labs(x = "Reef Associated", y = "Listed as a concern") +
-  theme_minimal()
-gg_reef
-# Log regression reefs -- does this even make sense to do?
-mod_reef <- glm(is_of_concern ~ reef_associated, 
-                data = rm_ra_na, 
-                family = "binomial")
-summary(mod_reef)
-# Plot endemism vs is of concern
-gg_status <- ggplot(data = tidy_fish_data, aes(x = is_endemic, y = is_of_concern)) +
-  geom_jitter(width = 0.05, height = 0.05, alpha = 0.8, col = "#38b6ba") +
-  labs(x = "Endemic", y = "Listed as a concern") +
-  theme_minimal()
-gg_status
-# Log regression of endemism -- does this even make sense to do?
-mod_status <- glm(is_of_concern ~ is_endemic, 
-                  data = tidy_fish_data, 
-                  family = "binomial")
-summary(mod_status)
-# I don't think these last two are correct... ask!!!
-# Combining it all together (even though)
-mod <- glm(is_of_concern ~ length_cm + reef_associated + is_endemic,
-           data = tidy_no_na,
-           family = "binomial")
-summary(mod)
-# Pull out all coefficients
-b0 <- mod$coefficients[1] #Intercept
-b1 <- mod$coefficients[2] #Length
-b2 <- mod$coefficients[3] #Reef Associated
-b3 <- mod$coefficients[4] #Endemic
-# Run some test probabilities 
-equ <- b0 + b1 * 700  + b2 + b3
-p_700_1_1 <- (exp(equ)) / (1 + exp(equ))
-equ20 <- b0 + b1 * 20  + b2 + b3
-p_20_1_1 <- (exp(equ20)) / (1 + exp(equ20))
-equ450 <- b0 + b1 * 450  + b2 + b3
-p_450_1_1 <- (exp(equ450)) / (1 + exp(equ450))
-# Write a function for testing probabilities
-threat_prob <- function(b0, b1, b2, b3, len, reef, end) {
-  equ <- b0 + b1 * len + b2 * reef + b3 * end
-  prob <- (exp(equ)) / (1 + exp(equ))
-  print(prob)
-}
-# Test
-threat_prob(b0, b1, b2, b3, 700, 1, 1)
-threat_prob(b0, b1, b2, b3, 20, 1, 1)
-threat_prob(b0, b1, b2, b3, 450, 1, 1)
-# Attempt some t-tests???
-t.test(is_of_concern ~ reef_associated, data = rm_ra_na)
-t.test(is_of_concern ~ is_endemic, data = tidy_fish_data)
-
-### ------------------------ Predictions ------------------------  ###
-
-# Filter for all columns of data deficient fish in Hawaii
-hi_fish_no_rank <- hi_fish_status %>% 
-  filter(is.na(category) | category == "DD")
-# Tidy data
-tidy_no_rank <- hi_fish_no_rank %>% 
-  mutate(coral_reefs = coral_reefs * - 1) %>% 
-  mutate(reef_associated = case_when(coral_reefs == 1 ~ "yes",
-                                     coral_reefs == 0 ~ "no")) %>% 
-  mutate(is_endemic = case_when(status == "endemic" ~ 1,
-                                status == "native" |
-                                  status == "introduced" ~ 0))
-# Create loop to populate prob in every row
-for (i in seq_along(tidy_no_rank$genus_species)) {
-  tidy_no_rank$y_hat[i] <- threat_prob(b0, b1, b2, b3, 
-                                    tidy_no_rank$length_cm[i],
-                                    tidy_no_rank$coral_reefs[i],
-                                    tidy_no_rank$is_endemic[i])
-}
-# Arrange by probability 
-tidy_pred_rank <- tidy_no_rank %>% arrange(desc(y_hat)) %>% 
-  mutate(endemic = case_when(status == "endemic" ~ "yes",
-                                status == "native" |
-                                status == "introduced" ~ "no"))
+source("/Users/elkewindschitl/Documents/MEDS/eds-222/final-proj/eds-222-final-project/clean-code/website-source-code.R")
 ```
 
 Description:
 
-In this post, I investigate Hawaiian fish ecological traits -- such as size, endemism, and reef-association -- to find their probability of being threatened as ranked by the IUCN Red List.
+In this post, I investigate Hawaiian fish ecological traits -- such as size, endemism, and reef-association -- to find their probability of being threatened as ranked by the IUCN Red List. For my full analysis, check out my [github repository](https://github.com/elkewind/eds-222-final-project).
 
 ![School of Hawaiian fish. Elke Windschitl 2018.](fish_pic.JPG)
 
 ## Introduction
 
-Many species in modern times are faced with the risk of extinction due to global human activity. According to the International Union and Conservation of Nature (IUCN), "More than 41,000 species are threatened with extinction. That is still 28% of all assessed species." \[1\]. Increased extinction and loss of biodiversity can have severe ecological, economic, and cultural impacts. Cardinale et al.'s deep dive into biodiversity and ecosystem services research conclude consensus statements that biodiversity loss reduces ecological communities' efficiency, stability, and productivity. Ecosystem services productivity reductions can have a negative impact on ecosystem economics \[2\]. Additionally, cultures worldwide have strong ties to local flora and fauna, much of which now face extinction risk. Improving understanding of extinction risk is ecologically, economically, and culturally important.
+Global human activity threatens many species with extinction. According to the International Union and Conservation of Nature (IUCN), "More than 41,000 species are threatened with extinction. That is still 28% of all assessed species." \[1\]. Increased extinction and loss of biodiversity can have severe ecological, economic, and cultural impacts. Cardinale et al.'s deep dive into biodiversity and ecosystem services research conclude that biodiversity loss reduces ecological communities' efficiency, stability, and productivity. Decreased productivity from ecosystem services can have a negative impact on ecosystem economics \[2\]. Additionally, cultures worldwide have strong ties to local flora and fauna, much of which now face extinction risk. Improving understanding of extinction risk is ecologically, economically, and culturally important.
 
 Wildlife scientists have been working to understand what ecological traits of vertebrates predict threat level, and what common risk factors drive those threat level rates. Munstermann et al. investigate what terrestrial vertebrate functional groups are most at risk of extinction threat and find that cave dwelling amphibian, arboreal quadrupedal mammals, aerial and scavenging birds, and pedal squamates are at high risk \[3\]. This knowledge can help inform policies and practices with the goal to decrease threats of extinction of wildlife. However, less comprehensive research has been done to conduct similar analyses on marine species.
 
-In recent years, the waters surrounding the Hawaiian Islands have been exposed to ecological changes due to mass coral bleaching events, El Nino events, and pollution. Rapidly changing marine ecosystems may pose a threat to Hawaiian fish. Fish hold significant cultural value in Hawaii, and many local people rely on seafood as a major source of protein. However, approximately 72% of fish in Hawaii present in FishBase have been evaluated by the IUCN and have sufficient data to be assessed. Here I run a small-scale analysis to investigate Hawaiian fish ecological traits -- such as endemism, size, and reef-association -- to predict a binary status on the IUCN red list and predict which unevaluated fish species in Hawaii may be threatened.
+In recent years, the waters surrounding the Hawaiian Islands have been exposed to ecological changes due to mass coral bleaching events, El Niño events, and pollution. Rapidly changing marine ecosystems may pose a threat to Hawaiian fish. Fish hold significant cultural value in Hawaiʻi, and many local people rely on seafood as a major source of protein. However, approximately 72% of fish in Hawaiʻi present in FishBase have been evaluated by the IUCN and have sufficient data to be assessed. Here I run a small-scale analysis to investigate Hawaiian fish ecological traits -- such as endemism, size, and reef-association -- to predict a binary status on the IUCN red list and predict which unevaluated fish species in Hawaiʻi may be threatened.
 
-![Various Hawaiian fish. Elke Windschitl 2018.](fish_collage.jpg)
+![Various fish found in Hawaiʻi. Elke Windschitl 2018.](fish_collage.jpg)
 
 ## Data
 
-For my analyses I use the IUCN Red List data accessed via the IUCN Red List API \[1\] and package rredlist \[4\]. Consistent with Munstermann et al., living species listed as 'Vulnerable', 'Endangered', or 'Critically Endangered' were categorized as 'Threatened'. Living species listed as 'Least Concern' and 'Near Threatened' were categorized as 'Nonthreatened' \[3\]. Extinct species were not evaluated in this analysis. The IUCN Red List data are limited in that many marine species have not been listed yet or have been identified as too data deficient to be evaluated. The lack of data on elusive fish may introduce bias into the model.
+For my analyses I use the IUCN Red List data accessed via the [IUCN Red List API](https://apiv3.iucnredlist.org/) \[1\] and package rredlist \[4\]. Consistent with Munstermann et al., living species listed as 'Vulnerable', 'Endangered', or 'Critically Endangered' were categorized as 'Threatened'. Living species listed as 'Least Concern' and 'Near Threatened' were categorized as 'Nonthreatened' \[3\]. Extinct species were not evaluated in this analysis. The IUCN Red List data are limited in that many marine species have not been listed yet or have been identified as too data deficient to be evaluated. The lack of data on elusive fish may introduce bias into the model.
 
-Fish ecological data were accessed from FishBase \[5\] via package rfishbase \[6\]. Different species in the FishBase data were originally described by different people, possibly leading to errors or biases. Measurement errors in length may be present, as there are various common ways to measure the length of a fish. The species recorded in FishBase may be biased towards fish with commercial value.
+Fish ecological data were accessed from [FishBase](https://fishbase.net.br/search.php) \[5\] via package rfishbase \[6\]. Different species in the FishBase data were originally described by different people, possibly leading to errors or biases. Measurement errors in length may be present, as there are various common ways to measure the length of a fish. The species recorded in FishBase may be biased towards fish with commercial value. Data were wrangled in R and formatted in a tidy data table (Table 1.)
 
 ```{r}
 #| echo: false
 #| warning: false
 tidy_fish_data <- tidy_fish_data %>% 
-  select("genus_species", "length_cm", "category", "main_common_name", "reef_associated", "is_endemic", "is_threatened")
+  select("genus_species", "length_cm", "category", "main_common_name", "reef_associated", "is_endemic", "is_threatened", "is_of_concern")
 ```
 
 ```{r}
-#| echo: false
 #| warning: false
-#head(tidy_fish_data)
 tab_df(tidy_fish_data[1:5,],
        title = "Tbl 1. Hawaii Fish Data",
        col.header = c("Genus species", "Length (cm)", "IUCN Category", 
                           "Common Name", "Reef Association", "Endemic",
-                          "Threatened"))
+                          "Threatened", "Threatened Binary"))
        
 ```
 
@@ -302,7 +65,7 @@ tab_df(tidy_fish_data[1:5,],
 
 Here I run a logistic regression with a categorical binary response variable of 'Threatened' or 'Nonthreatened' on species length, coral reef association, and endemism.
 
-I included length in the model because previous research show that species of extreme sizes have higher risk of extinction. Ripple et al. "found that the probability of being threatened was positively and significantly related to body mass for birds, cartilaginous fishes, and mammals" \[7\]. While body mass is not the same as length, the FishBase data set had few weight entries and many length entries, and sample size was already limited. Several mass coral bleaching events have occurred in Hawaii in recent decades causing ecosystem disruption \[8\]. Here I consider if reef-associated fish are more likely to be threatened that fish that are not reef-associated. Last, endemic species -- species that are native to a region and occur only in that region -- are known to be at high risk of extinction.
+I included length in the model because previous research show that species of extreme sizes have higher risk of extinction. Ripple et al. "found that the probability of being threatened was positively and significantly related to body mass for birds, cartilaginous fishes, and mammals" \[7\]. While body mass is not the same as length, the FishBase data set had few weight entries and many length entries, and sample size was already limited. Several mass coral bleaching events have occurred in Hawaiʻi in recent decades causing ecosystem disruption \[8\]. Here I consider if reef-associated fish are more likely to be threatened than fish that are not reef-associated. Last, endemic species -- species that are native to a region and occur only in that region -- are known to be at high risk of extinction.
 
 ## Results & Discussion
 
@@ -311,24 +74,22 @@ I included length in the model because previous research show that species of ex
 ##### 1. IUCN Red List Threatened Status
 
 ```{r}
-#| echo: false
 #| warning: false
 threat_tab <- table(tidy_fish_data$is_threatened)
 tab_df(threat_tab,
-       title = "Tbl 2. Threatened on IUCN Red List Counts",
+       title  = "Tbl 2. Counts of threatened species in the data frame",
        col.header = "Nonthreatened", "Threatened")
 ```
 
 ##### 2. Fish Length
 
 ```{r}
-#| echo: false
 #| warning: false
 ggplot(tidy_fish_data, aes(x = length_cm)) +
   geom_histogram(fill = "#38b6ba", bins = 60) +
   theme_minimal() +
   labs(title = "Fig 1. Histogram of species length") +
-   theme(panel.background = element_rect(fill = "#f7f2e6"),
+  theme(panel.background = element_rect(fill = "#f7f2e6"),
         plot.background = element_rect(fill = "#f7f2e6"),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_line(colour = '#c9c9c9'),
@@ -340,34 +101,53 @@ ggplot(tidy_fish_data, aes(x = length_cm)) +
 ##### 3. Reef-Association
 
 ```{r}
-#| echo: false
 #| warning: false
 reef_tab <- table(tidy_fish_data$reef_associated)
-tab_df(threat_tab,
-       title = "Tbl 3. Reef Associated Counts")
+tab_df(reef_tab,
+       title = "Tbl 3. Counts of reef-associated species in the data frame")
 ```
 
 ##### 4. Endemism
 
 ```{r}
-#| echo: false
 #| warning: false
 end_tab <- table(tidy_fish_data$is_endemic)
 tab_df(end_tab,
-       title = "Tbl 4. Endemic Counts")
+       title = "Tbl 4. Counts of endemic species in the data frame")
 ```
 
-After aligning the FishBase data with the IUCN Red List data, the data are disproportionate in both the threat level and endemism.
+After aligning the FishBase data with the IUCN Red List data, the data are disproportionate in both the threat level (Table 2) and endemism (Table 4). Fish length is skewed right (Figure 1), and reef-association is well balanced (Table 3).
 
-#### Analysis
+#### Analysis:
 
 ##### **Length** $$\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length)  +\varepsilon $$
 
 ```{r}
-#| echo: false
 #| warning: false
-len_data_space
-#summary(mod_length)
+rm_len_na <- tidy_fish_data %>% 
+  filter(!length_cm == "NA") # Remove NA length values
+# Plot threat prob. vs. length
+gg_len <- ggplot(data = rm_len_na, aes(x = length_cm, 
+                             y = is_of_concern)) +
+  geom_jitter(width = 0, height = 0.05, 
+              alpha = 0.8, col = "#38b6ba") +
+  theme_minimal() +
+  labs(x = "Species length (cm)", 
+       y = "Listed as threatened", 
+       title = "Fig 2. Probability of being threatened by species length") +
+  theme(panel.background = element_rect(fill = "#f7f2e6"),
+        plot.background = element_rect(fill = "#f7f2e6"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(colour = '#c9c9c9'),
+        panel.border = element_rect(colour = "black", fill=NA, size=1))
+gg_len + geom_smooth(method = "glm", 
+              se = FALSE, color = "#545454", 
+              method.args = list(family = "binomial"))
+# Log regression length
+mod_length <- glm(is_of_concern ~ length_cm, 
+                  data = rm_len_na, 
+                  family = "binomial")
+# Model output table format
 tab_model(mod_length,
           transform = NULL,
           pred.labels = c("Intercept", "Length (cm)"),
@@ -377,11 +157,32 @@ tab_model(mod_length,
           p.threshold = c(0.10, 0.05, 0.01),
           string.p = "P-value",
           show.r2 = FALSE,
-          title = "Tbl 5. Logisitc Model Results for Length",
+          title = "Tbl 5. Logisitc Regression Model Results for Length",
           digits = 3)
-
+# Remove large values to evaluate robustness
+rm_outliers <- rm_len_na %>% 
+  filter(length_cm <= 1000)
+gg_rm_out <- ggplot(data = rm_outliers, aes(x = length_cm, 
+                                            y = is_of_concern)) +
+  geom_jitter(width = 0, height = 0.05, 
+              alpha = 0.8, col = "#38b6ba") +
+  labs(x = "Species length (cm)", y = "Listed as threatened", title = "Fig 3. Probability of being threatened by species length \n (excluding outliers)") +
+  theme_minimal() +
+  theme(panel.background = element_rect(fill = "#f7f2e6"),
+        plot.background = element_rect(fill = "#f7f2e6"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(colour = '#c9c9c9'),
+        panel.border = element_rect(colour = "black", fill=NA, size=1))
+len_rm_out_plot <- gg_rm_out +
+  geom_smooth(method = "glm", 
+              se = FALSE, color = "#545454", 
+              method.args = list(family = "binomial"))
 len_rm_out_plot
-#summary(mod_rm_out)
+# Log regression length removed outliers
+mod_rm_out <- glm(is_of_concern ~ length_cm, 
+                  data = rm_outliers, 
+                  family = "binomial")
+# Model output table format
 tab_model(mod_rm_out,
           transform = NULL,
           pred.labels = c("Intercept", "Length (cm)"),
@@ -391,22 +192,42 @@ tab_model(mod_rm_out,
           p.threshold = c(0.10, 0.05, 0.01),
           string.p = "P-value",
           show.r2 = FALSE,
-          title = "Tbl 6. Logisitc Model Results for Length with Outliers Removed",
+          title = "Tbl 6. Logisitc Regression Model Results for Length with Outliers Removed",
           digits = 3)
 ```
 
 ```{r}
-#| echo: false
 #| warning: false
+# Compute fitted probabilities
+length_plus <- mod_length %>%
+  augment(type.predict = "response") %>%
+  mutate(y_hat = .fitted)
+# Compute odds scale
+length_plus <- length_plus %>% 
+  mutate(odds_hat = y_hat / (1 - y_hat)) %>% 
+  filter(length_cm <= 1000) # remove outliers for graphing
+# Graph odds scale
+len_odds_plot <- ggplot(length_plus, aes(x = length_cm, 
+                                         y = odds_hat)) +
+  geom_point() + 
+  geom_line() + 
+  scale_y_continuous("Odds of being threatened") +
+  labs(x = "Species length (cm)", 
+       title = "Fig 4. Odds of being threatened by species length") +
+  theme_minimal() +
+  theme(panel.background = element_rect(fill = "#f7f2e6"),
+        plot.background = element_rect(fill = "#f7f2e6"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(colour = '#c9c9c9'),
+        panel.border = element_rect(colour = "black", fill=NA, size=1))
 len_odds_plot
 ```
 
-Here we see that longer fish are associated with higher probability of being threatened (p-value = 2e\^-16), but two outliers may be driving this significance. However, when the outliers are removed, we still see a positive correlation with fish length and probability of threat with the 50% probability mark remaining just over 400 cm (p-value = 2e\^-16). When we compute the odds ratio, we see that there is an exponential relationship between the length and the odds of a species being threatened. Odds of being threatened increase more at large lengths.
+Here we see that longer fish are associated with higher probability of being threatened (Table 5, p-value = \<0.001), but two outliers may be driving this significance (Figure 2). However, when the outliers are removed, we still see a significant positive correlation between fish length and probability of threat (Table 6, p-value = \<0.001) with the 50% probability mark remaining just over 400 cm (Figure 3). When we compute the odds ratio, we see that there is an exponential relationship between the length and the odds of a species being threatened. Odds of being threatened increase more at large lengths (Figure 4).
 
 Confusion Matrix:
 
 ```{r}
-#| echo: false
 #| warning: false
 length_plus <- augment(mod_length, type.predict = "response") %>%
   mutate(threatened_hat = round(.fitted)) %>%
@@ -425,18 +246,16 @@ l_con_matrix <- as.data.frame(matrix(c(l_con_matrix[1],
                               row.names = rownames)
 colnames(l_con_matrix) <- colnames
 tab_df(l_con_matrix,
-       title = "Tbl 7. Length Model Confusion Matrix",
+       title = "Tbl 7. Confusion Matrix Displaying Lenght Model Performance",
        show.rownames = TRUE)
 ```
 
-The accuracy of the model is 97%, but it seems to be more accurate in predicting species that are not actually of concern (true negative rate = 0.99). Species that are threatened have poorer prediction rates (true positive rate = 0.38).
+The accuracy of the model is 97% with 847 out of 874 predicted observations being correct (Table 7). However, the model seems to be more accurate in predicting species that are not actually of concern (true negative rate = 0.99). Species that are threatened have poorer prediction rates (true positive rate = 0.38).
 
 ##### **Full Model** $$\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length) + \beta_2  (Reef) + \beta_3  (Endemic) +\varepsilon $$
 
 ```{r}
-#| echo: false
 #| warning: false
-#summary(mod)
 tab_model(mod,
           transform = NULL,
           pred.labels = c("Intercept", "Length (cm)", 
@@ -447,33 +266,32 @@ tab_model(mod,
           show.p = TRUE,
           string.p = "P-value",
           show.r2 = FALSE,
-          title = "Tbl 8. Logisitc Model Results for Length, Reef Association, and Endemism",
+          title = "Tbl 8. Logisitc Regression Model Results for Length, Reef Association, and Endemism",
           digits = 3)
 ```
 
-We can see from the output that length remains significant (p-value = 8.83e\^-15) even when additional variables are added, making length robust. Endemicity is significantly influencing the model at alpha = 0.90 (p-value = 0.0707). Coral reef association is not significantly impacting the model (p-value = 0.9175).
+We can see from the output above that length remains significant (Table 8, p-value = \<0.001) even when additional variables are added, making length robust. Endemicity is a significant predictor of threat probability at a significance level of 0.10 (p-value = 0.0707). Coral reef association is not significantly impacting the model (p-value = 0.9175).
 
-#### Predicting Probability -- Solving for p
+#### Predicting Probability -- Solving for p:
 
-In this model, the smallest fish in the data set -- *Melamphaes danae* at 2.30 cm -- has a probability of being threatened of 0.012. The largest fish in the data set -- *Rhincodon typus* at 1700 cm -- has a probability of being threatened of 0.99.
-
-Here I use the model to predict the probabilities of being threatened for unlisted fish. The top five most vulnerable unranked species under this model are:
+In this model, the smallest fish in the data set -- *Melamphaes danae* (bigscale) at 2.30 cm -- has a probability of being threatened of 0.012. The largest fish in the data set -- *Rhincodon typus* (whale shark) at 1700 cm -- has a probability of being threatened of 0.99. Here I use the model to predict the probabilities of being threatened for unlisted fish.
 
 ```{r}
-#| echo: false
 #| warning: false
 tidy_pred_rank <- tidy_pred_rank %>% 
   select("genus_species", "length_cm", "coral_reefs", "main_common_name", "reef_associated", "endemic", "y_hat")
 tab_df(tidy_pred_rank[1:5,],
-       title = "Tbl 9. Most Vulnerable Unranked Fish",
+       title = "Tbl 9. Top 5 Most Vulnerable Unranked Fish in Hawaii",
        col.header = c("Genus species", "Length (cm)", "Reef Association",
                           "Common Name", "Reef Association", "Endemic",
                           "Threatened"))
 ```
 
+The top five most vulnerable unranked species under this model are *Makaira mazara* (Indo-Pacific blue marlin), *Istiompax indica* (black marlin), *Echinorhinus cookei* (prickly shark), *Epinephelus lanceolatus* (giant grouper), and *Assurger anzac* (razorback scabbardfish) (Table 9.) *Makaira mazara* and *Istiompax indica* have probabilities of being threatened over 50%. I would recommend the IUCN evaluate these two species before others. However, there are limitations to this analysis and more research should be done before allocating resources to evaluate these species.
+
 ## Limitations & Next Steps
 
-As mentioned above, both the IUCN Red List data and the FishBase data have potential biases and don't evaluate all species. Additionally, not all listed species had every piece of information, and missing data were removed. With missing data removed, the sample became small. It is possible that endemism plays a bigger role in threat risk than illustrated here by the model. Points of concern with this model include disproportionate data in both the threat level and endemism, and high false negative rates in binary prediction. Future analyses could investigate other potential explanatory variables such as metrics measuring fishing pressure, life cycle characteristics, and range. Additionally, future analyses could expand the area of interest to all of the tropics.
+As mentioned above, both the IUCN Red List data and the FishBase data have potential biases and don't evaluate all species. Additionally, not all listed species had every piece of information, and missing data were removed. With missing data removed, the sample became small. It is possible that endemism plays a bigger role in threat risk than illustrated here by the model. Points of concern with this model include disproportionate data in both the threat level and endemism, and high false negative rates in binary prediction. Future analyses could investigate other potential explanatory variables such as metrics measuring fishing pressure, life cycle characteristics, and range. Future analyses should also incorporate indigenous knowledge as Native People in Hawaiʻi know fish history around the islands and are frequently in the water for spearfishing and other recreation. Additionally, future analyses could expand the area of interest to all of the tropics.
 
 <h3>Reference</h3>
 
