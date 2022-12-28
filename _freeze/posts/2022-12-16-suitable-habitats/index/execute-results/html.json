@@ -1,0 +1,14 @@
+{
+  "hash": "07b8040aa7032377854d09a7ec60adbc",
+  "result": {
+    "markdown": "---\ntitle: \"Identifying Suitable Oyster Habitat\"\nauthor:\n  - name: Elke Windschitl\n    url: https://elkewind.github.io\n    affiliation: UCSB Bren School\n    affiliation-url: http://ucsb-meds.github.io\ndate: 2022-12-16\ncategories: [MEDS, Geospatial Analysis]\ncitation: \n  url: https://elkewind.github.io/posts/2022-12-16-suitable-habitats\ntoc: true\ndraft: false\n---\n\n\n\n\nDescription:\n\nIn this post, I determine the suitable area for various aquaculture species in each West Coast Exclusive Economic Zone (EEZ). This is the result of an assignment for EDS 223 Geospatial Analysis and Remote Sensing -- a course in UCSB's Master's of Environmental Data Science curriculum taught by Ruth Oliver.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
