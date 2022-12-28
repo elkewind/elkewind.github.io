@@ -1,0 +1,14 @@
+{
+  "hash": "20fe2f2a343949d2b63578f05ce27e98",
+  "result": {
+    "markdown": "---\ntitle: \"Debating Nudging and AI for Climate\"\nauthor:\n  - name: Elke Windschitl & Lewis White\n    url: https://elkewind.github.io\n    affiliation: UCSB Bren School\n    affiliation-url: http://ucsb-meds.github.io\ndate: 2022-12-19\ncategories: [MEDS]\ncitation: \n  url: https://elkewind.github.io/posts/2022-12-19-climate-ai-debate\nformat:\n  html:\n    toc: true\ndraft: false\n---\n\n\nDescription:\n\nThis is a post sharing a short podcast by myself and Lewis White where we debate using nudging and AI for climate solutions. We chose sides for each topic at random. This podcast was created for a final assignment for EDS 242 Ethics and Bias in Environmental Data Science -- a course in UCSB's Master's of Environmental Data Science curriculum taught by Dena Montague. Music for the intro was provided by Bonfire Records.\n\n\n::: {.cell}\n\n```{.r .cell-code}\npodcast <- \"/Users/elkewindschitl/Documents/MEDS/eds-242/EDS-242-Final.mp4\"\n```\n:::\n\n\n<iframe width=\"100%\" height=\"166\" scrolling=\"no\" frameborder=\"no\" allow=\"autoplay\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1411928449&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true\"></iframe><div style=\"font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;\"><a href=\"https://soundcloud.com/user-613180964\" title=\"elkewind\" target=\"_blank\" style=\"color: #cccccc; text-decoration: none;\">elkewind</a> · <a href=\"https://soundcloud.com/user-613180964/debating-nudging-and-ai-for-climate\" title=\"Debating Nudging and AI for Climate\" target=\"_blank\" style=\"color: #cccccc; text-decoration: none;\">Debating Nudging and AI for Climate</a></div>\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

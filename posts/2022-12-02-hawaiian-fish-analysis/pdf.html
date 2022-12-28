@@ -1,27 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.0.36" />
 
-<meta name="author" content="Elke Windschitl">
-<meta name="dcterms.date" content="2022-12-02">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 
-<title>Elke Windschitl - Identifying Key Traits in Hawaiian Fish that Predict Risk of Extinction</title>
+<meta name="author" content="Elke Windschitl" />
+<meta name="dcterms.date" content="2022-12-02" />
+
+<title>Elke Windschitl – Identifying Key Traits in Hawaiian Fish that Predict Risk of Extinction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
-  vertical-align: middle;
-}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -60,7 +57,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -73,7 +70,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -87,23 +84,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<!-- htmldependencies:E3FAD763 -->
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -128,37 +109,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-fixed">
+<body>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../index.html">
+      <a class="navbar-brand" href="/index.html">
     <span class="navbar-title">Elke Windschitl</span>
-    </a>
-  </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="/index.html">
+ Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="/about.html">
+ About Me</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../posts.html">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="/posts.html">
+ Blog</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../resume.pdf">
- <span class="menu-text">Resume</span></a>
+    <a class="nav-link" href="/resume.pdf">
+ Resume</a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -171,17 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  <li><a href="#results-discussion" id="toc-results-discussion" class="nav-link" data-scroll-target="#results-discussion">Results &amp; Discussion</a></li>
-  <li><a href="#limitations-next-steps" id="toc-limitations-next-steps" class="nav-link" data-scroll-target="#limitations-next-steps">Limitations &amp; Next Steps</a></li>
-  </ul>
-</nav>
+        <div id="quarto-toc-target"></div>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -221,35 +192,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <p class="date">December 2, 2022</p>
     </div>
   </div>
-  
     
   </div>
   
 
 </header>
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction">Introduction</a></li>
+  <li><a href="#data" id="toc-data">Data</a></li>
+  <li><a href="#methods" id="toc-methods">Methods</a></li>
+  <li><a href="#results-discussion" id="toc-results-discussion">Results &amp; Discussion</a></li>
+  <li><a href="#limitations-next-steps" id="toc-limitations-next-steps">Limitations &amp; Next Steps</a></li>
+  </ul>
+</nav>
 <p>Description:</p>
 <p>In this post, I investigate Hawaiian fish ecological traits – such as size, endemism, and reef-association – to find their probability of being threatened as ranked by the IUCN Red List. For my full analysis, check out my <a href="https://github.com/elkewind/eds-222-final-project">github repository</a>.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fish_pic.JPG" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">School of Hawaiian fish. Elke Windschitl 2018.</figcaption><p></p>
+<figure>
+<p><img src="fish_pic.JPG" class="img-fluid" /></p>
+<p><figcaption>School of Hawaiian fish. Elke Windschitl 2018.</figcaption></p>
 </figure>
 </div>
 <section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<h2>Introduction</h2>
 <p>Global human activity threatens many species with extinction. According to the International Union and Conservation of Nature (IUCN), “More than 41,000 species are threatened with extinction. That is still 28% of all assessed species.” [1]. Increased extinction and loss of biodiversity can have severe ecological, economic, and cultural impacts. Cardinale et al.’s deep dive into biodiversity and ecosystem services research conclude that biodiversity loss reduces ecological communities’ efficiency, stability, and productivity. Decreased productivity from ecosystem services can have a negative impact on ecosystem economics [2]. Additionally, cultures worldwide have strong ties to local flora and fauna, much of which now face extinction risk. Improving understanding of extinction risk is ecologically, economically, and culturally important.</p>
-<p>Wildlife scientists have been working to understand what ecological traits of vertebrates predict threat level, and what common risk factors drive those threat level rates. Munstermann et al.&nbsp;investigate what terrestrial vertebrate functional groups are most at risk of extinction threat and find that cave dwelling amphibian, arboreal quadrupedal mammals, aerial and scavenging birds, and pedal squamates are at high risk [3]. This knowledge can help inform policies and practices with the goal to decrease threats of extinction of wildlife. However, less comprehensive research has been done to conduct similar analyses on marine species.</p>
+<p>Wildlife scientists have been working to understand what ecological traits of vertebrates predict threat level, and what common risk factors drive those threat level rates. Munstermann et al. investigate what terrestrial vertebrate functional groups are most at risk of extinction threat and find that cave dwelling amphibian, arboreal quadrupedal mammals, aerial and scavenging birds, and pedal squamates are at high risk [3]. This knowledge can help inform policies and practices with the goal to decrease threats of extinction of wildlife. However, less comprehensive research has been done to conduct similar analyses on marine species.</p>
 <p>In recent years, the waters surrounding the Hawaiian Islands have been exposed to ecological changes due to mass coral bleaching events, El Niño events, and pollution. Rapidly changing marine ecosystems may pose a threat to Hawaiian fish. Fish hold significant cultural value in Hawaiʻi, and many local people rely on seafood as a major source of protein. However, approximately 72% of fish in Hawaiʻi present in FishBase have been evaluated by the IUCN and have sufficient data to be assessed. Here I run a small-scale analysis to investigate Hawaiian fish ecological traits – such as endemism, size, and reef-association – to predict a binary status on the IUCN red list and predict which unevaluated fish species in Hawaiʻi may be threatened.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fish_collage.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Various fish found in Hawaiʻi. Elke Windschitl 2018.</figcaption><p></p>
+<figure>
+<p><img src="fish_collage.jpg" class="img-fluid" /></p>
+<p><figcaption>Various fish found in Hawaiʻi. Elke Windschitl 2018.</figcaption></p>
 </figure>
 </div>
 </section>
 <section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
+<h2>Data</h2>
 <p>For my analyses I use the IUCN Red List data accessed via the <a href="https://apiv3.iucnredlist.org/">IUCN Red List API</a> [1] and package rredlist [4]. Consistent with Munstermann et al., living species listed as ‘Vulnerable’, ‘Endangered’, or ‘Critically Endangered’ were categorized as ‘Threatened’. Living species listed as ‘Least Concern’ and ‘Near Threatened’ were categorized as ‘Nonthreatened’ [3]. Extinct species were not evaluated in this analysis. The IUCN Red List data are limited in that many marine species have not been listed yet or have been identified as too data deficient to be evaluated. The lack of data on elusive fish may introduce bias into the model.</p>
 <p>Fish ecological data were accessed from <a href="https://fishbase.net.br/search.php">FishBase</a> [5] via package rfishbase [6]. Different species in the FishBase data were originally described by different people, possibly leading to errors or biases. Measurement errors in length may be present, as there are various common ways to measure the length of a fish. The species recorded in FishBase may be biased towards fish with commercial value. Data were wrangled in R and formatted in a tidy data table (Table 1.)</p>
 <div class="cell">
@@ -258,17 +238,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(tidy_fish_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,],</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Tbl 1. Hawaii Fish Data"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">col.header =</span> <span class="fu">c</span>(<span class="st">"Genus species"</span>, <span class="st">"Length (cm)"</span>, <span class="st">"IUCN Category"</span>, </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Common Name"</span>, <span class="st">"Reef Association"</span>, <span class="st">"Endemic"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Threatened"</span>, <span class="st">"Threatened Binary"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(tidy_fish_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,],</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Tbl 1. Hawaii Fish Data&quot;</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">col.header =</span> <span class="fu">c</span>(<span class="st">&quot;Genus species&quot;</span>, <span class="st">&quot;Length (cm)&quot;</span>, <span class="st">&quot;IUCN Category&quot;</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Common Name&quot;</span>, <span class="st">&quot;Reef Association&quot;</span>, <span class="st">&quot;Endemic&quot;</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Threatened&quot;</span>, <span class="st">&quot;Threatened Binary&quot;</span>))</span></code></pre></div>
 </details>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">Tbl 1. Hawaii Fish Data</caption>
-<tbody><tr>
+<tr>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">Genus species</th>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Length (cm)</th>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">IUCN Category</th>
@@ -328,35 +308,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">no</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">0</td>
 </tr>
-</tbody></table>
+</table>
 
 </div>
 </div>
 </section>
 <section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<h2>Methods</h2>
 <p>Here I run a logistic regression with a categorical binary response variable of ‘Threatened’ or ‘Nonthreatened’ on species length, coral reef association, and endemism.</p>
-<p>I included length in the model because previous research show that species of extreme sizes have higher risk of extinction. Ripple et al.&nbsp;“found that the probability of being threatened was positively and significantly related to body mass for birds, cartilaginous fishes, and mammals” [7]. While body mass is not the same as length, the FishBase data set had few weight entries and many length entries, and sample size was already limited. Several mass coral bleaching events have occurred in Hawaiʻi in recent decades causing ecosystem disruption [8]. Here I consider if reef-associated fish are more likely to be threatened than fish that are not reef-associated. Last, endemic species – species that are native to a region and occur only in that region – are known to be at high risk of extinction.</p>
+<p>I included length in the model because previous research show that species of extreme sizes have higher risk of extinction. Ripple et al. “found that the probability of being threatened was positively and significantly related to body mass for birds, cartilaginous fishes, and mammals” [7]. While body mass is not the same as length, the FishBase data set had few weight entries and many length entries, and sample size was already limited. Several mass coral bleaching events have occurred in Hawaiʻi in recent decades causing ecosystem disruption [8]. Here I consider if reef-associated fish are more likely to be threatened than fish that are not reef-associated. Last, endemic species – species that are native to a region and occur only in that region – are known to be at high risk of extinction.</p>
 </section>
 <section id="results-discussion" class="level2">
-<h2 class="anchored" data-anchor-id="results-discussion">Results &amp; Discussion</h2>
+<h2>Results &amp; Discussion</h2>
 <section id="data-exploration" class="level4">
-<h4 class="anchored" data-anchor-id="data-exploration">Data exploration:</h4>
+<h4>Data exploration:</h4>
 <section id="iucn-red-list-threatened-status" class="level5">
-<h5 class="anchored" data-anchor-id="iucn-red-list-threatened-status">1. IUCN Red List Threatened Status</h5>
+<h5>1. IUCN Red List Threatened Status</h5>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>threat_tab <span class="ot">&lt;-</span> <span class="fu">table</span>(tidy_fish_data<span class="sc">$</span>is_threatened)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>threat_tab <span class="ot">&lt;-</span> <span class="fu">table</span>(tidy_fish_data<span class="sc">$</span>is_threatened)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(threat_tab,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Tbl 2. Counts of threatened species in the data frame"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">col.header =</span> <span class="st">"Nonthreatened"</span>, <span class="st">"Threatened"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">&quot;Tbl 2. Counts of threatened species in the data frame&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">col.header =</span> <span class="st">&quot;Nonthreatened&quot;</span>, <span class="st">&quot;Threatened&quot;</span>)</span></code></pre></div>
 </details>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">Tbl 2. Counts of threatened species in the data frame</caption>
-<tbody><tr>
+<tr>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">no</th>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">yes</th>
 </tr>
@@ -364,47 +344,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">880</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">34</td>
 </tr>
-</tbody></table>
+</table>
 
 </div>
 </div>
 </section>
 <section id="fish-length" class="level5">
-<h5 class="anchored" data-anchor-id="fish-length">2. Fish Length</h5>
+<h5>2. Fish Length</h5>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tidy_fish_data, <span class="fu">aes</span>(<span class="at">x =</span> length_cm)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"#38b6ba"</span>, <span class="at">bins =</span> <span class="dv">60</span>) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tidy_fish_data, <span class="fu">aes</span>(<span class="at">x =</span> length_cm)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;#38b6ba&quot;</span>, <span class="at">bins =</span> <span class="dv">60</span>) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Fig 1. Histogram of species length"</span>) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f7f2e6"</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f7f2e6"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fig 1. Histogram of species length&quot;</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#f7f2e6&quot;</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#f7f2e6&quot;</span>),</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">'#c9c9c9'</span>),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Length (cm)"</span>) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&#39;#c9c9c9&#39;</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Length (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 </section>
 <section id="reef-association" class="level5">
-<h5 class="anchored" data-anchor-id="reef-association">3. Reef-Association</h5>
+<h5>3. Reef-Association</h5>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>reef_tab <span class="ot">&lt;-</span> <span class="fu">table</span>(tidy_fish_data<span class="sc">$</span>reef_associated)</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>reef_tab <span class="ot">&lt;-</span> <span class="fu">table</span>(tidy_fish_data<span class="sc">$</span>reef_associated)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(reef_tab,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Tbl 3. Counts of reef-associated species in the data frame"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Tbl 3. Counts of reef-associated species in the data frame&quot;</span>)</span></code></pre></div>
 </details>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">Tbl 3. Counts of reef-associated species in the data frame</caption>
-<tbody><tr>
+<tr>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">no</th>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">yes</th>
 </tr>
@@ -412,25 +392,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">353</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">312</td>
 </tr>
-</tbody></table>
+</table>
 
 </div>
 </div>
 </section>
 <section id="endemism" class="level5">
-<h5 class="anchored" data-anchor-id="endemism">4. Endemism</h5>
+<h5>4. Endemism</h5>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>end_tab <span class="ot">&lt;-</span> <span class="fu">table</span>(tidy_fish_data<span class="sc">$</span>is_endemic)</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>end_tab <span class="ot">&lt;-</span> <span class="fu">table</span>(tidy_fish_data<span class="sc">$</span>is_endemic)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(end_tab,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Tbl 4. Counts of endemic species in the data frame"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Tbl 4. Counts of endemic species in the data frame&quot;</span>)</span></code></pre></div>
 </details>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">Tbl 4. Counts of endemic species in the data frame</caption>
-<tbody><tr>
+<tr>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">no</th>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">yes</th>
 </tr>
@@ -438,7 +418,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">895</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">19</td>
 </tr>
-</tbody></table>
+</table>
 
 </div>
 </div>
@@ -446,59 +426,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 </section>
 <section id="analysis" class="level4">
-<h4 class="anchored" data-anchor-id="analysis">Analysis:</h4>
+<h4>Analysis:</h4>
 <section id="length-operatornamelogitplog-leftfracp1-prightbeta_0beta_1-length-varepsilon" class="level5">
-<h5 class="anchored" data-anchor-id="length-operatornamelogitplog-leftfracp1-prightbeta_0beta_1-length-varepsilon"><strong>Length</strong> <span class="math display">\[\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length)  +\varepsilon \]</span></h5>
+<h5><strong>Length</strong> <span class="math display">\[\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length)  +\varepsilon \]</span></h5>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rm_len_na <span class="ot">&lt;-</span> tidy_fish_data <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>length_cm <span class="sc">==</span> <span class="st">"NA"</span>) <span class="co"># Remove NA length values</span></span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rm_len_na <span class="ot">&lt;-</span> tidy_fish_data <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>length_cm <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>) <span class="co"># Remove NA length values</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot threat prob. vs. length</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>gg_len <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> rm_len_na, <span class="fu">aes</span>(<span class="at">x =</span> length_cm, </span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y =</span> is_of_concern)) <span class="sc">+</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.05</span>, </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">col =</span> <span class="st">"#38b6ba"</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">col =</span> <span class="st">&quot;#38b6ba&quot;</span>) <span class="sc">+</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species length (cm)"</span>, </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Listed as threatened"</span>, </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Fig 2. Probability of being threatened by species length"</span>) <span class="sc">+</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f7f2e6"</span>),</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f7f2e6"</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species length (cm)&quot;</span>, </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Listed as threatened&quot;</span>, </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Fig 2. Probability of being threatened by species length&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#f7f2e6&quot;</span>),</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#f7f2e6&quot;</span>),</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">'#c9c9c9'</span>),</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="dv">1</span>))</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>gg_len <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, </span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"#545454"</span>, </span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&#39;#c9c9c9&#39;</span>),</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="dv">1</span>))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>gg_len <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;#545454&quot;</span>, </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>))</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672" /></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log regression length</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log regression length</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mod_length <span class="ot">&lt;-</span> <span class="fu">glm</span>(is_of_concern <span class="sc">~</span> length_cm, </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> rm_len_na, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Model output table format</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(mod_length,</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">transform =</span> <span class="cn">NULL</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">pred.labels =</span> <span class="fu">c</span>(<span class="st">"Intercept"</span>, <span class="st">"Length (cm)"</span>),</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">"log Threat Pobability"</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">pred.labels =</span> <span class="fu">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;Length (cm)&quot;</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">&quot;log Threat Pobability&quot;</span>),</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">show.p =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">p.style =</span> <span class="fu">c</span>(<span class="st">"numeric_stars"</span>),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">p.style =</span> <span class="fu">c</span>(<span class="st">&quot;numeric_stars&quot;</span>),</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">p.threshold =</span> <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.05</span>, <span class="fl">0.01</span>),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">string.p =</span> <span class="st">"P-value"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">string.p =</span> <span class="st">&quot;P-value&quot;</span>,</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">show.r2 =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Tbl 5. Logisitc Regression Model Results for Length"</span>,</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Tbl 5. Logisitc Regression Model Results for Length&quot;</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 </details>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">Tbl 5. Logisitc Regression Model Results for Length</caption>
-<tbody><tr>
+<tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
 <th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">log Threat Pobability</th>
 </tr>
@@ -510,14 +490,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Intercept</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-4.505 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-5.149&nbsp;–&nbsp;-3.958</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;4.505 <sup>***</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;5.149&nbsp;&ndash;&nbsp;-3.958</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Length (cm)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.011 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.008&nbsp;–&nbsp;0.014</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.008&nbsp;&ndash;&nbsp;0.014</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
 </tr>
 <tr>
@@ -528,58 +508,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td colspan="4" style="font-style:italic; border-top:double black; text-align:right;">* p&lt;0.1&nbsp;&nbsp;&nbsp;** p&lt;0.05&nbsp;&nbsp;&nbsp;*** p&lt;0.01</td>
 </tr>
 
-</tbody></table>
+</table>
 
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove large values to evaluate robustness</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove large values to evaluate robustness</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rm_outliers <span class="ot">&lt;-</span> rm_len_na <span class="sc">%&gt;%</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(length_cm <span class="sc">&lt;=</span> <span class="dv">1000</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>gg_rm_out <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> rm_outliers, <span class="fu">aes</span>(<span class="at">x =</span> length_cm, </span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">y =</span> is_of_concern)) <span class="sc">+</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.05</span>, </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">col =</span> <span class="st">"#38b6ba"</span>) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species length (cm)"</span>, <span class="at">y =</span> <span class="st">"Listed as threatened"</span>, <span class="at">title =</span> <span class="st">"Fig 3. Probability of being threatened by species length </span><span class="sc">\n</span><span class="st"> (excluding outliers)"</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">col =</span> <span class="st">&quot;#38b6ba&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species length (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Listed as threatened&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Fig 3. Probability of being threatened by species length </span><span class="sc">\n</span><span class="st"> (excluding outliers)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f7f2e6"</span>),</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f7f2e6"</span>),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#f7f2e6&quot;</span>),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#f7f2e6&quot;</span>),</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">'#c9c9c9'</span>),</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="dv">1</span>))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&#39;#c9c9c9&#39;</span>),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="dv">1</span>))</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>len_rm_out_plot <span class="ot">&lt;-</span> gg_rm_out <span class="sc">+</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, </span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"#545454"</span>, </span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>))</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>len_rm_out_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;#545454&quot;</span>, </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>))</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>len_rm_out_plot</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672" /></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log regression length removed outliers</span></span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log regression length removed outliers</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mod_rm_out <span class="ot">&lt;-</span> <span class="fu">glm</span>(is_of_concern <span class="sc">~</span> length_cm, </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> rm_outliers, </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Model output table format</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(mod_rm_out,</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">transform =</span> <span class="cn">NULL</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">pred.labels =</span> <span class="fu">c</span>(<span class="st">"Intercept"</span>, <span class="st">"Length (cm)"</span>),</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">"log Threat Pobability"</span>),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">pred.labels =</span> <span class="fu">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;Length (cm)&quot;</span>),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">&quot;log Threat Pobability&quot;</span>),</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">show.p =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">p.style =</span> <span class="fu">c</span>(<span class="st">"numeric_stars"</span>),</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">p.style =</span> <span class="fu">c</span>(<span class="st">&quot;numeric_stars&quot;</span>),</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">p.threshold =</span> <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.05</span>, <span class="fl">0.01</span>),</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">string.p =</span> <span class="st">"P-value"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">string.p =</span> <span class="st">&quot;P-value&quot;</span>,</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">show.r2 =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Tbl 6. Logisitc Regression Model Results for Length with Outliers Removed"</span>,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Tbl 6. Logisitc Regression Model Results for Length with Outliers Removed&quot;</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 </details>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">Tbl 6. Logisitc Regression Model Results for Length with Outliers Removed</caption>
-<tbody><tr>
+<tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
 <th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">log Threat Pobability</th>
 </tr>
@@ -591,14 +571,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Intercept</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-4.505 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-5.149&nbsp;–&nbsp;-3.958</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;4.505 <sup>***</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;5.149&nbsp;&ndash;&nbsp;-3.958</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Length (cm)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.011 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.008&nbsp;–&nbsp;0.014</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.008&nbsp;&ndash;&nbsp;0.014</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
 </tr>
 <tr>
@@ -609,16 +589,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td colspan="4" style="font-style:italic; border-top:double black; text-align:right;">* p&lt;0.1&nbsp;&nbsp;&nbsp;** p&lt;0.05&nbsp;&nbsp;&nbsp;*** p&lt;0.01</td>
 </tr>
 
-</tbody></table>
+</table>
 
 </div>
 </div>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute fitted probabilities</span></span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute fitted probabilities</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>length_plus <span class="ot">&lt;-</span> mod_length <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(<span class="at">type.predict =</span> <span class="st">"response"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(<span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y_hat =</span> .fitted)</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute odds scale</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>length_plus <span class="ot">&lt;-</span> length_plus <span class="sc">%&gt;%</span> </span>
@@ -629,19 +609,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">y =</span> odds_hat)) <span class="sc">+</span></span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Odds of being threatened"</span>) <span class="sc">+</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species length (cm)"</span>, </span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Fig 4. Odds of being threatened by species length"</span>) <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Odds of being threatened&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species length (cm)&quot;</span>, </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Fig 4. Odds of being threatened by species length&quot;</span>) <span class="sc">+</span></span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f7f2e6"</span>),</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f7f2e6"</span>),</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#f7f2e6&quot;</span>),</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#f7f2e6&quot;</span>),</span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">'#c9c9c9'</span>),</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="dv">1</span>))</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>len_odds_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&#39;#c9c9c9&#39;</span>),</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="dv">1</span>))</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>len_odds_plot</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672" /></p>
 </div>
 </div>
 <p>Here we see that longer fish are associated with higher probability of being threatened (Table 5, p-value = &lt;0.001), but two outliers may be driving this significance (Figure 2). However, when the outliers are removed, we still see a significant positive correlation between fish length and probability of threat (Table 6, p-value = &lt;0.001) with the 50% probability mark remaining just over 400 cm (Figure 3). When we compute the odds ratio, we see that there is an exponential relationship between the length and the odds of a species being threatened. Odds of being threatened increase more at large lengths (Figure 4).</p>
@@ -649,14 +629,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>length_plus <span class="ot">&lt;-</span> <span class="fu">augment</span>(mod_length, <span class="at">type.predict =</span> <span class="st">"response"</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>length_plus <span class="ot">&lt;-</span> <span class="fu">augment</span>(mod_length, <span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">threatened_hat =</span> <span class="fu">round</span>(.fitted)) <span class="sc">%&gt;%</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(is_of_concern, length_cm, .fitted, threatened_hat)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>l_con_matrix <span class="ot">&lt;-</span> length_plus <span class="sc">%&gt;%</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(is_of_concern, threatened_hat) <span class="sc">%&gt;%</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>()</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>rownames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Actually Nonthreatened"</span>, <span class="st">"Actually Threatend"</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>colnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Predicted Nonthreatend"</span>, <span class="st">"Predicted Threatened"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>rownames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Actually Nonthreatened&quot;</span>, <span class="st">&quot;Actually Threatend&quot;</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>colnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Predicted Nonthreatend&quot;</span>, <span class="st">&quot;Predicted Threatened&quot;</span>)</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>l_con_matrix <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(l_con_matrix[<span class="dv">1</span>], </span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                                       l_con_matrix[<span class="dv">2</span>], </span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                                       l_con_matrix[<span class="dv">3</span>], </span>
@@ -666,14 +646,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>                              <span class="at">row.names =</span> rownames)</span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(l_con_matrix) <span class="ot">&lt;-</span> colnames</span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(l_con_matrix,</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Tbl 7. Confusion Matrix Displaying Lenght Model Performance"</span>,</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">show.rownames =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Tbl 7. Confusion Matrix Displaying Lenght Model Performance&quot;</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">show.rownames =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </details>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">Tbl 7. Confusion Matrix Displaying Lenght Model Performance</caption>
-<tbody><tr>
+<tr>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">Row</th>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Predicted.Nonthreatend</th>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Predicted.Threatened</th>
@@ -688,35 +668,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">22</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">12</td>
 </tr>
-</tbody></table>
+</table>
 
 </div>
 </div>
 <p>The accuracy of the model is 97% with 847 out of 874 predicted observations being correct (Table 7). However, the model seems to be more accurate in predicting species that are not actually of concern (true negative rate = 0.99). Species that are threatened have poorer prediction rates (true positive rate = 0.38).</p>
 </section>
 <section id="full-model-operatornamelogitplog-leftfracp1-prightbeta_0beta_1-length-beta_2-reef-beta_3-endemic-varepsilon" class="level5">
-<h5 class="anchored" data-anchor-id="full-model-operatornamelogitplog-leftfracp1-prightbeta_0beta_1-length-beta_2-reef-beta_3-endemic-varepsilon"><strong>Full Model</strong> <span class="math display">\[\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length) + \beta_2  (Reef) + \beta_3  (Endemic) +\varepsilon \]</span></h5>
+<h5><strong>Full Model</strong> <span class="math display">\[\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length) + \beta_2  (Reef) + \beta_3  (Endemic) +\varepsilon \]</span></h5>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(mod,</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(mod,</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">transform =</span> <span class="cn">NULL</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">pred.labels =</span> <span class="fu">c</span>(<span class="st">"Intercept"</span>, <span class="st">"Length (cm)"</span>, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Reef Association"</span>, <span class="st">"Endemic"</span>),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">"log Threat Pobability"</span>),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">p.style =</span> <span class="fu">c</span>(<span class="st">"numeric_stars"</span>),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">pred.labels =</span> <span class="fu">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;Length (cm)&quot;</span>, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Reef Association&quot;</span>, <span class="st">&quot;Endemic&quot;</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">&quot;log Threat Pobability&quot;</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">p.style =</span> <span class="fu">c</span>(<span class="st">&quot;numeric_stars&quot;</span>),</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">p.threshold =</span> <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.05</span>, <span class="fl">0.01</span>),</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">show.p =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">string.p =</span> <span class="st">"P-value"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">string.p =</span> <span class="st">&quot;P-value&quot;</span>,</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">show.r2 =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Tbl 8. Logisitc Regression Model Results for Length, Reef Association, and Endemism"</span>,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Tbl 8. Logisitc Regression Model Results for Length, Reef Association, and Endemism&quot;</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 </details>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">Tbl 8. Logisitc Regression Model Results for Length, Reef Association, and Endemism</caption>
-<tbody><tr>
+<tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
 <th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">log Threat Pobability</th>
 </tr>
@@ -728,26 +708,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Intercept</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-4.431 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-5.324&nbsp;–&nbsp;-3.694</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;4.431 <sup>***</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;5.324&nbsp;&ndash;&nbsp;-3.694</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Length (cm)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.011 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.008&nbsp;–&nbsp;0.014</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.008&nbsp;&ndash;&nbsp;0.014</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Reef Association</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.048 <sup></sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.972&nbsp;–&nbsp;0.869</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.048 <sup></sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.972&nbsp;&ndash;&nbsp;0.869</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.918</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Endemic</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.989 <sup>*</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.972&nbsp;–&nbsp;3.798</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.972&nbsp;&ndash;&nbsp;3.798</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.071</td>
 </tr>
 <tr>
@@ -758,7 +738,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td colspan="4" style="font-style:italic; border-top:double black; text-align:right;">* p&lt;0.1&nbsp;&nbsp;&nbsp;** p&lt;0.05&nbsp;&nbsp;&nbsp;*** p&lt;0.01</td>
 </tr>
 
-</tbody></table>
+</table>
 
 </div>
 </div>
@@ -766,24 +746,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 </section>
 <section id="predicting-probability-solving-for-p" class="level4">
-<h4 class="anchored" data-anchor-id="predicting-probability-solving-for-p">Predicting Probability – Solving for p:</h4>
+<h4>Predicting Probability – Solving for p:</h4>
 <p>In this model, the smallest fish in the data set – <em>Melamphaes danae</em> (bigscale) at 2.30 cm – has a probability of being threatened of 0.012. The largest fish in the data set – <em>Rhincodon typus</em> (whale shark) at 1700 cm – has a probability of being threatened of 0.99. Here I use the model to predict the probabilities of being threatened for unlisted fish.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tidy_pred_rank <span class="ot">&lt;-</span> tidy_pred_rank <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"genus_species"</span>, <span class="st">"length_cm"</span>, <span class="st">"coral_reefs"</span>, <span class="st">"main_common_name"</span>, <span class="st">"reef_associated"</span>, <span class="st">"endemic"</span>, <span class="st">"y_hat"</span>)</span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tidy_pred_rank <span class="ot">&lt;-</span> tidy_pred_rank <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">&quot;genus_species&quot;</span>, <span class="st">&quot;length_cm&quot;</span>, <span class="st">&quot;coral_reefs&quot;</span>, <span class="st">&quot;main_common_name&quot;</span>, <span class="st">&quot;reef_associated&quot;</span>, <span class="st">&quot;endemic&quot;</span>, <span class="st">&quot;y_hat&quot;</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(tidy_pred_rank[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,],</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Tbl 9. Top 5 Most Vulnerable Unranked Fish in Hawaii"</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">col.header =</span> <span class="fu">c</span>(<span class="st">"Genus species"</span>, <span class="st">"Length (cm)"</span>, <span class="st">"Reef Association"</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Common Name"</span>, <span class="st">"Reef Association"</span>, <span class="st">"Endemic"</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Threatened"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Tbl 9. Top 5 Most Vulnerable Unranked Fish in Hawaii&quot;</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">col.header =</span> <span class="fu">c</span>(<span class="st">&quot;Genus species&quot;</span>, <span class="st">&quot;Length (cm)&quot;</span>, <span class="st">&quot;Reef Association&quot;</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Common Name&quot;</span>, <span class="st">&quot;Reef Association&quot;</span>, <span class="st">&quot;Endemic&quot;</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Threatened&quot;</span>))</span></code></pre></div>
 </details>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">Tbl 9. Top 5 Most Vulnerable Unranked Fish in Hawaii</caption>
-<tbody><tr>
+<tr>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">Genus species</th>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Length (cm)</th>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Reef Association</th>
@@ -837,7 +817,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">no</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">0.15</td>
 </tr>
-</tbody></table>
+</table>
 
 </div>
 </div>
@@ -845,35 +825,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 </section>
 <section id="limitations-next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-next-steps">Limitations &amp; Next Steps</h2>
+<h2>Limitations &amp; Next Steps</h2>
 <p>As mentioned above, both the IUCN Red List data and the FishBase data have potential biases and don’t evaluate all species. Additionally, not all listed species had every piece of information, and missing data were removed. With missing data removed, the sample became small. It is possible that endemism plays a bigger role in threat risk than illustrated here by the model. Points of concern with this model include disproportionate data in both the threat level and endemism, and high false negative rates in binary prediction. Future analyses could investigate other potential explanatory variables such as metrics measuring fishing pressure, life cycle characteristics, and range. Future analyses should also incorporate indigenous knowledge as Native People in Hawaiʻi know fish history around the islands and are frequently in the water for spearfishing and other recreation. Additionally, future analyses could expand the area of interest to all of the tropics.</p>
-<h3 class="anchored">
+<h3>
 Reference
 </h3>
-<p>[1] “IUCN,” IUCN Red List of Threatened Species. Version 2022-1, 2022. https://www.iucnredlist.org/ (accessed Dec.&nbsp;02, 2022).</p>
-<p>[2] B. J. Cardinale et al., “Biodiversity loss and its impact on humanity,” Nature, vol.&nbsp;486, no. 7401, Art. no. 7401, Jun.&nbsp;2012, doi: 10.1038/nature11148. [3] M. J. Munstermann et al., “A global ecological signal of extinction risk in terrestrial vertebrates,” Conserv. Biol., vol.&nbsp;36, no. 3, p.&nbsp;e13852, 2022, doi: 10.1111/cobi.13852.</p>
+<p>[1] “IUCN,” IUCN Red List of Threatened Species. Version 2022-1, 2022. https://www.iucnredlist.org/ (accessed Dec. 02, 2022).</p>
+<p>[2] B. J. Cardinale et al., “Biodiversity loss and its impact on humanity,” Nature, vol. 486, no. 7401, Art. no. 7401, Jun. 2012, doi: 10.1038/nature11148. [3] M. J. Munstermann et al., “A global ecological signal of extinction risk in terrestrial vertebrates,” Conserv. Biol., vol. 36, no. 3, p. e13852, 2022, doi: 10.1111/cobi.13852.</p>
 <p>[4] “IUCN,” IUCN Red List of Threatened Species. Version 2022-1, 2015. www.iucnredlist.org</p>
 <p>[5] R. Froese and D. Pauly, “FishBase,” 2022. www.fishbase.org</p>
 <p>[6] C. Boettiger, D. Temple Lang, and P. Wainwright, “rfishbase: exploring, manipulating and visualizing FishBase data from R.,” J. Fish Biol., 2012, doi: https://doi.org/10.1111/j.1095-8649.2012.03464.x.</p>
-<p>[7] W. J. Ripple, C. Wolf, T. M. Newsome, M. Hoffmann, A. J. Wirsing, and D. J. McCauley, “Extinction risk is most acute for the world’s largest and smallest vertebrates,” Proc. Natl. Acad. Sci. U. S. A., vol.&nbsp;114, no. 40, pp.&nbsp;10678–10683, Oct.&nbsp;2017, doi: 10.1073/pnas.1702078114.</p>
-<p>[8] K. D. Bahr, P. L. Jokiel, and K. S. Rodgers, “The 2014 coral bleaching and freshwater flood events in Kāneʻohe Bay, Hawaiʻi,” PeerJ, vol.&nbsp;3, p.&nbsp;e1136, Aug.&nbsp;2015, doi: 10.7717/peerj.1136.</p>
-
-
+<p>[7] W. J. Ripple, C. Wolf, T. M. Newsome, M. Hoffmann, A. J. Wirsing, and D. J. McCauley, “Extinction risk is most acute for the world’s largest and smallest vertebrates,” Proc. Natl. Acad. Sci. U. S. A., vol. 114, no. 40, pp. 10678–10683, Oct. 2017, doi: 10.1073/pnas.1702078114.</p>
+<p>[8] K. D. Bahr, P. L. Jokiel, and K. S. Rodgers, “The 2014 coral bleaching and freshwater flood events in Kāneʻohe Bay, Hawaiʻi,” PeerJ, vol. 3, p. e1136, Aug. 2015, doi: 10.7717/peerj.1136.</p>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">Elke Windschitl</span> <span class="hidden" data-render-id="quarto-int-navbar-title">Elke Windschitl</span> <span class="hidden" data-render-id="quarto-int-navbar:Home">Home</span> <span class="hidden" data-render-id="quarto-int-navbar:About Me">About Me</span> <span class="hidden" data-render-id="quarto-int-navbar:Blog">Blog</span> <span class="hidden" data-render-id="quarto-int-navbar:Resume">Resume</span></p>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden" data-render-id="quarto-metatitle">Elke Windschitl - Identifying Key Traits in Hawaiian Fish that Predict Risk of Extinction</span> <span class="hidden" data-render-id="quarto-metasitename">Elke Windschitl</span></p>
+</div>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{windschitl2022,
-  author = {Elke Windschitl},
-  title = {Identifying {Key} {Traits} in {Hawaiian} {Fish} That
-    {Predict} {Risk} of {Extinction}},
-  date = {2022-12-02},
-  url = {https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis},
-  langid = {en}
-}
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-windschitl2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
-Elke Windschitl. 2022. <span>“Identifying Key Traits in Hawaiian Fish
-That Predict Risk of Extinction.”</span> December 2, 2022. <a href="https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis">https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis</a>.
-</div></div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -914,24 +887,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -959,55 +915,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      let href = ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
 </div> <!-- /content -->
 
+</body>
 
-
-</body></html>
+</html>

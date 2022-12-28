@@ -1,0 +1,26 @@
+---
+title: "Debating Nudging and AI for Climate"
+author:
+  - name: Elke Windschitl & Lewis White
+    url: https://elkewind.github.io
+    affiliation: UCSB Bren School
+    affiliation-url: http://ucsb-meds.github.io
+date: 2022-12-19
+categories: [MEDS]
+citation: 
+  url: https://elkewind.github.io/posts/2022-12-19-climate-ai-debate
+format:
+  html:
+    toc: true
+draft: false
+---
+
+This is a short podcast by myself and Lewis White where we debate using nudging and AI for climate solutions. We chose sides for each topic at random. This podcast was created for a final assignment for EDS 242 Ethics and Bias in Environmental Data Science -- a course in UCSB's Master's of Environmental Data Science curriculum taught by Dena Montague. Intro music by [Bonfire Records](https://bonfirerecords.com/) and moderation by Jessica French.
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1411928449&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true">
+
+</iframe>
+
+::: {style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"}
+<a href="https://soundcloud.com/user-613180964" title="elkewind" target="_blank" style="color: #cccccc; text-decoration: none;">elkewind</a> · <a href="https://soundcloud.com/user-613180964/debating-nudging-and-ai-for-climate" title="Debating Nudging and AI for Climate" target="_blank" style="color: #cccccc; text-decoration: none;">Debating Nudging and AI for Climate</a>
+:::

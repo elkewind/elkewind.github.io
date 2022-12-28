@@ -46,7 +46,7 @@
     "href": "index.html",
     "title": "Elke Windschitl",
     "section": "",
-    "text": "A little bit about me:\nI am a master’s student studying Environmental Data Science in the Bren School of Environmental Science & Management at the University of California, Santa Barbara. I am passionate about marine and wildlife conservation, and I hope to build a career using data science tools to solve environmental problems.\n\n\n\nEducation\n\n\nMaster’s of Environmental Data Science Student\n\n\nUniversity of California Santa Barbara | Expected graduation: June 2023\n\n\nBachelor’s of Science in Biology with Honors\n\n\nIowa State University | 2020"
+    "text": "Welcome!\n\n\nA little bit about me:\nI am a master’s student studying Environmental Data Science in the Bren School of Environmental Science & Management at the University of California, Santa Barbara. I am passionate about marine and wildlife conservation, and I hope to build a career using data science tools to solve environmental problems.\n\n\n\nEducation\n\n\nMaster’s of Environmental Data Science Student\n\n\nUniversity of California Santa Barbara | Expected graduation: June 2023\n\n\nBachelor’s of Science in Biology with Honors\n\n\nIowa State University | 2020"
   },
   {
     "objectID": "about.html",
@@ -60,7 +60,7 @@
     "href": "posts.html",
     "title": "Blog",
     "section": "",
-    "text": "MEDS\n\n\nStatistics\n\n\n\n\n\n\n\nElke Windschitl\n\n\nDec 2, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Debating Nudging and AI for Climate\n\n\n\nMEDS\n\n\n\n\n\n\n\nElke Windschitl & Lewis White\n\n\nDec 19, 2022\n\n\n\n\n\n\n\n\n\n\n \n\n\n\nIdentifying Suitable Oyster Habitat\n\n\n\nMEDS\n\n\nGeospatial Analysis\n\n\n\n\n\n\n\n\nElke Windschitl\n\n\nDec 16, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIdentifying Key Traits in Hawaiian Fish that Predict Risk of Extinction\n\n\n\nMEDS\n\n\nStatistics\n\n\n\n\n\n\n\nElke Windschitl\n\n\nDec 2, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2022-12-02-hawaiian-fish-analysis/index.html#results",
@@ -75,5 +75,19 @@
     "title": "Identifying Key Traits in Hawaiian Fish to Predict Risk of Extinction",
     "section": "Discussion",
     "text": "Discussion\n\nData exploration:\nAfter aligning the FishBase data with the IUCN Red List data, the data are disproportionate in both the threat level (Table 2) and endemism (Table 4). Fish length is skewed right (Figure 1), and reef-association is well balanced (Table 3).\n\n\nAnalysis:\nHere we see that longer fish are associated with higher probability of being threatened (Table 5, p-value = <0.001), but two outliers may be driving this significance (Figure 2). However, when the outliers are removed, we still see a significant positive correlation between fish length and probability of threat (Table 6, p-value = <0.001) with the 50% probability mark remaining just over 400 cm (Figure 3). When we compute the odds ratio, we see that there is an exponential relationship between the length and the odds of a species being threatened. Odds of being threatened increase more at large lengths (Figure 4).\nThe accuracy of the model is 97% with 847 out of 874 predicted observations being correct (Table 7). However, the model seems to be more accurate in predicting species that are not actually of concern (true negative rate = 0.99). Species that are threatened have poorer prediction rates (true positive rate = 0.38).\nWe can see from the output above that length remains significant (Table 8, p-value = <0.001) even when additional variables are added, making length robust. Endemicity is a significant predictor of threat probability at a significance level of 0.10 (p-value = 0.0707). Coral reef association is not significantly impacting the model (p-value = 0.9175).\n\n\nPredicting Probability:\nIn this model, the smallest fish in the data set – Melamphaes danae at 2.30 cm – has a probability of being threatened of 0.012. The largest fish in the data set – Rhincodon typus at 1700 cm – has a probability of being threatened of 0.99."
+  },
+  {
+    "objectID": "posts/2022-12-19-climate-ai-debate/index.html",
+    "href": "posts/2022-12-19-climate-ai-debate/index.html",
+    "title": "Debating Nudging and AI for Climate",
+    "section": "",
+    "text": "This is a short podcast by myself and Lewis White where we debate using nudging and AI for climate solutions. We chose sides for each topic at random. This podcast was created for a final assignment for EDS 242 Ethics and Bias in Environmental Data Science – a course in UCSB’s Master’s of Environmental Data Science curriculum taught by Dena Montague. Intro music by Bonfire Records and moderation by Jessica French.\n\n\n\nelkewind · Debating Nudging and AI for Climate\n\n\n\n\nCitationBibTeX citation:@online{windschitl&lewiswhite2022,\n  author = {Elke Windschitl \\& Lewis White},\n  title = {Debating {Nudging} and {AI} for {Climate}},\n  date = {2022-12-19},\n  url = {https://elkewind.github.io/posts/2022-12-19-climate-ai-debate},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nElke Windschitl & Lewis White. 2022. “Debating Nudging and AI\nfor Climate.” December 19, 2022. https://elkewind.github.io/posts/2022-12-19-climate-ai-debate."
+  },
+  {
+    "objectID": "posts/2022-12-16-suitable-habitats/index.html",
+    "href": "posts/2022-12-16-suitable-habitats/index.html",
+    "title": "Identifying Suitable Oyster Habitat",
+    "section": "",
+    "text": "Description:\nIn this post, I determine the suitable area for various aquaculture species in each West Coast Exclusive Economic Zone (EEZ). This is the result of an assignment for EDS 223 Geospatial Analysis and Remote Sensing – a course in UCSB’s Master’s of Environmental Data Science curriculum taught by Ruth Oliver.\n\n\n\nCitationBibTeX citation:@online{windschitl2022,\n  author = {Elke Windschitl},\n  title = {Identifying {Suitable} {Oyster} {Habitat}},\n  date = {2022-12-16},\n  url = {https://elkewind.github.io/posts/2022-12-16-suitable-habitats},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nElke Windschitl. 2022. “Identifying Suitable Oyster\nHabitat.” December 16, 2022. https://elkewind.github.io/posts/2022-12-16-suitable-habitats."
   }
 ]
