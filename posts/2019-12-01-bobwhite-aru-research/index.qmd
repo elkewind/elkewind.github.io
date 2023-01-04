@@ -1,0 +1,23 @@
+---
+title: "Evaluating the Use of Autonomous Recording Units for Monitoring Northern Bobwhite Coveys"
+author:
+  - name: Elke Windschitl, Adam Janke, Kyla Yuza-Pate
+    url: https://elkewind.github.io
+    affiliation: ISU Department of Natural Resource Ecology & Management
+    affiliation-url: https://www.nrem.iastate.edu/
+description: "A research poster created for an undergraduate Honors capstone project"
+date: 2019-12-01
+categories: [ISU]
+citation: 
+  url: https://elkewind.github.io/posts/2019-12-01-bobwhite-aru-research
+format:
+  html:
+    toc: true
+draft: false
+---
+
+This is a 2019 research poster on evaluating the use of autonomous recording units (ARUs) for monitoring Northern bobwhite coveys. This research was done in the [Janke](https://twitter.com/adamkjanke) lab in collaboration with the Iowa DNR with the goal of furthering the [National Bobwhite Conservation Initiative](https://storymaps.arcgis.com/stories/22dd00aff8c0404bb7092bf684934bee). I presented this research at the Iowa State University College of Agriculture and Life Sciences 'Science with Practice' Poster Presentation (April 2019), the Iowa State University Honors Poster Presentation (December 2019), and the National Conference on Undergraduate Research (April 2021).
+
+![](ARU-research.png){fig-align="left"}
+
+![Processing Audio in Raven Pro](raven-pro.png)

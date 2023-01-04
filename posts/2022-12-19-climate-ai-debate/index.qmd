@@ -1,10 +1,11 @@
 ---
 title: "Debating Nudging and AI for Climate"
 author:
-  - name: Elke Windschitl & Lewis White
+  - name: Elke Windschitl, Lewis White
     url: https://elkewind.github.io
     affiliation: UCSB Bren School
     affiliation-url: http://ucsb-meds.github.io
+description: "A short podcast debate by Lewis White and Elke Windschitl"
 date: 2022-12-19
 categories: [MEDS]
 citation: 
