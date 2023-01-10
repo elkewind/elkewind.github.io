@@ -10,6 +10,7 @@ date: 2022-12-19
 categories: [MEDS]
 citation: 
   url: https://elkewind.github.io/posts/2022-12-19-climate-ai-debate
+image: brain.jpg
 format:
   html:
     toc: true
