@@ -241,7 +241,7 @@ Now, let's create a basemap, add the layer for the mean FPAR from November 2010 
 ```{python}
 #| warning: false
 # Create basemap with spatial parameters for Lacandon Jungle
-Map = geemap.Map(center = [16.75, -91.59522999999996], zoom = 10)
+Map = geemap.Map(center = [16.75, -91.59522999999996], zoom = 12)
 ```
 
 ```{python}
@@ -279,12 +279,13 @@ Map # view map
 
 Finally, let's make an interactive time series map for FPAR from November 2010 (left) to November 2022 (right):
 
+<p class="gray-bg">NOTE: This analysis was completed as a final project for the course EDS 220 Working with Environmental Data at UCSB, and the original notebook can be found [here.](https://github.com/elkewind/eds-220-final-project/blob/main/finalproject_demo.ipynb) I'm still troubleshooting how to integrate these maps into my Quarto website. You'll notice that the first map has a rendered layer, but the following three maps aren't appearing as I expected. If anyone has encountered this themselves or has thoughts on a potential solution, drop me an [issue here.](https://github.com/elkewind/elkewind.github.io/issues)</p>
+
 ```{python}
 #| warning: false
 # Create basemap with spatial parameters for Lacandon Jungle
 FPARMap = geemap.Map(center = [16.75, -91.59522999999996], zoom = 9)
 ```
-
 
 ```{python}
 #| warning: false
@@ -346,7 +347,7 @@ Now, let's create a basemap, add the layer for the mean LAI from November 2010 t
 ```{python}
 #| warning: false
 # Create basemap with spatial parameters for Lacandon Jungle
-Map2 = geemap.Map(center = [16.75, -91.59522999999996], zoom = 10)
+Map2 = geemap.Map(center = [16.75, -91.59522999999996], zoom = 12)
 
 # Define color bar
 colors2 = visParams2['palette'] # set colors from visual parameters
@@ -413,21 +414,14 @@ When looking at LAI averaged over our two year period of 2010-2012 vs. the two y
 
 We do not calculate the difference in LAI and FPAR, but a user could use the maps to identify areas with high LAI and low FPAR or low LAI and high FPAR. Next steps for a more complex analysis would be to run these raster algebra calculations and re-plot.
 
-
 ## References
 
 1.  Myneni, R., Knyazikhin, Y., Park, T. (2021). *MODIS/Terra+Aqua Leaf Area Index/FPAR 8-Day L4 Global 500m SIN Grid V061* \[Data set\]. NASA EOSDIS Land Processes DAAC. Accessed 2022-11-14 from <https://doi.org/10.5067/MODIS/MCD15A2H.061>
 
-2.  O\'Brien, Karen L. 1995. \"Deforestation and Climate Change in the Selva Lacandona of Chiapas, Mexico: Some Preliminary Results.\" Norsk Geografisk Tidsskrift - Norwegian Journal of Geography 49 (3): 105--22. <https://doi.org/10.1080/00291959508543416>.
+2.  O'Brien, Karen L. 1995. "Deforestation and Climate Change in the Selva Lacandona of Chiapas, Mexico: Some Preliminary Results." Norsk Geografisk Tidsskrift - Norwegian Journal of Geography 49 (3): 105--22. <https://doi.org/10.1080/00291959508543416>.
 
-3.  Hoffner, Erik. 2018. \"Illegal Cattle Ranching Deforests Mexico\'s Massive Lacandon Jungle.\" Mongabay Environmental News. March 14, 2018. <https://news.mongabay.com/2018/03/illegal-cattle-ranching-deforests-mexicos-massive-lacandon-jungle/>.
+3.  Hoffner, Erik. 2018. "Illegal Cattle Ranching Deforests Mexico's Massive Lacandon Jungle." Mongabay Environmental News. March 14, 2018. <https://news.mongabay.com/2018/03/illegal-cattle-ranching-deforests-mexicos-massive-lacandon-jungle/>.
 
-4.  Levinson, Jonathan. 2017. \"Communities in Mexico Step up to Protect a Disappearing Forest.\" Mongabay Environmental News. March 16, 2017. <https://news.mongabay.com/2017/03/communities-in-mexico-step-up-to-protect-a-disappearing-forest/>.
+4.  Levinson, Jonathan. 2017. "Communities in Mexico Step up to Protect a Disappearing Forest." Mongabay Environmental News. March 16, 2017. <https://news.mongabay.com/2017/03/communities-in-mexico-step-up-to-protect-a-disappearing-forest/>.
 
-5.  Peng, Dailiang, Bing Zhang, Liangyun Liu, Hongliang Fang, Dongmei Chen, Yong Hu, and Lingling Liu. 2012. \"Characteristics and Drivers of Global NDVI‐Based FPAR from 1982 to 2006.\" Global Biogeochemical Cycles 26 (3). <https://doi.org/10.1029/2011gb004060>.
-
-
-
-
-
-
+5.  Peng, Dailiang, Bing Zhang, Liangyun Liu, Hongliang Fang, Dongmei Chen, Yong Hu, and Lingling Liu. 2012. "Characteristics and Drivers of Global NDVI‐Based FPAR from 1982 to 2006." Global Biogeochemical Cycles 26 (3). <https://doi.org/10.1029/2011gb004060>.
