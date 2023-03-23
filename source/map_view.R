@@ -26,7 +26,7 @@ my_cities <- tribble(
   "Monterey", "California", 3,
   "Virginia Beach", "Virginia", 3,
   "Seattle", "Washington", 8,
-  "Santa Barbara", "California", 5
+  "Santa Barbara", "California", 8
 )
 my_cities <- as.data.frame(my_cities)
 
