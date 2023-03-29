@@ -1,0 +1,401 @@
+---
+title: "Boosting to Predict Eel Distribution"
+author:
+  - name: Elke Windschitl
+    url: https://elkewind.github.io
+    affiliation: UCSB Bren School
+    affiliation-url: http://ucsb-meds.github.io
+description: "A species distribution model example with eel"
+date: 2022-12-02
+categories: [MEDS, Machine Learning, R]
+citation: 
+  url: https://elkewind.github.io/posts/2023-03-23-eel-sdm
+image: eel.jpg
+format: 
+  html:
+    code-fold: true
+    code-tools: true
+toc: true
+draft: false
+---
+
+## Description:
+
+In this post, I attempt to reproduce work by [Elith et al. 2008](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2008.01390.x) \[1\] to model species distribution of short-finned eel (*Anguilla australis*) using Boosted Regression Trees. This analysis was created for an assignment for EDS 232 Machine Learning in Environmental Scinece -- a course in UCSB's Master's of Environmental Data Science curriculum taught by Mateo Robbins.
+
+Boosting is a popular machine learning algorithm that builds models sequentially based on information learned from the previous model. Here, decision trees will be built in sequence using extreme gradient boosting to classify presence or absence of short-finned eel in a given location associated with environmental parameters such as temperature, slope, rainy days, etc. Elith et al. used package gbm in R, whereas I use a Tidymodels approach in R.
+
+## Data
+
+Data labeled "model.data.csv" were retrieved from the supplemental information by Elith et al. 2008 and include the following variables:
+
+![Figure 1: Table 1. from Elith et al. 2008 displaying the variables included in the analysis.](variables.png)
+
+```{r}
+#| include: false
+library(readr)
+eel_data_raw <- read_csv("/Users/elkewindschitl/Documents/MEDS/eds-232/labs/eds-232-labs/model.data.csv") 
+```
+
+```{r}
+#| warning: false
+# Load libraries
+library(tidyverse)
+library(tidymodels)
+library(sjPlot)
+library(pROC)
+library(RColorBrewer)
+
+eel_data <- eel_data_raw %>%
+  select(-Site) # remove site number from data frame
+eel_data$Angaus <- as.factor(eel_data$Angaus) # set outcome vaiable as a factor
+
+tab_df(eel_data[1:5,],
+       title = "Table. 1")
+```
+
+### Split and Resample
+
+I split the data from above into a training and test set 70/30, stratified by outcome score. I used 10-fold CV to resample the training set, stratified by Angaus.
+
+```{r}
+#| warning: false
+# Stratified sampling with the rsample package
+set.seed(123) # Set a seed for reproducibility
+split <- initial_split(data = eel_data, 
+                       prop = .7, 
+                       strata = "Angaus")
+
+eel_train <- training(split) # Grab training data
+eel_test  <- testing(split) # Grab test data
+
+# Set up cross validation stratified on Angaus
+cv_folds <- eel_train %>% 
+  vfold_cv(v=10, strata = "Angaus")
+```
+
+### Preprocess
+
+I created a recipe to prepare the data for the XGBoost model. I was interested in predicting the binary outcome variable Angaus which indicates presence or absence of the eel species *Anguilla australis*.
+
+```{r}
+#| warning: false
+# Set up a recipe
+eel_rec <- recipe(Angaus ~ ., data = eel_train) %>% 
+  step_dummy(all_nominal(), -all_outcomes(), one_hot = TRUE) %>% 
+  prep(training = eel_train, retain = TRUE)
+
+# Bake to check recipe
+baked_eel <- bake(eel_rec, eel_train)
+```
+
+## Tuning XGBoost
+
+### Tune Learning Rate
+
+First I conducted tuning on just the learn_rate parameter.
+
+```{r}
+#| warning: false
+eel_spec <- parsnip::boost_tree(mode = "classification",
+                                engine = "xgboost",
+                                trees = 3000,
+                                learn_rate = tune())
+
+```
+
+I set up a grid to tune my model by using a range of learning rate parameter values.
+
+```{r}
+#| warning: false
+# Set up tuning grid
+eel_grid <- expand.grid(learn_rate = seq(0.0001, 0.3, length.out = 30))
+
+# Set up workflow
+wf_eel_tune <- workflow() %>% 
+  add_recipe(eel_rec) %>% 
+  add_model(eel_spec)
+
+doParallel::registerDoParallel()
+set.seed(123)
+
+# Tune
+eel_rs <- tune_grid(
+  wf_eel_tune,
+  Angaus~.,
+  resamples = cv_folds,
+  grid = eel_grid
+)
+```
+
+```{r}
+#| warning: false
+# Identify best values from the tuning process
+eel_rs %>%
+  tune::show_best(metric = "accuracy") %>%
+  tab_df(title = "Table 2",
+         digits = 4,
+         footnote = "Performance of the best models and the associated estimates for the learning rate parameter values.",
+         show.footnote = TRUE)
+
+eel_best_learn <- eel_rs %>%
+  tune::select_best("accuracy")
+
+# eel_model <- eel_spec %>% 
+#   finalize_model(eel_best_learn)
+```
+
+### Tune Tree Parameters
+
+I created a new specification where I set the learning rate and tune the tree parameters.
+
+```{r}
+#| warning: false
+eel_spec2 <- parsnip::boost_tree(mode = "classification",
+                                engine = "xgboost",
+                                trees = 3000,
+                                learn_rate = eel_best_learn$learn_rate,
+                                min_n = tune(),
+                                tree_depth = tune(),
+                                loss_reduction = tune()
+                                )
+```
+
+I set up a tuning grid using grid_max_entropy() to get a representative sampling of the parameter space.
+
+```{r}
+#| warning: false
+# Define parameters to be tuned
+eel_params <- dials::parameters(
+  min_n(),
+  tree_depth(),
+  loss_reduction()
+)
+
+# Set up grid
+eel_grid2 <- dials::grid_max_entropy(eel_params, size = 30)
+
+# Set up workflow
+wf_eel_tune2 <- workflow() %>% 
+  add_recipe(eel_rec) %>% 
+  add_model(eel_spec2)
+
+set.seed(123)
+doParallel::registerDoParallel()
+
+# Tune
+eel_rs2 <- tune_grid(
+  wf_eel_tune2,
+  Angaus~.,
+  resamples = cv_folds,
+  grid = eel_grid2
+)
+```
+
+```{r}
+#| warning: false
+# Identify best values from the tuning process
+eel_rs2 %>%
+  tune::show_best(metric = "accuracy") %>%
+  tab_df(title = "Table 3",
+         digits = 4,
+         footnote = "Performance of the best models and the associated estimates for the tree parameter values.",
+         show.footnote = TRUE)
+
+eel_best_trees <- eel_rs2 %>%
+  tune::select_best("accuracy")
+
+# eel_model2 <- eel_spec2 %>% 
+#   finalize_model(eel_best_trees)
+```
+
+### Tune Stochastic Parameters
+
+I created another new specification where I set the learning rate and tree parameters and tune the stochastic parameters.
+
+```{r}
+#| warning: false
+eel_spec3 <- parsnip::boost_tree(mode = "classification",
+                                engine = "xgboost",
+                                trees = 3000,
+                                learn_rate = eel_best_learn$learn_rate,
+                                min_n = eel_best_trees$min_n,
+                                tree_depth = eel_best_trees$tree_depth,
+                                mtry = tune(),                   
+                                loss_reduction = eel_best_trees$loss_reduction,
+                                sample_size = tune(),
+                                stop_iter = tune()
+                                )
+```
+
+I set up a tuning grid using grid_max_entropy() again.
+
+```{r}
+#| warning: false
+# Define parameters to be tuned
+eel_params2 <- dials::parameters(
+  finalize(mtry(),select(baked_eel,-Angaus)),
+  sample_size = sample_prop(c(.4, .9)),
+  stop_iter())
+
+# Set up grid
+eel_grid3 <- dials::grid_max_entropy(eel_params2, size = 30)
+
+# Set up workflow
+wf_eel_tune3 <- workflow() %>% 
+  add_recipe(eel_rec) %>% 
+  add_model(eel_spec3)
+
+set.seed(123)
+doParallel::registerDoParallel()
+
+# Tune
+eel_rs3 <- tune_grid(
+  wf_eel_tune3,
+  Angaus~.,
+  resamples = cv_folds,
+  grid = eel_grid3
+)
+```
+
+```{r}
+#| warning: false
+# Identify best values from the tuning process
+eel_rs3 %>%
+  tune::show_best(metric = "accuracy") %>%
+  tab_df(title = "Table 4",
+         digits = 4,
+         footnote = "Performance of the best models and the associated estimates for the stochastic parameter values.",
+         show.footnote = TRUE)
+
+eel_best_stoch <- eel_rs3 %>%
+  tune::select_best("accuracy")
+
+eel_model3 <- eel_spec3 %>% 
+  finalize_model(eel_best_stoch)
+```
+
+## Finalize workflow and make final prediction
+
+I assembled my final workflow with all of my optimized parameters and did a final fit.
+
+```{r}
+#| warning: false
+eel_final_spec <- parsnip::boost_tree(mode = "classification",
+                                engine = "xgboost",
+                                trees = 3000,
+                                learn_rate = eel_best_learn$learn_rate,
+                                min_n = eel_best_trees$min_n,
+                                tree_depth = eel_best_trees$tree_depth,
+                                mtry = eel_best_stoch$mtry,                   
+                                loss_reduction = eel_best_trees$loss_reduction,
+                                stop_iter = eel_best_stoch$stop_iter,
+                                sample_size = eel_best_stoch$sample_size
+                                )
+
+# Set up workflow
+wf_eel_final <- workflow() %>% 
+  add_recipe(eel_rec) %>% 
+  add_model(eel_final_spec)
+
+final_simple_fit <- wf_eel_final %>% # fit to just training data (need for later)
+  fit(data = eel_train)
+
+final_eel_fit <- last_fit(eel_final_spec, Angaus~., split) # does training fit then final prediction as well
+
+# Show predictions
+final_pred_tab <- as.data.frame(final_eel_fit$.predictions)
+tab_df(head(final_pred_tab),
+  title = "Table 5",
+  digits = 3,
+  footnote = "Predictions of Angaus presence on test data.",
+  show.footnote = TRUE)
+
+final_met_tab <- final_eel_fit$.metrics # Store metrics
+tab_df(final_met_tab,
+  title = "Table 6",
+  digits = 3,
+  footnote = "Accuracy and area under ther receiver operator curve of the final fit.",
+  show.footnote = TRUE)
+
+# Bind predictions and original data
+eel_test_rs <- cbind(eel_test, final_eel_fit$.predictions)
+eel_test_rs <- eel_test_rs[,-1] # Remove duplicate column
+
+# Compute a confusion matrix
+cm<- eel_test_rs %>% yardstick::conf_mat(truth = Angaus, estimate = .pred_class) 
+
+autoplot(cm, type = "heatmap") +
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14),
+        panel.background = element_rect(fill = "#F8F8F8"),
+        plot.background = element_rect(fill = "#F8F8F8")) +
+  labs(title = "Figure 2: Confusion matrix of predictions on test data.")
+
+tibble <- final_eel_fit %>% collect_metrics()
+
+final_eel_accuracy <- tibble %>%
+  filter(.metric == "accuracy") %>%
+  pull(.estimate)
+
+final_eel_auc <- tibble %>%
+  filter(.metric == "roc_auc") %>%
+  pull(.estimate)
+```
+
+```{r}
+#| echo: false
+#| code-overflow: wrap
+cat(paste0("The model had an accuracy of ", round(final_eel_accuracy,2), ". The ROC area under the curve was ", round(final_eel_auc, 2), ". The rate of false negatives was ", round(cm$table[3]/nrow(eel_test), 2), ", and the rate of false positives was ", round(cm$table[2]/nrow(eel_test),2), "."))
+```
+
+## Fit your model the evaluation data and compare performance
+
+I then fit my final model to the evaluation data set labeled "eel.eval.data.csv."
+
+```{r}
+#| include: false
+eval_dat_raw <- read_csv("/Users/elkewindschitl/Documents/MEDS/eds-232/labs/eds-232-labs/eel.eval.data.csv")
+```
+
+```{r}
+#| warning: false
+# Read in eval data
+eval_dat <- eval_dat_raw %>% 
+  rename(Angaus = Angaus_obs) %>% # rename to match previous data
+  mutate(Angaus = as_factor(Angaus)) # make outcome a factor
+
+prediction <- final_simple_fit %>% predict(new_data = eval_dat) # generate predictions
+eval_dat_pred <- cbind(eval_dat, prediction)
+
+# Compare predicted classes to actual classes
+correct_predictions <- sum(eval_dat_pred$.pred_class == eval_dat_pred$Angaus)
+
+# Calculate accuracy
+accuracy <- correct_predictions / nrow(eval_dat_pred)
+
+# Calculate auc
+eval_dat_pred$pred_num <- as.numeric(eval_dat_pred$.pred_class)
+auc <- auc(eval_dat_pred$Angaus, eval_dat_pred$pred_num)
+```
+
+How did my model perform on this data?
+
+```{r}
+#| echo: false
+#| code-overflow: wrap
+cat(paste0("The model had an accuracy of ", accuracy ," on these data, which isn't quite as good as the accuracy when applying the model to the testing data. However the difference is not too extreme and seems pretty good given that the dummy classifier would be 0.744. The model had an AUC of ", round(auc[1], 2), " which does not seem great."))
+```
+
+How did my results compare to those of Elith et al.?
+
+```{r}
+#| echo: false
+#| code-overflow: wrap
+cat(paste0("The model here does not do as well as the model in Elith et al. which found a model AUC of 0.858. My AUC of ", round(auc[1], 2) , "is fairly far off. I would guess that Elith et al. did more tuning to find the optimal values, where as I was more limited by computing power."))
+```
+
+## References
+
+\[1\] Elith, J., Leathwick, J.R. and Hastie, T. (2008), A working guide to boosted regression trees. Journal of Animal Ecology, 77: 802-813. https://doi.org/10.1111/j.1365-2656.2008.01390.x

@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Elke Windschitl">
+<meta name="dcterms.date" content="2022-12-02">
+<meta name="description" content="A species distribution model example with eel">
+
+<title>Elke Windschitl - Boosting to Predict Eel Distribution</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Elke Windschitl</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.pdf">
+ <span class="menu-text">Resume</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description:</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#split-and-resample" id="toc-split-and-resample" class="nav-link" data-scroll-target="#split-and-resample">Split and Resample</a></li>
+  <li><a href="#preprocess" id="toc-preprocess" class="nav-link" data-scroll-target="#preprocess">Preprocess</a></li>
+  </ul></li>
+  <li><a href="#tuning-xgboost" id="toc-tuning-xgboost" class="nav-link" data-scroll-target="#tuning-xgboost">Tuning XGBoost</a>
+  <ul class="collapse">
+  <li><a href="#tune-learning-rate" id="toc-tune-learning-rate" class="nav-link" data-scroll-target="#tune-learning-rate">Tune Learning Rate</a></li>
+  <li><a href="#tune-tree-parameters" id="toc-tune-tree-parameters" class="nav-link" data-scroll-target="#tune-tree-parameters">Tune Tree Parameters</a></li>
+  <li><a href="#tune-stochastic-parameters" id="toc-tune-stochastic-parameters" class="nav-link" data-scroll-target="#tune-stochastic-parameters">Tune Stochastic Parameters</a></li>
+  </ul></li>
+  <li><a href="#finalize-workflow-and-make-final-prediction" id="toc-finalize-workflow-and-make-final-prediction" class="nav-link" data-scroll-target="#finalize-workflow-and-make-final-prediction">Finalize workflow and make final prediction</a></li>
+  <li><a href="#fit-your-model-the-evaluation-data-and-compare-performance" id="toc-fit-your-model-the-evaluation-data-and-compare-performance" class="nav-link" data-scroll-target="#fit-your-model-the-evaluation-data-and-compare-performance">Fit your model the evaluation data and compare performance</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Boosting to Predict Eel Distribution</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">MEDS</div>
+    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">R</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A species distribution model example with eel
+  </div>
+</div>
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <a href="https://elkewind.github.io">Elke Windschitl</a> 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="http://ucsb-meds.github.io">
+            UCSB Bren School
+            </a>
+          </p>
+      </div>
+    </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 2, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="description" class="level2">
+<h2 class="anchored" data-anchor-id="description">Description:</h2>
+<p>In this post, I attempt to reproduce work by <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2008.01390.x">Elith et al.&nbsp;2008</a> [1] to model species distribution of short-finned eel (<em>Anguilla australis</em>) using Boosted Regression Trees. This analysis was created for an assignment for EDS 232 Machine Learning in Environmental Scinece – a course in UCSB’s Master’s of Environmental Data Science curriculum taught by Mateo Robbins.</p>
+<p>Boosting is a popular machine learning algorithm that builds models sequentially based on information learned from the previous model. Here, decision trees will be built in sequence using extreme gradient boosting to classify presence or absence of short-finned eel in a given location associated with environmental parameters such as temperature, slope, rainy days, etc. Elith et al.&nbsp;used package gbm in R, whereas I use a Tidymodels approach in R.</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Data labeled “model.data.csv” were retrieved from the supplemental information by Elith et al.&nbsp;2008 and include the following variables:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="variables.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 1: Table 1. from Elith et al.&nbsp;2008 displaying the variables included in the analysis.</figcaption><p></p>
+</figure>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>eel_data <span class="ot">&lt;-</span> eel_data_raw <span class="sc">%&gt;%</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Site) <span class="co"># remove site number from data frame</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>eel_data<span class="sc">$</span>Angaus <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(eel_data<span class="sc">$</span>Angaus) <span class="co"># set outcome vaiable as a factor</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(eel_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,],</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Table. 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<table style="border-collapse:collapse; border:none;">
+<caption style="font-weight: bold; text-align:left;">Table. 1</caption>
+<tbody><tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">Angaus</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">SegSumT</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">SegTSeas</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">SegLowFlow</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">DSDist</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">DSMaxSlope</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">USAvgT</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">USRainDays</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col9">USSlope</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; 0">USNative</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; 1">DSDam</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; 2">Method</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; 3">LocSed</th>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">16.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">-0.10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.04</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">50.20</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.57</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.09</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">2.47</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">9.80</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 0">0.81</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 1">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 2">electric</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 3">4.80</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">1</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">18.70</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.51</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">132.53</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.15</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.20</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">1.15</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">8.30</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 0">0.34</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 1">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 2">electric</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 3">2.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">18.30</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.37</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">107.44</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.57</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.49</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.85</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">0.40</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 0">0.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 1">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 2">spo</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 3">1.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">16.70</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">-3.80</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">166.82</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.72</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.90</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.21</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">0.40</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 0">0.22</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 1">1</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 2">electric</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 3">4.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">1</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">17.20</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.33</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">1.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">3.95</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">1.15</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">-1.20</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">1.98</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col9">21.90</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; 0">0.96</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; 1">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; 2">electric</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; 3">4.70</td>
+</tr>
+</tbody></table>
+
+</div>
+</div>
+<section id="split-and-resample" class="level3">
+<h3 class="anchored" data-anchor-id="split-and-resample">Split and Resample</h3>
+<p>I split the data from above into a training and test set 70/30, stratified by outcome score. I used 10-fold CV to resample the training set, stratified by Angaus.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stratified sampling with the rsample package</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Set a seed for reproducibility</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(<span class="at">data =</span> eel_data, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">prop =</span> .<span class="dv">7</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">strata =</span> <span class="st">"Angaus"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>eel_train <span class="ot">&lt;-</span> <span class="fu">training</span>(split) <span class="co"># Grab training data</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>eel_test  <span class="ot">&lt;-</span> <span class="fu">testing</span>(split) <span class="co"># Grab test data</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up cross validation stratified on Angaus</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>cv_folds <span class="ot">&lt;-</span> eel_train <span class="sc">%&gt;%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vfold_cv</span>(<span class="at">v=</span><span class="dv">10</span>, <span class="at">strata =</span> <span class="st">"Angaus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="preprocess" class="level3">
+<h3 class="anchored" data-anchor-id="preprocess">Preprocess</h3>
+<p>I created a recipe to prepare the data for the XGBoost model. I was interested in predicting the binary outcome variable Angaus which indicates presence or absence of the eel species <em>Anguilla australis</em>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a recipe</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>eel_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Angaus <span class="sc">~</span> ., <span class="at">data =</span> eel_train) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>(), <span class="at">one_hot =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>(<span class="at">training =</span> eel_train, <span class="at">retain =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bake to check recipe</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>baked_eel <span class="ot">&lt;-</span> <span class="fu">bake</span>(eel_rec, eel_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="tuning-xgboost" class="level2">
+<h2 class="anchored" data-anchor-id="tuning-xgboost">Tuning XGBoost</h2>
+<section id="tune-learning-rate" class="level3">
+<h3 class="anchored" data-anchor-id="tune-learning-rate">Tune Learning Rate</h3>
+<p>First I conducted tuning on just the learn_rate parameter.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>eel_spec <span class="ot">&lt;-</span> parsnip<span class="sc">::</span><span class="fu">boost_tree</span>(<span class="at">mode =</span> <span class="st">"classification"</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">engine =</span> <span class="st">"xgboost"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">trees =</span> <span class="dv">3000</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">learn_rate =</span> <span class="fu">tune</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I set up a grid to tune my model by using a range of learning rate parameter values.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up tuning grid</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>eel_grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">learn_rate =</span> <span class="fu">seq</span>(<span class="fl">0.0001</span>, <span class="fl">0.3</span>, <span class="at">length.out =</span> <span class="dv">30</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up workflow</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>wf_eel_tune <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(eel_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(eel_spec)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>doParallel<span class="sc">::</span><span class="fu">registerDoParallel</span>()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>eel_rs <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  wf_eel_tune,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  Angaus<span class="sc">~</span>.,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> eel_grid</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify best values from the tuning process</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>eel_rs <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">show_best</span>(<span class="at">metric =</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_df</span>(<span class="at">title =</span> <span class="st">"Table 2"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">footnote =</span> <span class="st">"Performance of the best models and the associated estimates for the learning rate parameter values."</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<table style="border-collapse:collapse; border:none;">
+<caption style="font-weight: bold; text-align:left;">Table 2</caption>
+<tbody><tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">learn_rate</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.metric</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.estimator</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">mean</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">n</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">std_err</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">.config</th>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0.1656</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8313</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0103</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">Preprocessor1_Model17</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0.1035</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8312</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0092</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">Preprocessor1_Model11</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0.3000</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8298</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0129</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">Preprocessor1_Model30</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0.1449</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8298</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0110</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">Preprocessor1_Model15</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">0.2380</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.8298</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.0111</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">Preprocessor1_Model24</td>
+</tr>
+<tr>
+<td colspan="8" style="font-style:italic; border-top:double black; text-align:right;">Performance of the best models and the associated estimates for the learning rate parameter values.</td>
+</tr>
+</tbody></table>
+
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>eel_best_learn <span class="ot">&lt;-</span> eel_rs <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">select_best</span>(<span class="st">"accuracy"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># eel_model &lt;- eel_spec %&gt;% </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   finalize_model(eel_best_learn)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="tune-tree-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="tune-tree-parameters">Tune Tree Parameters</h3>
+<p>I created a new specification where I set the learning rate and tune the tree parameters.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>eel_spec2 <span class="ot">&lt;-</span> parsnip<span class="sc">::</span><span class="fu">boost_tree</span>(<span class="at">mode =</span> <span class="st">"classification"</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">engine =</span> <span class="st">"xgboost"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">trees =</span> <span class="dv">3000</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">learn_rate =</span> eel_best_learn<span class="sc">$</span>learn_rate,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">min_n =</span> <span class="fu">tune</span>(),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">tree_depth =</span> <span class="fu">tune</span>(),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">loss_reduction =</span> <span class="fu">tune</span>()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                                )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I set up a tuning grid using grid_max_entropy() to get a representative sampling of the parameter space.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters to be tuned</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>eel_params <span class="ot">&lt;-</span> dials<span class="sc">::</span><span class="fu">parameters</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">min_n</span>(),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tree_depth</span>(),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">loss_reduction</span>()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up grid</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>eel_grid2 <span class="ot">&lt;-</span> dials<span class="sc">::</span><span class="fu">grid_max_entropy</span>(eel_params, <span class="at">size =</span> <span class="dv">30</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up workflow</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>wf_eel_tune2 <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(eel_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(eel_spec2)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>doParallel<span class="sc">::</span><span class="fu">registerDoParallel</span>()</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>eel_rs2 <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  wf_eel_tune2,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  Angaus<span class="sc">~</span>.,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> eel_grid2</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify best values from the tuning process</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>eel_rs2 <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">show_best</span>(<span class="at">metric =</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_df</span>(<span class="at">title =</span> <span class="st">"Table 3"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">footnote =</span> <span class="st">"Performance of the best models and the associated estimates for the tree parameter values."</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<table style="border-collapse:collapse; border:none;">
+<caption style="font-weight: bold; text-align:left;">Table 3</caption>
+<tbody><tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">min_n</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">tree_depth</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">loss_reduction</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.metric</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.estimator</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">mean</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">n</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">std_err</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col9">.config</th>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">18</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">7</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.1440</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8413</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0102</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model15</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">3</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">11</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0000</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8385</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0135</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model08</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">6</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">15</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0000</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8342</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0136</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model14</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">3</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">8</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0000</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8342</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0128</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model18</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">4</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">5</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.2273</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.8314</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">0.0135</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col9">Preprocessor1_Model12</td>
+</tr>
+<tr>
+<td colspan="10" style="font-style:italic; border-top:double black; text-align:right;">Performance of the best models and the associated estimates for the tree parameter values.</td>
+</tr>
+</tbody></table>
+
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>eel_best_trees <span class="ot">&lt;-</span> eel_rs2 <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">select_best</span>(<span class="st">"accuracy"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># eel_model2 &lt;- eel_spec2 %&gt;% </span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   finalize_model(eel_best_trees)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="tune-stochastic-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="tune-stochastic-parameters">Tune Stochastic Parameters</h3>
+<p>I created another new specification where I set the learning rate and tree parameters and tune the stochastic parameters.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>eel_spec3 <span class="ot">&lt;-</span> parsnip<span class="sc">::</span><span class="fu">boost_tree</span>(<span class="at">mode =</span> <span class="st">"classification"</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">engine =</span> <span class="st">"xgboost"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">trees =</span> <span class="dv">3000</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">learn_rate =</span> eel_best_learn<span class="sc">$</span>learn_rate,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">min_n =</span> eel_best_trees<span class="sc">$</span>min_n,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">tree_depth =</span> eel_best_trees<span class="sc">$</span>tree_depth,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">mtry =</span> <span class="fu">tune</span>(),                   </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">loss_reduction =</span> eel_best_trees<span class="sc">$</span>loss_reduction,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">sample_size =</span> <span class="fu">tune</span>(),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                                <span class="at">stop_iter =</span> <span class="fu">tune</span>()</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                                )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I set up a tuning grid using grid_max_entropy() again.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters to be tuned</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>eel_params2 <span class="ot">&lt;-</span> dials<span class="sc">::</span><span class="fu">parameters</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize</span>(<span class="fu">mtry</span>(),<span class="fu">select</span>(baked_eel,<span class="sc">-</span>Angaus)),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample_size =</span> <span class="fu">sample_prop</span>(<span class="fu">c</span>(.<span class="dv">4</span>, .<span class="dv">9</span>)),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop_iter</span>())</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up grid</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>eel_grid3 <span class="ot">&lt;-</span> dials<span class="sc">::</span><span class="fu">grid_max_entropy</span>(eel_params2, <span class="at">size =</span> <span class="dv">30</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up workflow</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>wf_eel_tune3 <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(eel_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(eel_spec3)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>doParallel<span class="sc">::</span><span class="fu">registerDoParallel</span>()</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>eel_rs3 <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  wf_eel_tune3,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  Angaus<span class="sc">~</span>.,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> eel_grid3</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify best values from the tuning process</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>eel_rs3 <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">show_best</span>(<span class="at">metric =</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_df</span>(<span class="at">title =</span> <span class="st">"Table 4"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">footnote =</span> <span class="st">"Performance of the best models and the associated estimates for the stochastic parameter values."</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<table style="border-collapse:collapse; border:none;">
+<caption style="font-weight: bold; text-align:left;">Table 4</caption>
+<tbody><tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">mtry</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">sample_size</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">stop_iter</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.metric</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.estimator</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">mean</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">n</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">std_err</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col9">.config</th>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">14</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.7264</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">13</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8171</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0122</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model20</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">9</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.7459</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">18</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8141</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0125</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model26</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">16</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8406</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">7</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8128</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0119</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model17</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">6</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.7097</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">4</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8127</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0107</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model09</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">5</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.8537</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">4</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.8113</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">0.0102</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col9">Preprocessor1_Model22</td>
+</tr>
+<tr>
+<td colspan="10" style="font-style:italic; border-top:double black; text-align:right;">Performance of the best models and the associated estimates for the stochastic parameter values.</td>
+</tr>
+</tbody></table>
+
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>eel_best_stoch <span class="ot">&lt;-</span> eel_rs3 <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">select_best</span>(<span class="st">"accuracy"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>eel_model3 <span class="ot">&lt;-</span> eel_spec3 <span class="sc">%&gt;%</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_model</span>(eel_best_stoch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="finalize-workflow-and-make-final-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="finalize-workflow-and-make-final-prediction">Finalize workflow and make final prediction</h2>
+<p>I assembled my final workflow with all of my optimized parameters and did a final fit.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>eel_final_spec <span class="ot">&lt;-</span> parsnip<span class="sc">::</span><span class="fu">boost_tree</span>(<span class="at">mode =</span> <span class="st">"classification"</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">engine =</span> <span class="st">"xgboost"</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">trees =</span> <span class="dv">3000</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">learn_rate =</span> eel_best_learn<span class="sc">$</span>learn_rate,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">min_n =</span> eel_best_trees<span class="sc">$</span>min_n,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">tree_depth =</span> eel_best_trees<span class="sc">$</span>tree_depth,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">mtry =</span> eel_best_stoch<span class="sc">$</span>mtry,                   </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">loss_reduction =</span> eel_best_trees<span class="sc">$</span>loss_reduction,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">stop_iter =</span> eel_best_stoch<span class="sc">$</span>stop_iter,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                                <span class="at">sample_size =</span> eel_best_stoch<span class="sc">$</span>sample_size</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                                )</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up workflow</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>wf_eel_final <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(eel_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(eel_final_spec)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>final_simple_fit <span class="ot">&lt;-</span> wf_eel_final <span class="sc">%&gt;%</span> <span class="co"># fit to just training data (need for later)</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> eel_train)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>final_eel_fit <span class="ot">&lt;-</span> <span class="fu">last_fit</span>(eel_final_spec, Angaus<span class="sc">~</span>., split) <span class="co"># does training fit then final prediction as well</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Show predictions</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>final_pred_tab <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(final_eel_fit<span class="sc">$</span>.predictions)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(<span class="fu">head</span>(final_pred_tab),</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Table 5"</span>,</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">footnote =</span> <span class="st">"Predictions of Angaus presence on test data."</span>,</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<table style="border-collapse:collapse; border:none;">
+<caption style="font-weight: bold; text-align:left;">Table 5</caption>
+<tbody><tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">.pred_0</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.pred_1</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.row</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.pred_class</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Angaus</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.config</th>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; modelcolumn0 ">0.995</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.005</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; modelcolumn0 ">0.083</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.917</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">2</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; modelcolumn0 ">0.629</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.371</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">3</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; modelcolumn0 ">0.670</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.330</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">4</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; modelcolumn0 ">0.796</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.204</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">9</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; modelcolumn0 ">0.296</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double;  ">0.704</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">1</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">1</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">Preprocessor1_Model1</td>
+</tr>
+<tr>
+<td colspan="7" style="font-style:italic; border-top:double black; text-align:right;">Predictions of Angaus presence on test data.</td>
+</tr>
+</tbody></table>
+
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>final_met_tab <span class="ot">&lt;-</span> final_eel_fit<span class="sc">$</span>.metrics <span class="co"># Store metrics</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(final_met_tab,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Table 6"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">footnote =</span> <span class="st">"Accuracy and area under ther receiver operator curve of the final fit."</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<table style="border-collapse:collapse; border:none;">
+<caption style="font-weight: bold; text-align:left;">Table 6</caption>
+<tbody><tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">.metric</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.estimator</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.estimate</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.config</th>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">accuracy</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.843853820598007</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">roc_auc</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">binary</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.866325136612022</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">Preprocessor1_Model1</td>
+</tr>
+<tr>
+<td colspan="5" style="font-style:italic; border-top:double black; text-align:right;">Accuracy and area under ther receiver operator curve of the final fit.</td>
+</tr>
+</tbody></table>
+
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bind predictions and original data</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>eel_test_rs <span class="ot">&lt;-</span> <span class="fu">cbind</span>(eel_test, final_eel_fit<span class="sc">$</span>.predictions)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>eel_test_rs <span class="ot">&lt;-</span> eel_test_rs[,<span class="sc">-</span><span class="dv">1</span>] <span class="co"># Remove duplicate column</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute a confusion matrix</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>cm<span class="ot">&lt;-</span> eel_test_rs <span class="sc">%&gt;%</span> yardstick<span class="sc">::</span><span class="fu">conf_mat</span>(<span class="at">truth =</span> Angaus, <span class="at">estimate =</span> .pred_class) </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(cm, <span class="at">type =</span> <span class="st">"heatmap"</span>) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#F8F8F8"</span>),</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#F8F8F8"</span>)) <span class="sc">+</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 2: Confusion matrix of predictions on test data."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tibble <span class="ot">&lt;-</span> final_eel_fit <span class="sc">%&gt;%</span> <span class="fu">collect_metrics</span>()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>final_eel_accuracy <span class="ot">&lt;-</span> tibble <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(.estimate)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>final_eel_auc <span class="ot">&lt;-</span> tibble <span class="sc">%&gt;%</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"roc_auc"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(.estimate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>The model had an accuracy of 0.84. The ROC area under the curve was 0.87. The rate of false negatives was 0.11, and the rate of false positives was 0.05.</code></pre>
+</div>
+</div>
+</section>
+<section id="fit-your-model-the-evaluation-data-and-compare-performance" class="level2">
+<h2 class="anchored" data-anchor-id="fit-your-model-the-evaluation-data-and-compare-performance">Fit your model the evaluation data and compare performance</h2>
+<p>I then fit my final model to the evaluation data set labeled “eel.eval.data.csv.”</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in eval data</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>eval_dat <span class="ot">&lt;-</span> eval_dat_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Angaus =</span> Angaus_obs) <span class="sc">%&gt;%</span> <span class="co"># rename to match previous data</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Angaus =</span> <span class="fu">as_factor</span>(Angaus)) <span class="co"># make outcome a factor</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>prediction <span class="ot">&lt;-</span> final_simple_fit <span class="sc">%&gt;%</span> <span class="fu">predict</span>(<span class="at">new_data =</span> eval_dat) <span class="co"># generate predictions</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>eval_dat_pred <span class="ot">&lt;-</span> <span class="fu">cbind</span>(eval_dat, prediction)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare predicted classes to actual classes</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>correct_predictions <span class="ot">&lt;-</span> <span class="fu">sum</span>(eval_dat_pred<span class="sc">$</span>.pred_class <span class="sc">==</span> eval_dat_pred<span class="sc">$</span>Angaus)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate accuracy</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">&lt;-</span> correct_predictions <span class="sc">/</span> <span class="fu">nrow</span>(eval_dat_pred)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate auc</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>eval_dat_pred<span class="sc">$</span>pred_num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(eval_dat_pred<span class="sc">$</span>.pred_class)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>auc <span class="ot">&lt;-</span> <span class="fu">auc</span>(eval_dat_pred<span class="sc">$</span>Angaus, eval_dat_pred<span class="sc">$</span>pred_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>How did my model perform on this data?</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>The model had an accuracy of 0.81 on these data, which isn't quite as good as the accuracy when applying the model to the testing data. However the difference is not too extreme and seems pretty good given that the dummy classifier would be 0.744. The model had an AUC of 0.66 which does not seem great.</code></pre>
+</div>
+</div>
+<p>How did my results compare to those of Elith et al.?</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>The model here does not do as well as the model in Elith et al. which found a model AUC of 0.858. My AUC of 0.66is fairly far off. I would guess that Elith et al. did more tuning to find the optimal values, where as I was more limited by computing power.</code></pre>
+</div>
+</div>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>[1] Elith, J., Leathwick, J.R. and Hastie, T. (2008), A working guide to boosted regression trees. Journal of Animal Ecology, 77: 802-813. https://doi.org/10.1111/j.1365-2656.2008.01390.x</p>
+
+
+<!-- -->
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{windschitl2022,
+  author = {Elke Windschitl},
+  title = {Boosting to {Predict} {Eel} {Distribution}},
+  date = {2022-12-02},
+  url = {https://elkewind.github.io/posts/2023-03-23-eel-sdm},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-windschitl2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Elke Windschitl. 2022. <span>“Boosting to Predict Eel
+Distribution.”</span> December 2, 2022. <a href="https://elkewind.github.io/posts/2023-03-23-eel-sdm">https://elkewind.github.io/posts/2023-03-23-eel-sdm</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Boosting to Predict Eel Distribution"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Elke Windschitl</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://elkewind.github.io</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: UCSB Bren School</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: http://ucsb-meds.github.io</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "A species distribution model example with eel"</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2022-12-02</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [MEDS, Machine Learning, R]</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="an">citation:</span><span class="co"> </span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">  url: https://elkewind.github.io/posts/2023-03-23-eel-sdm</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> eel.jpg</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="an">draft:</span><span class="co"> false</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Description:</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>In this post, I attempt to reproduce work by <span class="co">[</span><span class="ot">Elith et al. 2008</span><span class="co">](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2008.01390.x)</span> <span class="sc">\[</span>1<span class="sc">\]</span> to model species distribution of short-finned eel (*Anguilla australis*) using Boosted Regression Trees. This analysis was created for an assignment for EDS 232 Machine Learning in Environmental Scinece -- a course in UCSB's Master's of Environmental Data Science curriculum taught by Mateo Robbins.</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>Boosting is a popular machine learning algorithm that builds models sequentially based on information learned from the previous model. Here, decision trees will be built in sequence using extreme gradient boosting to classify presence or absence of short-finned eel in a given location associated with environmental parameters such as temperature, slope, rainy days, etc. Elith et al. used package gbm in R, whereas I use a Tidymodels approach in R.</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>Data labeled "model.data.csv" were retrieved from the supplemental information by Elith et al. 2008 and include the following variables:</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a><span class="al">![Figure 1: Table 1. from Elith et al. 2008 displaying the variables included in the analysis.](variables.png)</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>eel_data_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"/Users/elkewindschitl/Documents/MEDS/eds-232/labs/eds-232-labs/model.data.csv"</span>) </span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>eel_data <span class="ot">&lt;-</span> eel_data_raw <span class="sc">%&gt;%</span></span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Site) <span class="co"># remove site number from data frame</span></span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>eel_data<span class="sc">$</span>Angaus <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(eel_data<span class="sc">$</span>Angaus) <span class="co"># set outcome vaiable as a factor</span></span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(eel_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,],</span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Table. 1"</span>)</span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Split and Resample</span></span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a>I split the data from above into a training and test set 70/30, stratified by outcome score. I used 10-fold CV to resample the training set, stratified by Angaus.</span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Stratified sampling with the rsample package</span></span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Set a seed for reproducibility</span></span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(<span class="at">data =</span> eel_data, </span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a>                       <span class="at">prop =</span> .<span class="dv">7</span>, </span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a>                       <span class="at">strata =</span> <span class="st">"Angaus"</span>)</span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a>eel_train <span class="ot">&lt;-</span> <span class="fu">training</span>(split) <span class="co"># Grab training data</span></span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a>eel_test  <span class="ot">&lt;-</span> <span class="fu">testing</span>(split) <span class="co"># Grab test data</span></span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up cross validation stratified on Angaus</span></span>
+<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a>cv_folds <span class="ot">&lt;-</span> eel_train <span class="sc">%&gt;%</span> </span>
+<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vfold_cv</span>(<span class="at">v=</span><span class="dv">10</span>, <span class="at">strata =</span> <span class="st">"Angaus"</span>)</span>
+<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preprocess</span></span>
+<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a>I created a recipe to prepare the data for the XGBoost model. I was interested in predicting the binary outcome variable Angaus which indicates presence or absence of the eel species *Anguilla australis*.</span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a recipe</span></span>
+<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a>eel_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Angaus <span class="sc">~</span> ., <span class="at">data =</span> eel_train) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>(), <span class="at">one_hot =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>(<span class="at">training =</span> eel_train, <span class="at">retain =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Bake to check recipe</span></span>
+<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a>baked_eel <span class="ot">&lt;-</span> <span class="fu">bake</span>(eel_rec, eel_train)</span>
+<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tuning XGBoost</span></span>
+<span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tune Learning Rate</span></span>
+<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a>First I conducted tuning on just the learn_rate parameter.</span>
+<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a>eel_spec <span class="ot">&lt;-</span> parsnip<span class="sc">::</span><span class="fu">boost_tree</span>(<span class="at">mode =</span> <span class="st">"classification"</span>,</span>
+<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a>                                <span class="at">engine =</span> <span class="st">"xgboost"</span>,</span>
+<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a>                                <span class="at">trees =</span> <span class="dv">3000</span>,</span>
+<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a>                                <span class="at">learn_rate =</span> <span class="fu">tune</span>())</span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a>I set up a grid to tune my model by using a range of learning rate parameter values.</span>
+<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up tuning grid</span></span>
+<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a>eel_grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">learn_rate =</span> <span class="fu">seq</span>(<span class="fl">0.0001</span>, <span class="fl">0.3</span>, <span class="at">length.out =</span> <span class="dv">30</span>))</span>
+<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up workflow</span></span>
+<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a>wf_eel_tune <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb24-128"><a href="#cb24-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(eel_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-129"><a href="#cb24-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(eel_spec)</span>
+<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a>doParallel<span class="sc">::</span><span class="fu">registerDoParallel</span>()</span>
+<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune</span></span>
+<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a>eel_rs <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a>  wf_eel_tune,</span>
+<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a>  Angaus<span class="sc">~</span>.,</span>
+<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
+<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> eel_grid</span>
+<span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify best values from the tuning process</span></span>
+<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a>eel_rs <span class="sc">%&gt;%</span></span>
+<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">show_best</span>(<span class="at">metric =</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_df</span>(<span class="at">title =</span> <span class="st">"Table 2"</span>,</span>
+<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>         <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a>         <span class="at">footnote =</span> <span class="st">"Performance of the best models and the associated estimates for the learning rate parameter values."</span>,</span>
+<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a>         <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a>eel_best_learn <span class="ot">&lt;-</span> eel_rs <span class="sc">%&gt;%</span></span>
+<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">select_best</span>(<span class="st">"accuracy"</span>)</span>
+<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a><span class="co"># eel_model &lt;- eel_spec %&gt;% </span></span>
+<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a><span class="co">#   finalize_model(eel_best_learn)</span></span>
+<span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tune Tree Parameters</span></span>
+<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a>I created a new specification where I set the learning rate and tune the tree parameters.</span>
+<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-168"><a href="#cb24-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-169"><a href="#cb24-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a>eel_spec2 <span class="ot">&lt;-</span> parsnip<span class="sc">::</span><span class="fu">boost_tree</span>(<span class="at">mode =</span> <span class="st">"classification"</span>,</span>
+<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a>                                <span class="at">engine =</span> <span class="st">"xgboost"</span>,</span>
+<span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a>                                <span class="at">trees =</span> <span class="dv">3000</span>,</span>
+<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a>                                <span class="at">learn_rate =</span> eel_best_learn<span class="sc">$</span>learn_rate,</span>
+<span id="cb24-174"><a href="#cb24-174" aria-hidden="true" tabindex="-1"></a>                                <span class="at">min_n =</span> <span class="fu">tune</span>(),</span>
+<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a>                                <span class="at">tree_depth =</span> <span class="fu">tune</span>(),</span>
+<span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a>                                <span class="at">loss_reduction =</span> <span class="fu">tune</span>()</span>
+<span id="cb24-177"><a href="#cb24-177" aria-hidden="true" tabindex="-1"></a>                                )</span>
+<span id="cb24-178"><a href="#cb24-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-179"><a href="#cb24-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-180"><a href="#cb24-180" aria-hidden="true" tabindex="-1"></a>I set up a tuning grid using grid_max_entropy() to get a representative sampling of the parameter space.</span>
+<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-184"><a href="#cb24-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters to be tuned</span></span>
+<span id="cb24-187"><a href="#cb24-187" aria-hidden="true" tabindex="-1"></a>eel_params <span class="ot">&lt;-</span> dials<span class="sc">::</span><span class="fu">parameters</span>(</span>
+<span id="cb24-188"><a href="#cb24-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">min_n</span>(),</span>
+<span id="cb24-189"><a href="#cb24-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tree_depth</span>(),</span>
+<span id="cb24-190"><a href="#cb24-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">loss_reduction</span>()</span>
+<span id="cb24-191"><a href="#cb24-191" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-192"><a href="#cb24-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-193"><a href="#cb24-193" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up grid</span></span>
+<span id="cb24-194"><a href="#cb24-194" aria-hidden="true" tabindex="-1"></a>eel_grid2 <span class="ot">&lt;-</span> dials<span class="sc">::</span><span class="fu">grid_max_entropy</span>(eel_params, <span class="at">size =</span> <span class="dv">30</span>)</span>
+<span id="cb24-195"><a href="#cb24-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up workflow</span></span>
+<span id="cb24-197"><a href="#cb24-197" aria-hidden="true" tabindex="-1"></a>wf_eel_tune2 <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb24-198"><a href="#cb24-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(eel_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-199"><a href="#cb24-199" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(eel_spec2)</span>
+<span id="cb24-200"><a href="#cb24-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-201"><a href="#cb24-201" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb24-202"><a href="#cb24-202" aria-hidden="true" tabindex="-1"></a>doParallel<span class="sc">::</span><span class="fu">registerDoParallel</span>()</span>
+<span id="cb24-203"><a href="#cb24-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-204"><a href="#cb24-204" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune</span></span>
+<span id="cb24-205"><a href="#cb24-205" aria-hidden="true" tabindex="-1"></a>eel_rs2 <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb24-206"><a href="#cb24-206" aria-hidden="true" tabindex="-1"></a>  wf_eel_tune2,</span>
+<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a>  Angaus<span class="sc">~</span>.,</span>
+<span id="cb24-208"><a href="#cb24-208" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
+<span id="cb24-209"><a href="#cb24-209" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> eel_grid2</span>
+<span id="cb24-210"><a href="#cb24-210" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-211"><a href="#cb24-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-212"><a href="#cb24-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-215"><a href="#cb24-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-216"><a href="#cb24-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-217"><a href="#cb24-217" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify best values from the tuning process</span></span>
+<span id="cb24-218"><a href="#cb24-218" aria-hidden="true" tabindex="-1"></a>eel_rs2 <span class="sc">%&gt;%</span></span>
+<span id="cb24-219"><a href="#cb24-219" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">show_best</span>(<span class="at">metric =</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-220"><a href="#cb24-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_df</span>(<span class="at">title =</span> <span class="st">"Table 3"</span>,</span>
+<span id="cb24-221"><a href="#cb24-221" aria-hidden="true" tabindex="-1"></a>         <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb24-222"><a href="#cb24-222" aria-hidden="true" tabindex="-1"></a>         <span class="at">footnote =</span> <span class="st">"Performance of the best models and the associated estimates for the tree parameter values."</span>,</span>
+<span id="cb24-223"><a href="#cb24-223" aria-hidden="true" tabindex="-1"></a>         <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-224"><a href="#cb24-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-225"><a href="#cb24-225" aria-hidden="true" tabindex="-1"></a>eel_best_trees <span class="ot">&lt;-</span> eel_rs2 <span class="sc">%&gt;%</span></span>
+<span id="cb24-226"><a href="#cb24-226" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">select_best</span>(<span class="st">"accuracy"</span>)</span>
+<span id="cb24-227"><a href="#cb24-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-228"><a href="#cb24-228" aria-hidden="true" tabindex="-1"></a><span class="co"># eel_model2 &lt;- eel_spec2 %&gt;% </span></span>
+<span id="cb24-229"><a href="#cb24-229" aria-hidden="true" tabindex="-1"></a><span class="co">#   finalize_model(eel_best_trees)</span></span>
+<span id="cb24-230"><a href="#cb24-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-231"><a href="#cb24-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-232"><a href="#cb24-232" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tune Stochastic Parameters</span></span>
+<span id="cb24-233"><a href="#cb24-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-234"><a href="#cb24-234" aria-hidden="true" tabindex="-1"></a>I created another new specification where I set the learning rate and tree parameters and tune the stochastic parameters.</span>
+<span id="cb24-235"><a href="#cb24-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-238"><a href="#cb24-238" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-239"><a href="#cb24-239" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-240"><a href="#cb24-240" aria-hidden="true" tabindex="-1"></a>eel_spec3 <span class="ot">&lt;-</span> parsnip<span class="sc">::</span><span class="fu">boost_tree</span>(<span class="at">mode =</span> <span class="st">"classification"</span>,</span>
+<span id="cb24-241"><a href="#cb24-241" aria-hidden="true" tabindex="-1"></a>                                <span class="at">engine =</span> <span class="st">"xgboost"</span>,</span>
+<span id="cb24-242"><a href="#cb24-242" aria-hidden="true" tabindex="-1"></a>                                <span class="at">trees =</span> <span class="dv">3000</span>,</span>
+<span id="cb24-243"><a href="#cb24-243" aria-hidden="true" tabindex="-1"></a>                                <span class="at">learn_rate =</span> eel_best_learn<span class="sc">$</span>learn_rate,</span>
+<span id="cb24-244"><a href="#cb24-244" aria-hidden="true" tabindex="-1"></a>                                <span class="at">min_n =</span> eel_best_trees<span class="sc">$</span>min_n,</span>
+<span id="cb24-245"><a href="#cb24-245" aria-hidden="true" tabindex="-1"></a>                                <span class="at">tree_depth =</span> eel_best_trees<span class="sc">$</span>tree_depth,</span>
+<span id="cb24-246"><a href="#cb24-246" aria-hidden="true" tabindex="-1"></a>                                <span class="at">mtry =</span> <span class="fu">tune</span>(),                   </span>
+<span id="cb24-247"><a href="#cb24-247" aria-hidden="true" tabindex="-1"></a>                                <span class="at">loss_reduction =</span> eel_best_trees<span class="sc">$</span>loss_reduction,</span>
+<span id="cb24-248"><a href="#cb24-248" aria-hidden="true" tabindex="-1"></a>                                <span class="at">sample_size =</span> <span class="fu">tune</span>(),</span>
+<span id="cb24-249"><a href="#cb24-249" aria-hidden="true" tabindex="-1"></a>                                <span class="at">stop_iter =</span> <span class="fu">tune</span>()</span>
+<span id="cb24-250"><a href="#cb24-250" aria-hidden="true" tabindex="-1"></a>                                )</span>
+<span id="cb24-251"><a href="#cb24-251" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-252"><a href="#cb24-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-253"><a href="#cb24-253" aria-hidden="true" tabindex="-1"></a>I set up a tuning grid using grid_max_entropy() again.</span>
+<span id="cb24-254"><a href="#cb24-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-257"><a href="#cb24-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-258"><a href="#cb24-258" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-259"><a href="#cb24-259" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters to be tuned</span></span>
+<span id="cb24-260"><a href="#cb24-260" aria-hidden="true" tabindex="-1"></a>eel_params2 <span class="ot">&lt;-</span> dials<span class="sc">::</span><span class="fu">parameters</span>(</span>
+<span id="cb24-261"><a href="#cb24-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize</span>(<span class="fu">mtry</span>(),<span class="fu">select</span>(baked_eel,<span class="sc">-</span>Angaus)),</span>
+<span id="cb24-262"><a href="#cb24-262" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample_size =</span> <span class="fu">sample_prop</span>(<span class="fu">c</span>(.<span class="dv">4</span>, .<span class="dv">9</span>)),</span>
+<span id="cb24-263"><a href="#cb24-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop_iter</span>())</span>
+<span id="cb24-264"><a href="#cb24-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-265"><a href="#cb24-265" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up grid</span></span>
+<span id="cb24-266"><a href="#cb24-266" aria-hidden="true" tabindex="-1"></a>eel_grid3 <span class="ot">&lt;-</span> dials<span class="sc">::</span><span class="fu">grid_max_entropy</span>(eel_params2, <span class="at">size =</span> <span class="dv">30</span>)</span>
+<span id="cb24-267"><a href="#cb24-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-268"><a href="#cb24-268" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up workflow</span></span>
+<span id="cb24-269"><a href="#cb24-269" aria-hidden="true" tabindex="-1"></a>wf_eel_tune3 <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb24-270"><a href="#cb24-270" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(eel_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-271"><a href="#cb24-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(eel_spec3)</span>
+<span id="cb24-272"><a href="#cb24-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-273"><a href="#cb24-273" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb24-274"><a href="#cb24-274" aria-hidden="true" tabindex="-1"></a>doParallel<span class="sc">::</span><span class="fu">registerDoParallel</span>()</span>
+<span id="cb24-275"><a href="#cb24-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-276"><a href="#cb24-276" aria-hidden="true" tabindex="-1"></a><span class="co"># Tune</span></span>
+<span id="cb24-277"><a href="#cb24-277" aria-hidden="true" tabindex="-1"></a>eel_rs3 <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb24-278"><a href="#cb24-278" aria-hidden="true" tabindex="-1"></a>  wf_eel_tune3,</span>
+<span id="cb24-279"><a href="#cb24-279" aria-hidden="true" tabindex="-1"></a>  Angaus<span class="sc">~</span>.,</span>
+<span id="cb24-280"><a href="#cb24-280" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
+<span id="cb24-281"><a href="#cb24-281" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> eel_grid3</span>
+<span id="cb24-282"><a href="#cb24-282" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-283"><a href="#cb24-283" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-284"><a href="#cb24-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-287"><a href="#cb24-287" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-288"><a href="#cb24-288" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-289"><a href="#cb24-289" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify best values from the tuning process</span></span>
+<span id="cb24-290"><a href="#cb24-290" aria-hidden="true" tabindex="-1"></a>eel_rs3 <span class="sc">%&gt;%</span></span>
+<span id="cb24-291"><a href="#cb24-291" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">show_best</span>(<span class="at">metric =</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-292"><a href="#cb24-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_df</span>(<span class="at">title =</span> <span class="st">"Table 4"</span>,</span>
+<span id="cb24-293"><a href="#cb24-293" aria-hidden="true" tabindex="-1"></a>         <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb24-294"><a href="#cb24-294" aria-hidden="true" tabindex="-1"></a>         <span class="at">footnote =</span> <span class="st">"Performance of the best models and the associated estimates for the stochastic parameter values."</span>,</span>
+<span id="cb24-295"><a href="#cb24-295" aria-hidden="true" tabindex="-1"></a>         <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-296"><a href="#cb24-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-297"><a href="#cb24-297" aria-hidden="true" tabindex="-1"></a>eel_best_stoch <span class="ot">&lt;-</span> eel_rs3 <span class="sc">%&gt;%</span></span>
+<span id="cb24-298"><a href="#cb24-298" aria-hidden="true" tabindex="-1"></a>  tune<span class="sc">::</span><span class="fu">select_best</span>(<span class="st">"accuracy"</span>)</span>
+<span id="cb24-299"><a href="#cb24-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-300"><a href="#cb24-300" aria-hidden="true" tabindex="-1"></a>eel_model3 <span class="ot">&lt;-</span> eel_spec3 <span class="sc">%&gt;%</span> </span>
+<span id="cb24-301"><a href="#cb24-301" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_model</span>(eel_best_stoch)</span>
+<span id="cb24-302"><a href="#cb24-302" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-303"><a href="#cb24-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-304"><a href="#cb24-304" aria-hidden="true" tabindex="-1"></a><span class="fu">## Finalize workflow and make final prediction</span></span>
+<span id="cb24-305"><a href="#cb24-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-306"><a href="#cb24-306" aria-hidden="true" tabindex="-1"></a>I assembled my final workflow with all of my optimized parameters and did a final fit.</span>
+<span id="cb24-307"><a href="#cb24-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-310"><a href="#cb24-310" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-311"><a href="#cb24-311" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-312"><a href="#cb24-312" aria-hidden="true" tabindex="-1"></a>eel_final_spec <span class="ot">&lt;-</span> parsnip<span class="sc">::</span><span class="fu">boost_tree</span>(<span class="at">mode =</span> <span class="st">"classification"</span>,</span>
+<span id="cb24-313"><a href="#cb24-313" aria-hidden="true" tabindex="-1"></a>                                <span class="at">engine =</span> <span class="st">"xgboost"</span>,</span>
+<span id="cb24-314"><a href="#cb24-314" aria-hidden="true" tabindex="-1"></a>                                <span class="at">trees =</span> <span class="dv">3000</span>,</span>
+<span id="cb24-315"><a href="#cb24-315" aria-hidden="true" tabindex="-1"></a>                                <span class="at">learn_rate =</span> eel_best_learn<span class="sc">$</span>learn_rate,</span>
+<span id="cb24-316"><a href="#cb24-316" aria-hidden="true" tabindex="-1"></a>                                <span class="at">min_n =</span> eel_best_trees<span class="sc">$</span>min_n,</span>
+<span id="cb24-317"><a href="#cb24-317" aria-hidden="true" tabindex="-1"></a>                                <span class="at">tree_depth =</span> eel_best_trees<span class="sc">$</span>tree_depth,</span>
+<span id="cb24-318"><a href="#cb24-318" aria-hidden="true" tabindex="-1"></a>                                <span class="at">mtry =</span> eel_best_stoch<span class="sc">$</span>mtry,                   </span>
+<span id="cb24-319"><a href="#cb24-319" aria-hidden="true" tabindex="-1"></a>                                <span class="at">loss_reduction =</span> eel_best_trees<span class="sc">$</span>loss_reduction,</span>
+<span id="cb24-320"><a href="#cb24-320" aria-hidden="true" tabindex="-1"></a>                                <span class="at">stop_iter =</span> eel_best_stoch<span class="sc">$</span>stop_iter,</span>
+<span id="cb24-321"><a href="#cb24-321" aria-hidden="true" tabindex="-1"></a>                                <span class="at">sample_size =</span> eel_best_stoch<span class="sc">$</span>sample_size</span>
+<span id="cb24-322"><a href="#cb24-322" aria-hidden="true" tabindex="-1"></a>                                )</span>
+<span id="cb24-323"><a href="#cb24-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-324"><a href="#cb24-324" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up workflow</span></span>
+<span id="cb24-325"><a href="#cb24-325" aria-hidden="true" tabindex="-1"></a>wf_eel_final <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb24-326"><a href="#cb24-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(eel_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-327"><a href="#cb24-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(eel_final_spec)</span>
+<span id="cb24-328"><a href="#cb24-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-329"><a href="#cb24-329" aria-hidden="true" tabindex="-1"></a>final_simple_fit <span class="ot">&lt;-</span> wf_eel_final <span class="sc">%&gt;%</span> <span class="co"># fit to just training data (need for later)</span></span>
+<span id="cb24-330"><a href="#cb24-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> eel_train)</span>
+<span id="cb24-331"><a href="#cb24-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-332"><a href="#cb24-332" aria-hidden="true" tabindex="-1"></a>final_eel_fit <span class="ot">&lt;-</span> <span class="fu">last_fit</span>(eel_final_spec, Angaus<span class="sc">~</span>., split) <span class="co"># does training fit then final prediction as well</span></span>
+<span id="cb24-333"><a href="#cb24-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-334"><a href="#cb24-334" aria-hidden="true" tabindex="-1"></a><span class="co"># Show predictions</span></span>
+<span id="cb24-335"><a href="#cb24-335" aria-hidden="true" tabindex="-1"></a>final_pred_tab <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(final_eel_fit<span class="sc">$</span>.predictions)</span>
+<span id="cb24-336"><a href="#cb24-336" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(<span class="fu">head</span>(final_pred_tab),</span>
+<span id="cb24-337"><a href="#cb24-337" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Table 5"</span>,</span>
+<span id="cb24-338"><a href="#cb24-338" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb24-339"><a href="#cb24-339" aria-hidden="true" tabindex="-1"></a>  <span class="at">footnote =</span> <span class="st">"Predictions of Angaus presence on test data."</span>,</span>
+<span id="cb24-340"><a href="#cb24-340" aria-hidden="true" tabindex="-1"></a>  <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-341"><a href="#cb24-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-342"><a href="#cb24-342" aria-hidden="true" tabindex="-1"></a>final_met_tab <span class="ot">&lt;-</span> final_eel_fit<span class="sc">$</span>.metrics <span class="co"># Store metrics</span></span>
+<span id="cb24-343"><a href="#cb24-343" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_df</span>(final_met_tab,</span>
+<span id="cb24-344"><a href="#cb24-344" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Table 6"</span>,</span>
+<span id="cb24-345"><a href="#cb24-345" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb24-346"><a href="#cb24-346" aria-hidden="true" tabindex="-1"></a>  <span class="at">footnote =</span> <span class="st">"Accuracy and area under ther receiver operator curve of the final fit."</span>,</span>
+<span id="cb24-347"><a href="#cb24-347" aria-hidden="true" tabindex="-1"></a>  <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-348"><a href="#cb24-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-349"><a href="#cb24-349" aria-hidden="true" tabindex="-1"></a><span class="co"># Bind predictions and original data</span></span>
+<span id="cb24-350"><a href="#cb24-350" aria-hidden="true" tabindex="-1"></a>eel_test_rs <span class="ot">&lt;-</span> <span class="fu">cbind</span>(eel_test, final_eel_fit<span class="sc">$</span>.predictions)</span>
+<span id="cb24-351"><a href="#cb24-351" aria-hidden="true" tabindex="-1"></a>eel_test_rs <span class="ot">&lt;-</span> eel_test_rs[,<span class="sc">-</span><span class="dv">1</span>] <span class="co"># Remove duplicate column</span></span>
+<span id="cb24-352"><a href="#cb24-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-353"><a href="#cb24-353" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute a confusion matrix</span></span>
+<span id="cb24-354"><a href="#cb24-354" aria-hidden="true" tabindex="-1"></a>cm<span class="ot">&lt;-</span> eel_test_rs <span class="sc">%&gt;%</span> yardstick<span class="sc">::</span><span class="fu">conf_mat</span>(<span class="at">truth =</span> Angaus, <span class="at">estimate =</span> .pred_class) </span>
+<span id="cb24-355"><a href="#cb24-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-356"><a href="#cb24-356" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(cm, <span class="at">type =</span> <span class="st">"heatmap"</span>) <span class="sc">+</span></span>
+<span id="cb24-357"><a href="#cb24-357" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb24-358"><a href="#cb24-358" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb24-359"><a href="#cb24-359" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb24-360"><a href="#cb24-360" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#F8F8F8"</span>),</span>
+<span id="cb24-361"><a href="#cb24-361" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#F8F8F8"</span>)) <span class="sc">+</span></span>
+<span id="cb24-362"><a href="#cb24-362" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 2: Confusion matrix of predictions on test data."</span>)</span>
+<span id="cb24-363"><a href="#cb24-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-364"><a href="#cb24-364" aria-hidden="true" tabindex="-1"></a>tibble <span class="ot">&lt;-</span> final_eel_fit <span class="sc">%&gt;%</span> <span class="fu">collect_metrics</span>()</span>
+<span id="cb24-365"><a href="#cb24-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-366"><a href="#cb24-366" aria-hidden="true" tabindex="-1"></a>final_eel_accuracy <span class="ot">&lt;-</span> tibble <span class="sc">%&gt;%</span></span>
+<span id="cb24-367"><a href="#cb24-367" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-368"><a href="#cb24-368" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(.estimate)</span>
+<span id="cb24-369"><a href="#cb24-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-370"><a href="#cb24-370" aria-hidden="true" tabindex="-1"></a>final_eel_auc <span class="ot">&lt;-</span> tibble <span class="sc">%&gt;%</span></span>
+<span id="cb24-371"><a href="#cb24-371" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"roc_auc"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-372"><a href="#cb24-372" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(.estimate)</span>
+<span id="cb24-373"><a href="#cb24-373" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-374"><a href="#cb24-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-377"><a href="#cb24-377" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-378"><a href="#cb24-378" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb24-379"><a href="#cb24-379" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-overflow: wrap</span></span>
+<span id="cb24-380"><a href="#cb24-380" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"The model had an accuracy of "</span>, <span class="fu">round</span>(final_eel_accuracy,<span class="dv">2</span>), <span class="st">". The ROC area under the curve was "</span>, <span class="fu">round</span>(final_eel_auc, <span class="dv">2</span>), <span class="st">". The rate of false negatives was "</span>, <span class="fu">round</span>(cm<span class="sc">$</span>table[<span class="dv">3</span>]<span class="sc">/</span><span class="fu">nrow</span>(eel_test), <span class="dv">2</span>), <span class="st">", and the rate of false positives was "</span>, <span class="fu">round</span>(cm<span class="sc">$</span>table[<span class="dv">2</span>]<span class="sc">/</span><span class="fu">nrow</span>(eel_test),<span class="dv">2</span>), <span class="st">"."</span>))</span>
+<span id="cb24-381"><a href="#cb24-381" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-382"><a href="#cb24-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-383"><a href="#cb24-383" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit your model the evaluation data and compare performance</span></span>
+<span id="cb24-384"><a href="#cb24-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-385"><a href="#cb24-385" aria-hidden="true" tabindex="-1"></a>I then fit my final model to the evaluation data set labeled "eel.eval.data.csv."</span>
+<span id="cb24-386"><a href="#cb24-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-389"><a href="#cb24-389" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-390"><a href="#cb24-390" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb24-391"><a href="#cb24-391" aria-hidden="true" tabindex="-1"></a>eval_dat_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"/Users/elkewindschitl/Documents/MEDS/eds-232/labs/eds-232-labs/eel.eval.data.csv"</span>)</span>
+<span id="cb24-392"><a href="#cb24-392" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-393"><a href="#cb24-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-396"><a href="#cb24-396" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-397"><a href="#cb24-397" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-398"><a href="#cb24-398" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in eval data</span></span>
+<span id="cb24-399"><a href="#cb24-399" aria-hidden="true" tabindex="-1"></a>eval_dat <span class="ot">&lt;-</span> eval_dat_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb24-400"><a href="#cb24-400" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Angaus =</span> Angaus_obs) <span class="sc">%&gt;%</span> <span class="co"># rename to match previous data</span></span>
+<span id="cb24-401"><a href="#cb24-401" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Angaus =</span> <span class="fu">as_factor</span>(Angaus)) <span class="co"># make outcome a factor</span></span>
+<span id="cb24-402"><a href="#cb24-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-403"><a href="#cb24-403" aria-hidden="true" tabindex="-1"></a>prediction <span class="ot">&lt;-</span> final_simple_fit <span class="sc">%&gt;%</span> <span class="fu">predict</span>(<span class="at">new_data =</span> eval_dat) <span class="co"># generate predictions</span></span>
+<span id="cb24-404"><a href="#cb24-404" aria-hidden="true" tabindex="-1"></a>eval_dat_pred <span class="ot">&lt;-</span> <span class="fu">cbind</span>(eval_dat, prediction)</span>
+<span id="cb24-405"><a href="#cb24-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-406"><a href="#cb24-406" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare predicted classes to actual classes</span></span>
+<span id="cb24-407"><a href="#cb24-407" aria-hidden="true" tabindex="-1"></a>correct_predictions <span class="ot">&lt;-</span> <span class="fu">sum</span>(eval_dat_pred<span class="sc">$</span>.pred_class <span class="sc">==</span> eval_dat_pred<span class="sc">$</span>Angaus)</span>
+<span id="cb24-408"><a href="#cb24-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-409"><a href="#cb24-409" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate accuracy</span></span>
+<span id="cb24-410"><a href="#cb24-410" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">&lt;-</span> correct_predictions <span class="sc">/</span> <span class="fu">nrow</span>(eval_dat_pred)</span>
+<span id="cb24-411"><a href="#cb24-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-412"><a href="#cb24-412" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate auc</span></span>
+<span id="cb24-413"><a href="#cb24-413" aria-hidden="true" tabindex="-1"></a>eval_dat_pred<span class="sc">$</span>pred_num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(eval_dat_pred<span class="sc">$</span>.pred_class)</span>
+<span id="cb24-414"><a href="#cb24-414" aria-hidden="true" tabindex="-1"></a>auc <span class="ot">&lt;-</span> <span class="fu">auc</span>(eval_dat_pred<span class="sc">$</span>Angaus, eval_dat_pred<span class="sc">$</span>pred_num)</span>
+<span id="cb24-415"><a href="#cb24-415" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-416"><a href="#cb24-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-417"><a href="#cb24-417" aria-hidden="true" tabindex="-1"></a>How did my model perform on this data?</span>
+<span id="cb24-418"><a href="#cb24-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-421"><a href="#cb24-421" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-422"><a href="#cb24-422" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb24-423"><a href="#cb24-423" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-overflow: wrap</span></span>
+<span id="cb24-424"><a href="#cb24-424" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"The model had an accuracy of "</span>, accuracy ,<span class="st">" on these data, which isn't quite as good as the accuracy when applying the model to the testing data. However the difference is not too extreme and seems pretty good given that the dummy classifier would be 0.744. The model had an AUC of "</span>, <span class="fu">round</span>(auc[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">" which does not seem great."</span>))</span>
+<span id="cb24-425"><a href="#cb24-425" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-426"><a href="#cb24-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-427"><a href="#cb24-427" aria-hidden="true" tabindex="-1"></a>How did my results compare to those of Elith et al.?</span>
+<span id="cb24-428"><a href="#cb24-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-431"><a href="#cb24-431" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-432"><a href="#cb24-432" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb24-433"><a href="#cb24-433" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-overflow: wrap</span></span>
+<span id="cb24-434"><a href="#cb24-434" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"The model here does not do as well as the model in Elith et al. which found a model AUC of 0.858. My AUC of "</span>, <span class="fu">round</span>(auc[<span class="dv">1</span>], <span class="dv">2</span>) , <span class="st">"is fairly far off. I would guess that Elith et al. did more tuning to find the optimal values, where as I was more limited by computing power."</span>))</span>
+<span id="cb24-435"><a href="#cb24-435" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-436"><a href="#cb24-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-437"><a href="#cb24-437" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb24-438"><a href="#cb24-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-439"><a href="#cb24-439" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span>1<span class="sc">\]</span> Elith, J., Leathwick, J.R. and Hastie, T. (2008), A working guide to boosted regression trees. Journal of Animal Ecology, 77: 802-813. https://doi.org/10.1111/j.1365-2656.2008.01390.x</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
