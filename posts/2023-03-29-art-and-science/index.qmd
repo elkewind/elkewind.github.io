@@ -1,0 +1,78 @@
+---
+title: "Integrating Art into Science and Conservation"
+author:
+  - name: Elke Windschitl
+    url: https://elkewind.github.io
+description: "How I use creative skills in parallel with quantitative tasks"
+date: 2023-03-29
+categories: [Art]
+citation: 
+  url: https://elkewind.github.io/posts/2023-03-29-art-and-science
+image: whale_skeleton.jpg
+toc: true
+draft: false
+---
+
+### Description:
+
+Here I discuss how I integrate art into environmental science and conservation. I like to use creative and quantitative talents in parallel, and the balance between the two has ebbed and flowed over time.
+
+## Art and Science
+
+At the time of writing this, I am a master's student studying environmental data science at UC Santa Barbara (read my full bio [here](https://elkewind.github.io/about.html)), but I am also a self-taught digital artist. Science and art have both played integral roles in my life over the past 6 years, and recently I have been exploring ways to integrate the two. In the past, these two realms of interest have been separate, but I have found that my art can supplement environmental science or vice versa to elevate communication and engagement.
+
+I began experimenting in digital illustration and design in 2017, and learned how to use Adobe Photoshop and Inkscape. Over time, I have progressed to primarily use Procreate and Canva. Additionally, I am an amateur photographer and love to photograph the natural world using a Canon t6i and Adobe Lightroom software.
+
+Inspired by other data science/environmental science artists (such as Allison Horst -- [check her out!](https://allisonhorst.com/)), I have worked to continue creating art alongside developing my quantitative skills. My favorite way to wrap artwork into science is by creating relevant ecological illustrations and adding them into presentations or other resources. Below are some examples of my artwork in relation to environmental science.
+
+### Hex Stickers:
+
+I am currently working on a collaborative capstone project modeling habitat suitability for kelp cultivation in the Santa Barbara Channel. I designed a hex sticker for our capstone group. (Unfamiliar with hex stickers? Check out [these data science hex stickers](https://github.com/rstudio/hex-stickers) created by others.)
+
+![](hex_sticker.png)
+
+```{=html}
+<iframe width="780" height="500" src="fish_vid.mp4" title="Fish Video"></iframe>
+```
+### Environmental Non-Profit Social Media Campaign:
+
+In 2022, I assisted with a social media campaign by [The LENA Project](https://www.thelenaproject.org/) to provide monthly information and suggestions on environmental related topics. Here are two of the designs I created for this campaign.
+
+```{=html}
+<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FTheLenaProject%2Fposts%2Fpfbid02cPBWbratA3Ssbe37Jfad9mJvASYo1XnDi98QTjWBHrb19e1qiiFegaFprjUk1BFMl&show_text=true&width=500" width="780" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+```
+```{=html}
+<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FTheLenaProject%2Fposts%2Fpfbid0Wop52DMUXNijnMn9fNafvvufKycMpGeL2kvkasNhfZz1JTWwkpC87fNFhK3hX43Ll&show_text=true&width=500" width="780" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+```
+### Environmental Non-Profit Creative Project:
+
+In 2021, I participated in (as well as volunteered for) [Prompt for the Planet \*Chapter 2](https://www.promptfortheplanet.com/) -- an initiative to create art and write poetry to raise awareness about our changing planet.
+
+```{=html}
+<iframe width="780" height="500" src="https://promptfortheplanetarchive.omeka.net/items/show/45" title="The Hurricane's Eye on Prompt for the Planet"></iframe>
+```
+### Journalism:
+
+In 2020, my art was sourced by [The Lutrinae](https://thelutrinae.com/2021/02/aquarium-volunteers-await-reopening/) in an article about the Monterey Bay Aquarium reopening after shutting down during the pandemic.
+
+```{=html}
+<iframe width="780" height="500" src="https://thelutrinae.com/2021/02/aquarium-volunteers-await-reopening/" title="The Lutrinae"></iframe>
+```
+### Photography:
+
+I use photography as a way to document traveling and share my love for ecology and the natural world.
+
+![](photos_gif.gif){fig-align="center" width="400"}
+
+### Blogging:
+
+All of my blog posts feature my own illustrations.
+
+```{=html}
+<iframe width="780" height="500" src="https://elkewind.github.io/posts.html" title="My Blog"></iframe>
+```
+### Additional Illustrations:
+
+Smaller illustrations have made their way into presentations, twitter posts, stickers, and more.
+
+![](illustrations.png)
