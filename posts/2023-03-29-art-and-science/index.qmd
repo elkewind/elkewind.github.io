@@ -31,9 +31,6 @@ I am currently working on a collaborative capstone project modeling habitat suit
 
 ![](hex_sticker.png)
 
-```{=html}
-<iframe width="780" height="500" src="fish_vid.mp4" title="Fish Video"></iframe>
-```
 ### Environmental Non-Profit Social Media Campaign:
 
 In 2022, I assisted with a social media campaign by [The LENA Project](https://www.thelenaproject.org/) to provide monthly information and suggestions on environmental related topics. Here are two of the designs I created for this campaign.
