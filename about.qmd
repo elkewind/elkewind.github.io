@@ -11,16 +11,15 @@ title: "About"
 
 <h4>Biography</h4>
 
-I am a master's student studying Environmental Data Science in the Bren School of Environmental Science & Management at the University of California, Santa Barbara. I earned my bachelor's degree in Biology in 2020 from Iowa State University with a curriculum focus on animal ecology. During my undergraduate studies, I sought out opportunities to connect animal ecology with my passion for marine conservation. I took hands-on marine coursework at the University of Hawaii at Hilo, California State University Monterey Bay, and the University of Southern Mississippi's Gulf Coast Research Laboratory.
+I am a recent graduate of the Bren School of Environmental Science & Management at the University of California, Santa Barbara, where I earned a **master's degree in Environmental Data Science (MEDS)**. I also hold a BS in Biology from the College of Agriculture and Life Sciences at Iowa State University.
 
-After graduating, I completed a 400-hour Animal Behavior Fellowship at the Virginia Aquarium & Marine Science Center. During the fellowship, I implemented the use of Zoo Monitor - a behavior tracking tool - to monitor harbor seal and American crow behavior. Additionally, my undergraduate capstone project assessed using new technologies (autonomous recording units and Raven Pro sound analysis software) to replace traditional field techniques when monitoring quail coveys. I became enthusiastic about data science when processing data from Zoo Monitor and Raven Pro. My long-term goal is to use data science to inform effective marine wildlife conservation and fisheries management.
+Passionate about leveraging data science solutions to address environmental challenges, **I am focused on applying my skills in geospatial analysis, environmental modeling, machine learning, and data visualization to the fields of natural resource management and sustainable food production.**
 
-My interests include:
+During my time at the Bren School, I completed a capstone project in collaboration with UCSB researchers and Ocean Rainforest Inc., developing a data pipeline for kelp forest modeling to inform restoration and aquaculture efforts. Prior to that, I gained valuable experience working with the Janke Lab and the Iowa Department of Natural Resources, where I assessed new technologies for monitoring local wildlife.
 
--   Marine & wildlife conservation
--   Remote sensing & geospatial ecology
--   Fisheries sustainability
--   Environmental Justice
+Beyond my core areas of interest, I am an animal ecology nerd with a deep commitment to ocean conservation, climate solutions, and environmental justice. **I am driven to build a career as a data scientist dedicated to finding innovative environmental solutions that contribute to a sustainable future for all.**
+
+With my interdisciplinary background and strong skill set, I am ready to make an impact in the field of environmental data science, bridging the gap between scientific research, technological advancements, and practical conservation strategies.
 
 ![](images/bainbridge.png)
 
