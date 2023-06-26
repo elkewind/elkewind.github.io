@@ -1,0 +1,122 @@
+---
+title: "Learning Flourish to Visualize Ocean Depth Data"
+author:
+  - name: Elke Windschitl
+    url: https://elkewind.github.io
+    affiliation: UCSB Bren School
+    affiliation-url: http://ucsb-meds.github.io
+description: "A brief tutorial on how to use Flourish to visualize depth data"
+date: 2023-06-25
+categories: [Data Visualization]
+citation: 
+  url: https://elkewind.github.io/posts/2023-06-25-flourish-ocean-depth
+image: shark-depth.jpg
+format: 
+  html:
+    code-fold: show
+toc: true
+draft: false
+---
+
+Description:  
+
+In this post, I share how I used Flourish -- a data visualization platform -- to visualize ocean depth data in the Santa Barbara Channel. I used [ocean depth data](https://drive.google.com/drive/u/2/folders/1E8cjPiyKWWBDoiZ-ZVBw4odJk6u3pw-i) from the [kelpGeoMod](https://github.com/kelpGeoMod/kelpGeoMod-capstone-project) project data repository.
+
+### Something New
+
+I recently came upon a [tweet](https://twitter.com/CedScherer/status/1672602748099911681) about Flourish which is an online data visualization and storytelling platform. This was the first I'd heard of the platform, and I wanted to try it out as an alternative for other popular proprietary software such as Tableau. I pulled ocean depth data from my master's capstone project, Developing a Data Pipeline for Kelp Forest Modeling (also known as kelpGeoMod), and started to explore. Here I will share how I created the visualization below.
+
+```{=html}
+<div class="flourish-embed flourish-map" data-src="visualisation/14244747"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+```
+
+### Getting the Data
+
+To get data to visualize, I navigated back to my masters capstone project data repository and downloaded the [ocean depth data](https://drive.google.com/drive/u/2/folders/1E8cjPiyKWWBDoiZ-ZVBw4odJk6u3pw-i) in the Santa Barbara Channel. The original data source was the [ETOPO Global Relief Model 2022](https://www.ncei.noaa.gov/products/etopo-global-relief-model).
+
+![](images/data-repo.png){fig-alt="A Google Drive folder with ocean depth data." fig-align="center"}
+
+### Getting Started in Flourish
+
+I then created a free account with Flourish. With the free version of my account, I have access to a limited set of features, while the full version offers additional functionalities. I then started exploring available features.
+
+![](images/sign-in.png){fig-align="center"}
+
+![](images/start-viz.png){fig-align="center"}
+
+![](images/viz-temps.png){fig-align="center"}
+
+Flourish had numerous templates for visualizing data. I noticed, though, that it is not currently compatability with raster data, so I had to convert my raster data to vector data. This is not ideal, but it was quickly doable with this relatively small raster file.
+
+```{r}
+#| include: false
+dir <- "/Users/elkewindschitl/Downloads/"
+```
+
+```{r}
+#| echo: true
+#| warning: false
+# Load necessary libraries
+
+library(tidyverse)
+library(terra)
+library(sf)
+
+# Set a data directory
+#dir <- "./data/"
+
+# Load depth data
+depth <- rast(file.path(dir, "depth.tif"))
+
+# Vectorize
+depth_vect <- as.polygons(depth[[1]], 
+                          dissolve = FALSE)
+
+# Convert to sf object
+depth_sf <- st_as_sf(depth_vect) %>% 
+  rename("depth" = "exportImage") %>% # rename column name
+  filter(depth <= 0) %>% # filter for depths less than zero
+  mutate(depth = round(depth, 3)) # round depth values
+
+# Write to GeoJSON file
+# st_write(obj = depth_sf, 
+#          file.path(dir, "depth.geojson", 
+#          driver = "GeoJSON"))
+```
+
+I decided to choose the UK hex map template because I wanted to use try out the three-dimensional extrusion feature.
+
+![](images/picking-temp.png){fig-align="center"}
+
+### Making the Map
+
+Once you get started, to make the map you'll have to replace the template data with your own. Name your project, navigate to the data tab, then upload your own GeoJSON data.
+
+![](images/upload-data.png){fig-align="center"}
+
+Be sure to select which columns go with which type of data. Flourish has helpful documentation hints denoted with question mark circles.
+
+![](images/data-selection.png){fig-align="center"}
+
+When you're ready, swap back to the preview mode and start messing with your map's aesthetics.
+
+![](images/map-aesthetics.png){fig-align="center"}
+
+I chose to edit aesthetics such as the projection, background color, padding, palette, legend, the popup shape, title, and footer. I also added a screenreader description. You can adjust these settings however you would like.
+
+![](images/basemap.png){fig-align="center"}
+
+![](images/regions.png){fig-align="center"}
+
+![](images/popup.png){fig-align="center"}
+
+![](images/footer.png){fig-align="center"}
+
+Now you should have an export-ready three-dimensional image of ocean depth in the Santa Barbara Channel! Export and enjoy Flourishing!
+
+![](images/export-ready.png){fig-align="center"}
+
+```{=html}
+<div class="flourish-embed flourish-map" data-src="visualisation/14244747"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+```
+
