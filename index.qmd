@@ -20,7 +20,7 @@ about:
 
 A little bit about me:
 
-I am a master's student studying Environmental Data Science in the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about **marine and wildlife conservation**, and I hope to build a career using data science tools to solve environmental problems.
+I recently earned a Master of Environmental Data Science degree from the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about sustainability and conservation, and I hope to build a career using data science tools to solve environmental problems.
 
 </p>
 
@@ -30,8 +30,8 @@ I am a master's student studying Environmental Data Science in the [Bren School 
 
 <h4>Master's of Environmental Data Science Student</h4>
 
-<p>University of California Santa Barbara \| Expected graduation: June 2023</p>
+<p>University of California Santa Barbara \| June 2023</p>
 
 <h4>Bachelor's of Science in Biology with Honors</h4>
 
-<p>Iowa State University \| 2020</p>
+<p>Iowa State University \| May 2020</p>
