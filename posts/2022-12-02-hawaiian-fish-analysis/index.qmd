@@ -15,7 +15,7 @@ format:
   html:
     code-fold: true
 toc: true
-draft: false
+draft: true
 ---
 
 ```{r}

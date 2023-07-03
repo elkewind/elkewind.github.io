@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Erika Egg, Jessica French, Javier Patrón, Elke Windschitl">
+<meta name="dcterms.date" content="2023-07-02">
+<meta name="description" content="A Bren capstone project">
+
+<title>Elke Windschitl - Developing a Data Pipeline for Kelp Forest Modeling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="Elke Windschitl - Developing a Data Pipeline for Kelp Forest Modeling">
+<meta name="twitter:description" content="A Bren capstone project">
+<meta name="twitter:image" content="images/kelp-illustration.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Elke Windschitl</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.pdf">
+ <span class="menu-text">Resume</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description:</a></li>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link" data-scroll-target="#abstract"><strong>Abstract</strong></a></li>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link" data-scroll-target="#executive-summary">Executive Summary</a></li>
+  <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link" data-scroll-target="#problem-statement">Problem Statement</a></li>
+  <li><a href="#specific-objectives" id="toc-specific-objectives" class="nav-link" data-scroll-target="#specific-objectives">Specific Objectives</a></li>
+  <li><a href="#summary-of-solution-design" id="toc-summary-of-solution-design" class="nav-link" data-scroll-target="#summary-of-solution-design">Summary of Solution Design</a>
+  <ul class="collapse">
+  <li><a href="#objective-1-synthesized-data-set" id="toc-objective-1-synthesized-data-set" class="nav-link" data-scroll-target="#objective-1-synthesized-data-set">Objective 1: Synthesized Data Set</a></li>
+  <li><a href="#objective-2-habitat-suitability-model" id="toc-objective-2-habitat-suitability-model" class="nav-link" data-scroll-target="#objective-2-habitat-suitability-model">Objective 2: Habitat Suitability Model&nbsp;</a></li>
+  </ul></li>
+  <li><a href="#products-and-deliverables" id="toc-products-and-deliverables" class="nav-link" data-scroll-target="#products-and-deliverables">Products and Deliverables</a>
+  <ul class="collapse">
+  <li><a href="#synthesized-data-set" id="toc-synthesized-data-set" class="nav-link" data-scroll-target="#synthesized-data-set">Synthesized Data Set</a></li>
+  <li><a href="#model-outputs" id="toc-model-outputs" class="nav-link" data-scroll-target="#model-outputs">Model Outputs</a></li>
+  <li><a href="#data-pipeline" id="toc-data-pipeline" class="nav-link" data-scroll-target="#data-pipeline">Data pipeline</a></li>
+  </ul></li>
+  <li><a href="#summary-of-testing" id="toc-summary-of-testing" class="nav-link" data-scroll-target="#summary-of-testing">Summary of Testing</a>
+  <ul class="collapse">
+  <li><a href="#data-testing" id="toc-data-testing" class="nav-link" data-scroll-target="#data-testing">Data Testing</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model&nbsp;</a></li>
+  </ul></li>
+  <li><a href="#user-documentaion" id="toc-user-documentaion" class="nav-link" data-scroll-target="#user-documentaion">User Documentaion</a></li>
+  <li><a href="#archive-access" id="toc-archive-access" class="nav-link" data-scroll-target="#archive-access">Archive Access</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><strong>References</strong></a></li>
+  <li><a href="#appendix-i-supplemental-figures-and-tables" id="toc-appendix-i-supplemental-figures-and-tables" class="nav-link" data-scroll-target="#appendix-i-supplemental-figures-and-tables"><strong>Appendix I: Supplemental Figures and Tables</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Developing a Data Pipeline for Kelp Forest Modeling</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">MEDS</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A Bren capstone project
+  </div>
+</div>
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <a href="https://elkewind.github.io">Erika Egg, Jessica French, Javier Patrón, Elke Windschitl</a> 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="http://ucsb-meds.github.io">
+            UCSB Bren School
+            </a>
+          </p>
+      </div>
+    </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 2, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="description" class="level3">
+<h3 class="anchored" data-anchor-id="description">Description:</h3>
+<p>Below is the technical documentation for the Bren Master of Environmental Data Science capstone project Developing a Data Pipeline for Kelp Forest Modeling completed in 2023 by myself, Jessica French, Erika Egg, and Javier Patrón.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/kelp-image-underwater.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract"><strong>Abstract</strong></h2>
+<p>Giant kelp (Macrocystis pyrifera) is an ecosystem engineer that creates complex vertical habitat by growing to approximately 50 m in dense forests. Healthy kelp forests are some of the most diverse ecosystems in the world that also protect coastlines from storms, provide nutrients to beaches, and giant kelp is a promising biofuel precursor that does not take up arable land or use freshwater to grow. Researchers are working to better understand nutrient utilization and cycling in this critical ecosystem and need comprehensive data on nutrient concentrations to further their research. Additionally, kelp aquaculture companies are working to show that giant kelp can be grown as a profitable biofuel precursor in the Santa Barbara Channel. In order to do this they need to grow kelp efficiently in areas that have suitable habitat. This project creates a synthesized data set that can be used and expanded on by researchers to make their data acquisition process more efficient. It also produces estimates of habitat suitability for giant kelp in the Santa Barbara Channel that kelp aquaculture organizations can use to supplement prior analyses and guide where to place future farms.&nbsp;</p>
+</section>
+<section id="executive-summary" class="level2">
+<h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
+<p>Giant kelp (Macrocystis pyrifera) is a foundational species of canopy-forming kelp in the Santa Barbara Channel that provides the structure for some of the most diverse ecosystems in the world (Buschmann et al., 2007). Its tall stipes provide habitat for many species and protect coastlines from storms (Buschmann et al., 2007; Esgro &amp; Ray, 2021). Declines in giant kelp abundance over the past decade have put these ecosystem services at risk and increased the urgency for research (Rogers-Bennett &amp; Catton, 2019; Wernberg et al., 2013). It is also an attractive option for biofuel production because it can grow up to one meter per day and requires no fresh water or arable land (Cuba et al., 2022; Kerrison et al., 2015).&nbsp;</p>
+<p>This project addressed the needs of two clients. The first was Ph.D student Natalie Dornan, who is researching nutrient utilization and cycling in giant kelp forests in the Santa Barbara Channel. Her goal is to create a nitrogen budget for the area to better understand the sources and sinks for nitrogen in the Santa Barbara Channel. To further her research she needs comprehensive data on nutrient concentrations in the Santa Barbara Channel. The second client was Ocean Rainforest, who is cultivating giant kelp in the Santa Barbara Channel to be used in biofuel production. They are working to prove that giant kelp can be a profitable biofuel precursor which means they need to be able to grow kelp efficiently. To do this they need to know where habitat is suitable for kelp.&nbsp;</p>
+<p>There have been several long term monitoring efforts in the Santa Barbara Channel that have generated a lot of data on nutrient concentrations. This data is spread over many agency, organization, and research project websites, APIs, and data portals with each storing data in different file formats and providing access to the data in a slightly different way. In addition to access and file formats being inconsistent, observations are often at different spatial and temporal resolutions and in different data structures. For example one organization may provide point data collected quarterly in a text file while another provides raster images collected daily in a netCDF file. Putting this data into a common format so that all of the observations can be used together is tedious and time consuming.&nbsp;</p>
+<p>This project addressed this problem by creating a synthesized data set of oceanographic factors that impact giant kelp growth designed to streamline research. Publicly available data on nutrient concentrations, sea surface temperature (SST), depth, seafloor habitat, and kelp coverage were obtained from the Santa Barbara Coastal Long Term Ecological Research (SBC LTER), National Oceanic and Atmospheric Administration (NOAA), United States Geological Survey (USGS), California Cooperative Oceanic Fisheries Investigations (CalCOFI), the California State Mapping Project, Earth Research Institute (ERI), National Aeronautics and Space Administration (NASA), and The Group for High Resolution Sea Surface Temperature (GHRSST) and compiled into one data set (Bell, Cavanaugh, Reuman, et al., 2021; Bell, Cavanaugh, &amp; Siegel, 2023; CalCOFI Bottle Database, n.d.; Nearshore Benthic Habitat GIS for the Channel Islands Volume II - Mapped Areas, n.d.; Seafloor Mapping Lab at CSUMB: Data Library Southern California Data (Part II), n.d.; ERI, n.d.; Golden, 2013; JPL MUR MEaSUREs Project, 2015; NOAA National Centers for Environmental Information, 2022; Prouty &amp; Baker, 2020a, 2020b; Washburn et al., 2022). All original data sets were vetted to ensure they had sufficient metadata, spatial coverage, and temporal coverage before being included in the project. Data sets were standardized with respect to resolution (spatial and temporal), units, extent, and coordinate reference system.&nbsp;</p>
+<p>The standardized nutrient data, kelp area, kelp biomass (kelp biomass is derived from kelp area and does not represent separate observations), sea surface temperature, and depth were shared in both tabular (CSV) and image (raster) format. The first CSV contained the mean observed nutrient values and sea surface temperature values for each year and quarter with estimates of kelp area, kelp biomass, and depth added on. The raster format contained year and quarter mean raster bricks for each variable except depth and substrate which were considered constant. These raster bricks were used to create another CSV file that provided the same information in a more accessible format. By standardizing and combining the data it could be used together to address the need of Ocean Rainforest to know where habitat is most suitable for giant kelp in the Santa Barbara Channel.&nbsp;</p>
+<p>Ocean Rainforest completed a habitat suitability analysis in 2018 for offshore locations (further than 3 nm from shore). As they move forward with placing additional kelp aquaculture farms in the Santa Barbara Channel they need an assessment of nearshore habitat suitability for giant kelp. To address this need, this project will produce updated estimates of habitat suitability for giant kelp with data from 2014 to 2022 and covering areas within 5 km of the Santa Barbara Coastline.&nbsp;</p>
+<p>To model habitat suitability observations of phosphate and combined nitrate and nitrite for each year and quarter were interpolated using inverse distance weighting to generate a quarterly mean across all years for each nutrient. These estimates and depth were used to estimate habitat suitability for giant kelp in the Santa Barbara Channel using a maximum entropy species distribution modeling approach.&nbsp;</p>
+<p>This resulted in quarterly estimates of habitat suitability for giant kelp on a scale of 0 to 1 that were filtered to locations that met the substrate needs of Ocean Rainforest. Additionally, the relative contribution of each variable to the estimates of habitat suitability (variable importance) was generated to guide future iterations of the model.&nbsp;</p>
+<p>The synthesized data set created through this project will streamline research on nutrient cycling and utilization in kelp forests in the Santa Barbara Channel by making the data collected through various long term monitoring efforts available in one place. The model outputs will provide an updated estimate of habitat suitability for kelp in an area not covered by previous models. The variable importance will allow industry professionals and researchers to see what is most impacting giant kelp growth in the Santa Barbara Channel and help guide future research. This project was packaged into a well documented github repository with an accompanied google drive data hub to create a seamless pipeline for researchers and industry professionals to use in the future.&nbsp;</p>
+</section>
+<section id="problem-statement" class="level2">
+<h2 class="anchored" data-anchor-id="problem-statement">Problem Statement</h2>
+<p>Giant kelp (Macrocystis pyrifera) forests provide a wealth of ecosystem services such as protecting coastlines from storms, bringing nutrients to beaches, and creating habitat that increases biodiversity in the nearshore environment (Buschmann et al., 2007; Cuba et al., 2022; Esgro &amp; Ray, 2021). Giant kelp has evolved to thrive in highly variable environments; it can withstand 15° C changes in sea surface temperatures, periods of limited nutrient availability, and even withstand&nbsp; severe storms adapting and recovering quickly (Cavanaugh et al., 2019). However, increasing frequency and severity of marine heat waves, El Niño events, and other environmental disturbances are pushing kelp to the limits of what it can withstand (Esgro &amp; Ray, 2021; Rogers-Bennett &amp; Catton, 2019; Wernberg et al., 2013). This became evident when a record breaking marine heat wave between 2014 and 2016 added to a severe El Niño, combined with a plague of sea star wasting disease that allowed kelp’s main predators, sea urchins, to flourish (Cavanaugh et al., 2019; Rogers-Bennett &amp; Catton, 2019). This resulted in the decimation of kelp forests along the California coast with areas losing up to 90% of their kelp canopy (Cavanaugh et al., 2019).&nbsp;</p>
+<p>This has motivated researchers and the kelp aquaculture industry to gain a better understanding of kelp ecology in a changing climate and to identify locations that could support kelp restoration projects or kelp farms. The clients for this project are seeking to do just that. Ph.D student Natalie Dornan is studying nutrient cycling and utilization in kelp forests with the goal of developing a spatiotemporal model of nitrogen in the Santa Barbara Channel. Additionally, the pioneering blue growth company Ocean Rainforest is working to make giant kelp a profitable biofuel precursor that can be grown in the Santa Barbara Channel. In order to accomplish their goals, they need data on oceanographic factors that impact kelp growth in the Santa Barbara Channel and estimates of locations that have suitable habitat for giant kelp.&nbsp;</p>
+<p>There are many factors that impact habitat suitability for giant kelp. Among these are nutrient concentrations for nitrate, nitrite, ammonium, and phosphorus, sea surface temperature, and substrate type (Brzezinksi et al., 2013; Buschmann et al., 2007; Cavanaugh et al., 2019; Peters et al., 2019). While the nutrient and temperature requirements of naturally occurring kelp and cultivated kelp are the same, the substrate needs are not. Kelp farms, such as those operated by Ocean Rainforest, need soft substrate to place their infrastructure on so that it does not disturb natural kelp habitat or protected rocky reef habitat.&nbsp; Natural kelp typically attaches to and grows from rocky substrate. This creates a challenge in assessing where giant kelp habitat is suitable based solely on where it naturally occurs.&nbsp;</p>
+<p>Data on oceanographic factors such as nitrogen and phosphorus concentrations, sea surface temperature, seafloor substrate, and ocean depth are available through several long term monitoring efforts in the Santa Barbara Channel. The challenge is that different data sources provide data in different formats, at different spatial and temporal resolutions, and stored and accessed in slightly different ways. Synthesizing the available data so that all of the observations can be used simultaneously will create the most complete picture possible of conditions in the Santa Barbara Channel and identify data gaps that can be addressed by future research.&nbsp;</p>
+<p>The synthesized data set of oceanographic factors will then be used to meet the second challenge of identifying suitable habitat for giant kelp. Current models of habitat suitability that Ocean Rainforest uses were completed in 2018 and did not cover the nearshore environment. The model created through this project will provide predictions with data collected through 2022 and estimates of kelp habitat suitability within 5 km of shore. This updated model, when combined with maps of seafloor substrate, will provide needed information to the kelp aquaculture industry and researchers when exploring where to locate future projects.&nbsp;</p>
+</section>
+<section id="specific-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="specific-objectives">Specific Objectives</h2>
+<ol type="1">
+<li><p>Synthesize currently available data on kelp forest distribution and oceanographic factors in the Santa Barbara Channel into one standardized data set that can be easily used, reused, and updated by researchers and kelp farm industry professionals. After downloading the data set researchers can easily incorporate additional variables and more current data to meet their research needs.&nbsp;</p></li>
+<li><p>Create a model of giant kelp habitat suitability in the Santa Barbara Channel that will provide an update to analyses completed in 2018, in an area not covered previously, and will account for the differing substrate needs of naturally occurring and cultivated kelp.&nbsp;</p></li>
+</ol>
+</section>
+<section id="summary-of-solution-design" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-solution-design">Summary of Solution Design</h2>
+<section id="objective-1-synthesized-data-set" class="level3">
+<h3 class="anchored" data-anchor-id="objective-1-synthesized-data-set">Objective 1: Synthesized Data Set</h3>
+<p>Data on kelp area, kelp biomass (derived from kelp area), depth, sea surface temperature (hereafter referred to as SST), nutrient concentrations, substrate, and regulatory boundaries were downloaded from open source data repositories and research projects. A summary of the source, original format, and final format is provided in Table S1.&nbsp;</p>
+<p>Data that were collected over multiple years were filtered to observations over the 2014-2022 period. This time period was chosen because of the sharp declines in kelp coverage between 2014 and 2016 as well as 2022 being the most recent full year of data. All data were filtered spatially to observations made within the Santa Barbara Channel (Coordinates used to delimit the Santa Barbara Channel 33.85°- 34.59°N, 118.80°- 120.65°W) (Fig. 1). Only nutrient observations made in the top 10 m of water were included. Where multiple observations were made at different depths in the same location the mean of all points in the top 10 m of water were included. All data that did not have WGS 84 as the coordinate reference system were reprojected to WGS 84. Observations for variables that were spread across multiple data sets and/or multiple files were combined into one file. Multiple files from the same data set were combined into one file. This resulted in one file per data set for all variables that would be used in creating the synthesized data set in subsequent steps.&nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 1: Map of the Santa Barbara Channel. The blue box outlines the following coordinates 33.85°- 34.59°N, 118.80°- 120.65°W</figcaption><p></p>
+</figure>
+</div>
+<p>Nutrient observations taken on different temporal scales were aggregated to year and quarter (Quarter 1 = Jan - Mar, Quarter 2 = Apr - Jun, Quarter 3 = Jul - Sep, Quarter 4 = Oct - Dec). Where the same point was sampled more than once in one quarter the mean of the values was reported for that point in that year and quarter. All nutrient data set files were then combined by stacking the rows of each data set together for CSV export. Additionally nutrient observations were converted from point format to raster format at a resolution of 0.008° by assigning the value at that point to the grid cell it intersects for continuity with other data sets.&nbsp;</p>
+<p>Data on kelp area and kelp biomass were extracted from a netCDF file and assembled into a data frame. This data frame was then converted into two rasterStacks. Values within these rasterStacks were aggregated by sum from the original resolution of 30 m to roughly the desired resolution and then resampled to the exact resolution of 0.008° (approximately 1 km). The original temporal resolution was year and quarter and was not changed. Depth estimates as of 2022 were resampled from 15 arcsecond resolution to 0.008°. SST data were aggregated from daily estimates to year and quarter by taking the mean of all daily estimates that were within the quarter for each grid cell and resampled to 0.008° resolution using the nearest neighbor method. The combined nutrient point observations were intersected with the kelp area, kelp biomass, depth, and SST rasters to estimate values for these variables at each point and exported in CSV format.&nbsp;</p>
+<p>Point observations of nutrients were interpolated using inverse distance weighting with an inverse distance power of 1. Measurements of nitrate and nitrite were combined by summing to create total nitrogen measurement. Points were aggregated over all years by quarter to maximize the number of observations available to estimate the nutrient concentration. This assumes that nutrient concentrations in the same location in different years would be roughly the same, and is a notable limitation of this method. For phosphate and nitrogen the maximum distance a cell could be from a data point and still have a value estimated (hereafter referred to as the maximum distance parameter) was set to 0.008° (approx. 10 km) (Brzezinksi et al., 2013; Peters et al., 2019). The maximum distance parameter for ammonium was set to 0.04° because it is more spatially variable than phosphate and nitrogen (Brzezinksi et al., 2013; Peters et al., 2019). Values were estimated for cells within 5 km (Fig. 2) of the Santa Barbara coastline at a resolution of 1 km, however the estimate could be based on point values that were further away, up to the maximum distance parameter set for the nutrient being estimated.&nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 2: Map of Interpolation Area. Interpolation was done within 5 km of the Santa Barbara Coast. The interpolated area is shown in green.</figcaption><p></p>
+</figure>
+</div>
+<p>Year and quarter raster data for nutrients, SST, kelp area, and kelp biomass were converted to tabular format by assigning the value of each grid cell to a latitude and longitude within that grid cell. Estimates of depth as of 2022 were converted to tabular format in the same way and joined to the nutrient, SST, kelp area, and kelp biomass data. This was exported as a single file in CSV format.&nbsp;</p>
+<p>Substrate data stored in a shapefile were reclassified to rock substrate, soft substrate, mixed substrate, and anthropogenic substrate based on the reported induration or description of each polygon. The reclassified data were then converted to raster at a resolution of 0.00003° (approximately 3.3 m). Substrate data stored as Esri layer files were loaded into QGIS and saved as GeoTIFF files. These rasters (riginal resolutions of 2 m, 3 m, or 5 m) were resampled using the nearest neighbor method to 0.00003° resolution. The resulting files were combined and exported in GeoTIFF format.&nbsp;</p>
+<p>The final synthesized data set was provided in CSV and GeoTIFF rasterStack formats. The CSV format contained one file with the observed nutrient concentrations and SST aggregated to year and quarter, with estimates of kelp area, kelp biomass, and depth added for each point as described above. The GeoTIFF format contains a series of raster bricks where each brick contains the measurements for one variable and each layer in a stack represents a year and quarter. The variables contained in the series are kelp area, kelp biomass, nutrients, and SST. This series of raster stacks was combined in CSV format where each row represents the value of a cell at a year and quarter and each column represents a variable. The combined substrate file is provided separately because the observations are categorical with discrete boundaries and could not be resampled to 0.008° resolution and maintain accuracy of all substrate categories (The soft substrate category covers much larger continuous areas compared to hard, mixed, and anthropogenic and was converted to&nbsp; 0.008° resolution for analysis).</p>
+<p>An additional sandy-bottom substrate raster was created at the 0.008° resolution level for later analyses. This was done by first reclassifying to sandy (1) and non-sandy (0) substrates and aggregating to a near 0.008° resolution by mean. The raster was resampled to the mask to get a perfect resolution of 0.008° by the nearest neighbor method. Then the raster was reclassified so cells with values less than 1 due to containing non-sandy cells were assigned 0, and cells with values of 1 remained at 1 – the sandy-bottom substrate.</p>
+</section>
+<section id="objective-2-habitat-suitability-model" class="level3">
+<h3 class="anchored" data-anchor-id="objective-2-habitat-suitability-model">Objective 2: Habitat Suitability Model&nbsp;</h3>
+<p>Once synthesized, this data set was used to model kelp habitat suitability in the Santa Barbara Channel via a maximum entropy species distribution model called Maxent (citation 12) – a pre-developed machine learning algorithm (Kass et al., 2023). This modeling approach was chosen because it allows the user to generate a predicted habitat suitability for a species based on continuous environmental variables, such as the GeoTIFF files created in the synthesized data set (Kass et al., 2023; Melo-Merino et al., 2020; Phillips et al., 2017; Watt, 2018). Although the input kelp area was remotely sensed, it did not fully cover the area of interest, and growing kelp that hadn’t reached the surface would not be detected (Cavanaugh et al., 2021). Therefore, it was assumed that the measurements of kelp area represented definitive presence but not definitive absence, and thus was appropriate for a presence-only model like Maxent (Kass et al., 2023; Watt, 2018).</p>
+<p>Maxent outputs a probability distribution heatmap of predicted habitat suitability for the species of interest (Elith et al., 2011; Kass et al., 2023; Melo-Merino et al., 2020). Habitat suitability for giant kelp was predicted for each quarter independently to account for drastic seasonal changes in ocean nutrient distribution (Brzezinksi et al., 2013; Buschmann et al., 2007; Peters et al., 2019). Predictions were generated for a 1 km resolution grid that extended 5 km from the Santa Barbara coastline.&nbsp;</p>
+<p>To prepare the kelp occurrence data for the model, the kelp area was averaged over the time period of interest (2014-2022) by quarter. Then it was converted from a continuous raster to a data frame where the kelp area of each cell was assigned to a row and a point within the cell was assigned as the latitude and longitude (Watt, 2018). A value greater than zero was treated as an observation of presence. Additionally, the interpolated nitrogen, interpolated phosphate, and depth were combined in folders such that each tif file represented a variable and each folder represented a quarter.&nbsp;</p>
+<p>The interactive web application Wallace was used to perform the initial runs for Maxent modeling and model selection (Kass et al., 2023). The application uses the maxent and ENMeval packages available in R to run different versions of the model and calculate evaluation metrics. Wallace also makes all code used in the modeling process available to download so that the process is fully reproducible. This reproducible code was saved and updated to be contained in the kelpGeoMod pipeline (Kass et al., 2023; Melo-Merino et al., 2020).&nbsp;</p>
+<p>In order to find the model with the best performance, a k = 4 checkerboard spatial partition was used to first train then test the data. Linear, Quadratic, Hinge, and Product feature classes were allowed to be applied to the data and regularization multipliers between 0.5 and 4.5 at a step value of 0.2 were used. Clamping was not employed, so the model was not constrained to environmental values seen in the training data.</p>
+<p>The model with the best predictive performance for all quarters based on minimizing the AIC&nbsp; had a regularization parameter of 0.5 and allowed linear and quadratic feature classes to be applied to the data. The raw output of maxent modeling is a ratio of the probability density of covariates across the landscape of interest with kelp occurrence over the probability density of covariates across the whole landscape of interest (Elith et al., 2011).In this form the Maxent output is challenging to interpret intuitively so a cloglog transformation was applied to the model raw output so that it could be interpreted as predicted habitat suitability where each grid cell had a value between 0 and 1 (Elith et al., 2011; Kass et al., 2023). This type of transformation is recommended for interpretability in the Maxent and Wallace documentation (Kass et al., 2023; Phillips et al., 2017).</p>
+<p>The outputs were exported as GeoTIFF files and used to create heat maps that combine predicted habitat suitability,&nbsp; and substrate type in the Santa Barbara Channel. This will allow Ocean Rainforest and researchers to see areas where in the Santa Barbara Channel habitat is suitable for kelp where it does not occur naturally. Combining this with maps of seafloor substrate will allow Ocean Rainforest to identify potential areas for kelp farm placement that will not disturb existing kelp habitat and have the soft seafloor substrate that is required for farm infrastructure. Similarly it will allow researchers to identify areas of potential rocky reef habitat where kelp restoration projects are most likely to be successful. The maps created were exported as GeoTIFF files.&nbsp;</p>
+<p>Additionally, metrics of feature importance were pulled from the model outputs. This information will be useful to Ocean Rainforest as they consider what variables are most important to have in a given location when siting kelp aquaculture farms.</p>
+</section>
+</section>
+<section id="products-and-deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="products-and-deliverables">Products and Deliverables</h2>
+<section id="synthesized-data-set" class="level3">
+<h3 class="anchored" data-anchor-id="synthesized-data-set">Synthesized Data Set</h3>
+<p>The synthesized data set was provided in two formats to maximize flexibility of use and to align with the various formats of the original data. The first is a CSV file that contains all of the observed nutrient values from the original data sets and observed SST with estimates of&nbsp; kelp area, kelp biomass, and depth from the raster cell that the observation intersects aggregated to year and quarter. This data set brings together observations of nutrient concentrations from CalCOFI, ERI, SBC LTER, and USGS in a single file (Fig. 3) (CalCOFI Bottle Database, n.d.), ERI (ERI, n.d.), SBC LTER (Bell, Cavanaugh, Reuman, et al., 2021; Washburn et al., 2022). Adding estimates of kelp area,&nbsp; kelp biomass, and depth will make it easier to investigate relationships between nutrient concentrations and kelp forest cover. This data set is available for viewing or to download at this <a href="https://drive.google.com/drive/folders/1sJq_9RnsARR9mkmrcrn4O_1630VD-e-t">link</a>.&nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-3.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 3: Location of points in observed nutrient data set. Map depicting the locations that nutrient measurements were taken, points are colored by the organization or research project that collected the data.</figcaption><p></p>
+</figure>
+</div>
+<p>The second format of the synthesized data set was a series of GeoTIFF raster stacks at 0.008° resolution. The data for each variable; kelp area (Fig. 4), kelp biomass, SST (Fig. 5), nitrogen (Fig. 6), ammonium, and phosphate, were represented by a series of raster bricks where each layer contained the estimates for each year and quarter.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-4.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 4: Kelp area raster brick. Diagram of kelp area raster brick, darker green indicates higher kelp area.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-5.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 5: SST raster brick. Diagram of SST raster brick. Temperatures range from 13 °C to 19° C with highest temperatures in red and lower temperatures in blue.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-6.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 6: Nitrogen raster brick. Diagram of nitrogen raster brick. Observations are depicted in red with darker colors showing higher nitrogen concentrations.</figcaption><p></p>
+</figure>
+</div>
+<p>In addition to the series of raster bricks, estimates of depth (Fig. 7)&nbsp; and substrate (Fig. 8) observations were provided as GeoTIFF raster layers. Depth was provided at a resolution of 0.008° and substrate at a resolution of 0.00003°.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-7.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 7: Depth layer. Depth layer as of 2022.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-8.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 8: Combined substrate layer. Substrate layer with different substrate classifications (soft, hard, mixed, and anthropogenic) shown in colors according to the attached legend.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="model-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="model-outputs">Model Outputs</h3>
+<p>In order to model habitat suitability for giant kelp within 5 km of the Santa Barbara Coastline, nutrient observations were interpolated as described above resulting in quarterly mean raster layers of nitrogen (Fig. 9), phosphate (Fig. 10), and ammonium (Fig. 11). A comparison of the root mean square error (RMSE) for each of these layers was estimated and is provided in tables (Table 1, Table 2, and Table 3).&nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-9.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 9: Quarterly interpolation of nitrogen. Result of nitrogen interpolation for each quarter that was used as inputs to maxent.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tab-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Table 1: Performance of quarterly nitrogen interpolation. Performance of quarterly nitrogen interpolation relative to the RMSE of the underlying data. A negative value indicates the RMSE of the interpolation was higher than the underlying data.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-10.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 10: Quarterly interpolation of phosphate. Result of phosphate interpolation for each quarter that was used as inputs to maxent.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tab-2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Table 2: Performance of quarterly phosphate interpolation. Performance of quarterly phosphate interpolation relative to the RMSE of the underlying data. A negative value indicates the RMSE of the interpolation was higher than the underlying data.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-11.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 11: Quarterly interpolation of ammonium. Result of ammonium interpolation. These layers were not used in modeling.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tab-3.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Table 3: Performance of quarterly phosphate interpolation. Performance of quarterly ammonium interpolation relative to the RMSE of the underlying data. A negative value indicates the RMSE of the interpolation was higher than the underlying data.</figcaption><p></p>
+</figure>
+</div>
+<p>Estimates of habitat suitability for giant kelp were provided for each quarter at 0.008° resolution on a scale of 0 to 1. Estimates for each quarter were filtered to determine habitat suitability in areas that have soft substrate. A comparison of these estimates for each quarter are provided below (Fig. 12, Fig. 13, Fig. 14, Fig. 15). Additionally, variable importance was determined for each quarter and is shown in tables (Table 4, Table 5, Table 6, Table 7). The estimates of habitat suitability generally showed higher habitat suitability near the coast that was variable throughout the year. The variable importance showed that depth was primarily driving habitat suitability with nitrogen concentration being the second most important.&nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-12.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 12: Habitat suitability quarter 1. Estimates of habitat suitability for kelp. Full results are shown on the left and results filtered to soft substrate are shown on the right.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tab-4.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Table 4: Variable importance of habitat suitability in quarter 1.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-13.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 13: Habitat suitability quarter 2. Estimates of habitat suitability for kelp. Full results are shown on the left and results filtered to soft substrate are shown on the right.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tab-5.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Table 5: Variable importance of habitat suitability in quarter 2.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-14.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 14: Habitat suitability in quarter 3. Estimates of habitat suitability for kelp. Full results are shown on the left and results filtered to soft substrate are shown on the right.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tab-6.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Table 6: Variable importance of habitat suitability in quarter 3.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-15.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 15: Habitat suitability quarter 4. Estimates of habitat suitability for kelp. Full results are shown on the left and results filtered to soft substrate are shown on the right.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tab-7.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Table 7: Variable importance of habitat suitability in quarter 4.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="data-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="data-pipeline">Data pipeline</h3>
+<p>In order to make this project reproducible and easy for the clients to continue in the future, all of the code used to create each data product and the model results is provided in an open source GitHub repository (<a href="https://github.com/kelpGeoMod/kelpGeoMod-capstone-project">link</a>). To aid others in navigating the project a comprehensive user guide (<a href="https://docs.google.com/document/d/12AFYFkcU2SIC8CTmjk4GBjN516gUXZBbKX3ptMEnp50/edit#heading=h.bzq6qxrutbie">link</a>) and project schematic were also created and made publicly available. The combination of the GitHub repository, user guide, and project schematic are the data pipeline that will make it possible for future users to use and build upon the project.&nbsp;</p>
+</section>
+</section>
+<section id="summary-of-testing" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-testing">Summary of Testing</h2>
+<section id="data-testing" class="level3">
+<h3 class="anchored" data-anchor-id="data-testing">Data Testing</h3>
+<p>Tests were performed to ensure that each raster or shape met the following criteria after completing the data cleaning process established in the project repository:</p>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data type</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Raster</td>
+<td>CRS = WGS84</td>
+</tr>
+<tr class="even">
+<td>Raster</td>
+<td>Extent = (xmin = -120.65, xmax = -118.80, ymin = 33.85, ymax = 34.59)</td>
+</tr>
+<tr class="odd">
+<td>Raster</td>
+<td>Resolution = 0.008 x 0.008</td>
+</tr>
+<tr class="even">
+<td>Raster</td>
+<td>Origin = -0.002, 0.002</td>
+</tr>
+<tr class="odd">
+<td>Raster</td>
+<td>SST between 0° and 100° Celsius</td>
+</tr>
+<tr class="even">
+<td>Raster</td>
+<td>Nutrients &gt;= 0</td>
+</tr>
+<tr class="odd">
+<td>Vector</td>
+<td>CRS = WGS84</td>
+</tr>
+<tr class="even">
+<td>Vector</td>
+<td>At least one data point within (xmin = -120.65, xmax = -118.80, ymin = 33.85, ymax = 34.59)</td>
+</tr>
+<tr class="odd">
+<td>Vector</td>
+<td>SST, between 0° and 100° Celsius</td>
+</tr>
+<tr class="even">
+<td>Vector</td>
+<td>Nutrients &gt;= 0</td>
+</tr>
+</tbody>
+</table>
+<p>These tests ensure the success of the data cleaning process and provide a way for future users to check that any data they update is compatible with the synthesized data set and existing code.&nbsp;</p>
+</section>
+<section id="model" class="level3">
+<h3 class="anchored" data-anchor-id="model">Model&nbsp;</h3>
+<p>The root mean squared error (RMSE) of each interpolated layer used as inputs to the model was calculated to compare to the RMSE of the underlying data. The performance of the species distribution model was tested using the checkerboard 2 spatial partitioning method with the ENMeval package in R. This allowed the giant kelp occurrence data to be split into training and test data sets within the modeling process.&nbsp;</p>
+</section>
+</section>
+<section id="user-documentaion" class="level2">
+<h2 class="anchored" data-anchor-id="user-documentaion">User Documentaion</h2>
+<p>All code used in this project was documented in R script and RMarkdown files. Each file contains information such as a description of the purpose of the code, the source of the data files used, and thorough code comments explaining each operation. Folders in our GitHub repository contain README.txt files with brief overviews of the contents within.&nbsp;</p>
+<p>Relevant metadata for each raw data file were compiled and used to create README.txt files for each data set used. Metadata includes information on the abstract, methods, spatial coverage/resolution, temporal coverage/resolution, descriptions for variables used, links to the original data source, and contact information for associated researchers. Attribute descriptions for each data set when applicable or useful were compiled and also added to the applicable README.txt file. For raw data sets, we did not include attribute information, as in most cases it could be found by looking at the original data sources and often there were many attributes not used in the scope of our project. A similar process was completed for all intermediate and analysis data created throughout the project. README.txt files are included in each data-related folder when applicable.</p>
+<p>A README.md for the overall project repository contains an overview of key information and summarizes how to use the repository. A user guide, in both pdf and txt format, is available <a href="https://docs.google.com/document/d/12AFYFkcU2SIC8CTmjk4GBjN516gUXZBbKX3ptMEnp50/edit#heading=h.bzq6qxrutbie">here</a>). This guide describes how the raw data types were accessed, cleaned, synthesized and prepared for modeling. It also provides guidance for users to add their own data and prepare it for Maxent modeling if they wish. Moreover, it describes the process for synthesizing the final data set and generating the final model and visualizations. This will ensure that future users will be able to incorporate their own data into the data set and explore their own models.</p>
+</section>
+<section id="archive-access" class="level2">
+<h2 class="anchored" data-anchor-id="archive-access">Archive Access</h2>
+<p>All of the data sets used in this project are open-source and available for public use through each research project, organization, and agency website, API, or website. The data products created through this project are also publicly available on Google Drive at this <a href="https://drive.google.com/drive/u/1/folders/0AAMCzR_Phn-AUk9PVA">link</a>. To facilitate data sharing and reuse, detailed README files with access and functionality information across all of our files were included. The final synthesized and standardized data sets, as well as the species distribution model outputs, were made available in both GeoTIFF and CSV formats. All code used to create the datasets and model outputs is available on the project’s GitHub repository available <a href="https://github.com/kelpGeoMod/kelpGeoMod-capstone-project/tree/main">here</a>. This combined with a comprehensive user guide and project schematic will make this project easily reproducible and flexible for future users.&nbsp;</p>
+<p>Furthermore, the final product and data set were published under the Creative Commons Zero (CC0) intellectual property laws to enable public use. This was done to promote transparency, facilitate data sharing, and enable external users, such as researchers, stakeholders, and kelp farmers, to access and use our project’s data.</p>
+</section>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<p>We acknowledge the Bren School of Environmental Science &amp; Management’s Master’s of Environmental Data Science program at the University of California Santa Barbara for funding this synthesis project. We would also like to express our gratitude to our clients, Courtney Schatzman from Ocean Rainforest and Natalie Dornan from UCSB interdepartmental Graduate Program in Marine Science (IGPMS), as well as Sidney Gerst and Kirby Bartlett for providing user information, Jeff Massen for user testing and being the main contact as a kelp farmer, and Daphne Virlar-Knight from NCEAS for helping us explore different options for MaxEnt modeling. We are also grateful to Tamma Carleton, Shubhi Sharma and Kevin Winner for their expertise and guidance in statistics and species distribution modeling. Lastly, we are grateful to Dr.&nbsp;Li Kui and Carrie Bretz for their assistance in accessing and processing data from the SBC LTER and Seafloor Mapping Lab at California State University, Monterey Bay.&nbsp;</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references"><strong>References</strong></h2>
+<p>Bell, T., Cavanaugh, K., Reuman, D., Castorani, M., Sheppard, L., &amp; Walter, J. (2021). SBC LTER: REEF: Macrocystis pyrifera biomass and environmental drivers in southern and central California (Version 1) [Data set]. Environmental Data. <a href="https://doi.org/10.6073/pasta/27e795dee803493140d6a7cdc3d23379" class="uri">https://doi.org/10.6073/pasta/27e795dee803493140d6a7cdc3d23379</a></p>
+<p>Bell, T., Cavanaugh, K., &amp; Siegel, D. (2023). SBC LTER: Time series of quarterly NetCDF files of kelp biomass in the canopy from Landsat 5, 7 and 8, since 1984 (ongoing) (Version 20) [Data set]. Environmental Data Initiative. <a href="https://doi.org/10.6073/pasta/41f330ccf66fa8c05fc851862e69b1da" class="uri">https://doi.org/10.6073/pasta/41f330ccf66fa8c05fc851862e69b1da</a></p>
+<p>Brzezinksi, M., Reed, D., Harrer, S., Rassweiler, A., Melack, J., Goodridge, B., &amp; Dugan, J. (2013). Multiple Sources and Forms of Nitrogen Sustain Year-Round Kelp Growth on the Inner Continental Shelf of the Santa Barbara Channel. Oceanography, 26(3), 114–123. <a href="https://doi.org/10.5670/oceanog.2013.53" class="uri">https://doi.org/10.5670/oceanog.2013.53</a></p>
+<p>Buschmann, A., Graham, M., &amp; Vásquez, J. (2007). Global Ecology of the Giant Kelp Macrocystis (pp.&nbsp;39–88). <a href="https://doi.org/10.1201/9781420050943.ch2" class="uri">https://doi.org/10.1201/9781420050943.ch2</a></p>
+<p>CalCOFI Bottle Database. (n.d.). [Data set]. Retrieved June 8, 2023, from <a href="https://calcofi.org/data/oceanographic-data/bottle-database/" class="uri">https://calcofi.org/data/oceanographic-data/bottle-database/</a></p>
+<p>Cavanaugh, K. C., Bell, T., Costa, M., Eddy, N. E., Gendall, L., Gleason, M. G., Hessing-Lewis, M., Martone, R., McPherson, M., Pontier, O., Reshitnyk, L., Beas-Luna, R., Carr, M., Caselle, J. E., Cavanaugh, K. C., Flores Miller, R., Hamilton, S., Heady, W. N., Hirsh, H. K., … Schroeder, S. B. (2021). A Review of the Opportunities and Challenges for Using Remote Sensing for Management of Surface-Canopy Forming Kelps. Frontiers in Marine Science, 8. <a href="https://www.frontiersin.org/articles/10.3389/fmars.2021.753531" class="uri">https://www.frontiersin.org/articles/10.3389/fmars.2021.753531</a></p>
+<p>Cavanaugh, K. C., Reed, D. C., Bell, T. W., Castorani, M. C. N., &amp; Beas-Luna, R. (2019). Spatial Variability in the Resistance and Resilience of Giant Kelp in Southern and Baja California to a Multiyear Heatwave. Frontiers in Marine Science, 6. <a href="https://www.frontiersin.org/articles/10.3389/fmars.2019.00413" class="uri">https://www.frontiersin.org/articles/10.3389/fmars.2019.00413</a></p>
+<p>Cuba, D., Guardia-Luzon, K., Cevallos, B., Ramos-Larico, S., Neira, E., Pons, A., &amp; Avila-Peltroche, J. (2022). Ecosystem Services Provided by Kelp Forests of the Humboldt Current System: A Comprehensive Review. Coasts, 2(4), 259–277. <a href="https://doi.org/10.3390/coasts2040013" class="uri">https://doi.org/10.3390/coasts2040013</a></p>
+<p>Elith, J., Phillips, S. J., Hastie, T., Dudík, M., Chee, Y. E., &amp; Yates, C. J. (2011). A statistical explanation of MaxEnt for ecologists. Diversity and Distributions, 17(1), 43–57. <a href="https://doi.org/10.1111/j.1472-4642.2010.00725.x" class="uri">https://doi.org/10.1111/j.1472-4642.2010.00725.x</a></p>
+<p>ERI. (n.d.). Plumes &amp; Blooms [Data set]. Retrieved June 8, 2023, from <a href="http://www.oceancolor.ucsb.edu/plumes_and_blooms/" class="uri">http://www.oceancolor.ucsb.edu/plumes_and_blooms/</a></p>
+<p>Esgro, M., &amp; Ray, J. (2021). For Protecting and Restoring California’s Kelp Forests (p.&nbsp;19).</p>
+<p>Golden, N. E. (2013). California State Waters Map Series Data Catalog: U.S. Geological Survey Data Series 781 [Data set]. U.S. Geological Survey. <a href="https://doi.org/10.3133/ds781" class="uri">https://doi.org/10.3133/ds781</a></p>
+<p>JPL MUR MEaSUREs Project. (2015). GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis (4.1) [Data set]. <a href="https://doi.org/10.5067/GHGMR-4FJ04" class="uri">https://doi.org/10.5067/GHGMR-4FJ04</a></p>
+<p>Kass, J. M., Pinilla-Buitrago, G. E., Paz, A., Johnson, B. A., Grisales-Betancur, V., Meenan, S. I., Attali, D., Broennimann, O., Galante, P. J., Maitner, B. S., Owens, H. L., Varela, S., Aiello-Lammens, M. E., Merow, C., Blair, M. E., &amp; Anderson, R. P. (2023). wallace 2: A shiny app for modeling species niches and distributions redesigned to facilitate expansion via module contributions. Ecography, 2023(3), e06547. <a href="https://doi.org/10.1111/ecog.06547" class="uri">https://doi.org/10.1111/ecog.06547</a></p>
+<p>Kerrison, P. D., Stanley, M. S., Edwards, M. D., Black, K. D., &amp; Hughes, A. D. (2015). The cultivation of European kelp for bioenergy: Site and species selection. Biomass &amp; Bioenergy, 80, 229–242. <a href="https://doi.org/10.1016/j.biombioe.2015.04.035" class="uri">https://doi.org/10.1016/j.biombioe.2015.04.035</a></p>
+<p>Melo-Merino, S. M., Reyes-Bonilla, H., &amp; Lira-Noriega, A. (2020). Ecological niche models and species distribution models in marine environments: A literature review and spatial analysis of evidence. Ecological Modelling, 415, 108837. <a href="https://doi.org/10.1016/j.ecolmodel.2019.108837" class="uri">https://doi.org/10.1016/j.ecolmodel.2019.108837</a></p>
+<p>Nearshore Benthic Habitat GIS for the Channel Islands Volume II - Mapped Areas. (n.d.). [Data set]. Retrieved June 8, 2023, from <a href="https://pubs.usgs.gov/of/2005/1170/catalog.html" class="uri">https://pubs.usgs.gov/of/2005/1170/catalog.html</a></p>
+<p>NOAA National Centers for Environmental Information. (2022). ETOPO 2022 15 Arc-Second Global Relief Model. NOAA National Centers for Environmental Information [Data set]. DOI: <a href="https://doi.org/10.25921/fd45-gt74" class="uri">https://doi.org/10.25921/fd45-gt74</a></p>
+<p>OpenAI. “ChatGPT.” https://openai.com/blog/chat-gpt/</p>
+<p>Peters, J. R., Reed, D. C., &amp; Burkepile, D. E. (2019). Climate and fishing drive regime shifts in consumer-mediated nutrient cycling in kelp forests. Global Change Biology, 25(9), 3179–3192. <a href="https://doi.org/10.1111/gcb.14706" class="uri">https://doi.org/10.1111/gcb.14706</a></p>
+<p>Phillips, S. J., Anderson, R. P., Dudík, M., Schapire, R. E., &amp; Blair, M. E. (2017). Opening the black box: An open-source release of Maxent. Ecography, 40(7), 887–893. <a href="https://doi.org/10.1111/ecog.03049" class="uri">https://doi.org/10.1111/ecog.03049</a></p>
+<p>Prouty, N. G., &amp; Baker, M. C. (2020a). CTD profiles and discrete water-column measurements collected off California and Oregon during NOAA cruise RL-19-05 (USGS field activity 2019-672-FA) from October to November 2019 (ver. 2.0, July 2022) [Data set]. U.S. Geological Survey. <a href="https://doi.org/10.5066/P9JKYWQU" class="uri">https://doi.org/10.5066/P9JKYWQU</a></p>
+<p>Prouty, N. G., &amp; Baker, M. C. (2020b). CTD profiles and discrete water-column measurements collected off California and Oregon during NOAA cruise SH-18-12 (USGS field activity 2018-663-FA) from October to November 2018 (ver. 3.0, July 2022) [Data set]. U.S. Geological Survey. <a href="https://doi.org/10.5066/P99MJ096" class="uri">https://doi.org/10.5066/P99MJ096</a></p>
+<p>Rogers-Bennett, L., &amp; Catton, C. A. (2019). Marine heat wave and multiple stressors tip bull kelp forest to sea urchin barrens. Scientific Reports, 9(1), Article 1. <a href="https://doi.org/10.1038/s41598-019-51114-y" class="uri">https://doi.org/10.1038/s41598-019-51114-y</a></p>
+<p>Seafloor Mapping Lab at CSUMB: Data Library Southern California Data (Part II). (n.d.). [Data set]. Retrieved June 8, 2023, from<a href="http://seafloor.otterlabs.org/SFMLwebDATA_s.htm" class="uri">http://seafloor.otterlabs.org/SFMLwebDATA_s.htm</a></p>
+<p>Washburn, L., Brzezinksi, M., Carlson, C., &amp; Siegel, D. (2022). SBC LTER: Ocean: Ocean Currents and Biogeochemistry: Nearshore water profiles (monthly CTD and chemistry), ongoing since 2000 (Version 27) [Data set]. Environmental Data Initiative. <a href="https://doi.org/10.6073/pasta/8b74750eed1af2b987e02b4b466e12e7" class="uri">https://doi.org/10.6073/pasta/8b74750eed1af2b987e02b4b466e12e7</a></p>
+<p>Watt, D. (2018, October 9). Preparing Data for MaxEnt Species Distribution Modeling Using R. Azavea. <a href="https://www.azavea.com/blog/2018/10/09/preparing-data-for-maxent-species-distribution-modeling-using-r/" class="uri">https://www.azavea.com/blog/2018/10/09/preparing-data-for-maxent-species-distribution-modeling-using-r/</a></p>
+<p>Wernberg, T., Smale, D. A., Tuya, F., Thomsen, M. S., Langlois, T. J., de Bettignies, T., Bennett, S., &amp; Rousseaux, C. S. (2013). An extreme climatic event alters marine ecosystem structure in a global biodiversity hotspot. Nature Climate Change, 3(1), Article 1. <a href="https://doi.org/10.1038/nclimate1627" class="uri">https://doi.org/10.1038/nclimate1627</a></p>
+</section>
+<section id="appendix-i-supplemental-figures-and-tables" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-i-supplemental-figures-and-tables"><strong>Appendix I: Supplemental Figures and Tables</strong></h2>
+<p>Table S1. Summary of key information related to the raw data sets used</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th><strong>Data set name</strong></th>
+<th><strong>Source</strong></th>
+<th><strong>Variable</strong></th>
+<th><strong>Original Format</strong></th>
+<th><strong>Final Format(s)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><br>
+</td>
+<td><strong>File</strong></td>
+<td><strong>Resolution</strong></td>
+<td><strong>File</strong></td>
+<td><strong>Resolution</strong></td>
+</tr>
+<tr class="even">
+<td>SBC LTER: Time series of quarterly NetCDF files of kelp biomass in the canopy from Landsat 5, 7 and 8, since 1984 (ongoing)</td>
+<td><a href="https://doi.org/10.6073/pasta/41f330ccf66fa8c05fc851862e69b1da">Santa Barbara Coastal Long Term Ecological Research</a></td>
+<td>Kelp area/biomass</td>
+<td><p>netCDF</p>
+<p><br>
+</p></td>
+<td><p>30 m x 30 m</p>
+<p>Quarterly</p></td>
+</tr>
+<tr class="odd">
+<td>SBC LTER: REEF Macrocystis pyrifera biomass and environmental drivers in southern and central California</td>
+<td><a href="https://doi.org/10.6073/pasta/27e795dee803493140d6a7cdc3d23379">Santa Barbara Coastal Long Term Ecological Research</a></td>
+<td>Nitrate</td>
+<td><p>CSV</p>
+<p><br>
+</p></td>
+<td><p>Points</p>
+<p>Quarterly</p></td>
+</tr>
+<tr class="even">
+<td>SBC LTER: Ocean: Ocean Currents and Biogeochemistry: Nearshore water profiles</td>
+<td><a href="https://doi.org/10.6073/pasta/8b74750eed1af2b987e02b4b466e12e7">Santa Barbara Coastal Long Term Ecological Research</a></td>
+<td><p>Nitrate + nitrite,</p>
+<p>Phosphate, Ammonium</p>
+<p><br>
+</p></td>
+<td><p>Text</p>
+<p><br>
+</p></td>
+<td><p>Points</p>
+<p>Monthly</p></td>
+</tr>
+<tr class="odd">
+<td>ETOPO Global Relief Model 2022 (Bedrock 15 arcseconds)</td>
+<td><a href="https://doi.org/10.25921/fd45-gt74">National Oceanic and Atmospheric Administration</a></td>
+<td>Ocean depth,</td>
+<td>GeoTIFF</td>
+<td>15 arcseconds</td>
+</tr>
+<tr class="even">
+<td>Water-column environmental variables and accompanying discrete CTD measurements collected off California and Oregon during NOAA cruise SH-18-12</td>
+<td><a href="https://doi.org/10.5066/P99MJ096">United States Geological Survey</a></td>
+<td><p>Nitrate + Nitrite, phosphate</p>
+<p><br>
+</p></td>
+<td><p>CSV</p>
+<p><br>
+</p></td>
+<td><p>Points</p>
+<p>Annual (measurements taken in fall)</p></td>
+</tr>
+<tr class="odd">
+<td>California Cooperative Oceanic Fisheries Investigations – Bottle Database</td>
+<td><a href="https://calcofi.org/data/oceanographic-data/bottle-database/">California Cooperative Oceanic Fisheries Investigations</a></td>
+<td><p>Nitrate, nitrite,</p>
+<p>NItrate + Nitrite ammonia, phosphate</p></td>
+<td><p>CSV</p>
+<p><br>
+</p></td>
+<td><p>Points</p>
+<p>Quarterly</p></td>
+</tr>
+<tr class="even">
+<td>Plumes and Blooms</td>
+<td><a href="http://www.oceancolor.ucsb.edu/plumes_and_blooms/">Earth Research Institute</a></td>
+<td><p>Nitrite,</p>
+<p>Nitrate + Nitrite , phosphate</p></td>
+<td><p>CSV</p>
+<p><br>
+</p></td>
+<td><p>Points</p>
+<p>Monthly</p></td>
+</tr>
+<tr class="odd">
+<td>GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis (v4.1)</td>
+<td><a href="https://doi.org/10.5067/GHGMR-4FJ04">National Aeronautics and Space Administration and The Group for High Resolution Sea Surface Temperature</a></td>
+<td>Sea surface temperature</td>
+<td><p>netCDF</p>
+<p><br>
+</p></td>
+<td><p>0.01° x 0.01°</p>
+<p>Daily</p></td>
+</tr>
+<tr class="even">
+<td>California State Waters Map Series Data Catalog</td>
+<td><a href="https://doi.org/10.3133/ds781">United States Geological Survey</a></td>
+<td>Substrate</td>
+<td>Shape file</td>
+<td><br>
+</td>
+</tr>
+<tr class="odd">
+<td>Nearshore Benthic Habitat GIS for the Channel Islands National Marine Sanctuary and Southern California Fisheries Reserves Volume II</td>
+<td><a href="https://pubs.usgs.gov/of/2005/1170/catalog.html">United States Geological Survey</a></td>
+<td>Substrate</td>
+<td>Shape file</td>
+<td><br>
+</td>
+</tr>
+<tr class="even">
+<td>Southern California Data</td>
+<td><a href="http://seafloor.otterlabs.org/SFMLwebDATA_s.htm">California State Mapping Project</a></td>
+<td>Substrate</td>
+<td><p>Esri layer</p>
+<p><br>
+<br>
+</p></td>
+<td><p>2 m x 2 m</p>
+<p>3 m x 3 m</p>
+<p>5 m x 5 m</p></td>
+</tr>
+<tr class="odd">
+<td>California County Boundaries</td>
+<td><a href="https://data.ca.gov/dataset/ca-geographic-boundaries">California Open Data Portal</a></td>
+<td>Land boundaries</td>
+<td>Shape file</td>
+<td><br>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Table S2. Capstone deliverables, descriptions and applications</p>
+<table class="table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 67%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Deliverable</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>File Name and Format</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Synthesized Data Set</td>
+<td><p>A CSV file containing all of the observed nutrient values from the original data sets, observed SST, and kelp area and biomass of the raster cell that the observation intersects aggregated to year and quarter.</p>
+<hr>
+<p>A series of GeoTIFF raster bricks containing kelp area, kelp biomass, SST, and nutrients for each year and quarter at 0.008° resolution.</p>
+<p><br>
+</p>
+<p>An estimate of depth at 0.008° resolution as of 2022.</p>
+<hr>
+<p>A CSV file containing the values in the GeoTIFF raster bricks with each row representing a cell at one year and quarter.</p></td>
+<td><p><br>
+<br>
+</p>
+<p>observed-nutrients-synthesized.csv</p>
+<p><br>
+<br>
+</p>
+<hr>
+<p>kelp-area-brick.tif</p>
+<p>kelp-biomass-brick.tif</p>
+<p>nitrate-nitrite-brick.tif</p>
+<p>phosphate-brick.tif</p>
+<p>sst-brick.tif</p>
+<p>ammonium-brick.tif</p>
+<p>depth.tif</p>
+<hr>
+<p>full-synthesized.csv</p></td>
+</tr>
+<tr class="even">
+<td>Habitat Suitability Map</td>
+<td>Quarterly estimates of habitat suitability for giant kelp in all substrate types and for soft substrate only.</td>
+<td><p>maxent-quarter-1-output.tif</p>
+<p>maxent-quarter-1-output.tif</p>
+<p>maxent-quarter-1-output.tif</p>
+<p>maxent-quarter-1-output.tif</p>
+<p><br>
+</p>
+<p>substrate-masked-brick.tif</p></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-S1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure S1: Project schematic</figcaption><p></p>
+</figure>
+</div>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{egg,jessicafrench,javierpatrón,elkewindschitl2023,
+  author = {Erika Egg, Jessica French, Javier Patrón, Elke Windschitl},
+  title = {Developing a {Data} {Pipeline} for {Kelp} {Forest}
+    {Modeling}},
+  date = {2023-07-02},
+  url = {https://elkewind.github.io/posts/2023-07-02-kelpGeoMod},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-egg,jessicafrench,javierpatrón,elkewindschitl2023" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Erika Egg, Jessica French, Javier Patrón, Elke Windschitl. 2023.
+<span>“Developing a Data Pipeline for Kelp Forest Modeling.”</span> July
+2, 2023. <a href="https://elkewind.github.io/posts/2023-07-02-kelpGeoMod">https://elkewind.github.io/posts/2023-07-02-kelpGeoMod</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
