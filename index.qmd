@@ -8,10 +8,8 @@ about:
   links: 
     - text: LinkedIn
       href: https://www.linkedin.com/in/elke-windschitl-37a330149/
-    - text: Github
+    - text: GitHub
       href: https://github.com/elkewind
-    - text: Email
-      href: elke@bren.ucsb.edu
 ---
 
 <h2>Welcome!</h2>
@@ -28,10 +26,10 @@ I recently earned a Master of Environmental Data Science degree from the [Bren S
 
 <h2>Education</h2>
 
-<h4>Master's of Environmental Data Science Student</h4>
+<h4>Master of Environmental Data Science Student</h4>
 
 <p>University of California Santa Barbara \| June 2023</p>
 
-<h4>Bachelor's of Science in Biology with Honors</h4>
+<h4>Bachelor of Science in Biology with Honors</h4>
 
 <p>Iowa State University \| May 2020</p>
