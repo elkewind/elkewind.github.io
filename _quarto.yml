@@ -12,7 +12,7 @@ website:
         text: About Me
       - href: posts.qmd
         text: Blog
-      - href: resume.pdf
+      - href: resume.qmd
         text: Resume
   twitter-card: true
 
