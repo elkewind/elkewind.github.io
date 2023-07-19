@@ -35,7 +35,7 @@ page-layout: full
 ```
 <p class="name">Elke Windschitl</p>
 
-<p class="text-style-1">319-631-8691 \| elke.windschitl\@gmail.com \| [elkewind.github.io](https://elkewind.github.io/) \| [GitHub](https://github.com/elkewind) \| [LinkedIn](https://www.linkedin.com/in/elke-windschitl-37a330149/) \| Santa Barbara, CA</p>
+<p class="text-style-1">elke.windschitl\@gmail.com \| [elkewind.github.io](https://elkewind.github.io/) \| [GitHub](https://github.com/elkewind) \| [LinkedIn](https://www.linkedin.com/in/elke-windschitl-37a330149/) \| Santa Barbara, CA</p>
 
 ------------------------------------------------------------------------
 
