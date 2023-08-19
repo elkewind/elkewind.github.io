@@ -14,7 +14,7 @@ format:
   html:
     code-fold: false
 toc: true
-draft: false
+draft: true
 ---
 
 ## Purpose
@@ -280,7 +280,7 @@ Map # view map
 
 Finally, let's make an interactive time series map for FPAR from November 2010 (left) to November 2022 (right):
 
-::: {.callout-note}
+::: callout-note
 NOTE: This analysis was completed as a final project for the course EDS 220 Working with Environmental Data at UCSB, and the original notebook can be found [here.](https://github.com/elkewind/eds-220-final-project/blob/main/finalproject_demo.ipynb) I'm still troubleshooting how to integrate these maps into my Quarto website. You'll notice that the first map has a rendered layer, but the following three maps aren't appearing as I expected. If anyone has encountered this themselves or has thoughts on a potential solution, drop me an [issue here.](https://github.com/elkewind/elkewind.github.io/issues)
 :::
 

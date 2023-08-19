@@ -1,5 +1,7 @@
 ---
 title: "Integrating Art into Science and Conservation"
+twitter-card:
+  image: "https://elkewind.github.io/docs/images/logo3.png"
 author:
   - name: Elke Windschitl
     url: https://elkewind.github.io
@@ -34,7 +36,6 @@ I am currently working on a collaborative capstone project modeling habitat suit
 ```{=html}
 <div style="padding:100% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/813056709?h=241c8221fc&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="fish_vid"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 ```
-
 ### Environmental Non-Profit Social Media Campaign:
 
 In 2022, I assisted with a social media campaign by [The LENA Project](https://www.thelenaproject.org/) to provide monthly information and suggestions on environmental related topics. Here are two of the designs I created for this campaign.
@@ -53,7 +54,8 @@ In 2021, I participated in (as well as volunteered for) [Prompt for the Planet \
 <iframe width="780" height="500" src="https://promptfortheplanetarchive.omeka.net/items/show/45" title="The Hurricane's Eye on Prompt for the Planet"></iframe>
 ```
 ### Environmental Non-Profit Fundraising:
-In 2021 I designed a yard sign for The LENA Project that they sold as a fundraiser and as a campaign to promote unfertilized lawns. In 2023 I updated the design for the continuation of the campaign. 
+
+In 2021 I designed a yard sign for The LENA Project that they sold as a fundraiser and as a campaign to promote unfertilized lawns. In 2023 I updated the design for the continuation of the campaign.
 
 ![](bee-sign)
 

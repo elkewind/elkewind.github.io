@@ -10,6 +10,8 @@ about:
       href: https://www.linkedin.com/in/elke-windschitl-37a330149/
     - text: GitHub
       href: https://github.com/elkewind
+    - text: Twitter
+      href: https://twitter.com/Elke_Windschitl
 ---
 
 <h2>Welcome!</h2>
@@ -18,7 +20,7 @@ about:
 
 A little bit about me:
 
-I recently earned a Master of Environmental Data Science degree from the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about sustainability and conservation, and I hope to build a career using data science tools to solve environmental problems.
+I recently earned a Master of Environmental Data Science degree from the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about conservation, and I hope to build a career using data science tools to solve environmental problems.
 
 </p>
 
@@ -28,7 +30,7 @@ I recently earned a Master of Environmental Data Science degree from the [Bren S
 
 <h4>Master of Environmental Data Science Student</h4>
 
-<p>University of California Santa Barbara \| June 2023</p>
+<p>University of California, Santa Barbara \| June 2023</p>
 
 <h4>Bachelor of Science in Biology with Honors</h4>
 

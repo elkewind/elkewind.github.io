@@ -31,21 +31,53 @@ page-layout: full
   text-align: left;
   font-size: 20px;
   }
+  
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 12px; /* Adjust the font size */
+}
+
+
 </style>
 ```
+
 <p class="name">Elke Windschitl</p>
 
 <p class="text-style-1">elke.windschitl\@gmail.com \| [elkewind.github.io](https://elkewind.github.io/) \| [GitHub](https://github.com/elkewind) \| [LinkedIn](https://www.linkedin.com/in/elke-windschitl-37a330149/) \| Santa Barbara, CA</p>
 
+<ul class="menu">
+  <li><a href="#summary">Summary of Qualifications</a></li>
+  <li><a href="#edu">Education</a></li>
+  <li><a href="#projs">Data-Driven Projects</a></li>
+  <li><a href="#fellow">Fellowship & Internship Experience</a></li>
+  <li><a href="#create">Creative Work</a></li>
+  <li><a href="#add">Additional Employment</a></li>
+  <li><a href="#skills">Skills & Certifications</a></li>
+</ul>
+
+
+
 ------------------------------------------------------------------------
 
-<p class="section-head">**SUMMARY OF QUALIFICATIONS**</p>
+<p class="section-head" id = "summary">**SUMMARY OF QUALIFICATIONS**</p>
 
 <p class="text-style-2">
 
 - Master of Environmental Data Science; Bachelor of Science in Biology with Honors
 - Collaboration on data-driven research projects in small intellectually diverse teams
-- Proficient in R, Python, Excel; experience in SQL, ArcGIS
+- 3 years of experience in R; 1 year of experience in Python; experience in SQL, Excel, ArcGIS
 - Additional digital literacy skills in Git, GitHub, PowerPoint, Adobe Photoshop, Inkscape, Canva, Wix
 - Creative collaboration experience leveraging skills in web design, graphic design, and illustration
 
@@ -53,14 +85,14 @@ page-layout: full
 
 ------------------------------------------------------------------------
 
-<p class="section-head">**EDUCATION**</p>
+<p class="section-head" id = "edu">**EDUCATION**</p>
 
 <p class="text-style-2">
   <strong>Master of Environmental Data Science</strong>, 3.97 GPA (6/23)<br>
   <strong>Bren School of Environmental Science & Management — University of California, Santa Barbara (UCSB)</strong>
   <blockquote>
     <u>Leadership:</u> Dean's Advisory Council Representative, Master’s Curriculum Committee Representative<br>
-    <u>Highlighted Coursework:</u> Geospatial Analysis and Remote Sensing, Modeling Environmental Systems, Statistics for Environmental Data Science, Machine Learning in Environmental Science, Data Visualization and Communication, Ethic and Bias in Environmental Data Science, Team Science, Intro to R Shiny
+    <u>Highlighted Coursework:</u> Geospatial Analysis and Remote Sensing, Modeling Environmental Systems, Statistics for Environmental Data Science, Machine Learning in Environmental Science, Data Visualization and Communication, Ethics and Bias in Environmental Data Science, Team Science, Intro to R Shiny
   </blockquote>
 </p>
 
@@ -75,7 +107,7 @@ page-layout: full
 
 ------------------------------------------------------------------------
 
-<p class="section-head">**DATA-DRIVEN PROJECTS**</p>
+<p class="section-head" id = "projs">**DATA-DRIVEN PROJECTS**</p>
 
 <p class="text-style-2">
   <strong>Developing a Data Pipeline for Kelp Forest Modeling</strong> (1/23–6/23)<br>
@@ -101,7 +133,7 @@ page-layout: full
 
 ------------------------------------------------------------------------
 
-<p class="section-head">**FELLOWSHIP & INTERNSHIP EXPERIENCE**</p>
+<p class="section-head"id = "fellow">**FELLOWSHIP & INTERNSHIP EXPERIENCE**</p>
 
 <p class="text-style-2">
   <strong>Animal Behavior Research Batten Fellow</strong> (7/21–9/21)<br>
@@ -126,7 +158,7 @@ page-layout: full
 
 ------------------------------------------------------------------------
 
-<p class="section-head">**CREATIVE WORK**</p>
+<p class="section-head" id = "create">**CREATIVE WORK**</p>
 
 <p class="text-style-2">
   <strong>Independent Graphic Illustrator</strong> (2/17–present)<br>
@@ -149,7 +181,7 @@ page-layout: full
 
 ------------------------------------------------------------------------
 
-<p class="section-head">**ADDITIONAL EMPLOYMENT**</p>
+<p class="section-head" id = "add">**ADDITIONAL EMPLOYMENT**</p>
 
 <p class="text-style-2">
   <strong>Cashier</strong> (1/22–7/22)<br>
@@ -162,10 +194,10 @@ page-layout: full
 
 ------------------------------------------------------------------------
 
-<p class="section-head">**SKILLS & CERTIFICATIONS**</p>
+<p class="section-head" id = "skills">**SKILLS & CERTIFICATIONS**</p>
 
 <p class="text-style-2">
-  <strong>Programming Languages:</strong> R & Python (proficient), SQL (competent)<br>
+  <strong>Programming Languages:</strong> R (proficient), Python & SQL (competent)<br>
   <strong>IDEs and Engines:</strong> RStudio, Jupyter Notebook, VS Code, SQLite<br>
   <strong>Other Digital Literacy:</strong> Git, GitHub, ArcGIS, Word, Excel, PowerPoint, Zoom, Facebook, Instagram, Twitter, Slack, Canva, Adobe Photoshop, Procreate, Inkscape, Quarto, Shiny, Wix, Squarespace, WordPress<br>
   <strong>Certifications:</strong> Fundamentals of GIS, GIS Data Formats, Design, and Quality, University of California, Davis (3/21)

@@ -3,19 +3,33 @@ project:
   output-dir: docs
 
 website:
+  site-url: "https://elkewind.github.io/"
   title: "Elke Windschitl"
+  favicon: images/logo3.png
+  twitter-card: true
   navbar:
+    logo: images/logo3.png
+    right: 
+      - icon: github
+        href: https://github.com/elkewind
+      - icon: twitter
+        href: https://twitter.com/Elke_Windschitl
+      - icon: linkedin
+        href: https://www.linkedin.com/in/elke-windschitl-37a330149/
     left:
       - href: index.qmd
         text: Home
       - href: about.qmd
         text: About Me
       - href: posts.qmd
-        text: Blog
+        text: My Work
       - href: resume.qmd
         text: Resume
-  twitter-card: true
-
+  page-footer: 
+    background: $dark-teal
+    left: "Copyright 2022, Elke Windschitl"
+    right: "Made with Quarto"
+    
 format:
   html:
     theme:

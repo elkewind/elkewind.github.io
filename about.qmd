@@ -61,5 +61,5 @@ Map made using package leaflet and data from: <https://simplemaps.com/data/us-ci
 
 <h4>What's Next for Me?</h4>
 
-I am looking to start my career as an environmental data scientist! Broadly, I hope to find a role where I can blend my creative and quantitative talents to contribute to an organization or research group focused natural resource management. I am ideally looking for jobs in Seattle, Santa Barbara, or remote opportunities.
+I am looking to start my career as an environmental data scientist! Broadly, I hope to find a role where I can blend my creative and quantitative talents to contribute to an organization or research group focused on natural resource management. I am ideally looking for jobs in Seattle, Santa Barbara, or remote opportunities.
 :::
