@@ -1,7 +1,5 @@
 ---
 title: "Integrating Art into Science and Conservation"
-twitter-card:
-  image: "https://elkewind.github.io/docs/images/logo3.png"
 author:
   - name: Elke Windschitl
     url: https://elkewind.github.io
@@ -31,7 +29,7 @@ Inspired by other data science/environmental science artists (such as Allison Ho
 
 I am currently working on a collaborative capstone project modeling habitat suitability for kelp cultivation in the Santa Barbara Channel. I designed a hex sticker for our capstone group. (Unfamiliar with hex stickers? Check out [these data science hex stickers](https://github.com/rstudio/hex-stickers) created by others.)
 
-![](hex_sticker.png)
+![](hex_sticker.png){.preview-image}
 
 ```{=html}
 <div style="padding:100% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/813056709?h=241c8221fc&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="fish_vid"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
