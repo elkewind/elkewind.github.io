@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Elke Windschitl">
+<meta name="dcterms.date" content="2023-08-19">
+<meta name="description" content="Using Python libraries to visualize data">
+
+<title>Elke Windschitl - Data Visualization Examples in Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logo3.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+        <script type="text/javascript">
+        window.PlotlyConfig = {MathJaxConfig: 'local'};
+        if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+        if (typeof require !== 'undefined') {
+        require.undef("plotly");
+        requirejs.config({
+            paths: {
+                'plotly': ['https://cdn.plot.ly/plotly-2.16.1.min']
+            }
+        });
+        require(['plotly'], function(Plotly) {
+            window._Plotly = Plotly;
+        });
+        }
+        </script>
+        
+
+
+<meta name="twitter:title" content="Elke Windschitl - Data Visualization Examples in Python">
+<meta name="twitter:description" content="Using Python libraries to visualize data">
+<meta name="twitter:image" content="https://elkewind.github.io/posts/2023-08-19-python-viz/python.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo3.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Elke Windschitl</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html">
+ <span class="menu-text">My Work</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html">
+ <span class="menu-text">Resume</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/elkewind"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/Elke_Windschitl"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl-37a330149/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#visualizing-various-data-types-from-the-kelpgeomod-data-repository" id="toc-visualizing-various-data-types-from-the-kelpgeomod-data-repository" class="nav-link active" data-scroll-target="#visualizing-various-data-types-from-the-kelpgeomod-data-repository">Visualizing Various Data Types from the kelpGeoMod Data Repository</a>
+  <ul class="collapse">
+  <li><a href="#reading-in-the-data" id="toc-reading-in-the-data" class="nav-link" data-scroll-target="#reading-in-the-data">Reading in the data:</a></li>
+  <li><a href="#the-area-of-interest" id="toc-the-area-of-interest" class="nav-link" data-scroll-target="#the-area-of-interest">The area of interest:</a></li>
+  <li><a href="#visualizing-kelp-data" id="toc-visualizing-kelp-data" class="nav-link" data-scroll-target="#visualizing-kelp-data">Visualizing kelp data:</a></li>
+  <li><a href="#visualizing-nutrient-data" id="toc-visualizing-nutrient-data" class="nav-link" data-scroll-target="#visualizing-nutrient-data">Visualizing nutrient data:</a></li>
+  <li><a href="#visualizing-depth-data" id="toc-visualizing-depth-data" class="nav-link" data-scroll-target="#visualizing-depth-data">Visualizing depth data:</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Visualization Examples in Python</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Data Visualization</div>
+    <div class="quarto-category">Python</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Using Python libraries to visualize data
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Elke Windschitl </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 19, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="visualizing-various-data-types-from-the-kelpgeomod-data-repository" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-various-data-types-from-the-kelpgeomod-data-repository">Visualizing Various Data Types from the kelpGeoMod Data Repository</h2>
+<p>This post uses data from the kelpGeoMod data repository and provides examples of data visualization in Python using plotly, and folium.</p>
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import necessary libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objs <span class="im">as</span> go</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> folium <span class="im">import</span> DivIcon</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rasterio</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rasterio.plot</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># import base64</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># from io import BytesIO</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># from PIL import Image</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># from ipyleaflet import Map, ImageOverlay, basemaps</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># from matplotlib.colors import LinearSegmentedColormap</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rasterio.warp <span class="im">import</span> transform_geom</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> rcParams</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="reading-in-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="reading-in-the-data">Reading in the data:</h3>
+<p>Data for this notebook come from the kelpGeoMod <a href="https://drive.google.com/drive/u/2/folders/1sJq_9RnsARR9mkmrcrn4O_1630VD-e-t">Google Drive</a> data repository. This data repository was created as a Bren Master of Environmental Data Science capstone project by Erika Egg, Jessica French, Javier Patrón, and Elke Windschitl.</p>
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the data directory path</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">"/Users/elkewindschitl/Documents/MEDS/kelpGeoMod/final-data"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading in the area of interest shapefile</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>aoi_path <span class="op">=</span> os.path.join(data_dir, <span class="st">"02-intermediate-data/02-aoi-sbchannel-shapes-intermediate/aoi-sbchannel.shp"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>aoi <span class="op">=</span> gpd.read_file(aoi_path)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading in the "full synthesized" data set</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>full_synth_path <span class="op">=</span> os.path.join(data_dir, <span class="st">"03-analysis-data/03-data-synthesization-analysis/full-synthesized.csv"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the CSV file into a dataframe</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>full_synth_df <span class="op">=</span> pd.read_csv(full_synth_path)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading in the "observed nutrients" data set</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>obs_nutr_path <span class="op">=</span> os.path.join(data_dir, <span class="st">"03-analysis-data/03-data-synthesization-analysis/observed-nutrients-synthesized.csv"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the CSV file into a dataframe</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>obs_nutr_df <span class="op">=</span> pd.read_csv(obs_nutr_path)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting path to depth raster</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>raster_path <span class="op">=</span> os.path.join(data_dir, <span class="st">"02-intermediate-data/06-depth-intermediate/depth.tif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="the-area-of-interest" class="level3">
+<h3 class="anchored" data-anchor-id="the-area-of-interest">The area of interest:</h3>
+<p>These data come from the Santa Barbara Channel between 2014-2022.</p>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject geometries to WGS84</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>aoi_84 <span class="op">=</span> aoi.to_crs(epsg<span class="op">=</span><span class="dv">4326</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Folium map centered around the AOI</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[aoi_84[<span class="st">'geometry'</span>].centroid.y.mean(), aoi_84[<span class="st">'geometry'</span>].centroid.x.mean()], zoom_start<span class="op">=</span><span class="dv">9</span>, tiles<span class="op">=</span><span class="st">'Stamen Terrain'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to set shape color based on properties</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> style_function(feature):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'fillColor'</span>: <span class="st">'#93C2E2'</span>, </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'color'</span>: <span class="st">'#326587'</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'weight'</span>: <span class="dv">4</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'fillOpacity'</span>: <span class="fl">0.6</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add GeoJSON data to the map with custom style</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>folium.GeoJson(aoi_84.to_json(), style_function<span class="op">=</span>style_function).add_to(m)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the map</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>display(m)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>m.location</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-1.12.4.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_958c2b119ad82c525f4cc84e473bda8b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_958c2b119ad82c525f4cc84e473bda8b&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_958c2b119ad82c525f4cc84e473bda8b = L.map(
+                &quot;map_958c2b119ad82c525f4cc84e473bda8b&quot;,
+                {
+                    center: [34.22, -119.725],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 9,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_28591db4874d928ec276bddd21dee540 = L.tileLayer(
+                &quot;https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg&quot;,
+                {&quot;attribution&quot;: &quot;Map tiles by \u003ca target=\&quot;_blank\&quot; href=\&quot;http://stamen.com\&quot;\u003eStamen Design\u003c/a\u003e, under \u003ca target=\&quot;_blank\&quot; href=\&quot;http://creativecommons.org/licenses/by/3.0\&quot;\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca target=\&quot;_blank\&quot; href=\&quot;http://openstreetmap.org\&quot;\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\&quot;_blank\&quot; href=\&quot;http://creativecommons.org/licenses/by-sa/3.0\&quot;\u003eCC BY SA\u003c/a\u003e.&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 18, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            ).addTo(map_958c2b119ad82c525f4cc84e473bda8b);
+        
+    
+        function geo_json_6de216374d711b96414398e73582a494_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {&quot;color&quot;: &quot;#326587&quot;, &quot;fillColor&quot;: &quot;#93C2E2&quot;, &quot;fillOpacity&quot;: 0.6, &quot;weight&quot;: 4};
+            }
+        }
+
+        function geo_json_6de216374d711b96414398e73582a494_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_6de216374d711b96414398e73582a494 = L.geoJson(null, {
+                onEachFeature: geo_json_6de216374d711b96414398e73582a494_onEachFeature,
+            
+                style: geo_json_6de216374d711b96414398e73582a494_styler,
+        });
+
+        function geo_json_6de216374d711b96414398e73582a494_add (data) {
+            geo_json_6de216374d711b96414398e73582a494
+                .addData(data)
+                .addTo(map_958c2b119ad82c525f4cc84e473bda8b);
+        }
+            geo_json_6de216374d711b96414398e73582a494_add({&quot;features&quot;: [{&quot;geometry&quot;: {&quot;coordinates&quot;: [[[-120.65, 33.85], [-120.65, 34.59], [-118.8, 34.59], [-118.8, 33.85], [-120.65, 33.85]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;0&quot;, &quot;properties&quot;: {&quot;FID&quot;: 0}, &quot;type&quot;: &quot;Feature&quot;}], &quot;type&quot;: &quot;FeatureCollection&quot;});
+
+        
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>[34.22, -119.725]</code></pre>
+</div>
+</div>
+</section>
+<section id="visualizing-kelp-data" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-kelp-data">Visualizing kelp data:</h3>
+<p>Here I use the “full synthesized data set” to visualize how kelp area in the region changes through time. First, I want to check out the data set.</p>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the data frame</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(full_synth_df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year  quarter     lat      lon      depth        sst  kelp_area  \
+0  2014        1  34.590 -120.646 -46.320492  14.016689        NaN   
+1  2014        1  34.582 -120.646 -42.287880  14.040511        NaN   
+2  2014        1  34.574 -120.646 -45.276779  14.059811        NaN   
+3  2014        1  34.566 -120.646 -54.458694  14.074700        NaN   
+4  2014        1  34.566 -120.638 -23.270111  14.067266        NaN   
+
+   kelp_biomass  nitrate_nitrite  phosphate  ammonium  
+0           NaN              NaN        NaN       NaN  
+1           NaN              NaN        NaN       NaN  
+2           NaN              NaN        NaN       NaN  
+3           NaN              NaN        NaN       NaN  
+4           NaN              NaN        NaN       NaN  </code></pre>
+</div>
+</div>
+<p>I need to do a little wrangling to get the sum of the kelp area for each year/quarter combination. Each row in this data set represents one grid cell at one quarter in one year originating from raster data (for more information on the data, see the kelpGeoMod <a href="https://drive.google.com/drive/u/2/folders/1SNAff0L5p2M6L8HQB29cTtJT5qWeusgg">metadata</a> throughout the Google Drive).</p>
+<div class="cell" data-execution_count="5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine year and quarter columns into a single datetime column</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>full_synth_df[<span class="st">'Date'</span>] <span class="op">=</span> pd.to_datetime(full_synth_df[<span class="st">'year'</span>].astype(<span class="bu">str</span>) <span class="op">+</span> <span class="st">'-Q'</span> <span class="op">+</span> full_synth_df[<span class="st">'quarter'</span>].astype(<span class="bu">str</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Group by date and calculate the mean for specific columns and the sum for kelp_area</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>aggregation <span class="op">=</span> {</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sst'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'year'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'quarter'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'kelp_area'</span>: <span class="st">'sum'</span>  <span class="co"># Sum the kelp_area column</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>sum_kelp <span class="op">=</span> full_synth_df.groupby(<span class="st">'Date'</span>).agg(aggregation)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset index to move "Season" from index to a column</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>sum_kelp <span class="op">=</span> sum_kelp.reset_index()</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert from m^2 to km^2 and round values</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>sum_kelp[<span class="st">'kelp_area'</span>] <span class="op">=</span> (sum_kelp[<span class="st">'kelp_area'</span>] <span class="op">/</span> <span class="dv">1000000</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>sum_kelp[<span class="st">'year'</span>] <span class="op">=</span> sum_kelp[<span class="st">'year'</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a custom function to generate the new column based on "quarter" and "year"</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_season(row):</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    quarter <span class="op">=</span> row[<span class="st">"quarter"</span>]</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    year <span class="op">=</span> row[<span class="st">"year"</span>]</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> quarter <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Winter </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> quarter <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Spring </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> quarter <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Summer </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> quarter <span class="op">==</span> <span class="dv">4</span>:</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Fall </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Invalid Quarter"</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the custom function to create the new "Season" column</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>sum_kelp[<span class="st">"Season"</span>] <span class="op">=</span> sum_kelp.<span class="bu">apply</span>(generate_season, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summarized dataframe</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sum_kelp.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date        sst  year  quarter  kelp_area       Season
+0 2014-01-01  14.916278  2014      1.0       1.23  Winter 2014
+1 2014-04-01  16.053795  2014      2.0       2.43  Spring 2014
+2 2014-07-01  19.865393  2014      3.0       2.15  Summer 2014
+3 2014-10-01  18.694880  2014      4.0       0.37    Fall 2014
+4 2015-01-01  16.293984  2015      1.0       0.40  Winter 2015</code></pre>
+</div>
+</div>
+<p>Here I show the kelp area over time with the help of plotly!</p>
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the overall range for y-axis based on kelp area data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y_axis_range <span class="op">=</span> [<span class="dv">0</span>, sum_kelp[<span class="st">'kelp_area'</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the figure</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the Kelp Area data with custom color and line style</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>sum_kelp.Date,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>sum_kelp[<span class="st">'kelp_area'</span>],</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'lines+markers'</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">''</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#BCD79D'</span>),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">8</span>),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">'Season: %</span><span class="sc">{text}</span><span class="st">&lt;br&gt;Kelp Area: %</span><span class="sc">{y}</span><span class="st"> km²'</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Update layout for interactivity</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Kelp area is highly variable in the Santa Barbara Channel'</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    title_font<span class="op">=</span><span class="bu">dict</span>(family<span class="op">=</span><span class="st">'Arial'</span>, size<span class="op">=</span><span class="dv">22</span>, color<span class="op">=</span><span class="st">'white'</span>),</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    title_x<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    font<span class="op">=</span><span class="bu">dict</span>(family<span class="op">=</span><span class="st">'Arial'</span>, size<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">'white'</span>),</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'Date'</span>, showgrid<span class="op">=</span><span class="va">True</span>, gridcolor<span class="op">=</span><span class="st">'rgba(211, 211, 211, 0.5)'</span>, showline<span class="op">=</span><span class="va">True</span>, linewidth<span class="op">=</span><span class="dv">1</span>, linecolor<span class="op">=</span><span class="st">'white'</span>),</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'Total Kelp Area (km²)'</span>, showgrid<span class="op">=</span><span class="va">False</span>, showline<span class="op">=</span><span class="va">False</span>, linewidth<span class="op">=</span><span class="dv">1</span>, linecolor<span class="op">=</span><span class="st">'white'</span>, <span class="bu">range</span><span class="op">=</span>y_axis_range, tickmode<span class="op">=</span><span class="st">'linear'</span>, dtick<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="bu">dict</span>(font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">'white'</span>)),</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    plot_bgcolor<span class="op">=</span><span class="st">'#333333'</span>,</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    paper_bgcolor<span class="op">=</span><span class="st">'#333333'</span>,</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">600</span>,</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    margin<span class="op">=</span><span class="bu">dict</span>(b<span class="op">=</span><span class="dv">60</span>)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Update hover text with 'Season'</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>fig.update_traces(</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span>sum_kelp[<span class="st">'Season'</span>])</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the interactive plot</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="a0b66b27-c566-4822-a811-9a0a88d5b2ae" class="plotly-graph-div" style="height:600px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("a0b66b27-c566-4822-a811-9a0a88d5b2ae")) {                    Plotly.newPlot(                        "a0b66b27-c566-4822-a811-9a0a88d5b2ae",                        [{"hovertemplate":"Season: %{text}<br>Kelp Area: %{y} km\u00b2","line":{"color":"#BCD79D"},"marker":{"size":8},"mode":"lines+markers","name":"","x":["2014-01-01T00:00:00","2014-04-01T00:00:00","2014-07-01T00:00:00","2014-10-01T00:00:00","2015-01-01T00:00:00","2015-04-01T00:00:00","2015-07-01T00:00:00","2015-10-01T00:00:00","2016-01-01T00:00:00","2016-04-01T00:00:00","2016-07-01T00:00:00","2016-10-01T00:00:00","2017-01-01T00:00:00","2017-04-01T00:00:00","2017-07-01T00:00:00","2017-10-01T00:00:00","2018-01-01T00:00:00","2018-04-01T00:00:00","2018-07-01T00:00:00","2018-10-01T00:00:00","2019-01-01T00:00:00","2019-04-01T00:00:00","2019-07-01T00:00:00","2019-10-01T00:00:00","2020-01-01T00:00:00","2020-04-01T00:00:00","2020-07-01T00:00:00","2020-10-01T00:00:00","2021-01-01T00:00:00","2021-04-01T00:00:00","2021-07-01T00:00:00","2021-10-01T00:00:00","2022-01-01T00:00:00","2022-04-01T00:00:00","2022-07-01T00:00:00","2022-10-01T00:00:00"],"y":[1.23,2.43,2.15,0.37,0.4,5.69,4.67,0.06,1.37,5.01,2.8,1.57,0.81,3.38,3.48,1.0,1.98,7.99,4.06,0.09,0.4,2.76,2.48,0.49,0.78,3.7,5.25,1.33,1.93,4.11,2.97,1.01,0.93,3.43,2.7,1.57],"type":"scatter","text":["Winter 2014","Spring 2014","Summer 2014","Fall 2014","Winter 2015","Spring 2015","Summer 2015","Fall 2015","Winter 2016","Spring 2016","Summer 2016","Fall 2016","Winter 2017","Spring 2017","Summer 2017","Fall 2017","Winter 2018","Spring 2018","Summer 2018","Fall 2018","Winter 2019","Spring 2019","Summer 2019","Fall 2019","Winter 2020","Spring 2020","Summer 2020","Fall 2020","Winter 2021","Spring 2021","Summer 2021","Fall 2021","Winter 2022","Spring 2022","Summer 2022","Fall 2022"]}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"Kelp area is highly variable in the Santa Barbara Channel","font":{"family":"Arial","size":22,"color":"white"},"x":0.5},"font":{"family":"Arial","size":14,"color":"white"},"xaxis":{"title":{"text":"Date"},"showgrid":true,"gridcolor":"rgba(211, 211, 211, 0.5)","showline":true,"linewidth":1,"linecolor":"white"},"yaxis":{"title":{"text":"Total Kelp Area (km\u00b2)"},"showgrid":false,"showline":false,"linewidth":1,"linecolor":"white","range":[0,8.99],"tickmode":"linear","dtick":1},"legend":{"font":{"size":14,"color":"white"}},"margin":{"b":60},"plot_bgcolor":"#333333","paper_bgcolor":"#333333","height":600},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('a0b66b27-c566-4822-a811-9a0a88d5b2ae');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+</section>
+<section id="visualizing-nutrient-data" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-nutrient-data">Visualizing nutrient data:</h3>
+<p>Next I visualize the ocean nutrient data based on averages of the seasonal values over time with plotly. Similarly, I needed to do a little wrangling first.</p>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the data frame</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(obs_nutr_df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year  quarter       lat        lon      temp  nitrate  nitrite  \
+0  2014        1  34.01032 -118.84232  14.90600   0.4000  0.08300   
+1  2015        1  34.45118 -120.52470  15.87580   0.3125  0.06225   
+2  2015        1  34.40263 -119.80203  16.32375   0.0500  0.03950   
+3  2015        1  34.27690 -120.02423  16.35700   0.0300  0.00900   
+4  2015        1  34.25833 -119.32373  16.01060   0.1525  0.12875   
+
+   nitrate_nitrite  phosphate  ammonium        sst nutrient_source  \
+0          0.48300   0.376667  0.066667  15.950767         CalCOFI   
+1          0.37475   0.385000  0.125000  14.712589         CalCOFI   
+2          0.08950   0.385000  0.060000  14.730477         CalCOFI   
+3          0.03900   0.310000  0.010000  14.923833         CalCOFI   
+4          0.28125   0.567500  0.227500  14.923833         CalCOFI   
+
+        depth  kelp_area  kelp_biomass  
+0  -87.118073        NaN           NaN  
+1 -112.089943        NaN           NaN  
+2 -109.903297        NaN           NaN  
+3 -481.472626        NaN           NaN  
+4 -481.472626        NaN           NaN  </code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine year and quarter columns into a single datetime column</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>obs_nutr_df[<span class="st">'Date'</span>] <span class="op">=</span> pd.to_datetime(obs_nutr_df[<span class="st">'year'</span>].astype(<span class="bu">str</span>) <span class="op">+</span> <span class="st">'-Q'</span> <span class="op">+</span> obs_nutr_df[<span class="st">'quarter'</span>].astype(<span class="bu">str</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a custom function to generate the new column based on "quarter" and "year"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_season(row):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    quarter <span class="op">=</span> row[<span class="st">"quarter"</span>]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    year <span class="op">=</span> row[<span class="st">"year"</span>]</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> quarter <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Winter </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> quarter <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Spring </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> quarter <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Summer </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> quarter <span class="op">==</span> <span class="dv">4</span>:</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Fall </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Invalid Quarter"</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the custom function to create the new "Season" column</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>obs_nutr_df[<span class="st">"Season"</span>] <span class="op">=</span> obs_nutr_df.<span class="bu">apply</span>(generate_season, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Group by date and season, and calculate the mean for each column</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>mean_nutr <span class="op">=</span> obs_nutr_df.groupby([<span class="st">'Date'</span>, <span class="st">'Season'</span>]).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset index to move "Season" from index to a column</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>mean_nutr <span class="op">=</span> mean_nutr.reset_index()</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop unused columns</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>mean_nutr <span class="op">=</span> mean_nutr.drop([<span class="st">'lat'</span>, <span class="st">'lon'</span>, <span class="st">'depth'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summarized dataframe</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_nutr.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date       Season    year  quarter       temp   nitrate   nitrite  \
+0 2014-01-01  Winter 2014  2014.0      1.0  14.312260  0.588876  0.119150   
+1 2014-04-01  Spring 2014  2014.0      2.0  13.987199  2.369880  0.104520   
+2 2014-07-01  Summer 2014  2014.0      3.0  18.531475  0.092371  0.060429   
+3 2014-10-01    Fall 2014  2014.0      4.0  18.146190  0.106062  0.074262   
+4 2015-01-01  Winter 2015  2015.0      1.0  15.701622  0.131579  0.071911   
+
+   nitrate_nitrite  phosphate  ammonium        sst     kelp_area  \
+0         1.264658   0.339080  0.387688  18.450691   7879.809524   
+1         2.200509   0.349068  0.370103  15.902271  10447.044944   
+2         0.178743   0.178004  0.169410  15.868604   8951.882353   
+3         0.237076   0.251334  0.285495  14.606426  16152.435644   
+4         0.519048   0.334001  0.193615  17.157000  10833.866667   
+
+    kelp_biomass  
+0   61283.412698  
+1   83235.258427  
+2   71077.823529  
+3  121647.386139  
+4   81012.066667  </code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the overall range for y-axis that covers all nutrient data</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>y_axis_range <span class="op">=</span> [<span class="dv">0</span>, mean_nutr[[<span class="st">'nitrate'</span>, <span class="st">'nitrite'</span>, <span class="st">'phosphate'</span>, <span class="st">'ammonium'</span>]].<span class="bu">max</span>().<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.5</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the figure</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the data with custom colors and line styles</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>mean_nutr.Date,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>mean_nutr[<span class="st">'nitrate'</span>],</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'lines+markers'</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Nitrate'</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#D28077'</span>),</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">'Season: %</span><span class="sc">{text}</span><span class="st">&lt;br&gt;Concentration: %</span><span class="sc">{y:.2f}</span><span class="st"> μmol/L'</span>,</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>mean_nutr.Date,</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>mean_nutr[<span class="st">'nitrite'</span>],</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'lines+markers'</span>,</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Nitrite'</span>,</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#93C2E2'</span>),</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">'Season: %</span><span class="sc">{text}</span><span class="st">&lt;br&gt;Concentration: %</span><span class="sc">{y:.2f}</span><span class="st"> μmol/L'</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>mean_nutr.Date,</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>mean_nutr[<span class="st">'phosphate'</span>],</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'lines+markers'</span>,</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Phosphate'</span>,</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#BCD79D'</span>),</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">'Season: %</span><span class="sc">{text}</span><span class="st">&lt;br&gt;Concentration: %</span><span class="sc">{y:.2f}</span><span class="st"> μmol/L'</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>mean_nutr.Date,</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>mean_nutr[<span class="st">'ammonium'</span>],</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'lines+markers'</span>,</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Ammonium'</span>,</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#036554'</span>),</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">'Season: %</span><span class="sc">{text}</span><span class="st">&lt;br&gt;Concentration: %</span><span class="sc">{y:.2f}</span><span class="st"> μmol/L'</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Update layout for interactivity</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Nutrient concentrations trend higher in winter and spring and lower in summer and fall'</span>,</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>    title_font<span class="op">=</span><span class="bu">dict</span>(family<span class="op">=</span><span class="st">'Arial'</span>, size<span class="op">=</span><span class="dv">22</span>, color<span class="op">=</span><span class="st">'white'</span>),</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    title_x<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    font<span class="op">=</span><span class="bu">dict</span>(family<span class="op">=</span><span class="st">'Arial'</span>, size<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">'white'</span>),</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'Time'</span>, showgrid<span class="op">=</span><span class="va">True</span>, gridcolor<span class="op">=</span><span class="st">'rgba(211, 211, 211, 0.5)'</span>, showline<span class="op">=</span><span class="va">True</span>, linewidth<span class="op">=</span><span class="dv">1</span>, linecolor<span class="op">=</span><span class="st">'white'</span>),</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'Average Concentration (μmol/L)'</span>, showgrid<span class="op">=</span><span class="va">False</span>, showline<span class="op">=</span><span class="va">False</span>, linewidth<span class="op">=</span><span class="dv">1</span>, linecolor<span class="op">=</span><span class="st">'white'</span>, <span class="bu">range</span><span class="op">=</span>y_axis_range, tickmode<span class="op">=</span><span class="st">'linear'</span>, dtick<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="bu">dict</span>(font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">'white'</span>)),</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>    plot_bgcolor<span class="op">=</span><span class="st">'#333333'</span>,</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>    paper_bgcolor<span class="op">=</span><span class="st">'#333333'</span>,</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">600</span></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Update hover text with 'Season'</span></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>fig.update_traces(</span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span>mean_nutr[<span class="st">'Season'</span>]</span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the interactive plot</span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="cf115f57-8c90-4580-80ee-6f3ddd2d016b" class="plotly-graph-div" style="height:600px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("cf115f57-8c90-4580-80ee-6f3ddd2d016b")) {                    Plotly.newPlot(                        "cf115f57-8c90-4580-80ee-6f3ddd2d016b",                        [{"hovertemplate":"Season: %{text}<br>Concentration: %{y:.2f} \u03bcmol/L","line":{"color":"#D28077"},"mode":"lines+markers","name":"Nitrate","x":["2014-01-01T00:00:00","2014-04-01T00:00:00","2014-07-01T00:00:00","2014-10-01T00:00:00","2015-01-01T00:00:00","2015-04-01T00:00:00","2015-07-01T00:00:00","2015-10-01T00:00:00","2016-01-01T00:00:00","2016-04-01T00:00:00","2016-07-01T00:00:00","2016-10-01T00:00:00","2017-01-01T00:00:00","2017-04-01T00:00:00","2017-07-01T00:00:00","2017-10-01T00:00:00","2018-01-01T00:00:00","2018-04-01T00:00:00","2018-07-01T00:00:00","2018-10-01T00:00:00","2019-01-01T00:00:00","2019-04-01T00:00:00","2019-07-01T00:00:00","2019-10-01T00:00:00","2020-01-01T00:00:00","2020-07-01T00:00:00","2020-10-01T00:00:00","2021-01-01T00:00:00","2021-04-01T00:00:00","2021-07-01T00:00:00","2021-10-01T00:00:00","2022-01-01T00:00:00","2022-04-01T00:00:00","2022-07-01T00:00:00","2022-10-01T00:00:00"],"y":[0.588876404494382,2.3698797250859105,0.09237113402061857,0.1060618556701031,0.13157894736842105,1.6623814432989692,0.09874479166666666,0.12932456140350876,0.721921875,1.9784553264604812,0.38671006944444447,0.6751288659793814,1.5575945017182131,4.146620274914089,0.31182474226804124,0.26390034364261167,1.2370430107526882,3.554457142857143,0.10272727272727274,0.2526579861111111,1.1163888888888889,2.730970790378007,0.44648437500000004,0.3600257731958763,0.7717592592592593,null,null,null,null,null,null,null,null,null,null],"type":"scatter","text":["Winter 2014","Spring 2014","Summer 2014","Fall 2014","Winter 2015","Spring 2015","Summer 2015","Fall 2015","Winter 2016","Spring 2016","Summer 2016","Fall 2016","Winter 2017","Spring 2017","Summer 2017","Fall 2017","Winter 2018","Spring 2018","Summer 2018","Fall 2018","Winter 2019","Spring 2019","Summer 2019","Fall 2019","Winter 2020","Summer 2020","Fall 2020","Winter 2021","Spring 2021","Summer 2021","Fall 2021","Winter 2022","Spring 2022","Summer 2022","Fall 2022"]},{"hovertemplate":"Season: %{text}<br>Concentration: %{y:.2f} \u03bcmol/L","line":{"color":"#93C2E2"},"mode":"lines+markers","name":"Nitrite","x":["2014-01-01T00:00:00","2014-04-01T00:00:00","2014-07-01T00:00:00","2014-10-01T00:00:00","2015-01-01T00:00:00","2015-04-01T00:00:00","2015-07-01T00:00:00","2015-10-01T00:00:00","2016-01-01T00:00:00","2016-04-01T00:00:00","2016-07-01T00:00:00","2016-10-01T00:00:00","2017-01-01T00:00:00","2017-04-01T00:00:00","2017-07-01T00:00:00","2017-10-01T00:00:00","2018-01-01T00:00:00","2018-04-01T00:00:00","2018-07-01T00:00:00","2018-10-01T00:00:00","2019-01-01T00:00:00","2019-04-01T00:00:00","2019-07-01T00:00:00","2019-10-01T00:00:00","2020-01-01T00:00:00","2020-07-01T00:00:00","2020-10-01T00:00:00","2021-01-01T00:00:00","2021-04-01T00:00:00","2021-07-01T00:00:00","2021-10-01T00:00:00","2022-01-01T00:00:00","2022-04-01T00:00:00","2022-07-01T00:00:00","2022-10-01T00:00:00"],"y":[0.11915013333333334,0.10452004611111111,0.06042868444444444,0.07426215222142858,0.07191060628571429,0.10346857801149426,0.04099621212121212,0.0863197619047619,0.16995844444444444,0.11999384615384615,0.06881818181818182,0.08960733333333332,0.12854895833333332,0.14504418894047616,0.05097224494555555,0.06612671316666666,0.03180414713725489,0.12827524285087719,null,0.026047107466666657,0.1845833333333333,0.16365375480246913,0.0539658923076923,0.025284741736111088,0.04322222222222221,null,null,null,0.121,0.01933333333333333,0.12766666666666665,null,null,null,0.22601386683333333],"type":"scatter","text":["Winter 2014","Spring 2014","Summer 2014","Fall 2014","Winter 2015","Spring 2015","Summer 2015","Fall 2015","Winter 2016","Spring 2016","Summer 2016","Fall 2016","Winter 2017","Spring 2017","Summer 2017","Fall 2017","Winter 2018","Spring 2018","Summer 2018","Fall 2018","Winter 2019","Spring 2019","Summer 2019","Fall 2019","Winter 2020","Summer 2020","Fall 2020","Winter 2021","Spring 2021","Summer 2021","Fall 2021","Winter 2022","Spring 2022","Summer 2022","Fall 2022"]},{"hovertemplate":"Season: %{text}<br>Concentration: %{y:.2f} \u03bcmol/L","line":{"color":"#BCD79D"},"mode":"lines+markers","name":"Phosphate","x":["2014-01-01T00:00:00","2014-04-01T00:00:00","2014-07-01T00:00:00","2014-10-01T00:00:00","2015-01-01T00:00:00","2015-04-01T00:00:00","2015-07-01T00:00:00","2015-10-01T00:00:00","2016-01-01T00:00:00","2016-04-01T00:00:00","2016-07-01T00:00:00","2016-10-01T00:00:00","2017-01-01T00:00:00","2017-04-01T00:00:00","2017-07-01T00:00:00","2017-10-01T00:00:00","2018-01-01T00:00:00","2018-04-01T00:00:00","2018-07-01T00:00:00","2018-10-01T00:00:00","2019-01-01T00:00:00","2019-04-01T00:00:00","2019-07-01T00:00:00","2019-10-01T00:00:00","2020-01-01T00:00:00","2020-07-01T00:00:00","2020-10-01T00:00:00","2021-01-01T00:00:00","2021-04-01T00:00:00","2021-07-01T00:00:00","2021-10-01T00:00:00","2022-01-01T00:00:00","2022-04-01T00:00:00","2022-07-01T00:00:00","2022-10-01T00:00:00"],"y":[0.3390796,0.3490675163015873,0.178004362647619,0.25133448405387204,0.3340006494152047,0.38984679035947717,0.21010432098765433,0.3124158249158249,0.5962361111111111,0.46243942652329756,0.2304831275720165,0.3019011111111111,0.3958333333333333,0.5242362527474748,0.19194736707843135,0.22789728409523813,0.2713909252171718,0.5164319720956072,0.10630222222222233,0.29618089644444445,0.4374527777777778,0.5364265423125,0.22032679969658123,0.19132196777777777,0.2859738095238096,0.2265572222222223,0.27719190995555565,0.5837055555555556,0.5727507407407407,0.22818111111111106,0.3355518518518519,0.5726122222222222,0.2827566666666666,0.2342883333333332,0.6555565649999999],"type":"scatter","text":["Winter 2014","Spring 2014","Summer 2014","Fall 2014","Winter 2015","Spring 2015","Summer 2015","Fall 2015","Winter 2016","Spring 2016","Summer 2016","Fall 2016","Winter 2017","Spring 2017","Summer 2017","Fall 2017","Winter 2018","Spring 2018","Summer 2018","Fall 2018","Winter 2019","Spring 2019","Summer 2019","Fall 2019","Winter 2020","Summer 2020","Fall 2020","Winter 2021","Spring 2021","Summer 2021","Fall 2021","Winter 2022","Spring 2022","Summer 2022","Fall 2022"]},{"hovertemplate":"Season: %{text}<br>Concentration: %{y:.2f} \u03bcmol/L","line":{"color":"#036554"},"mode":"lines+markers","name":"Ammonium","x":["2014-01-01T00:00:00","2014-04-01T00:00:00","2014-07-01T00:00:00","2014-10-01T00:00:00","2015-01-01T00:00:00","2015-04-01T00:00:00","2015-07-01T00:00:00","2015-10-01T00:00:00","2016-01-01T00:00:00","2016-04-01T00:00:00","2016-07-01T00:00:00","2016-10-01T00:00:00","2017-01-01T00:00:00","2017-04-01T00:00:00","2017-07-01T00:00:00","2017-10-01T00:00:00","2018-01-01T00:00:00","2018-04-01T00:00:00","2018-07-01T00:00:00","2018-10-01T00:00:00","2019-01-01T00:00:00","2019-04-01T00:00:00","2019-07-01T00:00:00","2019-10-01T00:00:00","2020-01-01T00:00:00","2020-07-01T00:00:00","2020-10-01T00:00:00","2021-01-01T00:00:00","2021-04-01T00:00:00","2021-07-01T00:00:00","2021-10-01T00:00:00","2022-01-01T00:00:00","2022-04-01T00:00:00","2022-07-01T00:00:00","2022-10-01T00:00:00"],"y":[0.387687962962963,0.3701027777777778,0.16940952380952382,0.2854948412698413,0.1936148148148148,0.3266174603174606,0.09818504273504272,0.18341249999999998,0.2806756410256411,0.562609126984127,0.17632051282051286,0.3433492063492066,0.4946166666666662,0.32069102564102536,0.17406468253968257,0.1401916666666667,0.24080777777777743,0.43676085858585856,0.5015200000000002,0.10884888888888886,0.31633555555555554,0.382009126984127,0.21324487179487184,0.12491407407407405,0.042904761904761876,0.06725111111111107,0.2490477777777778,0.39777222222222236,0.7222588888888888,0.2349266666666668,0.34009666666666677,0.25026555555555563,0.7664377777777769,0.26064499999999996,null],"type":"scatter","text":["Winter 2014","Spring 2014","Summer 2014","Fall 2014","Winter 2015","Spring 2015","Summer 2015","Fall 2015","Winter 2016","Spring 2016","Summer 2016","Fall 2016","Winter 2017","Spring 2017","Summer 2017","Fall 2017","Winter 2018","Spring 2018","Summer 2018","Fall 2018","Winter 2019","Spring 2019","Summer 2019","Fall 2019","Winter 2020","Summer 2020","Fall 2020","Winter 2021","Spring 2021","Summer 2021","Fall 2021","Winter 2022","Spring 2022","Summer 2022","Fall 2022"]}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"Nutrient concentrations trend higher in winter and spring and lower in summer and fall","font":{"family":"Arial","size":22,"color":"white"},"x":0.5},"font":{"family":"Arial","size":14,"color":"white"},"xaxis":{"title":{"text":"Time"},"showgrid":true,"gridcolor":"rgba(211, 211, 211, 0.5)","showline":true,"linewidth":1,"linecolor":"white"},"yaxis":{"title":{"text":"Average Concentration (\u03bcmol/L)"},"showgrid":false,"showline":false,"linewidth":1,"linecolor":"white","range":[0,4.646620274914089],"tickmode":"linear","dtick":1},"legend":{"font":{"size":14,"color":"white"}},"plot_bgcolor":"#333333","paper_bgcolor":"#333333","height":600},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('cf115f57-8c90-4580-80ee-6f3ddd2d016b');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+</section>
+<section id="visualizing-depth-data" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-depth-data">Visualizing depth data:</h3>
+<p>Next, I want to get a better understanding of ocean depth in the channel. Here I create a histogram of depths. First, though, I will need to average the depth over all time periods grouped by lat and lon. This is because depth remains constant over all years and is thus duplicated in the data set. However, I do not want duplicates in the histogram.</p>
+<div class="cell" data-execution_count="10">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Group by "lat" and "lon" and calculate the average of the "depth" column</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>grouped_data <span class="op">=</span> full_synth_df.groupby([<span class="st">'lat'</span>, <span class="st">'lon'</span>])[<span class="st">'depth'</span>].mean().<span class="bu">round</span>()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Because some grid cells overlap with land, the value is greater than zero, but I want to ceiling the data at zero.</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the grouped data back to a DataFrame</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>grouped_df <span class="op">=</span> grouped_data.reset_index()</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace values greater than zero with zero in the "depth" column</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>grouped_df[<span class="st">'depth'</span>] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">*</span> grouped_df[<span class="st">'depth'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="dv">0</span> <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> x)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the modified DataFrame</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grouped_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>          lat      lon   depth
+0      33.854 -120.646  1971.0
+1      33.854 -120.638  1954.0
+2      33.854 -120.630  1942.0
+3      33.854 -120.622  1931.0
+4      33.854 -120.614  1923.0
+...       ...      ...     ...
+13511  34.566 -120.646    54.0
+13512  34.566 -120.638    23.0
+13513  34.574 -120.646    45.0
+13514  34.582 -120.646    42.0
+13515  34.590 -120.646    46.0
+
+[13516 rows x 3 columns]</code></pre>
+</div>
+</div>
+<p>Here I visualize the depth data in a histogram with plotly! Again, this data was originally in the form of a raster, so each measurement of depth represents a 0.008° x 0.008° grid cell.</p>
+<div class="cell" data-execution_count="11">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the histogram manually</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>hist, bins <span class="op">=</span> np.histogram(grouped_df.depth, bins<span class="op">=</span><span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">int</span>(grouped_df[<span class="st">'depth'</span>].<span class="bu">max</span>()) <span class="op">+</span> <span class="dv">1</span>, <span class="dv">50</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>bin_centers <span class="op">=</span> bins[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> (bins[<span class="dv">1</span>] <span class="op">-</span> bins[<span class="dv">0</span>]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>bin_ranges <span class="op">=</span> [<span class="ss">f'Range: </span><span class="sc">{</span>bins[i]<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>bins[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">-</span> <span class="dv">1</span><span class="sc">}</span><span class="ss"> m'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(bins) <span class="op">-</span> <span class="dv">1</span>)]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>hover_text <span class="op">=</span> [<span class="ss">f'</span><span class="sc">{</span>bin_ranges[i]<span class="sc">}</span><span class="ss">&lt;br&gt;Count: </span><span class="sc">{</span>hist[i]<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(bins) <span class="op">-</span> <span class="dv">1</span>)]</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the data with custom colors and line styles</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Bar(</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>bin_centers,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>hist,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    hovertext<span class="op">=</span>hover_text,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    hoverinfo<span class="op">=</span><span class="st">'text'</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span>bins[<span class="dv">1</span>] <span class="op">-</span> bins[<span class="dv">0</span>],</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    marker_color<span class="op">=</span><span class="st">'#02a8c9'</span>,</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    marker_line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'rgba(211, 211, 211, 0.5)'</span>, width<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Update layout for interactivity</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    xaxis_title<span class="op">=</span><span class="st">'Average Depth (m)'</span>,</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    yaxis_title<span class="op">=</span><span class="st">'Frequency'</span>,</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Histogram of Depths in the Santa Barbara Channel'</span>,</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    title_font<span class="op">=</span><span class="bu">dict</span>(family<span class="op">=</span><span class="st">'Arial'</span>, size<span class="op">=</span><span class="dv">22</span>, color<span class="op">=</span><span class="st">'white'</span>),</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    font<span class="op">=</span><span class="bu">dict</span>(family<span class="op">=</span><span class="st">'Arial'</span>, size<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">'white'</span>),</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(showgrid<span class="op">=</span><span class="va">False</span>, showline<span class="op">=</span><span class="va">False</span>, linewidth<span class="op">=</span><span class="dv">1</span>, linecolor<span class="op">=</span><span class="st">'white'</span>),</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(showgrid<span class="op">=</span><span class="va">True</span>, gridcolor<span class="op">=</span><span class="st">'rgba(211, 211, 211, 0.5)'</span>, showline<span class="op">=</span><span class="va">False</span>, linewidth<span class="op">=</span><span class="dv">1</span>, linecolor<span class="op">=</span><span class="st">'white'</span>),</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    plot_bgcolor<span class="op">=</span><span class="st">'#333333'</span>,</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    paper_bgcolor<span class="op">=</span><span class="st">'#333333'</span>,</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">600</span>,</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    title_x<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    annotations<span class="op">=</span>[</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">dict</span>(</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="fl">1.08</span>,</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>            showarrow<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>            text<span class="op">=</span><span class="st">"where every data point represents 0.008° x 0.008° (approximately 1 km)"</span>,</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>            xref<span class="op">=</span><span class="st">"paper"</span>,</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>            yref<span class="op">=</span><span class="st">"paper"</span>,</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>            font<span class="op">=</span><span class="bu">dict</span>(family<span class="op">=</span><span class="st">'Arial'</span>, size<span class="op">=</span><span class="dv">14</span>, color<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the interactive plot</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="a28dec5c-e847-44ae-bd24-84f96aacf55a" class="plotly-graph-div" style="height:600px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("a28dec5c-e847-44ae-bd24-84f96aacf55a")) {                    Plotly.newPlot(                        "a28dec5c-e847-44ae-bd24-84f96aacf55a",                        [{"hoverinfo":"text","hovertext":["Range: 0-49 m<br>Count: 396","Range: 50-99 m<br>Count: 2323","Range: 100-149 m<br>Count: 2364","Range: 150-199 m<br>Count: 674","Range: 200-249 m<br>Count: 600","Range: 250-299 m<br>Count: 758","Range: 300-349 m<br>Count: 482","Range: 350-399 m<br>Count: 486","Range: 400-449 m<br>Count: 533","Range: 450-499 m<br>Count: 688","Range: 500-549 m<br>Count: 813","Range: 550-599 m<br>Count: 642","Range: 600-649 m<br>Count: 463","Range: 650-699 m<br>Count: 151","Range: 700-749 m<br>Count: 176","Range: 750-799 m<br>Count: 239","Range: 800-849 m<br>Count: 311","Range: 850-899 m<br>Count: 381","Range: 900-949 m<br>Count: 327","Range: 950-999 m<br>Count: 46","Range: 1000-1049 m<br>Count: 45","Range: 1050-1099 m<br>Count: 33","Range: 1100-1149 m<br>Count: 41","Range: 1150-1199 m<br>Count: 38","Range: 1200-1249 m<br>Count: 63","Range: 1250-1299 m<br>Count: 57","Range: 1300-1349 m<br>Count: 38","Range: 1350-1399 m<br>Count: 28","Range: 1400-1449 m<br>Count: 33","Range: 1450-1499 m<br>Count: 32","Range: 1500-1549 m<br>Count: 34","Range: 1550-1599 m<br>Count: 27","Range: 1600-1649 m<br>Count: 36","Range: 1650-1699 m<br>Count: 36","Range: 1700-1749 m<br>Count: 37","Range: 1750-1799 m<br>Count: 30","Range: 1800-1849 m<br>Count: 23","Range: 1850-1899 m<br>Count: 20","Range: 1900-1949 m<br>Count: 9"],"marker":{"color":"#02a8c9","line":{"color":"rgba(211, 211, 211, 0.5)","width":1}},"width":50,"x":[25.0,75.0,125.0,175.0,225.0,275.0,325.0,375.0,425.0,475.0,525.0,575.0,625.0,675.0,725.0,775.0,825.0,875.0,925.0,975.0,1025.0,1075.0,1125.0,1175.0,1225.0,1275.0,1325.0,1375.0,1425.0,1475.0,1525.0,1575.0,1625.0,1675.0,1725.0,1775.0,1825.0,1875.0,1925.0],"y":[396,2323,2364,674,600,758,482,486,533,688,813,642,463,151,176,239,311,381,327,46,45,33,41,38,63,57,38,28,33,32,34,27,36,36,37,30,23,20,9],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"Histogram of Depths in the Santa Barbara Channel","font":{"family":"Arial","size":22,"color":"white"},"x":0.5},"font":{"family":"Arial","size":14,"color":"white"},"xaxis":{"title":{"text":"Average Depth (m)"},"showgrid":false,"showline":false,"linewidth":1,"linecolor":"white"},"yaxis":{"title":{"text":"Frequency"},"showgrid":true,"gridcolor":"rgba(211, 211, 211, 0.5)","showline":false,"linewidth":1,"linecolor":"white"},"plot_bgcolor":"#333333","paper_bgcolor":"#333333","height":600,"annotations":[{"font":{"color":"white","family":"Arial","size":14},"showarrow":false,"text":"where every data point represents 0.008\u00b0 x 0.008\u00b0 (approximately 1 km)","x":0.5,"xref":"paper","y":1.08,"yref":"paper"}]},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('a28dec5c-e847-44ae-bd24-84f96aacf55a');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<p>Here is the depth data as a raster layer.</p>
+<div class="cell" data-execution_count="12">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the font family for the entire plot</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'sans-serif'</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Arial'</span>]  <span class="co"># Use Arial font or another available sans-serif font</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize the figure background color, axes background color, and text color</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">8</span>)  <span class="co"># Set the figure size (width, height) in inches</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'figure.facecolor'</span>] <span class="op">=</span> <span class="st">'#333333'</span>   <span class="co"># Set background color of the figure</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'axes.edgecolor'</span>] <span class="op">=</span> <span class="st">'#333333'</span>       <span class="co"># Set color of axes lines to white</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'axes.labelcolor'</span>] <span class="op">=</span> <span class="st">'white'</span>      <span class="co"># Set color of axes labels to white</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'xtick.color'</span>] <span class="op">=</span> <span class="st">'white'</span>          <span class="co"># Set color of x-axis ticks to white</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'ytick.color'</span>] <span class="op">=</span> <span class="st">'white'</span>          <span class="co"># Set color of y-axis ticks to white</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'text.color'</span>] <span class="op">=</span> <span class="st">'white'</span>           <span class="co"># Set text color to white</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Open the raster file using rasterio</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> rasterio.<span class="bu">open</span>(raster_path) <span class="im">as</span> src:</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set up colormap and normalization</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    cmap <span class="op">=</span> plt.cm.Blues_r <span class="co"># Reverse the Blues colormap</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    cmap.set_bad(color<span class="op">=</span><span class="st">'#333333'</span>)  <span class="co"># Set NaN values to be white</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    norm <span class="op">=</span> plt.Normalize(vmin<span class="op">=-</span><span class="dv">1000</span>, vmax<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a larger figure</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="fl">10.5</span>, <span class="fl">8.5</span>))</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add "Latitude" and "Longitude" labels using plt.text</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    plt.text(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.16</span>, <span class="st">'Longitude'</span>, transform<span class="op">=</span>plt.gca().transAxes,</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>             ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    plt.text(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="st">'Latitude'</span>, transform<span class="op">=</span>plt.gca().transAxes,</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>             va<span class="op">=</span><span class="st">'center'</span>, rotation<span class="op">=</span><span class="st">'vertical'</span>, color<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the raster data using rasterio's show function</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    rasterio.plot.show(src,</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>                       cmap<span class="op">=</span>cmap,</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>                       norm<span class="op">=</span>norm,</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>                       title<span class="op">=</span><span class="st">'Depth in the Santa Barbara Channel'</span>,</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>                       origin<span class="op">=</span><span class="st">'upper'</span>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>                      </span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-13-output-1.png" width="879" height="406"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{windschitl2023,
+  author = {Elke Windschitl},
+  title = {Data {Visualization} {Examples} in {Python}},
+  date = {2023-08-19},
+  url = {https://elkewind.github.io/posts/2023-08-19-python-viz},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-windschitl2023" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Elke Windschitl. 2023. <span>“Data Visualization Examples in
+Python.”</span> August 19, 2023. <a href="https://elkewind.github.io/posts/2023-08-19-python-viz">https://elkewind.github.io/posts/2023-08-19-python-viz</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Elke Windschitl</div>   
+    <div class="nav-footer-right">Made with Quarto</div>
+  </div>
+</footer>
+
+
+
+</body></html>

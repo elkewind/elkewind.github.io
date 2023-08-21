@@ -1,0 +1,434 @@
+---
+title: "Data Visualization Examples in Python"
+author:
+  - name: Elke Windschitl
+    url: https://elkewind.github.io
+description: "Using Python libraries to visualize data"
+image: "python.jpg"
+date: 2023-08-19
+categories: [Data Visualization, Python]
+citation: 
+  url: https://elkewind.github.io/posts/2023-08-19-python-viz
+format: 
+  html:
+    code-fold: true
+toc: true
+draft: false
+page-layout: full
+---
+
+## Visualizing Various Data Types from the kelpGeoMod Data Repository
+
+This post uses data from the kelpGeoMod data repository and provides examples of data visualization in Python using plotly, and folium.
+
+```{python}
+# Import necessary libraries
+#| warning: false
+import os
+import pandas as pd
+import numpy as np
+import plotly.graph_objs as go
+import geopandas as gpd
+import folium
+from folium import DivIcon
+from IPython.display import display
+import rasterio
+import rasterio.plot
+
+# import base64
+# from io import BytesIO
+# from PIL import Image
+# from ipyleaflet import Map, ImageOverlay, basemaps
+# from matplotlib.colors import LinearSegmentedColormap
+import matplotlib.pyplot as plt
+from rasterio.warp import transform_geom
+from matplotlib import rcParams
+```
+
+### Reading in the data:
+
+Data for this notebook come from the kelpGeoMod [Google Drive](https://drive.google.com/drive/u/2/folders/1sJq_9RnsARR9mkmrcrn4O_1630VD-e-t) data repository. This data repository was created as a Bren Master of Environmental Data Science capstone project by Erika Egg, Jessica French, Javier Patrón, and Elke Windschitl.
+
+```{python}
+#| warning: false
+# Setting the data directory path
+data_dir = "/Users/elkewindschitl/Documents/MEDS/kelpGeoMod/final-data"
+
+# Reading in the area of interest shapefile
+aoi_path = os.path.join(data_dir, "02-intermediate-data/02-aoi-sbchannel-shapes-intermediate/aoi-sbchannel.shp")
+aoi = gpd.read_file(aoi_path)
+
+# Reading in the "full synthesized" data set
+full_synth_path = os.path.join(data_dir, "03-analysis-data/03-data-synthesization-analysis/full-synthesized.csv")
+# Read the CSV file into a dataframe
+full_synth_df = pd.read_csv(full_synth_path)
+
+# Reading in the "observed nutrients" data set
+obs_nutr_path = os.path.join(data_dir, "03-analysis-data/03-data-synthesization-analysis/observed-nutrients-synthesized.csv")
+# Read the CSV file into a dataframe
+obs_nutr_df = pd.read_csv(obs_nutr_path)
+
+# Setting path to depth raster
+raster_path = os.path.join(data_dir, "02-intermediate-data/06-depth-intermediate/depth.tif")
+
+```
+
+### The area of interest:
+
+These data come from the Santa Barbara Channel between 2014-2022.
+
+```{python}
+#| warning: false
+# Reproject geometries to WGS84
+aoi_84 = aoi.to_crs(epsg=4326)
+
+# Create a Folium map centered around the AOI
+m = folium.Map(location=[aoi_84['geometry'].centroid.y.mean(), aoi_84['geometry'].centroid.x.mean()], zoom_start=9, tiles='Stamen Terrain')
+
+# Define a function to set shape color based on properties
+def style_function(feature):
+    return {
+        'fillColor': '#93C2E2', 
+        'color': '#326587',
+        'weight': 4,
+        'fillOpacity': 0.6
+    }
+
+# Add GeoJSON data to the map with custom style
+folium.GeoJson(aoi_84.to_json(), style_function=style_function).add_to(m)
+
+# Display the map
+display(m)
+m.location
+```
+
+### Visualizing kelp data:
+
+Here I use the "full synthesized data set" to visualize how kelp area in the region changes through time. First, I want to check out the data set.
+
+```{python}
+#| warning: false
+# Check the data frame
+print(full_synth_df.head())
+```
+
+I need to do a little wrangling to get the sum of the kelp area for each year/quarter combination. Each row in this data set represents one grid cell at one quarter in one year originating from raster data (for more information on the data, see the kelpGeoMod [metadata](https://drive.google.com/drive/u/2/folders/1SNAff0L5p2M6L8HQB29cTtJT5qWeusgg) throughout the Google Drive).
+
+```{python}
+#| warning: false
+# Combine year and quarter columns into a single datetime column
+full_synth_df['Date'] = pd.to_datetime(full_synth_df['year'].astype(str) + '-Q' + full_synth_df['quarter'].astype(str))
+
+# Group by date and calculate the mean for specific columns and the sum for kelp_area
+aggregation = {
+    'sst': 'mean',
+    'year': 'mean',
+    'quarter': 'mean',
+    'kelp_area': 'sum'  # Sum the kelp_area column
+}
+sum_kelp = full_synth_df.groupby('Date').agg(aggregation)
+
+# Reset index to move "Season" from index to a column
+sum_kelp = sum_kelp.reset_index()
+
+# Convert from m^2 to km^2 and round values
+sum_kelp['kelp_area'] = (sum_kelp['kelp_area'] / 1000000).round(2)
+sum_kelp['year'] = sum_kelp['year'].astype(int)
+
+# Define a custom function to generate the new column based on "quarter" and "year"
+def generate_season(row):
+    quarter = row["quarter"]
+    year = row["year"]
+    
+    if quarter == 1:
+        return f"Winter {year}"
+    elif quarter == 2:
+        return f"Spring {year}"
+    elif quarter == 3:
+        return f"Summer {year}"
+    elif quarter == 4:
+        return f"Fall {year}"
+    else:
+        return "Invalid Quarter"
+    
+# Apply the custom function to create the new "Season" column
+sum_kelp["Season"] = sum_kelp.apply(generate_season, axis=1)
+
+# Print the summarized dataframe
+print(sum_kelp.head())
+```
+
+Here I show the kelp area over time with the help of plotly!
+
+```{python}
+#| warning: false
+# Calculate the overall range for y-axis based on kelp area data
+y_axis_range = [0, sum_kelp['kelp_area'].max() + 1]
+
+# Create the figure
+fig = go.Figure()
+
+# Plotting the Kelp Area data with custom color and line style
+fig.add_trace(go.Scatter(
+    x=sum_kelp.Date,
+    y=sum_kelp['kelp_area'],
+    mode='lines+markers',
+    name='',
+    line=dict(color='#BCD79D'),
+    marker=dict(size=8),
+    hovertemplate='Season: %{text}<br>Kelp Area: %{y} km²'
+))
+
+# Update layout for interactivity
+fig.update_layout(
+    title='Kelp area is highly variable in the Santa Barbara Channel',
+    title_font=dict(family='Arial', size=22, color='white'),
+    title_x=0.5,
+    font=dict(family='Arial', size=14, color='white'),
+    xaxis=dict(title='Date', showgrid=True, gridcolor='rgba(211, 211, 211, 0.5)', showline=True, linewidth=1, linecolor='white'),
+    yaxis=dict(title='Total Kelp Area (km²)', showgrid=False, showline=False, linewidth=1, linecolor='white', range=y_axis_range, tickmode='linear', dtick=1),
+    legend=dict(font=dict(size=14, color='white')),
+    plot_bgcolor='#333333',
+    paper_bgcolor='#333333',
+    height=600,
+    margin=dict(b=60)
+)
+
+# Update hover text with 'Season'
+fig.update_traces(
+    text=sum_kelp['Season'])
+
+# Show the interactive plot
+fig.show()
+
+```
+
+### Visualizing nutrient data:
+
+Next I visualize the ocean nutrient data based on averages of the seasonal values over time with plotly. Similarly, I needed to do a little wrangling first.
+
+```{python}
+#| warning: false
+# Check the data frame
+print(obs_nutr_df.head())
+```
+
+```{python}
+#| warning: false
+# Combine year and quarter columns into a single datetime column
+obs_nutr_df['Date'] = pd.to_datetime(obs_nutr_df['year'].astype(str) + '-Q' + obs_nutr_df['quarter'].astype(str))
+
+# Define a custom function to generate the new column based on "quarter" and "year"
+def generate_season(row):
+    quarter = row["quarter"]
+    year = row["year"]
+    
+    if quarter == 1:
+        return f"Winter {year}"
+    elif quarter == 2:
+        return f"Spring {year}"
+    elif quarter == 3:
+        return f"Summer {year}"
+    elif quarter == 4:
+        return f"Fall {year}"
+    else:
+        return "Invalid Quarter"
+    
+# Apply the custom function to create the new "Season" column
+obs_nutr_df["Season"] = obs_nutr_df.apply(generate_season, axis=1)
+
+# Group by date and season, and calculate the mean for each column
+mean_nutr = obs_nutr_df.groupby(['Date', 'Season']).mean(numeric_only=True)
+
+# Reset index to move "Season" from index to a column
+mean_nutr = mean_nutr.reset_index()
+
+# Drop unused columns
+mean_nutr = mean_nutr.drop(['lat', 'lon', 'depth'], axis=1)
+
+# Print the summarized dataframe
+print(mean_nutr.head())
+```
+
+```{python}
+#| warning: false
+# Calculate the overall range for y-axis that covers all nutrient data
+y_axis_range = [0, mean_nutr[['nitrate', 'nitrite', 'phosphate', 'ammonium']].max().max() + 0.5]
+
+# Create the figure
+fig = go.Figure()
+
+# Plotting the data with custom colors and line styles
+fig.add_trace(go.Scatter(
+    x=mean_nutr.Date,
+    y=mean_nutr['nitrate'],
+    mode='lines+markers',
+    name='Nitrate',
+    line=dict(color='#D28077'),
+    hovertemplate='Season: %{text}<br>Concentration: %{y:.2f} μmol/L',
+))
+fig.add_trace(go.Scatter(
+    x=mean_nutr.Date,
+    y=mean_nutr['nitrite'],
+    mode='lines+markers',
+    name='Nitrite',
+    line=dict(color='#93C2E2'),
+    hovertemplate='Season: %{text}<br>Concentration: %{y:.2f} μmol/L'
+))
+fig.add_trace(go.Scatter(
+    x=mean_nutr.Date,
+    y=mean_nutr['phosphate'],
+    mode='lines+markers',
+    name='Phosphate',
+    line=dict(color='#BCD79D'),
+    hovertemplate='Season: %{text}<br>Concentration: %{y:.2f} μmol/L'
+))
+fig.add_trace(go.Scatter(
+    x=mean_nutr.Date,
+    y=mean_nutr['ammonium'],
+    mode='lines+markers',
+    name='Ammonium',
+    line=dict(color='#036554'),
+    hovertemplate='Season: %{text}<br>Concentration: %{y:.2f} μmol/L'
+))
+
+# Update layout for interactivity
+fig.update_layout(
+    title='Nutrient concentrations trend higher in winter and spring and lower in summer and fall',
+    title_font=dict(family='Arial', size=22, color='white'),
+    title_x=0.5,
+    font=dict(family='Arial', size=14, color='white'),
+    xaxis=dict(title='Time', showgrid=True, gridcolor='rgba(211, 211, 211, 0.5)', showline=True, linewidth=1, linecolor='white'),
+    yaxis=dict(title='Average Concentration (μmol/L)', showgrid=False, showline=False, linewidth=1, linecolor='white', range=y_axis_range, tickmode='linear', dtick=1),
+    legend=dict(font=dict(size=14, color='white')),
+    plot_bgcolor='#333333',
+    paper_bgcolor='#333333',
+    height=600
+)
+
+# Update hover text with 'Season'
+fig.update_traces(
+    text=mean_nutr['Season']
+)
+
+# Show the interactive plot
+fig.show()
+
+```
+
+### Visualizing depth data:
+
+Next, I want to get a better understanding of ocean depth in the channel. Here I create a histogram of depths. First, though, I will need to average the depth over all time periods grouped by lat and lon. This is because depth remains constant over all years and is thus duplicated in the data set. However, I do not want duplicates in the histogram.
+
+```{python}
+#| warning: false
+# Group by "lat" and "lon" and calculate the average of the "depth" column
+grouped_data = full_synth_df.groupby(['lat', 'lon'])['depth'].mean().round()
+
+# Because some grid cells overlap with land, the value is greater than zero, but I want to ceiling the data at zero.
+# Convert the grouped data back to a DataFrame
+grouped_df = grouped_data.reset_index()
+# Replace values greater than zero with zero in the "depth" column
+grouped_df['depth'] = -1 * grouped_df['depth'].apply(lambda x: 0 if x > 0 else x)
+
+# Print the modified DataFrame
+print(grouped_df)
+
+```
+
+Here I visualize the depth data in a histogram with plotly! Again, this data was originally in the form of a raster, so each measurement of depth represents a 0.008° x 0.008° grid cell.
+
+```{python}
+#| warning: false
+# Calculate the histogram manually
+hist, bins = np.histogram(grouped_df.depth, bins=range(0, int(grouped_df['depth'].max()) + 1, 50))
+bin_centers = bins[:-1] + (bins[1] - bins[0]) / 2
+bin_ranges = [f'Range: {bins[i]}-{bins[i + 1] - 1} m' for i in range(len(bins) - 1)]
+hover_text = [f'{bin_ranges[i]}<br>Count: {hist[i]}' for i in range(len(bins) - 1)]
+
+
+# Create the plot
+fig = go.Figure()
+
+# Plotting the data with custom colors and line styles
+fig.add_trace(go.Bar(
+    x=bin_centers,
+    y=hist,
+    hovertext=hover_text,
+    hoverinfo='text',
+    width=bins[1] - bins[0],
+    marker_color='#02a8c9',
+    marker_line=dict(color='rgba(211, 211, 211, 0.5)', width=1)
+))
+
+# Update layout for interactivity
+fig.update_layout(
+    xaxis_title='Average Depth (m)',
+    yaxis_title='Frequency',
+    title='Histogram of Depths in the Santa Barbara Channel',
+    title_font=dict(family='Arial', size=22, color='white'),
+    font=dict(family='Arial', size=14, color='white'),
+    xaxis=dict(showgrid=False, showline=False, linewidth=1, linecolor='white'),
+    yaxis=dict(showgrid=True, gridcolor='rgba(211, 211, 211, 0.5)', showline=False, linewidth=1, linecolor='white'),
+    plot_bgcolor='#333333',
+    paper_bgcolor='#333333',
+    height=600,
+    title_x=0.5,
+    annotations=[
+        dict(
+            x=0.5,
+            y=1.08,
+            showarrow=False,
+            text="where every data point represents 0.008° x 0.008° (approximately 1 km)",
+            xref="paper",
+            yref="paper",
+            font=dict(family='Arial', size=14, color='white')
+        )
+    ]
+)
+
+# Show the interactive plot
+fig.show()
+```
+
+Here is the depth data as a raster layer.
+
+```{python}
+# Set the font family for the entire plot
+rcParams['font.family'] = 'sans-serif'
+rcParams['font.sans-serif'] = ['Arial']  # Use Arial font or another available sans-serif font
+
+# Customize the figure background color, axes background color, and text color
+rcParams['figure.figsize'] = (10, 8)  # Set the figure size (width, height) in inches
+rcParams['figure.facecolor'] = '#333333'   # Set background color of the figure
+rcParams['axes.edgecolor'] = '#333333'       # Set color of axes lines to white
+rcParams['axes.labelcolor'] = 'white'      # Set color of axes labels to white
+rcParams['xtick.color'] = 'white'          # Set color of x-axis ticks to white
+rcParams['ytick.color'] = 'white'          # Set color of y-axis ticks to white
+rcParams['text.color'] = 'white'           # Set text color to white
+
+# Open the raster file using rasterio
+with rasterio.open(raster_path) as src:
+    # Set up colormap and normalization
+    cmap = plt.cm.Blues_r # Reverse the Blues colormap
+    cmap.set_bad(color='#333333')  # Set NaN values to be white
+    norm = plt.Normalize(vmin=-1000, vmax=20)
+
+    # Create a larger figure
+    plt.figure(figsize=(10.5, 8.5))
+    # Add "Latitude" and "Longitude" labels using plt.text
+    plt.text(0.5, -0.16, 'Longitude', transform=plt.gca().transAxes,
+             ha='center', color='white')
+    plt.text(-0.1, 0.5, 'Latitude', transform=plt.gca().transAxes,
+             va='center', rotation='vertical', color='white')
+
+    # Plot the raster data using rasterio's show function
+    rasterio.plot.show(src,
+                       cmap=cmap,
+                       norm=norm,
+                       title='Depth in the Santa Barbara Channel',
+                       origin='upper')
+                      
+
+plt.show()
+```
