@@ -316,6 +316,57 @@ fig.show()
 
 ```
 
+I want to more closely look at average nutrient concentrations during the el Niño year 2016.
+
+```{python}
+#| warning: false
+# Filter for the year 2016
+filtered_2016 = mean_nutr[mean_nutr['year'] == 2016]
+
+# Calculate the average nutrient concentrations
+average_2016 = filtered_2016[['nitrate', 'nitrite', 'ammonium', 'phosphate']].agg('mean')
+
+# Create a DataFrame with 'Nutrient' and 'Concentration' columns
+average_2016 = pd.DataFrame({'Nutrient': average_2016.index, 'Concentration': average_2016.values})
+
+# Create the bar chart
+fig, ax = plt.subplots(figsize=(9.3, 6))  # Adjusted figsize
+ax.set_facecolor('#333333')  # Set the background color for the plotting area
+
+colors = ['#D28077', '#93C2E2', '#036554', '#BCD79D']
+
+bars = ax.bar(average_2016['Nutrient'], average_2016['Concentration'], color=colors)
+ax.set_xlabel('Nutrient', color='white', fontname='Arial', size = 11, labelpad = 10)
+ax.set_ylabel('Average Concentration (μmol/L)', color='white', fontname='Arial', size = 11, labelpad = 10)
+
+# Adjusted title font size (no bold)
+ax.set_title('Average Nutrient Concentrations in 2016', color='white', fontname='Arial', fontsize=16)
+
+ax.tick_params(axis='x', rotation=0, colors='white')
+ax.tick_params(axis='y', colors='white')
+
+# Add value labels on top of the bars
+for bar in bars:
+    yval = bar.get_height()
+    ax.text(bar.get_x() + bar.get_width()/2, yval + 0.01, round(yval, 2), ha='center', color='white', fontsize=10, fontname='Arial')
+
+# Adding white grid lines
+ax.yaxis.grid(color='white', linestyle='--', linewidth=0.5)
+
+# Moving grid lines behind the data
+ax.set_axisbelow(True)
+
+# Adding white spines (lines along the axes)
+ax.spines['bottom'].set_color('white')
+ax.spines['left'].set_color('white')
+
+plt.tight_layout()
+
+# Show the plot
+plt.show()
+```
+
+
 ### Visualizing depth data:
 
 Next, I want to get a better understanding of ocean depth in the channel. Here I create a histogram of depths. First, though, I will need to average the depth over all time periods grouped by lat and lon. This is because depth remains constant over all years and is thus duplicated in the data set. However, I do not want duplicates in the histogram.
@@ -394,6 +445,7 @@ fig.show()
 Here is the depth data as a raster layer.
 
 ```{python}
+#| warning: false
 # Set the font family for the entire plot
 rcParams['font.family'] = 'sans-serif'
 rcParams['font.sans-serif'] = ['Arial']  # Use Arial font or another available sans-serif font
