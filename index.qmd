@@ -28,7 +28,7 @@ I recently earned a Master of Environmental Data Science degree from the [Bren S
 
 <h2>![](images/Book.png){width="32"} Education</h2>
 
-<h4>Master of Environmental Data Science Student</h4>
+<h4>Master of Environmental Data Science</h4>
 
 <p>University of California, Santa Barbara \| June 2023</p>
 
