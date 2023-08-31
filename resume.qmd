@@ -1,4 +1,5 @@
 ---
+title: 'Elke Windschitl'
 page-layout: full
 ---
 
@@ -52,161 +53,198 @@ page-layout: full
 
 </style>
 ```
+<!-- <p class="name"> -->
 
-<p class="name">Elke Windschitl</p>
+<!-- Elke Windschitl -->
 
-<p class="text-style-1">elke.windschitl\@gmail.com \| [elkewind.github.io](https://elkewind.github.io/) \| [GitHub](https://github.com/elkewind) \| [LinkedIn](https://www.linkedin.com/in/elke-windschitl-37a330149/) \| Santa Barbara, CA</p>
+<!-- </p> -->
+
+<!-- <p class="text-style-1"> -->
+
+<!-- elke.windschitl\@gmail.com \| [elkewind.github.io](https://elkewind.github.io/) \| [GitHub](https://github.com/elkewind) \| [LinkedIn](https://www.linkedin.com/in/elke-windschitl-37a330149/) \| Santa Barbara, CA -->
+
+<!-- </p> -->
+
+[Download Resume](images/Windschitl_Elke_Resume.pdf)
 
 <ul class="menu">
-  <li><a href="#summary">Summary of Qualifications</a></li>
-  <li><a href="#edu">Education</a></li>
-  <li><a href="#projs">Data-Driven Projects</a></li>
-  <li><a href="#fellow">Fellowship & Internship Experience</a></li>
-  <li><a href="#create">Creative Work</a></li>
-  <li><a href="#add">Additional Employment</a></li>
-  <li><a href="#skills">Skills & Certifications</a></li>
+
+<li><a href="#summary">Summary of Qualifications</a></li>
+
+<li><a href="#edu">Education</a></li>
+
+<li><a href="#projs">Data Science Projects</a></li>
+
+<li><a href="#fellow">Professional Research Experience</a></li>
+
+<li><a href="#add">Additional Employment</a></li>
+
+<li><a href="#skills">Skills & Certifications</a></li>
+
 </ul>
 
-
-
 ------------------------------------------------------------------------
 
-<p class="section-head" id = "summary">**SUMMARY OF QUALIFICATIONS**</p>
+<p class="section-head" id="summary">
 
-<p class="text-style-2">
-
-- Master of Environmental Data Science; Bachelor of Science in Biology with Honors
-- Collaboration on data-driven research projects in small intellectually diverse teams
-- 3 years of experience in R; 1 year of experience in Python; experience in SQL, Excel, ArcGIS
-- Additional digital literacy skills in Git, GitHub, PowerPoint, Adobe Photoshop, Inkscape, Canva, Wix
-- Creative collaboration experience leveraging skills in web design, graphic design, and illustration
+**SUMMARY OF QUALIFICATIONS**
 
 </p>
 
-------------------------------------------------------------------------
-
-<p class="section-head" id = "edu">**EDUCATION**</p>
-
 <p class="text-style-2">
-  <strong>Master of Environmental Data Science</strong>, 3.97 GPA (6/23)<br>
-  <strong>Bren School of Environmental Science & Management — University of California, Santa Barbara (UCSB)</strong>
-  <blockquote>
-    <u>Leadership:</u> Dean's Advisory Council Representative, Master’s Curriculum Committee Representative<br>
-    <u>Highlighted Coursework:</u> Geospatial Analysis and Remote Sensing, Modeling Environmental Systems, Statistics for Environmental Data Science, Machine Learning in Environmental Science, Data Visualization and Communication, Ethics and Bias in Environmental Data Science, Team Science, Intro to R Shiny
-  </blockquote>
-</p>
 
-<p class="text-style-2">
-  <strong>Bachelor of Science in Biology with Honors</strong>, 4.00 GPA (5/20)<br>
-  <strong>College of Agriculture and Life Sciences — Iowa State University (ISU)</strong>
-  <blockquote>
-    <u>Involvement:</u> National Student Exchange Program (University of Hawai‘i at Hilo, Fall 2018; California State University, Monterey Bay, Spring 2020), Cultural Ambassador (Fall 2020), Women in Science and Engineering Student Role Model (Spring 2018, Spring 2019, Fall 2020)<br>
-    <u>Highlighted Coursework:</u> Introduction to Renewable Resources, Field Ecology in Montana, Environmental Ethics, Natural Resource Management under the North American Model of Conservation, Comparative Chordate Anatomy, Fundamentals of Public Speaking, Written Oral Visual and Electronic Composition
-  </blockquote>
+-   3 years of scientific programming experience in R; 1 year of experience in Python; experience in SQL.
+-   Experienced in data preparation, data visualization, descriptive statistics, and geospatial analysis in R.
+-   Strong foundation in inferential statistics, machine learning, and environmental modeling.
+-   Efficiently work within collaborative teams; equally at ease working independently; strong communication.
+-   Passion for investigating and applying technical solutions to social and environmental challenges.
+
 </p>
 
 ------------------------------------------------------------------------
 
-<p class="section-head" id = "projs">**DATA-DRIVEN PROJECTS**</p>
+<p class="section-head" id="edu">
 
-<p class="text-style-2">
-  <strong>Developing a Data Pipeline for Kelp Forest Modeling</strong> (1/23–6/23)<br>
-  <strong>Role:</strong> Project Manager | <strong>Client:</strong> Ocean Rainforest & Natalie Dornan UCSB | <strong>Master’s Group Capstone Project</strong>
-  <ul>
-    <li>Aligned spatiotemporal resolution of 13 data sets in R to create one synthesized dataset containing oceanographic factors and metrics of giant kelp distribution as a deliverable for clients.</li>
-    <li>Performed maximum entropy (Maxent) species distribution modeling in Wallace and R to estimate where on the Santa Barbara coastline has the highest habitat suitability for kelp cultivation and restoration.</li>
-    <li>Created visualizations in R Markdown to communicate the spatial distribution of kelp, temperature, depth, and nutrients in the Santa Barbara Channel as well as data gaps.</li>
-    <li>Managed project deadlines, deliverables, and communication with Zoom, Slack, Docs, and GitHub Projects.</li>
-    <li>Facilitated meetings in a master’s capstone team of 4 students with diverse backgrounds to embrace group differences in working styles and preferences.</li>
-  </ul>
+**EDUCATION**
+
 </p>
 
 <p class="text-style-2">
-  <strong>Evaluating the Use of Autonomous Recording Units (ARUs) for Monitoring Bobwhite Coveys</strong> (1/19–12/19)<br>
-  <strong>Client:</strong> Dr. Adam Janke & Iowa Department of Natural Resources (DNR) | <strong>Bachelor’s Capstone Project</strong>
-  <ul>
-    <li>Developed 3 research questions and methods of investigation for assessing the use of ARUs (a new technology) to study Northern bobwhite quail and support the National Bobwhite Conservation Initiative.</li>
-    <li>Processed, analyzed, and visualized extensive quail audio data using R, Raven Pro, Excel, and PowerPoint.</li>
-    <li>Presented a research poster at the National Conference for Undergraduate Research detailing how ARUs can be used by the Iowa DNR to monitor occupancy of quail in place of labor-intensive point count surveys.</li>
-  </ul>
-</p>
 
-------------------------------------------------------------------------
+<strong>Master of Environmental Data Science</strong>, 3.97 GPA (6/23)<br> <strong>Bren School of Environmental Science & Management --- University of California, Santa Barbara (UCSB)</strong>
 
-<p class="section-head"id = "fellow">**FELLOWSHIP & INTERNSHIP EXPERIENCE**</p>
+<blockquote><u>Leadership:</u> Dean's Advisory Council Representative, Master's Curriculum Committee Representative<br> <u>Highlighted Coursework:</u> Geospatial Analysis and Remote Sensing, Modeling Environmental Systems, Statistics for Environmental Data Science, Machine Learning in Environmental Science, Data Visualization and Communication, Ethics and Bias in Environmental Data Science, Team Science, Intro to R Shiny</blockquote>
 
-<p class="text-style-2">
-  <strong>Animal Behavior Research Batten Fellow</strong> (7/21–9/21)<br>
-  <strong>Virginia Aquarium & Marine Science Center, Virginia Beach, VA</strong>
-  <ul>
-    <li>Integrated the use of Zoo Monitor — a digital animal behavior monitoring tool — at the aquarium by developing workflows and creating training materials for teaching other staff to use Zoo Monitor.</li>
-    <li>Collaborated with animal care staff to develop research questions to better understand how target animals’ behavior changed based on time of day, location, guest count, etc.</li>
-    <li>Collected and analyzed behavior data of 2 seals and 1 crow using Zoo Monitor software and R.</li>
-    <li>Presented research results to ~50 aquarium staff via a 45-minute Zoom PowerPoint presentation to inform science-based animal care procedure changes at the aquarium.</li>
-  </ul>
 </p>
 
 <p class="text-style-2">
-  <strong>Animal Behavior Research Intern</strong> (6/19–8/19)<br>
-  <strong>Saint Louis Zoo, Saint Louis, MO</strong>
-  <ul>
-    <li>Collected bear and primate behavior data by conducting live observations apart an 8-person team to inform future animal care decisions at the zoo.</li>
-    <li>Collected viper behavior data by conducting independent video observations using Observer XT to contribute to a study investigating whether viper tongue flicks are an indicator of stress.</li>
-    <li>Collected mother-infant antelope behavior data by conducting independent video observations using Observer XT to contribute to a 30+ year study to help inform future care of mother-infant pairs.</li>
-  </ul>
+
+<strong>Bachelor of Science in Biology with Honors</strong>, 4.00 GPA (5/20)<br> <strong>College of Agriculture and Life Sciences --- Iowa State University (ISU)</strong>
+
+<blockquote><u>Involvement:</u> National Student Exchange Program (University of Hawai'i at Hilo, Fall 2018; California State University, Monterey Bay, Spring 2020), Cultural Ambassador (Fall 2020), Women in Science and Engineering Student Role Model (Spring 2018, Spring 2019, Fall 2020)<br> <u>Highlighted Coursework:</u> Introduction to Renewable Resources, Field Ecology in Montana, Environmental Ethics, Natural Resource Management under the North American Model of Conservation, Comparative Chordate Anatomy, Fundamentals of Public Speaking, Written Oral Visual and Electronic Composition</blockquote>
+
 </p>
 
 ------------------------------------------------------------------------
 
-<p class="section-head" id = "create">**CREATIVE WORK**</p>
+<p class="section-head" id="projs">
 
-<p class="text-style-2">
-  <strong>Independent Graphic Illustrator</strong> (2/17–present)<br>
-  <ul>
-    <li>Illustrate and sell digital artwork using Procreate, Adobe Photoshop, and Inkscape.</li>
-    <li>Depict scenes of nature or images of flora and fauna as themes in artwork.</li>
-    <li>Integrate digital illustrations into environmental science work to further scientific communication and engage a range of diverse audiences.</li>
-  </ul>
+**DATA SCIENCE PROJECTS**
+
 </p>
 
 <p class="text-style-2">
-  <strong>Creative Collaborator</strong> (6/18–present)<br>
-  The LENA Project, Iowa City, IA<br>
-  <ul>
-    <li>Collaborated in the start-up of a non-profit organization focused on environmental education by brainstorming project ideas, providing digital content, and engaging with community members.</li>
-    <li>Created website pages using Squarespace to communicate the organization’s mission and projects.</li>
-    <li>Designed marketing materials and educational infographics using Canva, Adobe Photoshop, and Procreate as contract and volunteer work.</li>
-  </ul>
+
+<strong>Master's Capstone Project: Developing a Data Pipeline for Kelp Forest Modeling</strong> (1/23--6/23)<br> <strong>Role:</strong> Project Manager \| <strong>Client:</strong> Ocean Rainforest & Natalie Dornan UCSB
+
+<ul>
+
+<li>Aligned spatiotemporal resolution of 13 spatial data sets in R with *terra*, *raster*, & *sf*, to create a synthesized dataset containing oceanographic factors and metrics of giant kelp distribution as a deliverable for clients.</li>
+
+<li>Performed maximum entropy species distribution modeling in R with *ENMeval* to estimate where on the Santa Barbara coastline has the highest predicted habitat suitability for kelp cultivation and restoration.</li>
+
+<li>Created visualizations in R with *gpplot2*, *leaflet*, & *tmap* to communicate the spatial distribution of kelp, temperature, depth, and nutrients in the Santa Barbara Channel as well as identify data gaps.</li>
+
+<li>Managed project deadlines, deliverables, and communication with Zoom, Slack, Docs, and GitHub Projects.</li>
+
+</ul>
+
+<strong>Statistics Course Project: Identifying Key Traits in Hawaiian Fish that Predict Risk of Extinction </strong>(10/22--12/22)
+
+<ul>
+
+<li>Planned and executed a study using existing data to answer questions about fish extinction vulnerability.</li>
+
+<li>Retrieved, filtered, and joined large data tables from FishBase and the International Union for Conservation of Nature (IUCN) Red List application programming interface (API) in R with *dplyr*, *rfishbase*, and *rredlist*..</li>
+
+<li>Leveraged *stats* to run a series of logistic regression models to investigate the probability of a species being listed as threatened on the IUCN Red List based on characteristics such as endemism or length.</li>
+
+<li>Communicated study results by creating *ggplot2* visualizations and writing an online Quarto report.</li>
+
+</ul>
+
+</p>
+
+------------------------------------------------------------------------
+
+<p class="section-head" id="fellow">
+
+**PROFESSIONAL RESEARCH EXPERIENCE**
+
+</p>
+
+<p class="text-style-2">
+
+<strong>Animal Behavior Research Batten Fellow</strong> (7/21--9/21)<br> <strong>Virginia Aquarium & Marine Science Center, Virginia Beach, VA</strong>
+
+<ul>
+
+<li>Integrated the use of ZooMonitor --- a digital animal behavior monitoring tool --- at the aquarium by developing workflows and creating training materials for teaching other staff to use Zoo Monitor.</li>
+
+<li>Collaborated with animal care staff to develop research questions to better understand how target animals' behavior changed based on time of day, location, guest count, etc.</li>
+
+<li>Collected and analyzed behavior data of 2 seals and 1 crow using ZooMonitor software and R.</li>
+
+<li>Presented research results to \~50 aquarium staff via a 45-minute Zoom PowerPoint presentation to inform science-based animal care procedure changes at the aquarium.</li>
+
+</ul>
+
+<strong>Research Assistant</strong> (1/19--12/19, 7/20--8/20)<br> <strong>Iowa State University Janke Lab, Ames, IA</strong>
+
+<ul>
+
+<li>Processed, analyzed, and visualized extensive quail audio data using R, Raven Pro, Excel, and PowerPoint.</li>
+
+<li>Developed 3 research questions and methods of investigation for assessing the use of autonomous recording units to study Northern bobwhite quail and support the National Bobwhite Conservation Initiative.</li>
+
+<li>Presented a research poster at the National Conference on Undergraduate Research detailing how ARUs can be used by the Iowa DNR to monitor occupancy of quail in place of labor-intensive point count surveys.</li>
+
+<li>Followed detailed instructions to assist with miscellaneous lab and field tasks to help other lab members such as drying and weighing prairie grass biomass samples, assisting with line transect surveys, etc.</li>
+
+</ul>
+
+<strong>Animal Behavior Research Intern</strong> (6/19--8/19)<br> <strong>Saint Louis Zoo, Saint Louis, MO</strong>
+
+<ul>
+
+<li>Collected bear and primate behavior data by conducting live observations apart an 8-person team to inform future animal care decisions at the zoo.</li>
+
+<li>Collected viper behavior data by conducting independent video observations using Observer XT to contribute to a study investigating whether viper tongue flicks are an indicator of stress.</li>
+
+<li>Collected mother-infant antelope behavior data by conducting independent video observations using Observer XT to contribute to a 30+ year study to help inform future care of mother-infant pairs.</li>
+
+</ul>
+
 </p>
 
 ------------------------------------------------------------------------
 
-<p class="section-head" id = "add">**ADDITIONAL EMPLOYMENT**</p>
+<p class="section-head" id="add">
+
+**ADDITIONAL EXPERIENCE**
+
+</p>
 
 <p class="text-style-2">
-  <strong>Cashier</strong> (1/22–7/22)<br>
-  Whole Foods, Seattle, WA<br>
-  <ul>
-    <li>Provided excellent customer service and communication while cashiering, bagging, and monitoring self-checkout machines.</li>
-    <li>Trained 8 new team members on standard operating procedures in the customer service department.</li>
-  </ul>
+
+<strong>Environmental Education Creative Collaborator</strong> (6/18--present)<br> <strong>The LENA Project</strong>, Iowa City, IA<br> Create digital content and marketing materials to communicate the organization's mission and projects via graphic design and illustration using Canva, Adobe Photoshop, and Procreate as contract and volunteer work; brainstorm project ideas; archive work and metadata from previous projects.
+
+<strong>Cashier</strong> (1/22--7/22)<br> <strong>Whole Foods</strong>, Seattle, WA<br> Provided excellent customer service and communication while cashiering, bagging, and monitoring self-checkout machines; trained 8 new team members on standard operating procedures in the customer service department.
+
 </p>
 
 ------------------------------------------------------------------------
 
-<p class="section-head" id = "skills">**SKILLS & CERTIFICATIONS**</p>
+<p class="section-head" id="skills">
+
+**SKILLS & CERTIFICATIONS**
+
+</p>
 
 <p class="text-style-2">
-  <strong>Programming Languages:</strong> R (proficient), Python & SQL (competent)<br>
-  <strong>IDEs and Engines:</strong> RStudio, Jupyter Notebook, VS Code, SQLite<br>
-  <strong>Other Digital Literacy:</strong> Git, GitHub, ArcGIS, Word, Excel, PowerPoint, Zoom, Facebook, Instagram, Twitter, Slack, Canva, Adobe Photoshop, Procreate, Inkscape, Quarto, Shiny, Wix, Squarespace, WordPress<br>
-  <strong>Certifications:</strong> Fundamentals of GIS, GIS Data Formats, Design, and Quality, University of California, Davis (3/21)
+
+<strong>Programming Languages:</strong> R (proficient); Python, SQL (competent); Bash (beginner)<br> <strong>Other Digital Literacy:</strong> GitHub, Git, Microsoft 365 (proficient); Google Earth Engine, ArcGIS (competent)<br> <strong>Certifications:</strong> Fundamentals of GIS, GIS Data Formats, Design, and Quality, University of California, Davis (3/21)
+
 </p>
 
 ------------------------------------------------------------------------
- 
-
-
-
-
-

@@ -14,6 +14,11 @@ image: dive_mask.JPG
 format: 
   html:
     code-fold: true
+    code-copy: true
+    code-summary: "Show the code"
+    code-line-numbers: true
+    code-tools: true
+    code-block-border-left: true
 toc: true
 draft: false
 ---

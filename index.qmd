@@ -14,7 +14,7 @@ about:
       href: https://twitter.com/Elke_Windschitl
 ---
 
-<h2>Welcome!</h2>
+<h2>![](images/Hand.png){width="28"} Welcome!</h2>
 
 <p>
 
@@ -26,7 +26,7 @@ I recently earned a Master of Environmental Data Science degree from the [Bren S
 
 ------------------------------------------------------------------------
 
-<h2>Education</h2>
+<h2>![](images/Book.png){width="32"} Education</h2>
 
 <h4>Master of Environmental Data Science Student</h4>
 

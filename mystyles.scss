@@ -1,17 +1,21 @@
 /*-- scss:defaults --*/
 
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Noto+Serif+Gujarati&family=Raleway:wght@100;400;700&display=swap');
 
 // Colors
 $light-teal: #68b0ac;
 $dark-teal: #243235;
 $light-gray: #F8F8F8;
 $gray: #212121;
+$mid-gray: #b9bdbe;
 
 // Base Document Colors 
 $navbar-bg: $dark-teal;
+$navbar-fg: $mid-gray;
 $body-bg: $light-gray;
+$link-color: $light-teal;
 
 /*-- scss:rules --*/
 
@@ -22,7 +26,7 @@ h1, h3 {
 }
 
 .title {
-  color: $gray;
+  color: $mid-gray;
 }
 
 .custom-subtitle {

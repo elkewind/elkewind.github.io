@@ -4,5 +4,6 @@
 freeze: true
 
 # enable banner style title blocks (see https://quarto.org/docs/authoring/title-blocks.html)
-title-block-banner: false
-title-block-banner-color: "#f7f2e6"
+title-block-banner: $dark-teal
+title-block-banner-color: $mid-gray
+title-block-categories: true

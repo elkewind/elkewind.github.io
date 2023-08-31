@@ -34,7 +34,8 @@ format:
   html:
     theme:
       - mystyles.scss
-    mainfont: Noto Serif Gujarati
+    mainfont: 'Raleway'
+    #Noto Serif Gujarati
     #css: styles.css
     toc: true
 

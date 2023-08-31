@@ -12,6 +12,11 @@ citation:
 format: 
   html:
     code-fold: true
+    code-copy: true
+    code-summary: "Show the code"
+    code-line-numbers: true
+    code-tools: true
+    code-block-border-left: true
 toc: true
 draft: false
 page-layout: full
@@ -358,7 +363,6 @@ plt.tight_layout()
 # Show the plot
 plt.show()
 ```
-
 
 ### Visualizing depth data:
 
