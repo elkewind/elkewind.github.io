@@ -1,30 +1,42 @@
 ---
 title: "Elke Windschitl"
-image: Elke.jpg
-about: 
-  template: trestles
-  image-shape: round
-  image-width: 15em
-  links: 
-    - text: LinkedIn
-      href: https://www.linkedin.com/in/elke-windschitl-37a330149/
-    - text: GitHub
-      href: https://github.com/elkewind
-    - text: Twitter
-      href: https://twitter.com/Elke_Windschitl
+page-layout: custom
 ---
 
-<h2>![](images/Hand.png){width="28"} Welcome!</h2>
+<!-- Add banner at top -->
 
-<p>
+<img src="images/test222.png" class="custom-banner"/>
 
-A little bit about me:
+<br></br> 
+<br></br> 
+<br></br> 
+<br></br> 
+<br></br> 
+<br></br> 
+<br></br> 
+<br></br> 
 
-I recently earned a Master of Environmental Data Science degree from the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about conservation, and I hope to build a career using data science tools to solve environmental problems.
+<!-- create custom layout for page -->
+::::: {.grid}
+<!-- left pad -->
+::: {.g-col-1}
+:::
+<!-- middle content -->
+::: {.g-col-10}
+<!-- ![](images/circle-headshot.png){width="280"}-->
 
-</p>
+::: {.grid}
 
-------------------------------------------------------------------------
+::: {.g-col-12 .g-col-md-6}
+::: {.teal-bg}
+<p class="custom-h2-light">![](images/Hand.png){width="24"} Welcome!</p>
+
+<p class="custom-p-light"> A little bit about me: I recently earned a Master of Environmental Data Science degree from the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about conservation, and I hope to build a career using data science tools to solve environmental problems.</p>
+:::
+:::
+  
+::: {.g-col-12 .g-col-md-6}
+::: {.teal-bg}
 
 <h2>![](images/Book.png){width="32"} Education</h2>
 
@@ -35,3 +47,15 @@ I recently earned a Master of Environmental Data Science degree from the [Bren S
 <h4>Bachelor of Science in Biology with Honors</h4>
 
 <p>Iowa State University \| May 2020</p>
+:::
+:::
+::: 
+<!-- end middle content -->
+:::
+<!-- right pad -->
+::: {.g-col-1}
+:::
+
+<br></br> 
+<!-- end custom layout for page -->
+:::::

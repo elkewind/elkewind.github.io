@@ -34,10 +34,11 @@ format:
   html:
     theme:
       - mystyles.scss
-    mainfont: 'Raleway'
+    mainfont: 'Montserrat'
     #Noto Serif Gujarati
     #css: styles.css
     toc: true
 
 editor: visual
+
 

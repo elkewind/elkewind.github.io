@@ -2,7 +2,9 @@
 
 // Fonts
 //@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Noto+Serif+Gujarati&family=Raleway:wght@100;400;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Noto+Serif+Gujarati&family=Raleway:wght@100;400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Montserrat:wght@300;400;600&family=Noto+Serif+Gujarati&family=Raleway:wght@100;400;700&display=swap');
 
 // Colors
 $light-teal: #68b0ac;
@@ -34,9 +36,23 @@ h1, h3 {
   font-style: italic;
   color: $gray;
 }
+
+.custom-h2-light {
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 32px;
+  color: $light-gray;
+}
+
+.custom-p-light {
+  letter-spacing: 1px;
+  font-weight: 350;
+  font-size: 14px;
+  color: $light-gray;
+}
   
 .gray-bg {
-  background-color: rgba(166, 164, 161, 0.4);
+  background-color: $mid-gray;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-right: 5px;
@@ -44,5 +60,20 @@ h1, h3 {
   border-radius: 15px;
 }
 
+.teal-bg {
+  background-color: $dark-teal;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 25px;
+}
+
+img.custom-banner {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
   
   

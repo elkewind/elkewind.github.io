@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -122,15 +93,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <style>
-    .quarto-title-block .quarto-title-banner {
-      color: $mid-gray;
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: $mid-gray;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: $mid-gray;
 background: $dark-teal;
-    }
-    </style>
+      }
+</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -172,46 +155,48 @@ background: $dark-teal;
     <span class="navbar-title">Elke Windschitl</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../posts.html">
+    <a class="nav-link" href="../../posts.html" rel="" target="">
  <span class="menu-text">My Work</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../resume.html">
+    <a class="nav-link" href="../../resume.html" rel="" target="">
  <span class="menu-text">Resume</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/elkewind"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/elkewind" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/Elke_Windschitl"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/Elke_Windschitl" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl-37a330149/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl-37a330149/" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -239,7 +224,7 @@ background: $dark-teal;
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Elke Windschitl </p>
+               <p><a href="https://elkewind.github.io">Elke Windschitl</a> </p>
             </div>
     </div>
       
@@ -284,7 +269,7 @@ background: $dark-teal;
 <p>This post uses data from the kelpGeoMod data repository and provides examples of data visualization in Python using Folium, Plotly, Matplotlib, and Rasterio.</p>
 <div class="cell" data-execution_count="1">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Import necessary libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co">#| warning: false</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> os</span>
@@ -307,7 +292,7 @@ background: $dark-teal;
 <p>Data for this notebook come from the kelpGeoMod <a href="https://drive.google.com/drive/u/2/folders/1sJq_9RnsARR9mkmrcrn4O_1630VD-e-t">Google Drive</a> data repository. This data repository was created as a Bren Master of Environmental Data Science capstone project by Erika Egg, Jessica French, Javier Patrón, and Elke Windschitl.</p>
 <div class="cell" data-execution_count="2">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Setting the data directory path</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>data_dir <span class="op">=</span> <span class="st">"/Users/elkewindschitl/Documents/MEDS/kelpGeoMod/final-data"</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
@@ -335,7 +320,7 @@ background: $dark-teal;
 <p>These data come from the Santa Barbara Channel between 2014-2022.</p>
 <div class="cell" data-execution_count="3">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Reproject geometries to WGS84</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>aoi_84 <span class="op">=</span> aoi.to_crs(epsg<span class="op">=</span><span class="dv">4326</span>)</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
@@ -461,7 +446,7 @@ background: $dark-teal;
 <p>Here I use the “full synthesized data set” to visualize how kelp area in the region changes through time. First, I want to check out the data set.</p>
 <div class="cell" data-execution_count="4">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Check the data frame</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(full_synth_df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -484,7 +469,7 @@ background: $dark-teal;
 <p>I need to do a little wrangling to get the sum of the kelp area for each year/quarter combination. Each row in this data set represents one grid cell at one quarter in one year originating from raster data (for more information on the data, see the kelpGeoMod <a href="https://drive.google.com/drive/u/2/folders/1SNAff0L5p2M6L8HQB29cTtJT5qWeusgg">metadata</a> throughout the Google Drive).</p>
 <div class="cell" data-execution_count="5">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Combine year and quarter columns into a single datetime column</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>full_synth_df[<span class="st">'Date'</span>] <span class="op">=</span> pd.to_datetime(full_synth_df[<span class="st">'year'</span>].astype(<span class="bu">str</span>) <span class="op">+</span> <span class="st">'-Q'</span> <span class="op">+</span> full_synth_df[<span class="st">'quarter'</span>].astype(<span class="bu">str</span>))</span>
 <span id="cb6-3"><a href="#cb6-3"></a></span>
@@ -538,7 +523,7 @@ background: $dark-teal;
 <p>Here I show the kelp area over time with the help of Plotly!</p>
 <div class="cell" data-execution_count="6">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Calculate the overall range for y-axis based on kelp area data</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>y_axis_range <span class="op">=</span> [<span class="dv">0</span>, sum_kelp[<span class="st">'kelp_area'</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span>]</span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
@@ -613,7 +598,7 @@ if (outputEl) {{
 <p>Next I visualize the ocean nutrient data based on averages of the seasonal values over time with Plotly. Similarly, I needed to do a little wrangling first.</p>
 <div class="cell" data-execution_count="7">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Check the data frame</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(obs_nutr_df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -642,7 +627,7 @@ if (outputEl) {{
 </div>
 <div class="cell" data-execution_count="8">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Combine year and quarter columns into a single datetime column</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>obs_nutr_df[<span class="st">'Date'</span>] <span class="op">=</span> pd.to_datetime(obs_nutr_df[<span class="st">'year'</span>].astype(<span class="bu">str</span>) <span class="op">+</span> <span class="st">'-Q'</span> <span class="op">+</span> obs_nutr_df[<span class="st">'quarter'</span>].astype(<span class="bu">str</span>))</span>
 <span id="cb11-3"><a href="#cb11-3"></a></span>
@@ -702,7 +687,7 @@ if (outputEl) {{
 </div>
 <div class="cell" data-execution_count="9">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Calculate the overall range for y-axis that covers all nutrient data</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>y_axis_range <span class="op">=</span> [<span class="dv">0</span>, mean_nutr[[<span class="st">'nitrate'</span>, <span class="st">'nitrite'</span>, <span class="st">'phosphate'</span>, <span class="st">'ammonium'</span>]].<span class="bu">max</span>().<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.5</span>]</span>
 <span id="cb13-3"><a href="#cb13-3"></a></span>
@@ -797,7 +782,7 @@ if (outputEl) {{
 <p>I want to more closely look at average nutrient concentrations during the el Niño year 2016.</p>
 <div class="cell" data-execution_count="10">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Filter for the year 2016</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>filtered_2016 <span class="op">=</span> mean_nutr[mean_nutr[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2016</span>]</span>
 <span id="cb14-3"><a href="#cb14-3"></a></span>
@@ -853,7 +838,7 @@ if (outputEl) {{
 <p>Next, I want to get a better understanding of ocean depth in the channel. Here I create a histogram of depths. First, though, I will need to average the depth over all time periods grouped by lat and lon. This is because depth remains constant over all years and is thus duplicated in the data set. However, I do not want duplicates in the histogram.</p>
 <div class="cell" data-execution_count="11">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Group by "lat" and "lon" and calculate the average of the "depth" column</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>grouped_data <span class="op">=</span> full_synth_df.groupby([<span class="st">'lat'</span>, <span class="st">'lon'</span>])[<span class="st">'depth'</span>].mean().<span class="bu">round</span>()</span>
 <span id="cb15-3"><a href="#cb15-3"></a></span>
@@ -886,7 +871,7 @@ if (outputEl) {{
 <p>Here I visualize the depth data in a histogram with plotly! Again, this data was originally in the form of a raster, so each measurement of depth represents a 0.008° x 0.008° grid cell.</p>
 <div class="cell" data-execution_count="12">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Calculate the histogram manually</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a>hist, bins <span class="op">=</span> np.histogram(grouped_df.depth, bins<span class="op">=</span><span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">int</span>(grouped_df[<span class="st">'depth'</span>].<span class="bu">max</span>()) <span class="op">+</span> <span class="dv">1</span>, <span class="dv">50</span>))</span>
 <span id="cb17-3"><a href="#cb17-3"></a>bin_centers <span class="op">=</span> bins[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> (bins[<span class="dv">1</span>] <span class="op">-</span> bins[<span class="dv">0</span>]) <span class="op">/</span> <span class="dv">2</span></span>
@@ -969,7 +954,7 @@ if (outputEl) {{
 <p>Here is the depth data as a raster layer.</p>
 <div class="cell" data-execution_count="13">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Set the font family for the entire plot</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a>rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'sans-serif'</span></span>
 <span id="cb18-3"><a href="#cb18-3"></a>rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Arial'</span>]  <span class="co"># Use Arial font or another available sans-serif font</span></span>
@@ -1020,14 +1005,14 @@ if (outputEl) {{
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{windschitl2023,
-  author = {Elke Windschitl},
+  author = {Windschitl, Elke},
   title = {Data {Visualization} {Examples} in {Python}},
   date = {2023-08-19},
   url = {https://elkewind.github.io/posts/2023-08-19-python-viz},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-windschitl2023" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
-Elke Windschitl. 2023. <span>“Data Visualization Examples in
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-windschitl2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+Windschitl, Elke. 2023. <span>“Data Visualization Examples in
 Python.”</span> August 19, 2023. <a href="https://elkewind.github.io/posts/2023-08-19-python-viz">https://elkewind.github.io/posts/2023-08-19-python-viz</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1057,9 +1042,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1175,6 +1174,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1680,7 +1765,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-490"><a href="#cb19-490"></a>    norm <span class="op">=</span> plt.Normalize(vmin<span class="op">=-</span><span class="dv">1000</span>, vmax<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb19-491"><a href="#cb19-491"></a></span>
 <span id="cb19-492"><a href="#cb19-492"></a>    <span class="co"># Create a larger figure</span></span>
-<span id="cb19-493"><a href="#cb19-493"></a>    plt.figure(figsize<span class="op">=</span>(<span class="fl">10.5</span>))</span>
+<span id="cb19-493"><a href="#cb19-493"></a>    plt.figure(figsize<span class="op">=</span>(<span class="fl">10.5</span>, <span class="fl">8.5</span>))</span>
 <span id="cb19-494"><a href="#cb19-494"></a>    <span class="co"># Add "Latitude" and "Longitude" labels using plt.text</span></span>
 <span id="cb19-495"><a href="#cb19-495"></a>    plt.text(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.16</span>, <span class="st">'Longitude'</span>, transform<span class="op">=</span>plt.gca().transAxes,</span>
 <span id="cb19-496"><a href="#cb19-496"></a>             ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'white'</span>)</span>
@@ -1703,6 +1788,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">Copyright 2022, Elke Windschitl</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Made with Quarto</div>
   </div>
 </footer>
