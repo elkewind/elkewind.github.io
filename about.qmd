@@ -1,7 +1,32 @@
 ---
 title: "About Me"
+page-layout: custom
 ---
+<!-- Image banner at top -->
+<img src="images/waves-dark.png" class="custom-banner"/>
 
+<!-- create custom layout for banner elements -->
+::::: {.grid}
+<!-- left side -->
+:::: {.g-col-12 .g-col-md-6}
+::: {.teal-bg-left}
+<p class="custom-h1-light">About Me</p>
+:::
+::::
+<!-- right side -->
+:::: {.g-col-12 .g-col-md-6}
+::::
+:::::
+
+<br></br> 
+
+<!-- create custom layout for page -->
+::::: {.grid}
+<!-- left pad -->
+::: {.g-col-2}
+:::
+<!-- middle content -->
+::: {.g-col-8}
 <h4>A bit more about who I am, what I do, where I've been, and where I'm headed</h4>
 
 ------------------------------------------------------------------------
@@ -27,7 +52,7 @@ With my interdisciplinary background and strong skill set, I am ready to make an
 
 <h4>My Hobbies!</h4>
 
-What do I do outside of the office and classroom? I love hiking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it's most likely a mystery/thriller novel (find me on [Goodreads](https://www.goodreads.com/user/show/95038298-elke-windschitl)!) I spend a lot of time in the kitchen cooking and baking -- I picked up these two hobbies during the COVID-19 pandemic. Last, I dabble in digital illustration, graphic design, and photography. I have been selling prints and stickers since 2017.
+What do I do outside of the office and classroom? I love walking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it's most likely a mystery/thriller novel (find me on [Goodreads](https://www.goodreads.com/user/show/95038298-elke-windschitl)!) I spend a lot of time in the kitchen cooking and baking -- I picked up these two hobbies during the COVID-19 pandemic shut down. Last, I dabble in digital illustration, graphic design, and photography. I have been selling prints and stickers since 2017. Much of my artwork has environmental themes. All of the photographs, illustrations, and icons found my website are my own.
 
 ::: {layout-ncol="2"}
 ![](images/butterflies.png)
@@ -61,5 +86,24 @@ Map made using package leaflet and data from: <https://simplemaps.com/data/us-ci
 
 <h4>What's Next for Me?</h4>
 
-I am looking to start my career as an environmental data scientist! Broadly, I hope to find a role where I can bring technical solutions to environmental challenges and contribute to an organization focused on natural resource management or sustainable food production. I am ideally looking for jobs in Santa Barbara, San Diego, or remote opportunities.
+I am excited to start my career as an environmental data scientist! Broadly, I hope to find a role where I can bring technical solutions to environmental challenges and contribute to an organization focused on natural resource management or sustainable food production. I am ideally looking for jobs in Santa Barbara, San Diego, or remote opportunities.
 :::
+
+<!-- end middle content -->
+:::
+<!-- right pad -->
+::: {.g-col-2}
+:::
+
+<br></br> 
+<!-- end custom layout for page -->
+:::::
+
+```{ojs style="display: none;"}
+//| echo: false
+//| output: false
+// Your JavaScript code goes here
+setTimeout(function() {
+  document.querySelector('.teal-bg-left').classList.add('slide-in');
+}, 300); // Adjust the delay (in milliseconds) as needed
+```

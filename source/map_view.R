@@ -18,7 +18,7 @@ us_cities <- read_csv(file_path) %>%
 # Create df for cities I've lived in
 my_cities <- tribble(
   ~city, ~state_name, ~months_sincecol,
-  "Iowa City", "Iowa", 21,
+  "Iowa City", "Iowa", 22,
   "Tucson", "Arizona", 5,
   "Ames", "Iowa", 20,
   "Hilo", "Hawaii", 5,
@@ -26,7 +26,7 @@ my_cities <- tribble(
   "Monterey", "California", 3,
   "Virginia Beach", "Virginia", 3,
   "Seattle", "Washington", 8,
-  "Santa Barbara", "California", 11
+  "Santa Barbara", "California", 13
 )
 my_cities <- as.data.frame(my_cities)
 
@@ -75,7 +75,7 @@ my_leaflet <- leaflet(my_cities_lat_lng) %>%
              weight = ~Months * 3,
              radius = ~Months,
              fill = TRUE, 
-             color = "#1cd4ce", 
+             color = "#68b0ac", 
              group = "Cities",
              label = ~City) %>%
   addPopupImages(img_vec, 

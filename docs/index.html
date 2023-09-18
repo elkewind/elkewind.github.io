@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -60,6 +94,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <meta name="twitter:title" content="Elke Windschitl">
@@ -115,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl-37a330149/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl/" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -149,45 +185,84 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<!-- Add banner at top -->
-<p><img src="images/test222.png" class="custom-banner"></p>
-<p><br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br></p>
+<!-- Image banner at top -->
+<p><img src="images/leaves-dark.png" class="custom-banner"></p>
+<!-- create custom layout for banner elements -->
+<div class="grid">
+<!-- left side -->
+<div class="g-col-12 g-col-md-6">
+<div class="teal-bg-left">
+<p class="custom-h1-light">
+Elke Windschitl
+</p>
+<p class="custom-h2-light" style="font-size: 24px; font-weight: 200;">
+Environmental Data Scientist
+</p>
+</div>
+<p><img src="images/circle-headshot.png" class="custom-circle-headshot" alt="Elke Windschitl" width="220" id="enlargeImage"></p>
+</div>
+<!-- right side -->
+<div class="g-col-12 g-col-md-6">
+<div class="teal-bg-right">
+<p><img src="images/rect3.png" class="img-fluid" width="700"></p>
+</div>
+</div>
+</div>
+<!-- Modal -->
+<div id="imageModal" class="modal">
+<p><span id="closeModal" class="close">×</span> <img id="modalImage" class="modal-content" alt="Enlarged Image"></p>
+</div>
 <!-- create custom layout for page -->
 <div class="grid">
 <!-- left pad -->
-<div class="g-col-1">
+<div class="g-col-2">
 
 </div>
 <!-- middle content -->
-<div class="g-col-10">
+<div class="g-col-8">
 <!-- ![](images/circle-headshot.png){width="280"}-->
-<div class="grid">
-<div class="g-col-12 g-col-md-6">
-<div class="teal-bg">
-<p class="custom-h2-light">
+<p class="custom-h2-light" style="color: gray; text-align: center;">
 <img src="images/Hand.png" class="img-fluid" width="24"> Welcome!
 </p>
-<p class="custom-p-light">
-A little bit about me: I recently earned a Master of Environmental Data Science degree from the <a href="https://bren.ucsb.edu/masters-programs/master-environmental-data-science">Bren School of Environmental Science &amp; Management</a> at the University of California, Santa Barbara. I am passionate about conservation, and I hope to build a career using data science tools to solve environmental problems.
+<p class="custom-p-light" style="color: gray">
+A little bit about me: I recently earned a Master of Environmental Data Science degree from the <a href="https://bren.ucsb.edu/masters-programs/master-environmental-data-science">Bren School of Environmental Science &amp; Management</a> at the University of California, Santa Barbara. I am passionate about conservation, and I hope to build a career using data science tools to solve environmental problems. Learn more and read my full bio on my <a href="https://elkewind.github.io/about.html">About page</a>.
 </p>
-</div>
-</div>
-<div class="g-col-12 g-col-md-6">
+<div class="grid">
+<div class="g-col-12 g-col-md-7">
 <div class="teal-bg">
-<h2>
+<p class="custom-h2-light" style="text-align: center;">
 <img src="images/Book.png" class="img-fluid" width="32"> Education
-</h2>
-<h4>
+</p>
+<p class="custom-h4-light">
 Master of Environmental Data Science
-</h4>
-<p>
+</p>
+<p class="custom-p-light" style="margin-top: 0px;">
 University of California, Santa Barbara | June 2023
 </p>
-<h4>
+<p class="custom-h4-light">
 Bachelor of Science in Biology with Honors
-</h4>
-<p>
+</p>
+<p class="custom-p-light">
 Iowa State University | May 2020
+</p>
+</div>
+<div class="button-container">
+<p><a href="https://github.com/elkewind" class="light-teal-button">GitHub</a> <a href="https://twitter.com/Elke_Windschitl" class="light-teal-button">Twitter</a> <a href="https://www.linkedin.com/in/elke-windschitl/" class="light-teal-button">LinkedIn</a></p>
+</div>
+</div>
+<div class="g-col-12 g-col-md-5">
+<div class="teal-bg">
+<p class="custom-h2-light" style="text-align: center;">
+<img src="images/magnifying-glass.png" class="img-fluid" width="32"> My Interests
+</p>
+<p class="custom-p-light" style="font-size: 20px;">
+Spatial Data Science | Data Visualization
+</p>
+<p class="custom-p-light" style="font-size: 18px;">
+Modeling | Renewable Resources | Sustainable Food Systems
+</p>
+<p class="custom-p-light" style="font-size: 14px;">
+Ecology | Biodiversity | Climate Solutions | Environmental Justice | Environmental Art
 </p>
 </div>
 </div>
@@ -195,15 +270,71 @@ Iowa State University | May 2020
 <!-- end middle content -->
 </div>
 <!-- right pad -->
-<div class="g-col-1">
+<div class="g-col-2">
 
 </div>
 <p><br><br> <!-- end custom layout for page --></p>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="95" data-source-offset="-34"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 94;"><span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="pp">setTimeout</span>(<span class="kw">function</span>() {</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">'.teal-bg-left'</span>)<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">'slide-in'</span>)<span class="op">;</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">'.teal-bg-right'</span>)<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">'slide-in'</span>)<span class="op">;</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span> <span class="dv">300</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="100" data-source-offset="-255"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 99;"><span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>modal <span class="op">=</span> {</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> modal <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"imageModal"</span>)<span class="op">;</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> modalImage <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"modalImage"</span>)<span class="op">;</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> closeBtn <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"closeModal"</span>)<span class="op">;</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> image <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"enlargeImage"</span>)<span class="op">;</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a><span class="co">// Function to open the modal (only for desktop)</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>image<span class="op">.</span><span class="at">onclick</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="bu">window</span><span class="op">.</span><span class="at">innerWidth</span> <span class="op">&gt;=</span> <span class="dv">768</span>) { <span class="co">// Check if the screen width is greater than or equal to 768px (adjust this breakpoint as needed)</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>    modal<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span> <span class="st">"block"</span><span class="op">;</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>    modalImage<span class="op">.</span><span class="at">src</span> <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">src</span><span class="op">;</span> <span class="co">// Set the source of the enlarged image</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="co">// Function to close the modal</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>closeBtn<span class="op">.</span><span class="at">onclick</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>  modal<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span> <span class="st">"none"</span><span class="op">;</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="bu">window</span><span class="op">.</span><span class="at">onclick</span> <span class="op">=</span> <span class="kw">function</span> (<span class="bu">event</span>) {</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="bu">event</span><span class="op">.</span><span class="at">target</span> <span class="op">==</span> modal) {</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>    modal<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span> <span class="st">"none"</span><span class="op">;</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
 
 
 
 
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"// Your JavaScript code goes here\nsetTimeout(function() {\n  document.querySelector('.teal-bg-left').classList.add('slide-in');\n  document.querySelector('.teal-bg-right').classList.add('slide-in');\n}, 300); // Adjust the delay (in milliseconds) as needed\n\nmodal = {\n  const modal = document.getElementById(\"imageModal\");\n  const modalImage = document.getElementById(\"modalImage\");\n  const closeBtn = document.getElementById(\"closeModal\");\n  const image = document.getElementById(\"enlargeImage\");\n\n// Function to open the modal (only for desktop)\nimage.onclick = function () {\n  if (window.innerWidth >= 768) { // Check if the screen width is greater than or equal to 768px (adjust this breakpoint as needed)\n    modal.style.display = \"block\";\n    modalImage.src = this.src; // Set the source of the enlarged image\n  }\n};\n\n// Function to close the modal\ncloseBtn.onclick = function () {\n  modal.style.display = \"none\";\n};\n\nwindow.onclick = function (event) {\n  if (event.target == modal) {\n    modal.style.display = \"none\";\n  }\n};\n}\n\n\n"}]}
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

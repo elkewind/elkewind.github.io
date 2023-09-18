@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -60,7 +94,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
 <link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
 <script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
@@ -84,10 +120,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta name="twitter:title" content="Elke Windschitl - About Me">
-<meta name="twitter:image" content="https://elkewind.github.io/images/bainbridge.png">
-<meta name="twitter:image-height" content="1000">
-<meta name="twitter:image-width" content="1000">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -139,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl-37a330149/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl/" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -151,14 +184,10 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -177,15 +206,41 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<h4 class="anchored">
+<!-- Image banner at top -->
+<p><img src="images/waves-dark.png" class="custom-banner"></p>
+<!-- create custom layout for banner elements -->
+<div class="grid">
+<!-- left side -->
+<div class="g-col-12 g-col-md-6">
+<div class="teal-bg-left">
+<p class="custom-h1-light">
+About Me
+</p>
+</div>
+</div>
+<!-- right side -->
+<div class="g-col-12 g-col-md-6">
+
+</div>
+</div>
+<p><br><br></p>
+<!-- create custom layout for page -->
+<div class="grid">
+<!-- left pad -->
+<div class="g-col-2">
+
+</div>
+<!-- middle content -->
+<div class="g-col-8">
+<h4>
 A bit more about who I am, what I do, where I’ve been, and where I’m headed
 </h4>
 <hr>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Full Bio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Hobbies</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Homes</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">What’s Next</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<h4 class="anchored">
+<h4>
 Biography
 </h4>
 <p>I am a recent graduate of the Bren School of Environmental Science &amp; Management at the University of California, Santa Barbara, where I earned a <strong>master’s degree in Environmental Data Science (MEDS)</strong>. I also hold a BS in Biology from the College of Agriculture and Life Sciences at Iowa State University.</p>
@@ -196,10 +251,10 @@ Biography
 <p><img src="images/bainbridge.png" class="img-fluid"></p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<h4 class="anchored">
+<h4>
 My Hobbies!
 </h4>
-<p>What do I do outside of the office and classroom? I love hiking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it’s most likely a mystery/thriller novel (find me on <a href="https://www.goodreads.com/user/show/95038298-elke-windschitl">Goodreads</a>!) I spend a lot of time in the kitchen cooking and baking – I picked up these two hobbies during the COVID-19 pandemic. Last, I dabble in digital illustration, graphic design, and photography. I have been selling prints and stickers since 2017.</p>
+<p>What do I do outside of the office and classroom? I love walking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it’s most likely a mystery/thriller novel (find me on <a href="https://www.goodreads.com/user/show/95038298-elke-windschitl">Goodreads</a>!) I spend a lot of time in the kitchen cooking and baking – I picked up these two hobbies during the COVID-19 pandemic shut down. Last, I dabble in digital illustration, graphic design, and photography. I have been selling prints and stickers since 2017. Much of my artwork has environmental themes. All of the photographs, illustrations, and icons found my website are my own.</p>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -220,30 +275,60 @@ My Hobbies!
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<h4 class="anchored">
+<h4>
 My Homes
 </h4>
 <p>I grew up in the state of Iowa, but I’ve moved around a lot in my adult life! I participated in multiple National Student Exchange programs, and I moved around for internships and fellowships. Check out all the places I’ve lived since I started college in 2016 – size indicates relatively how long I lived there:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ec3a1af25f91b8185d54" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-ec3a1af25f91b8185d54">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",null,"CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircles","args":[[41.6559,32.1541,42.0256,19.6883,38.6359,36.5919,36.7335,47.6211,34.4285],[-91.5303,-110.8787,-93.6217,-155.0863,-90.2451,-121.8808,-76.0435,-122.3244,-119.7202],[21,5,20,5,5,3,3,8,11],null,"Cities",{"interactive":true,"className":"","stroke":true,"color":"#1cd4ce","weight":[63,15,60,15,15,9,9,24,33],"opacity":0.5,"fill":true,"fillColor":"#1cd4ce","fillOpacity":0.2},null,null,["Iowa City","Tucson","Ames","Hilo","St. Louis","Monterey","Virginia Beach","Seattle","Santa Barbara"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"imagePopup","args":[["IC.jpg","AZ.jpg","AMES.jpg","HI.jpg","STL.jpg","MB.jpg","vB.jpg","SEA.jpg","SB.jpg"],"Cities",[175,175,175,175,175,175,175,175,175],[233.333333333333,233.333333333333,262.5,232.792959703566,131.25,131.25,191.319444444444,131.25,116.62109375],["l","l","l","l","l","l","l","l","l"],["IC","AZ","AMES","HI","STL","MB","vB","SEA","SB"],false,{"maxWidth":2000}]}],"setView":[[42.3601,-110.35],2.5,[]],"limits":{"lat":[19.6883,47.6211],"lng":[-155.0863,-76.0435]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-444df9c1cccfb01e5b27" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-444df9c1cccfb01e5b27">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",null,"CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircles","args":[[41.6559,32.1541,42.0256,19.6883,38.6359,36.5919,36.7335,47.6211,34.4285],[-91.5303,-110.8787,-93.6217,-155.0863,-90.24509999999999,-121.8808,-76.04349999999999,-122.3244,-119.7202],[22,5,20,5,5,3,3,8,13],null,"Cities",{"interactive":true,"className":"","stroke":true,"color":"#68b0ac","weight":[66,15,60,15,15,9,9,24,39],"opacity":0.5,"fill":true,"fillColor":"#68b0ac","fillOpacity":0.2},null,null,["Iowa City","Tucson","Ames","Hilo","St. Louis","Monterey","Virginia Beach","Seattle","Santa Barbara"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"imagePopup","args":[["IC.jpg","AZ.jpg","AMES.jpg","HI.jpg","STL.jpg","MB.jpg","vB.jpg","SEA.jpg","SB.jpg"],"Cities",[175,175,175,175,175,175,175,175,175],[233.3333333333333,233.3333333333333,262.5,232.7929597035665,131.25,131.25,191.3194444444444,131.25,116.62109375],["l","l","l","l","l","l","l","l","l"],["IC","AZ","AMES","HI","STL","MB","vB","SEA","SB"],false,{"maxWidth":2000}]}],"setView":[[42.3601,-110.35],2.5,[]],"limits":{"lat":[19.6883,47.6211],"lng":[-155.0863,-76.04349999999999]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Map made using package leaflet and data from: <a href="https://simplemaps.com/data/us-cities" class="uri">https://simplemaps.com/data/us-cities</a></p>
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<h4 class="anchored">
+<h4>
 What’s Next for Me?
 </h4>
-<p>I am looking to start my career as an environmental data scientist! Broadly, I hope to find a role where I can bring technical solutions to environmental challenges and contribute to an organization focused on natural resource management or sustainable food production. I am ideally looking for jobs in Santa Barbara, San Diego, or remote opportunities.</p>
+<p>I am excited to start my career as an environmental data scientist! Broadly, I hope to find a role where I can bring technical solutions to environmental challenges and contribute to an organization focused on natural resource management or sustainable food production. I am ideally looking for jobs in Santa Barbara, San Diego, or remote opportunities.</p>
+</div>
+</div>
+</div>
+<!-- end middle content -->
+</div>
+<!-- right pad -->
+<div class="g-col-2">
+
+</div>
+<p><br><br> <!-- end custom layout for page --></p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="104" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 103;"><span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="co">// Your JavaScript code goes here</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="pp">setTimeout</span>(<span class="kw">function</span>() {</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">'.teal-bg-left'</span>)<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">'slide-in'</span>)<span class="op">;</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span> <span class="dv">300</span>)<span class="op">;</span> <span class="co">// Adjust the delay (in milliseconds) as needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display hidden">
+<div id="ojs-cell-1" data-nodetype="expression">
+
 </div>
 </div>
 </div>
 
 
 
-</main> <!-- /main -->
+
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"// Your JavaScript code goes here\nsetTimeout(function() {\n  document.querySelector('.teal-bg-left').classList.add('slide-in');\n}, 300); // Adjust the delay (in milliseconds) as needed\n"}]}
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
