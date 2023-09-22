@@ -25,6 +25,8 @@ website:
         text: My Work
       - href: resume.qmd
         text: Resume
+      - href: reprex.qmd
+        text: Reprex
   page-footer: 
     background: $dark-teal
     left: "Copyright 2022, Elke Windschitl"
@@ -39,6 +41,6 @@ format:
     #css: styles.css
     toc: true
 
-editor: visual
+editor: source
 
 

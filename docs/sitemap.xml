@@ -2,50 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://elkewind.github.io/resume.html</loc>
-    <lastmod>2023-09-17T22:21:28.261Z</lastmod>
+    <lastmod>2023-09-22T00:09:10.322Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2023-08-19-python-viz/index.html</loc>
-    <lastmod>2023-09-18T00:56:45.413Z</lastmod>
+    <lastmod>2023-09-22T14:28:29.994Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2022-12-19-climate-ai-debate/index.html</loc>
-    <lastmod>2023-08-31T19:17:27.203Z</lastmod>
+    <lastmod>2023-09-21T15:38:55.000Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2023-06-25-flourish-ocean-depth/index.html</loc>
-    <lastmod>2023-08-31T19:17:28.847Z</lastmod>
+    <lastmod>2023-09-21T22:17:05.224Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2019-12-01-bobwhite-aru-research/index.html</loc>
-    <lastmod>2023-08-31T19:17:29.308Z</lastmod>
+    <lastmod>2023-09-21T15:39:04.491Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2023-03-29-art-and-science/index.html</loc>
-    <lastmod>2023-08-31T19:17:29.796Z</lastmod>
+    <lastmod>2023-09-21T15:38:17.323Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis/index.html</loc>
-    <lastmod>2023-08-31T19:17:32.350Z</lastmod>
+    <lastmod>2023-09-21T15:29:06.296Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2023-07-02-kelpGeoMod/index.html</loc>
-    <lastmod>2023-08-31T19:17:34.831Z</lastmod>
+    <lastmod>2023-09-21T22:16:51.840Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/index.html</loc>
-    <lastmod>2023-09-18T19:38:44.863Z</lastmod>
+    <lastmod>2023-09-22T03:41:49.737Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/about.html</loc>
-    <lastmod>2023-09-18T19:37:44.671Z</lastmod>
+    <lastmod>2023-09-22T14:28:11.395Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts.html</loc>
-    <lastmod>2023-09-18T19:38:38.403Z</lastmod>
+    <lastmod>2023-09-22T14:28:22.527Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/index2.html</loc>
     <lastmod>2023-09-14T17:50:21.181Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/reprex.html</loc>
+    <lastmod>2023-09-18T23:24:14.244Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/old-res.html</loc>
+    <lastmod>2023-09-21T23:29:14.216Z</lastmod>
   </url>
 </urlset>

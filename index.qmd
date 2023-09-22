@@ -1,7 +1,6 @@
 ---
 title: "Elke Windschitl"
 page-layout: custom
-toc: true
 execute:
   echo: false
   output: false
@@ -73,7 +72,7 @@ execute:
 
 <p class="custom-p-light" style="font-size: 20px;">Spatial Data Science \| Data Visualization</p>
 
-<p class="custom-p-light" style="font-size: 18px;">Modeling \| Renewable Resources \| Sustainable Food Systems</p>
+<p class="custom-p-light" style="font-size: 18px;">Analytics \| Renewable Resources \| Sustainable Food Systems</p>
 
 <p class="custom-p-light" style="font-size: 14px;">Ecology \| Biodiversity \| Climate Solutions \| Environmental Justice \| Environmental Art</p>
 :::
@@ -89,6 +88,11 @@ execute:
 <!-- end custom layout for page -->
 :::::
 
+
+<!-- Image footer at bottom -->
+:::{.footer-container}
+<img src="images/footer.png" class="custom-footer"/> 
+:::
 ```{ojs style="display: none;"}
 //| echo: false
 //| output: false

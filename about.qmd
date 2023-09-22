@@ -1,24 +1,22 @@
 ---
-title: "About Me"
 page-layout: custom
+toc: false
 ---
 <!-- Image banner at top -->
-<img src="images/waves-dark.png" class="custom-banner"/>
+<img src="images/waves-dark.png" class="custom-banner"/> 
 
 <!-- create custom layout for banner elements -->
 ::::: {.grid}
 <!-- left side -->
-:::: {.g-col-12 .g-col-md-6}
+::: {.g-col-12 .g-col-md-6}
 ::: {.teal-bg-left}
 <p class="custom-h1-light">About Me</p>
+<p class="custom-h2-light" style="font-size: 22px; font-weight: 200; padding-left: 40px; padding-right: 40px">A bit more about who I am, what I do, where I've been, and where I'm headed</p>
 :::
-::::
-<!-- right side -->
-:::: {.g-col-12 .g-col-md-6}
-::::
+<hr></hr>
+:::
 :::::
 
-<br></br> 
 
 <!-- create custom layout for page -->
 ::::: {.grid}
@@ -27,14 +25,8 @@ page-layout: custom
 :::
 <!-- middle content -->
 ::: {.g-col-8}
-<h4>A bit more about who I am, what I do, where I've been, and where I'm headed</h4>
 
-------------------------------------------------------------------------
-
-::: panel-tabset
-## Full Bio
-
-<h4>Biography</h4>
+<p class="custom-h2-dark" id="bio" style="margin-top: 40px">Background</p>
 
 I am a recent graduate of the Bren School of Environmental Science & Management at the University of California, Santa Barbara, where I earned a **master's degree in Environmental Data Science (MEDS)**. I also hold a BS in Biology from the College of Agriculture and Life Sciences at Iowa State University.
 
@@ -46,27 +38,43 @@ Beyond my core areas of interest, I am an animal ecology nerd with a deep commit
 
 With my interdisciplinary background and strong skill set, I am ready to make an impact in the field of environmental data science, bridging the gap between scientific research, technological advancements, and practical conservation strategies.
 
-![](images/bainbridge.png)
+<img src="images/final-prez.JPG" style="border-radius: 20px; max-height: 500px; display: block; margin: 0 auto;" />
 
-## Hobbies
 
-<h4>My Hobbies!</h4>
 
-What do I do outside of the office and classroom? I love walking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it's most likely a mystery/thriller novel (find me on [Goodreads](https://www.goodreads.com/user/show/95038298-elke-windschitl)!) I spend a lot of time in the kitchen cooking and baking -- I picked up these two hobbies during the COVID-19 pandemic shut down. Last, I dabble in digital illustration, graphic design, and photography. I have been selling prints and stickers since 2017. Much of my artwork has environmental themes. All of the photographs, illustrations, and icons found my website are my own.
+<!-- <div id="image-slideshow"> -->
+<!--   <img src="images/final-prez.JPG"> -->
+<!--   <img src="images/isu-grad.jpg"> -->
+<!--   <img src="images/grad.JPG"> -->
+<!--   <img src="images/kelp-team.JPG"> -->
+<!--   <img src="images/montana.jpg"> -->
+<!--   <img src="images/ncur-poster.jpg"> -->
+<!--   <img src="images/ncur-group.jpg"> -->
+<!--   <img src="images/vaq.jpg"> -->
+<!--   <img src="images/bobwhite-poster.jpg"> -->
+<!--   <img src="images/bobwhite-research.jpg"> -->
+<!-- </div> -->
+
+<p class="custom-h2-dark" id="hobbies">My Hobbies</p>
+
+What do I do outside of the office and classroom? I love hiking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it's most likely a mystery/thriller novel (find me on [Goodreads](https://www.goodreads.com/user/show/95038298-elke-windschitl)!) I spend a lot of time in the kitchen cooking and baking -- I picked up these two hobbies during the COVID-19 pandemic. Last, I dabble in digital illustration, graphic design, and photography. I have been selling prints and stickers since 2017.
 
 ::: {layout-ncol="2"}
-![](images/butterflies.png)
+<img src="images/book.jpg" style="border-radius: 20px;"/> 
 
-![](images/the_overstory.png)
+<img src="images/butterflies.jpg" style="border-radius: 20px;"/> 
 
-![](images/paddleboard.png)
+<img src="images/paddleboard.jpg" style="border-radius: 20px;"/>
 
-![](images/biking.png)
+<img src="images/painting.jpg" style="border-radius: 20px;"/> 
+
+<img src="images/biking.jpg" style="border-radius: 20px;"/> 
+
+<img src="images/hiking.jpg" style="border-radius: 20px;"/> 
+
 :::
 
-## Homes
-
-<h4>My Homes</h4>
+<p class="custom-h2-dark" id="homes">Where I've Lived</p>
 
 I grew up in the state of Iowa, but I've moved around a lot in my adult life! I participated in multiple National Student Exchange programs, and I moved around for internships and fellowships. Check out all the places I've lived since I started college in 2016 -- size indicates relatively how long I lived there:
 
@@ -82,17 +90,21 @@ my_leaflet
 
 Map made using package leaflet and data from: <https://simplemaps.com/data/us-cities>
 
-## What's Next
+<p class="custom-h2-dark" id="next">What's Next for Me?</p>
 
-<h4>What's Next for Me?</h4>
-
-I am excited to start my career as an environmental data scientist! Broadly, I hope to find a role where I can bring technical solutions to environmental challenges and contribute to an organization focused on natural resource management or sustainable food production. I am ideally looking for jobs in Santa Barbara, San Diego, or remote opportunities.
-:::
+I am looking to start my career as an environmental data scientist! Broadly, I hope to find a role where I can blend my creative and quantitative talents to contribute to an organization or research group focused natural resource management. I am ideally looking for jobs in Seattle, Santa Barbara, or remote opportunities.
 
 <!-- end middle content -->
 :::
 <!-- right pad -->
 ::: {.g-col-2}
+<ul class="menu">
+<p class="custom-p-light" style="font-size: 20px; font-weight: 400;">On This Page:</p>
+<li><a href="#bio">Background</a></li>
+<li><a href="#hobbies">My Hobbies</a></li>
+<li><a href="#homes">Where I've Lived</a></li>
+<li><a href="#next">What's Next for Me?</a></li>
+</ul>
 :::
 
 <br></br> 
@@ -106,4 +118,6 @@ I am excited to start my career as an environmental data scientist! Broadly, I h
 setTimeout(function() {
   document.querySelector('.teal-bg-left').classList.add('slide-in');
 }, 300); // Adjust the delay (in milliseconds) as needed
+
 ```
+

@@ -51,6 +51,13 @@ h1, h3 {
   color: $light-gray;
 }
 
+.custom-h2-dark {
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 32px;
+  color: $dark-teal;
+}
+
 .custom-h4-light {
   letter-spacing: 1px;
   font-weight: 450;
@@ -64,6 +71,14 @@ h1, h3 {
   font-weight: 450;
   font-size: 14px;
   color: $light-gray;
+}
+
+.custom-p-dark {
+  letter-spacing: 1px;
+  padding: 15px;
+  font-weight: 450;
+  font-size: 14px;
+  color: $gray;
 }
   
 .gray-bg {
@@ -200,6 +215,17 @@ h1, h3 {
   margin-top: 30px;
 }
 
+.teal-bg2 {
+  background-color: $dark-teal;
+  border-radius: 15px;
+}
+
+.gray-bg {
+  background-color: $light-gray;
+  padding-left: 20px;
+  border-radius: 25px;
+}
+
 img.custom-banner {
   width: 100%;
   position: absolute;
@@ -207,6 +233,27 @@ img.custom-banner {
   left: 0;
   z-index: 1; /* Add this line */
 }
+
+.custom-footer {
+  width: 100%;
+  position: relative;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  z-index: 1;
+}
+
+.footer-container {
+  margin-bottom: -35px; /* Adjust this value to match the image height */
+  /* Add any other styles you need for your content container */
+}
+
+/* Media query for desktop screens */
+@media (max-width: 768px) { /* Adjust the breakpoint to your preference */
+  .footer-container {
+    margin-bottom: -20px;
+  }
+}
+
 
 .button-container {
   display: flex;
@@ -247,22 +294,50 @@ img.custom-banner {
   }
 }
 
-/* Apply rounded corners to the entire tabset panel */
-.panel-tabset {
-  border-radius: 10px; /* Adjust the radius to your preference */
-  overflow: hidden; /* Hide overflowing content within the panel */
+/* Style your custom TOC */
+.menu {
+  position: fixed;
+  top: 50%; /* Vertically center the TOC */
+  right: 10px; /* Adjust the left position as needed */
+  transform: translateY(-90%); /* Center it precisely */
+  background-color: $dark-teal; /* Background color */
+  padding: 10px; /* Add padding */
+  border: 1px solid $dark-teal; /* Add a border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow */
+  z-index: 3;
 }
 
-/* Remove the default border from tab labels */
-.panel-tab {
-  border: none;
+.menu li {
+  margin: 5px 0; /* Adjust spacing between TOC items */
+  list-style-type: none; /* Remove bullet points */
 }
 
-/* Apply a border to the active tab label with rounded corners */
-.panel-tab.active {
-  border: 2px solid $dark-teal; /* Replace with your desired border color */
-  border-radius: 10px 10px 0 0; /* Adjust the radius as needed */
+.menu a {
+  text-decoration: none; /* Remove underlines from links */
+  color: $light-gray /* Text color */
 }
 
- 
-  
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .menu {
+    display: none; /* Hide the menu completely on mobile */
+  }
+}
+
+.custom-list {
+  list-style-type: disc;
+  line-height: 1.2;
+  padding-top: 0;
+  padding-right: 10px;
+  margin-top: 0;
+  font-size: 14px; /* Adjust the font size as needed */
+}
+
+.custom-list li {
+  margin-bottom: 5px;
+  padding-top: 0;
+  margin-top: 0;
+  font-size: 14px; /* Adjust the font size as needed */
+}
+
