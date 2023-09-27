@@ -16,8 +16,6 @@ toc: false
 <hr></hr>
 :::
 :::::
-
-
 <!-- create custom layout for page -->
 ::::: {.grid}
 <!-- left pad -->
@@ -25,7 +23,7 @@ toc: false
 :::
 <!-- middle content -->
 ::: {.g-col-8}
-
+<!-- bio -->
 <p class="custom-h2-dark" id="bio" style="margin-top: 40px">Background</p>
 
 I am a recent graduate of the Bren School of Environmental Science & Management at the University of California, Santa Barbara, where I earned a **master's degree in Environmental Data Science (MEDS)**. I also hold a BS in Biology from the College of Agriculture and Life Sciences at Iowa State University.
@@ -44,6 +42,8 @@ With my interdisciplinary background and strong skill set, I am ready to make an
 
 
 
+
+<!-- hobbies -->
 <p class="custom-h2-dark" id="hobbies">My Hobbies</p>
 
 What do I do outside of the office and classroom? I love walking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it's most likely a mystery/thriller novel (find me on [Goodreads](https://www.goodreads.com/user/show/95038298-elke-windschitl)!) I spend a lot of time in the kitchen cooking and baking -- I picked up these two hobbies during the COVID-19 shut down. Last, I dabble in digital illustration, graphic design, painting, and photography. I have been selling prints and stickers since 2017. Nature and the environment is a theme in much of my artwork. Read more about how I integrate art with science [here](https://elkewind.github.io/posts/2023-03-29-art-and-science/).
@@ -72,9 +72,7 @@ What do I do outside of the office and classroom? I love walking, biking, swimmi
 <div class="image-container">
   <img src="images/about/hiking.jpg" class="clickable-image" data-src="images/about/hiking.jpg" style="border-radius: 20px;" alt="Elke crossing a stream with trees and mountains in the background.">
 </div>
-
 :::
-
 <div id="imageModal" class="modal">
   <span id="closeModal" class="close">×</span>
   <img id="modalImage" class="modal-content" alt="Enlarged Image">
@@ -82,6 +80,7 @@ What do I do outside of the office and classroom? I love walking, biking, swimmi
 
 
 
+<!-- homes -->
 <p class="custom-h2-dark" id="homes">Where I've Lived</p>
 
 I grew up in the state of Iowa, but I've moved around a lot in my adult life! I participated in multiple National Student Exchange programs, and I moved around for internships and fellowships. Check out all the places I've lived since I started college in 2016 -- size indicates relatively how long I lived there:
@@ -121,7 +120,6 @@ I am excited to start my career as an environmental data scientist! Broadly, I h
 ```{ojs style="display: none;"}
 //| echo: false
 //| output: false
-// Your JavaScript code goes here
 setTimeout(function() {
   document.querySelector('.teal-bg-left').classList.add('slide-in');
 }, 300); // Adjust the delay (in milliseconds) as needed

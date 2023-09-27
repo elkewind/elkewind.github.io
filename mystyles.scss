@@ -1,9 +1,6 @@
 /*-- scss:defaults --*/
 
 // Fonts
-//@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati&display=swap');
-//@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Noto+Serif+Gujarati&family=Raleway:wght@100;400;700&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Montserrat:wght@300;400;600&family=Noto+Serif+Gujarati&family=Raleway:wght@100;400;700&display=swap');
 
 // Colors
@@ -102,14 +99,13 @@ h1, h3 {
   z-index: 2; 
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center vertically */
+  justify-content: center;
   align-items: center; 
   margin-right: 40px;
   transform: translateX(-100%); /* Start off-screen to the left */
   transition: transform 0.2s, opacity 0.2s; /* Add smooth transitions for both transform and opacity */
 }
 
-/* CSS for the animation */
 .teal-bg-left.slide-in {
   transform: translateX(0%); /* Move to the original position */
   opacity: 1; /* Fade in */
@@ -132,8 +128,7 @@ h1, h3 {
   transform: scale(1.1); /* Increase the size on hover (1.1 times the original size) */
 }
 
-/* Media query for desktop screens */
-@media (min-width: 768px) { /* Adjust the breakpoint to your preference */
+@media (min-width: 768px) { 
   .custom-circle-headshot {
   left: 30%;
   padding-top: 20px;
@@ -142,28 +137,21 @@ h1, h3 {
 
 .clickable-image {
   margin-bottom: 15px;
-  z-index: 3; /* Place the image above the background */
-  transition: transform 0.2s; /* Add a smooth transition effect */
+  z-index: 3; 
+  transition: transform 0.2s; 
 }
 
 .clickable-image:hover {
-  transform: scale(1.08); /* Increase the size on hover (1.1 times the original size) */
+  transform: scale(1.08);
 }
 
-.caption {
-  text-align: center;
-  display: none; /* Hide the caption initially */
-  background-color: $dark-teal;
-  color: $light-gray;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  border-radius: 0 0 20px 20px; /* Match the image border radius */
+@media (max-width: 768px) {
+  .clickable-image {
+    max-width: 100%; /* Make the image width 100% of its container */
+    max-height: auto; /* Allow the image to scale proportionally */
+  }
 }
 
-/* Style for the modal */
 .modal {
   display: none;
   position: fixed;
@@ -175,10 +163,9 @@ h1, h3 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   text-align: center;
-  margin-top: 50px; /* Adjust this value to set the desired margin */
+  margin-top: 50px;
 }
 
-/* Style for the close button */
 .close {
   position: absolute;
   top: 10px;
@@ -188,7 +175,6 @@ h1, h3 {
   cursor: pointer;
 }
 
-/* Style for the modal content (the enlarged image) */
 .modal-content {
   max-width: 50%; /* Adjust this value to make the modal narrower */
   max-height: 50%; /* Adjust this value to make the modal shorter */
@@ -214,8 +200,7 @@ h1, h3 {
   transition: transform 0.2s, opacity 0.2s; /* Add smooth transitions for both transform and opacity */
 }
 
-/* Media query for desktop screens */
-@media (min-width: 768px) { /* Adjust the breakpoint to your preference */
+@media (min-width: 768px) { 
   .teal-bg-right {
     margin-top: 100px;
     margin-left: 0;/* Apply margin only on desktop screens */
@@ -223,7 +208,6 @@ h1, h3 {
   }
 }
 
-/* CSS for the animation */
 .teal-bg-right.slide-in {
   transform: translateX(0%); /* Move to the original position */
   opacity: 1; /* Fade in */
@@ -255,7 +239,7 @@ img.custom-banner {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1; /* Add this line */
+  z-index: 1;
 }
 
 .custom-footer {
@@ -268,11 +252,9 @@ img.custom-banner {
 
 .footer-container {
   margin-bottom: -35px; /* Adjust this value to match the image height */
-  /* Add any other styles you need for your content container */
 }
 
-/* Media query for desktop screens */
-@media (max-width: 768px) { /* Adjust the breakpoint to your preference */
+@media (max-width: 768px) { 
   .footer-container {
     margin-bottom: -20px;
   }
@@ -281,8 +263,8 @@ img.custom-banner {
 
 .button-container {
   display: flex;
-  justify-content: center; /* Center buttons horizontally */
-  align-items: center; /* Center buttons vertically */
+  justify-content: center; 
+  align-items: center; 
   margin-top: 25px;
 }
 
@@ -297,7 +279,7 @@ img.custom-banner {
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
-  margin-right: 25px; /* Add margin between buttons */
+  margin-right: 25px; 
   margin-left: 25px;
 }
 
@@ -306,7 +288,6 @@ img.custom-banner {
   color: $light-gray; /* Change the text color on hover */
 }
 
-/* Media query for mobile screens */
 @media (max-width: 768px) {
   .button-container {
     flex-direction: column; /* Stack buttons vertically on mobile */
@@ -314,35 +295,33 @@ img.custom-banner {
   }
 
   .light-teal-button {
-    margin: 10px 0; /* Adjust margin for mobile spacing */
+    margin: 10px 0;
   }
 }
 
-/* Style your custom TOC */
 .menu {
   position: fixed;
-  top: 50%; /* Vertically center the TOC */
-  right: 10px; /* Adjust the left position as needed */
-  transform: translateY(-90%); /* Center it precisely */
-  background-color: $dark-teal; /* Background color */
-  padding: 10px; /* Add padding */
-  border: 1px solid $dark-teal; /* Add a border */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow */
+  top: 50%; 
+  right: 10px; 
+  transform: translateY(-90%);
+  background-color: $dark-teal; 
+  padding: 10px;
+  border: 1px solid $dark-teal;
+  border-radius: 5px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
   z-index: 3;
 }
 
 .menu li {
-  margin: 5px 0; /* Adjust spacing between TOC items */
-  list-style-type: none; /* Remove bullet points */
+  margin: 5px 0; /* Adjust spacing between items */
+  list-style-type: none;
 }
 
 .menu a {
-  text-decoration: none; /* Remove underlines from links */
-  color: $light-gray /* Text color */
+  text-decoration: none; 
+  color: $light-gray 
 }
 
-/* Media query for mobile devices */
 @media (max-width: 768px) {
   .menu {
     display: none; /* Hide the menu completely on mobile */
@@ -355,13 +334,13 @@ img.custom-banner {
   padding-top: 0;
   padding-right: 10px;
   margin-top: 0;
-  font-size: 14px; /* Adjust the font size as needed */
+  font-size: 14px; 
 }
 
 .custom-list li {
   margin-bottom: 5px;
   padding-top: 0;
   margin-top: 0;
-  font-size: 14px; /* Adjust the font size as needed */
+  font-size: 14px; 
 }
 

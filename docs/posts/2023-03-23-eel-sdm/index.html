@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -122,15 +93,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <style>
-    .quarto-title-block .quarto-title-banner {
-      color: $mid-gray;
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: $mid-gray;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: $mid-gray;
 background: $dark-teal;
-    }
-    </style>
+      }
+</style>
 
 
 <meta name="twitter:title" content="Elke Windschitl - Boosting to Predict Eel Distribution">
@@ -153,46 +136,48 @@ background: $dark-teal;
     <span class="navbar-title">Elke Windschitl</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../posts.html">
+    <a class="nav-link" href="../../posts.html" rel="" target="">
  <span class="menu-text">My Work</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../resume.html">
+    <a class="nav-link" href="../../resume.html" rel="" target="">
  <span class="menu-text">Resume</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/elkewind"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/elkewind" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/Elke_Windschitl"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/Elke_Windschitl" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl-37a330149/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl/" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -220,7 +205,7 @@ background: $dark-teal;
     <div class="quarto-title-meta-heading">Affiliation</div>
     
       <div class="quarto-title-meta-contents">
-      <a href="https://elkewind.github.io">Elke Windschitl</a> 
+      <p class="author"><a href="https://elkewind.github.io">Elke Windschitl</a> </p>
     </div>
       <div class="quarto-title-meta-contents">
           <p class="affiliation">
@@ -288,7 +273,7 @@ background: $dark-teal;
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="variables.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure 1: Table 1. from Elith et al.&nbsp;2008 displaying the variables included in the analysis.</figcaption><p></p>
+<figcaption class="figure-caption">Figure 1: Table 1. from Elith et al.&nbsp;2008 displaying the variables included in the analysis.</figcaption>
 </figure>
 </div>
 <div class="cell">
@@ -309,100 +294,102 @@ background: $dark-teal;
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Table. 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table. 1</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Angaus</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">SegSumT</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">SegTSeas</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">SegLowFlow</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">DSDist</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">DSMaxSlope</td>
+<td data-quarto-table-cell-role="th">USAvgT</td>
+<td data-quarto-table-cell-role="th">USRainDays</td>
+<td data-quarto-table-cell-role="th">USSlope</td>
+<td data-quarto-table-cell-role="th">USNative</td>
+<td data-quarto-table-cell-role="th">DSDam</td>
+<td data-quarto-table-cell-role="th">Method</td>
+<td data-quarto-table-cell-role="th">LocSed</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">16.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.04</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">50.20</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.57</td>
+<td>0.09</td>
+<td>2.47</td>
+<td>9.80</td>
+<td>0.81</td>
+<td>0</td>
+<td>electric</td>
+<td>4.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">18.70</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.51</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">132.53</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.15</td>
+<td>0.20</td>
+<td>1.15</td>
+<td>8.30</td>
+<td>0.34</td>
+<td>0</td>
+<td>electric</td>
+<td>2.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">18.30</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.37</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">107.44</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.57</td>
+<td>0.49</td>
+<td>0.85</td>
+<td>0.40</td>
+<td>0.00</td>
+<td>0</td>
+<td>spo</td>
+<td>1.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">16.70</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-3.80</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">166.82</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.72</td>
+<td>0.90</td>
+<td>0.21</td>
+<td>0.40</td>
+<td>0.22</td>
+<td>1</td>
+<td>electric</td>
+<td>4.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">1</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">17.20</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0.33</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">1.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">3.95</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">1.15</td>
+<td>-1.20</td>
+<td>1.98</td>
+<td>21.90</td>
+<td>0.96</td>
+<td>0</td>
+<td>electric</td>
+<td>4.70</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Table. 1</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">Angaus</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">SegSumT</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">SegTSeas</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">SegLowFlow</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">DSDist</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">DSMaxSlope</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">USAvgT</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">USRainDays</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col9">USSlope</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; 0">USNative</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; 1">DSDam</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; 2">Method</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; 3">LocSed</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">16.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">-0.10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.04</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">50.20</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.57</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.09</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">2.47</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">9.80</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 0">0.81</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 1">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 2">electric</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 3">4.80</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">1</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">18.70</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.51</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">132.53</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.15</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.20</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">1.15</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">8.30</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 0">0.34</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 1">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 2">electric</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 3">2.00</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">18.30</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.37</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">107.44</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.57</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.49</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.85</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">0.40</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 0">0.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 1">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 2">spo</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 3">1.00</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">16.70</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">-3.80</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">166.82</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1.72</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.90</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.21</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">0.40</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 0">0.22</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 1">1</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 2">electric</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; 3">4.00</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">1</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">17.20</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.33</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">1.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">3.95</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">1.15</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">-1.20</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">1.98</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col9">21.90</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; 0">0.96</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; 1">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; 2">electric</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; 3">4.70</td>
-</tr>
-</tbody></table>
 
 </div>
 </div>
@@ -494,67 +481,75 @@ background: $dark-teal;
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table 2</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">learn_rate</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.metric</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.estimator</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">mean</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">n</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">std_err</td>
+<td data-quarto-table-cell-role="th">.config</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.1656</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8313</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.0103</td>
+<td>Preprocessor1_Model17</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.1035</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8312</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.0092</td>
+<td>Preprocessor1_Model11</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.3000</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8298</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.0129</td>
+<td>Preprocessor1_Model30</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.1449</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8298</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.0110</td>
+<td>Preprocessor1_Model15</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0.2380</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0.8298</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0.0111</td>
+<td>Preprocessor1_Model24</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="text-align: right; font-style: italic; border-top: double black;">Performance of the best models and the associated estimates for the learning rate parameter values.</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Table 2</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">learn_rate</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.metric</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.estimator</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">mean</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">n</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">std_err</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">.config</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0.1656</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8313</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0103</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">Preprocessor1_Model17</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0.1035</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8312</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0092</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">Preprocessor1_Model11</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0.3000</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8298</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0129</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">Preprocessor1_Model30</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">0.1449</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8298</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0110</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">Preprocessor1_Model15</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">0.2380</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.8298</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.0111</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">Preprocessor1_Model24</td>
-</tr>
-<tr>
-<td colspan="8" style="font-style:italic; border-top:double black; text-align:right;">Performance of the best models and the associated estimates for the learning rate parameter values.</td>
-</tr>
-</tbody></table>
 
 </div>
 <details>
@@ -626,79 +621,87 @@ background: $dark-teal;
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table 3</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">min_n</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">tree_depth</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">loss_reduction</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.metric</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.estimator</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">mean</td>
+<td data-quarto-table-cell-role="th">n</td>
+<td data-quarto-table-cell-role="th">std_err</td>
+<td data-quarto-table-cell-role="th">.config</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">18</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">7</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.1440</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8413</td>
+<td>10</td>
+<td>0.0102</td>
+<td>Preprocessor1_Model15</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.0000</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8385</td>
+<td>10</td>
+<td>0.0135</td>
+<td>Preprocessor1_Model08</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">6</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.0000</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8342</td>
+<td>10</td>
+<td>0.0136</td>
+<td>Preprocessor1_Model14</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">8</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.0000</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8342</td>
+<td>10</td>
+<td>0.0128</td>
+<td>Preprocessor1_Model18</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">4</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">5</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0.2273</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0.8314</td>
+<td>10</td>
+<td>0.0135</td>
+<td>Preprocessor1_Model12</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td colspan="10" style="text-align: right; font-style: italic; border-top: double black;">Performance of the best models and the associated estimates for the tree parameter values.</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Table 3</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">min_n</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">tree_depth</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">loss_reduction</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.metric</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.estimator</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">mean</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">n</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">std_err</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col9">.config</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">18</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">7</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.1440</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8413</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0102</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model15</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">3</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">11</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0000</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8385</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0135</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model08</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">6</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">15</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0000</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8342</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0136</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model14</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">3</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">8</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.0000</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8342</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0128</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model18</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">4</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">5</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.2273</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.8314</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">0.0135</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col9">Preprocessor1_Model12</td>
-</tr>
-<tr>
-<td colspan="10" style="font-style:italic; border-top:double black; text-align:right;">Performance of the best models and the associated estimates for the tree parameter values.</td>
-</tr>
-</tbody></table>
 
 </div>
 <details>
@@ -772,79 +775,87 @@ background: $dark-teal;
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table 4</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">mtry</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">sample_size</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">stop_iter</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.metric</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.estimator</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">mean</td>
+<td data-quarto-table-cell-role="th">n</td>
+<td data-quarto-table-cell-role="th">std_err</td>
+<td data-quarto-table-cell-role="th">.config</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.7264</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8171</td>
+<td>10</td>
+<td>0.0122</td>
+<td>Preprocessor1_Model20</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">9</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.7459</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">18</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8141</td>
+<td>10</td>
+<td>0.0125</td>
+<td>Preprocessor1_Model26</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">16</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8406</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">7</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8128</td>
+<td>10</td>
+<td>0.0119</td>
+<td>Preprocessor1_Model17</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">6</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.7097</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">4</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.8127</td>
+<td>10</td>
+<td>0.0107</td>
+<td>Preprocessor1_Model09</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">5</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0.8537</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">4</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0.8113</td>
+<td>10</td>
+<td>0.0102</td>
+<td>Preprocessor1_Model22</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td colspan="10" style="text-align: right; font-style: italic; border-top: double black;">Performance of the best models and the associated estimates for the stochastic parameter values.</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Table 4</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">mtry</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">sample_size</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">stop_iter</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.metric</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.estimator</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">mean</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">n</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">std_err</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col9">.config</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">14</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.7264</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">13</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8171</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0122</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model20</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">9</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.7459</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">18</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8141</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0125</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model26</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">16</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8406</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">7</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8128</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0119</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model17</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">6</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.7097</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">4</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.8127</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0.0107</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col9">Preprocessor1_Model09</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">5</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.8537</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">4</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.8113</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">0.0102</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col9">Preprocessor1_Model22</td>
-</tr>
-<tr>
-<td colspan="10" style="font-style:italic; border-top:double black; text-align:right;">Performance of the best models and the associated estimates for the stochastic parameter values.</td>
-</tr>
-</tbody></table>
 
 </div>
 <details>
@@ -895,69 +906,78 @@ background: $dark-teal;
 <span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table 5</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.pred_0</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.pred_1</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.row</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.pred_class</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Angaus</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.config</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.995</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.005</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Preprocessor1_Model1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0.083</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.917</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Preprocessor1_Model1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.629</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.371</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Preprocessor1_Model1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0.670</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.330</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">4</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Preprocessor1_Model1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.796</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.204</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">9</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Preprocessor1_Model1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0.296</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0.704</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">1</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">1</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">Preprocessor1_Model1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td colspan="7" style="text-align: right; font-style: italic; border-top: double black;">Predictions of Angaus presence on test data.</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Table 5</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">.pred_0</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.pred_1</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.row</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.pred_class</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Angaus</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.config</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; modelcolumn0 ">0.995</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.005</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; modelcolumn0 ">0.083</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.917</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">2</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; modelcolumn0 ">0.629</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.371</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">3</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; modelcolumn0 ">0.670</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.330</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">4</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; modelcolumn0 ">0.796</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.204</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">9</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; modelcolumn0 ">0.296</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double;  ">0.704</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">1</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">1</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">Preprocessor1_Model1</td>
-</tr>
-<tr>
-<td colspan="7" style="font-style:italic; border-top:double black; text-align:right;">Predictions of Angaus presence on test data.</td>
-</tr>
-</tbody></table>
 
 </div>
 <details>
@@ -970,31 +990,36 @@ background: $dark-teal;
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">show.footnote =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table 6</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.metric</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.estimator</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.estimate</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">.config</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.843853820598007</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Preprocessor1_Model1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">roc_auc</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">binary</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0.866325136612022</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">Preprocessor1_Model1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td colspan="5" style="text-align: right; font-style: italic; border-top: double black;">Accuracy and area under ther receiver operator curve of the final fit.</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Table 6</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">.metric</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.estimator</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.estimate</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">.config</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">accuracy</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0.843853820598007</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Preprocessor1_Model1</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">roc_auc</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">binary</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0.866325136612022</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">Preprocessor1_Model1</td>
-</tr>
-<tr>
-<td colspan="5" style="font-style:italic; border-top:double black; text-align:right;">Accuracy and area under ther receiver operator curve of the final fit.</td>
-</tr>
-</tbody></table>
 
 </div>
 <details>
@@ -1084,14 +1109,14 @@ background: $dark-teal;
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{windschitl2022,
-  author = {Elke Windschitl},
+  author = {Windschitl, Elke},
   title = {Boosting to {Predict} {Eel} {Distribution}},
   date = {2022-12-02},
   url = {https://elkewind.github.io/posts/2023-03-23-eel-sdm},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-windschitl2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
-Elke Windschitl. 2022. <span>“Boosting to Predict Eel
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-windschitl2022" class="csl-entry quarto-appendix-citeas" role="listitem">
+Windschitl, Elke. 2022. <span>“Boosting to Predict Eel
 Distribution.”</span> December 2, 2022. <a href="https://elkewind.github.io/posts/2023-03-23-eel-sdm">https://elkewind.github.io/posts/2023-03-23-eel-sdm</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1121,9 +1146,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1239,6 +1278,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1685,6 +1810,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">Copyright 2022, Elke Windschitl</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Made with Quarto</div>
   </div>
 </footer>

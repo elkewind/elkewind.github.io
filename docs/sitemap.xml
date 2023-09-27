@@ -1,59 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://elkewind.github.io/resume.html</loc>
-    <lastmod>2023-09-27T16:38:40.900Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/posts/2023-08-19-python-viz/index.html</loc>
-    <lastmod>2023-09-27T16:35:00.034Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/posts/2022-12-19-climate-ai-debate/index.html</loc>
-    <lastmod>2023-09-27T14:56:34.586Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/posts/2023-06-25-flourish-ocean-depth/index.html</loc>
-    <lastmod>2023-09-27T14:56:24.934Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/posts/2019-12-01-bobwhite-aru-research/index.html</loc>
-    <lastmod>2023-09-27T14:57:03.153Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/posts/2023-03-29-art-and-science/index.html</loc>
-    <lastmod>2023-09-27T14:56:29.941Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis/index.html</loc>
-    <lastmod>2023-09-27T14:56:42.035Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/posts/2023-07-02-kelpGeoMod/index.html</loc>
-    <lastmod>2023-09-27T14:56:15.510Z</lastmod>
+    <loc>https://elkewind.github.io/posts.html</loc>
+    <lastmod>2023-09-27T17:11:37.218Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/index.html</loc>
-    <lastmod>2023-09-27T16:24:08.137Z</lastmod>
+    <lastmod>2023-09-27T17:11:31.496Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis/index.html</loc>
+    <lastmod>2023-09-27T17:11:28.540Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/posts/2019-12-01-bobwhite-aru-research/index.html</loc>
+    <lastmod>2023-09-27T17:11:25.181Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/resume.html</loc>
+    <lastmod>2023-09-27T17:11:18.205Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/posts/2023-08-19-python-viz/index.html</loc>
+    <lastmod>2023-09-27T17:11:20.509Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/posts/2022-12-19-climate-ai-debate/index.html</loc>
+    <lastmod>2023-09-27T17:11:22.790Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/posts/2023-06-25-flourish-ocean-depth/index.html</loc>
+    <lastmod>2023-09-27T17:11:24.732Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/posts/2023-03-29-art-and-science/index.html</loc>
+    <lastmod>2023-09-27T17:11:25.659Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/posts/2023-07-02-kelpGeoMod/index.html</loc>
+    <lastmod>2023-09-27T17:11:30.948Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/about.html</loc>
-    <lastmod>2023-09-27T16:33:14.121Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/posts.html</loc>
-    <lastmod>2023-09-27T16:35:01.043Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/index2.html</loc>
-    <lastmod>2023-09-14T17:50:21.181Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/reprex.html</loc>
-    <lastmod>2023-09-18T23:24:14.244Z</lastmod>
-  </url>
-  <url>
-    <loc>https://elkewind.github.io/old-res.html</loc>
-    <lastmod>2023-09-21T23:29:14.216Z</lastmod>
+    <lastmod>2023-09-27T17:11:36.586Z</lastmod>
   </url>
 </urlset>
