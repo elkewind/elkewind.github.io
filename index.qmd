@@ -15,9 +15,9 @@ execute:
 ::: {.g-col-12 .g-col-md-6}
 ::: {.teal-bg-left}
 <p class="custom-h1-light">Elke Windschitl</p>
-<p class="custom-h2-light" style="font-size: 24px; font-weight: 200;">Environmental Data Scientist</p>
+<p class="custom-h2-light" style="font-size: 26px; font-weight: 200;">Environmental Data Scientist</p>
 :::
-<img src="images/circle-headshot.png" class="custom-circle-headshot" alt="Elke Windschitl" width="220" id="enlargeImage" />
+<img src="images/circle-headshot.png" class="custom-circle-headshot" alt="Elke Windschitl" width="240" id="enlargeImage" />
 :::
 <!-- right side -->
 ::: {.g-col-12 .g-col-md-6}
@@ -66,11 +66,11 @@ execute:
 ::: {.teal-bg}
 <p class="custom-h2-light" style="text-align: center;">![](images/magnifying-glass.png){width="32"} My Interests</p>
 
-<p class="custom-p-light" style="font-size: 20px;">Spatial Data Science \| Data Visualization</p>
+<p class="custom-p-light" style="font-size: 24px;">Spatial Data Science \| Data Visualization</p>
 
-<p class="custom-p-light" style="font-size: 18px;">Analytics \| Renewable Resources \| Sustainable Food Systems</p>
+<p class="custom-p-light" style="font-size: 20px;">Analytics \| Renewable Resources \| Sustainable Food Systems</p>
 
-<p class="custom-p-light" style="font-size: 14px;">Ecology \| Biodiversity \| Climate Solutions \| Environmental Justice \| Environmental Art</p>
+<p class="custom-p-light" style="font-size: 16px;">Ecology \| Biodiversity \| Climate Solutions \| Environmental Justice \| Environmental Art</p>
 :::
 :::
 ::: 

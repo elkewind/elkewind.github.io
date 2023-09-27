@@ -37,14 +37,14 @@ h1, h3 {
 .custom-h1-light {
   letter-spacing: 1px;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 46px;
   color: $light-gray;
 }
 
 .custom-h2-light {
   letter-spacing: 1px;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 38px;
   color: $light-gray;
 }
 
@@ -58,7 +58,7 @@ h1, h3 {
 .custom-h4-light {
   letter-spacing: 1px;
   font-weight: 450;
-  font-size: 20px;
+  font-size: 24px;
   color: $light-gray;
   margin-bottom: 2px;
 }
@@ -66,7 +66,7 @@ h1, h3 {
 .custom-p-light {
   letter-spacing: 1px;
   font-weight: 450;
-  font-size: 14px;
+  font-size: 16px;
   color: $light-gray;
 }
 
@@ -102,6 +102,7 @@ h1, h3 {
   justify-content: center;
   align-items: center; 
   margin-right: 40px;
+  margin-top: 20px;
   transform: translateX(-100%); /* Start off-screen to the left */
   transition: transform 0.2s, opacity 0.2s; /* Add smooth transitions for both transform and opacity */
 }
@@ -202,7 +203,7 @@ h1, h3 {
 
 @media (min-width: 768px) { 
   .teal-bg-right {
-    margin-top: 100px;
+    margin-top: 135px;
     margin-left: 0;/* Apply margin only on desktop screens */
     margin-bottom: 10px;
   }
