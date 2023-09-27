@@ -3,7 +3,7 @@ page-layout: custom
 toc: false
 ---
 <!-- Image banner at top -->
-<img src="images/waves-dark.png" class="custom-banner"/> 
+<img src="images/waves-dark.png" class="custom-banner" alt="Ocean waves."/> 
 
 <!-- create custom layout for banner elements -->
 ::::: {.grid}
@@ -30,7 +30,7 @@ toc: false
 
 I am a recent graduate of the Bren School of Environmental Science & Management at the University of California, Santa Barbara, where I earned a **master's degree in Environmental Data Science (MEDS)**. I also hold a BS in Biology from the College of Agriculture and Life Sciences at Iowa State University.
 
-Passionate about leveraging data science solutions to address environmental challenges, **I am focused on applying my skills in geospatial analysis, environmental modeling, machine learning, and data visualization to the fields of natural resource management and sustainable food production.**
+Passionate about leveraging data science solutions to address environmental challenges, **I am focused on applying my skills in geospatial analysis, data visualization, environmental modeling, and machine learning to the fields of natural resource management and sustainable food production.**
 
 During my time at the Bren School, I completed a capstone project in collaboration with UCSB researchers and Ocean Rainforest Inc., developing a data pipeline for kelp forest modeling to inform restoration and aquaculture efforts. Prior to that, I gained valuable experience working with the Janke Lab and the Iowa Department of Natural Resources, where I assessed new technologies for monitoring local wildlife.
 
@@ -38,41 +38,49 @@ Beyond my core areas of interest, I am an animal ecology nerd with a deep commit
 
 With my interdisciplinary background and strong skill set, I am ready to make an impact in the field of environmental data science, bridging the gap between scientific research, technological advancements, and practical conservation strategies.
 
-<img src="images/final-prez.JPG" style="border-radius: 20px; max-height: 500px; display: block; margin: 0 auto;" />
+<div class="image-container">
+  <img src="images/about/final-prez.JPG" class="clickable-image" data-src="images/about/final-prez.JPG" style="border-radius: 20px; max-height: 500px; display: block; margin: 0 auto;" alt="Elke presenting her master's capstone project in front of a screen discussing kelp">
+</div>
 
 
-
-<!-- <div id="image-slideshow"> -->
-<!--   <img src="images/final-prez.JPG"> -->
-<!--   <img src="images/isu-grad.jpg"> -->
-<!--   <img src="images/grad.JPG"> -->
-<!--   <img src="images/kelp-team.JPG"> -->
-<!--   <img src="images/montana.jpg"> -->
-<!--   <img src="images/ncur-poster.jpg"> -->
-<!--   <img src="images/ncur-group.jpg"> -->
-<!--   <img src="images/vaq.jpg"> -->
-<!--   <img src="images/bobwhite-poster.jpg"> -->
-<!--   <img src="images/bobwhite-research.jpg"> -->
-<!-- </div> -->
 
 <p class="custom-h2-dark" id="hobbies">My Hobbies</p>
 
-What do I do outside of the office and classroom? I love hiking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it's most likely a mystery/thriller novel (find me on [Goodreads](https://www.goodreads.com/user/show/95038298-elke-windschitl)!) I spend a lot of time in the kitchen cooking and baking -- I picked up these two hobbies during the COVID-19 pandemic. Last, I dabble in digital illustration, graphic design, and photography. I have been selling prints and stickers since 2017.
+What do I do outside of the office and classroom? I love walking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it's most likely a mystery/thriller novel (find me on [Goodreads](https://www.goodreads.com/user/show/95038298-elke-windschitl)!) I spend a lot of time in the kitchen cooking and baking -- I picked up these two hobbies during the COVID-19 shut down. Last, I dabble in digital illustration, graphic design, painting, and photography. I have been selling prints and stickers since 2017. Nature and the environment is a theme in much of my artwork. Read more about how I integrate art with science [here](https://elkewind.github.io/posts/2023-03-29-art-and-science/).
 
 ::: {layout-ncol="2"}
-<img src="images/book.jpg" style="border-radius: 20px;"/> 
+<div class="image-container">
+  <img src="images/about/book.jpg" class="clickable-image" data-src="images/about/book.jpg" style="border-radius: 20px;" alt="The novel 'The Overstory' held up in front of large trees.">
+</div>
 
-<img src="images/butterflies.jpg" style="border-radius: 20px;"/> 
+<div class="image-container">
+  <img src="images/about/butterflies.jpg" class="clickable-image" data-src="images/about/butterflies.jpg" style="border-radius: 20px;" alt="A cluster of Monarch butterflies.">
+</div>
 
-<img src="images/paddleboard.jpg" style="border-radius: 20px;"/>
+<div class="image-container">
+  <img src="images/about/paddleboard.jpg" class="clickable-image" data-src="images/about/paddleboard.jpg" style="border-radius: 20px;" alt="The nose of a paddleboard on a lake in fall.">
+</div>
 
-<img src="images/painting.jpg" style="border-radius: 20px;"/> 
+<div class="image-container">
+  <img src="images/about/painting.jpg" class="clickable-image" data-src="images/about/painting.jpg" style="border-radius: 20px;" alt="Elke holding up a large colorful painting of mountains.">
+</div>
 
-<img src="images/biking.jpg" style="border-radius: 20px;"/> 
+<div class="image-container">
+  <img src="images/about/biking.jpg" class="clickable-image" data-src="images/about/biking.jpg" style="border-radius: 20px;" alt="A man biking through an old railroad bridge in rural Iowa.">
+</div>
 
-<img src="images/hiking.jpg" style="border-radius: 20px;"/> 
+<div class="image-container">
+  <img src="images/about/hiking.jpg" class="clickable-image" data-src="images/about/hiking.jpg" style="border-radius: 20px;" alt="Elke crossing a stream with trees and mountains in the background.">
+</div>
 
 :::
+
+<div id="imageModal" class="modal">
+  <span id="closeModal" class="close">×</span>
+  <img id="modalImage" class="modal-content" alt="Enlarged Image">
+</div>
+
+
 
 <p class="custom-h2-dark" id="homes">Where I've Lived</p>
 
@@ -88,11 +96,11 @@ source("source/map_view.R")
 my_leaflet
 ```
 
-Map made using package leaflet and data from: <https://simplemaps.com/data/us-cities>
+Map made with *Leaflet* and city data from [simplemaps](https://simplemaps.com/data/us-cities).
 
 <p class="custom-h2-dark" id="next">What's Next for Me?</p>
 
-I am looking to start my career as an environmental data scientist! Broadly, I hope to find a role where I can blend my creative and quantitative talents to contribute to an organization or research group focused natural resource management. I am ideally looking for jobs in Seattle, Santa Barbara, or remote opportunities.
+I am excited to start my career as an environmental data scientist! Broadly, I hope to find a role where I can blend my quantitative and creative talents to contribute to an organization or research group focused on natural resource management, sustainable food systems, or biodiversity. I am ideally looking for jobs in Santa Barbara, or remote opportunities.
 
 <!-- end middle content -->
 :::
@@ -106,7 +114,6 @@ I am looking to start my career as an environmental data scientist! Broadly, I h
 <li><a href="#next">What's Next for Me?</a></li>
 </ul>
 :::
-
 <br></br> 
 <!-- end custom layout for page -->
 :::::
@@ -118,6 +125,32 @@ I am looking to start my career as an environmental data scientist! Broadly, I h
 setTimeout(function() {
   document.querySelector('.teal-bg-left').classList.add('slide-in');
 }, 300); // Adjust the delay (in milliseconds) as needed
+
+
+// Function to open the modal when an image is clicked
+document.querySelectorAll('.clickable-image').forEach(function(image) {
+  image.onclick = function() {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+
+    modal.style.display = 'block';
+    modalImage.src = this.getAttribute('data-src'); // Set the source of the enlarged image
+  };
+});
+
+// Function to close the modal
+document.getElementById('closeModal').onclick = function() {
+  const modal = document.getElementById('imageModal');
+  modal.style.display = 'none';
+};
+
+// Close the modal when clicking outside of it
+window.onclick = function(event) {
+  const modal = document.getElementById('imageModal');
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+};
 
 ```
 

@@ -6,7 +6,7 @@ execute:
   output: false
 ---
 <!-- Image banner at top -->
-<img src="images/leaves-dark.png" class="custom-banner"/> 
+<img src="images/leaves-dark.png" class="custom-banner" alt="Green leaves"/> 
 
 <!-- create custom layout for banner elements -->
 ::::: {.grid}
@@ -42,7 +42,7 @@ execute:
 <!-- ![](images/circle-headshot.png){width="280"}-->
 <p class="custom-h2-light" style="color: gray; text-align: center;">![](images/Hand.png){width="24"} Welcome!</p>
 
-<p class="custom-p-light" style="color: gray"> A little bit about me: I recently earned a Master of Environmental Data Science degree from the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about conservation, and I hope to build a career using data science tools to solve environmental problems. Learn more and read my full bio on my [About page](https://elkewind.github.io/about.html).</p>
+<p class="custom-p-light" style="color: gray"> A little bit about me: I recently earned a Master of Environmental Data Science degree from the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about conservation, and I hope to build a career using data science tools to solve environmental problems. Learn more and read my full bio on my [About Me page](https://elkewind.github.io/about.html).</p>
 
 ::: {.grid}
 
@@ -91,7 +91,7 @@ execute:
 
 <!-- Image footer at bottom -->
 :::{.footer-container}
-<img src="images/footer.png" class="custom-footer"/> 
+<img src="images/footer.png" class="custom-footer" alt="A banner showing mountains, trees, waves."/> 
 :::
 ```{ojs style="display: none;"}
 //| echo: false

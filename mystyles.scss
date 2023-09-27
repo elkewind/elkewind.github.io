@@ -140,6 +140,29 @@ h1, h3 {
   }
 }
 
+.clickable-image {
+  margin-bottom: 15px;
+  z-index: 3; /* Place the image above the background */
+  transition: transform 0.2s; /* Add a smooth transition effect */
+}
+
+.clickable-image:hover {
+  transform: scale(1.08); /* Increase the size on hover (1.1 times the original size) */
+}
+
+.caption {
+  text-align: center;
+  display: none; /* Hide the caption initially */
+  background-color: $dark-teal;
+  color: $light-gray;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  border-radius: 0 0 20px 20px; /* Match the image border radius */
+}
+
 /* Style for the modal */
 .modal {
   display: none;
