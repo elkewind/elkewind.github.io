@@ -15,7 +15,7 @@ website:
       - icon: twitter
         href: https://twitter.com/Elke_Windschitl
       - icon: linkedin
-        href: https://www.linkedin.com/in/elke-windschitl-37a330149/
+        href: https://www.linkedin.com/in/elke-windschitl/
     left:
       - href: index.qmd
         text: Home
@@ -34,10 +34,11 @@ format:
   html:
     theme:
       - mystyles.scss
-    mainfont: 'Raleway'
+    mainfont: 'Montserrat'
     #Noto Serif Gujarati
     #css: styles.css
     toc: true
 
-editor: visual
+editor: source
+
 

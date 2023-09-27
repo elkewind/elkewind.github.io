@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -122,16 +93,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <style>
-    .quarto-title-block .quarto-title-banner {
-      color: $mid-gray;
-background: $dark-teal;
-    }
-    </style>
 
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: $mid-gray;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: $mid-gray;
+background: $dark-teal;
+      }
+</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta name="twitter:title" content="Elke Windschitl - Identifying Key Traits in Hawaiian Fish that Predict Risk of Extinction">
@@ -154,46 +138,48 @@ background: $dark-teal;
     <span class="navbar-title">Elke Windschitl</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../posts.html">
+    <a class="nav-link" href="../../posts.html" rel="" target="">
  <span class="menu-text">My Work</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../resume.html">
+    <a class="nav-link" href="../../resume.html" rel="" target="">
  <span class="menu-text">Resume</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/elkewind"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/elkewind" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/Elke_Windschitl"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/Elke_Windschitl" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl-37a330149/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl/" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -221,7 +207,7 @@ background: $dark-teal;
     <div class="quarto-title-meta-heading">Affiliation</div>
     
       <div class="quarto-title-meta-contents">
-      <a href="https://elkewind.github.io">Elke Windschitl</a> 
+      <p class="author"><a href="https://elkewind.github.io">Elke Windschitl</a> </p>
     </div>
       <div class="quarto-title-meta-contents">
           <p class="affiliation">
@@ -273,7 +259,7 @@ background: $dark-teal;
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="fish_pic.JPG" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">School of Hawaiian fish. Elke Windschitl 2018.</figcaption><p></p>
+<figcaption class="figure-caption">School of Hawaiian fish. Elke Windschitl 2018.</figcaption>
 </figure>
 </div>
 <section id="introduction" class="level2">
@@ -284,7 +270,7 @@ background: $dark-teal;
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="fish_collage.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Various fish found in Hawaiʻi. Elke Windschitl 2018.</figcaption><p></p>
+<figcaption class="figure-caption">Various fish found in Hawaiʻi. Elke Windschitl 2018.</figcaption>
 </figure>
 </div>
 </section>
@@ -293,11 +279,8 @@ background: $dark-teal;
 <p>For my analyses I use the IUCN Red List data accessed via the <a href="https://apiv3.iucnredlist.org/">IUCN Red List API</a> [1] and package rredlist [4]. Consistent with Munstermann et al., living species listed as ‘Vulnerable’, ‘Endangered’, or ‘Critically Endangered’ were categorized as ‘Threatened’. Living species listed as ‘Least Concern’ and ‘Near Threatened’ were categorized as ‘Nonthreatened’ [3]. Extinct species were not evaluated in this analysis. The IUCN Red List data are limited in that many marine species have not been listed yet or have been identified as too data deficient to be evaluated. The lack of data on elusive fish may introduce bias into the model.</p>
 <p>Fish ecological data were accessed from <a href="https://fishbase.net.br/search.php">FishBase</a> [5] via package rfishbase [6]. Different species in the FishBase data were originally described by different people, possibly leading to errors or biases. Measurement errors in length may be present, as there are various common ways to measure the length of a fish. The species recorded in FishBase may be biased towards fish with commercial value. Data were wrangled in R and formatted in a tidy data table (Table 1.)</p>
 <div class="cell">
-
-</div>
-<div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">tab_df</span>(tidy_fish_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,],</span>
 <span id="cb1-2"><a href="#cb1-2"></a>       <span class="at">title =</span> <span class="st">"Tbl 1. Hawaii Fish Data"</span>,</span>
 <span id="cb1-3"><a href="#cb1-3"></a>       <span class="at">col.header =</span> <span class="fu">c</span>(<span class="st">"Genus species"</span>, <span class="st">"Length (cm)"</span>, <span class="st">"IUCN Category"</span>, </span>
@@ -305,70 +288,72 @@ background: $dark-teal;
 <span id="cb1-5"><a href="#cb1-5"></a>                          <span class="st">"Threatened"</span>, <span class="st">"Threatened Binary"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Tbl 1. Hawaii Fish Data</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Genus species</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Length (cm)</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">IUCN Category</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Common Name</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Reef Association</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Endemic</td>
+<td data-quarto-table-cell-role="th">Threatened</td>
+<td data-quarto-table-cell-role="th">Threatened Binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Oreochromis mossambicus</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">39.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">VU</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Mozambique Tilapia</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td>yes</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Coryphaena hippurus</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">210.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">LC</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Common Dolphinfish</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yes</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td>no</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Coryphaena equiselis</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">145.70</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">LC</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Pompano Dolphinfish</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td>no</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alectis indica</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">165.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">LC</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Indian Threadfish</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yes</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td>no</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">Argyropelecus affinis</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">8.40</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">LC</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">Pacific Hatchet Fish</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">no</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">no</td>
+<td>no</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Tbl 1. Hawaii Fish Data</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">Genus species</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Length (cm)</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">IUCN Category</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Common Name</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Reef Association</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Endemic</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">Threatened</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">Threatened Binary</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Oreochromis mossambicus</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">39.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">VU</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Mozambique Tilapia</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">yes</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">1</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Coryphaena hippurus</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">210.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">LC</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Common Dolphinfish</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">yes</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Coryphaena equiselis</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">145.70</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">LC</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Pompano Dolphinfish</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Alectis indica</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">165.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">LC</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Indian Threadfish</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">yes</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">0</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">Argyropelecus affinis</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">8.40</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">LC</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">Pacific Hatchet Fish</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">0</td>
-</tr>
-</tbody></table>
 
 </div>
 </div>
@@ -386,25 +371,27 @@ background: $dark-teal;
 <h5 class="anchored" data-anchor-id="iucn-red-list-threatened-status">1. IUCN Red List Threatened Status</h5>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>threat_tab <span class="ot">&lt;-</span> <span class="fu">table</span>(tidy_fish_data<span class="sc">$</span>is_threatened)</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">tab_df</span>(threat_tab,</span>
 <span id="cb2-3"><a href="#cb2-3"></a>       <span class="at">title  =</span> <span class="st">"Tbl 2. Counts of threatened species in the data frame"</span>,</span>
 <span id="cb2-4"><a href="#cb2-4"></a>       <span class="at">col.header =</span> <span class="st">"Nonthreatened"</span>, <span class="st">"Threatened"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Tbl 2. Counts of threatened species in the data frame</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">no</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">880</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">34</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Tbl 2. Counts of threatened species in the data frame</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">no</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">yes</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">880</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">34</td>
-</tr>
-</tbody></table>
 
 </div>
 </div>
@@ -413,7 +400,7 @@ background: $dark-teal;
 <h5 class="anchored" data-anchor-id="fish-length">2. Fish Length</h5>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(tidy_fish_data, <span class="fu">aes</span>(<span class="at">x =</span> length_cm)) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"#38b6ba"</span>, <span class="at">bins =</span> <span class="dv">60</span>) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
@@ -435,24 +422,26 @@ background: $dark-teal;
 <h5 class="anchored" data-anchor-id="reef-association">3. Reef-Association</h5>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>reef_tab <span class="ot">&lt;-</span> <span class="fu">table</span>(tidy_fish_data<span class="sc">$</span>reef_associated)</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="fu">tab_df</span>(reef_tab,</span>
 <span id="cb4-3"><a href="#cb4-3"></a>       <span class="at">title =</span> <span class="st">"Tbl 3. Counts of reef-associated species in the data frame"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Tbl 3. Counts of reef-associated species in the data frame</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">no</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">353</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">312</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Tbl 3. Counts of reef-associated species in the data frame</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">no</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">yes</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">353</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">312</td>
-</tr>
-</tbody></table>
 
 </div>
 </div>
@@ -461,24 +450,26 @@ background: $dark-teal;
 <h5 class="anchored" data-anchor-id="endemism">4. Endemism</h5>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>end_tab <span class="ot">&lt;-</span> <span class="fu">table</span>(tidy_fish_data<span class="sc">$</span>is_endemic)</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">tab_df</span>(end_tab,</span>
 <span id="cb5-3"><a href="#cb5-3"></a>       <span class="at">title =</span> <span class="st">"Tbl 4. Counts of endemic species in the data frame"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Tbl 4. Counts of endemic species in the data frame</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">no</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">895</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">19</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Tbl 4. Counts of endemic species in the data frame</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">no</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">yes</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">895</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">19</td>
-</tr>
-</tbody></table>
 
 </div>
 </div>
@@ -491,7 +482,7 @@ background: $dark-teal;
 <h5 class="anchored" data-anchor-id="length-operatornamelogitplog-leftfracp1-prightbeta_0beta_1-length-varepsilon"><strong>Length</strong> <span class="math display">\[\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length)  +\varepsilon \]</span></h5>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>rm_len_na <span class="ot">&lt;-</span> tidy_fish_data <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span>length_cm <span class="sc">==</span> <span class="st">"NA"</span>) <span class="co"># Remove NA length values</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="co"># Plot threat prob. vs. length</span></span>
@@ -516,7 +507,7 @@ background: $dark-teal;
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Log regression length</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>mod_length <span class="ot">&lt;-</span> <span class="fu">glm</span>(is_of_concern <span class="sc">~</span> length_cm, </span>
 <span id="cb7-3"><a href="#cb7-3"></a>                  <span class="at">data =</span> rm_len_na, </span>
@@ -535,44 +526,45 @@ background: $dark-teal;
 <span id="cb7-16"><a href="#cb7-16"></a>          <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Tbl 5. Logisitc Regression Model Results for Length</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">log Threat Pobability</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Log-Odds</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">CI</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">P-value</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Intercept</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-4.505 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-5.149&nbsp;–&nbsp;-3.958</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Length (cm)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.011 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.008&nbsp;–&nbsp;0.014</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">874</td>
+</tr>
+<tr class="even">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.1&nbsp;&nbsp;&nbsp;** p&lt;0.05&nbsp;&nbsp;&nbsp;*** p&lt;0.01</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Tbl 5. Logisitc Regression Model Results for Length</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">log Threat Pobability</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Log-Odds</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">P-value</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Intercept</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-4.505 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-5.149&nbsp;–&nbsp;-3.958</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Length (cm)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.011 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.008&nbsp;–&nbsp;0.014</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">874</td>
-</tr>
-<tr>
-<td colspan="4" style="font-style:italic; border-top:double black; text-align:right;">* p&lt;0.1&nbsp;&nbsp;&nbsp;** p&lt;0.05&nbsp;&nbsp;&nbsp;*** p&lt;0.01</td>
-</tr>
-
-</tbody></table>
 
 </div>
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Remove large values to evaluate robustness</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>rm_outliers <span class="ot">&lt;-</span> rm_len_na <span class="sc">%&gt;%</span> </span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">filter</span>(length_cm <span class="sc">&lt;=</span> <span class="dv">1000</span>)</span>
@@ -597,7 +589,7 @@ background: $dark-teal;
 <p><img src="index_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
 </div>
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Log regression length removed outliers</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>mod_rm_out <span class="ot">&lt;-</span> <span class="fu">glm</span>(is_of_concern <span class="sc">~</span> length_cm, </span>
 <span id="cb9-3"><a href="#cb9-3"></a>                  <span class="at">data =</span> rm_outliers, </span>
@@ -616,46 +608,47 @@ background: $dark-teal;
 <span id="cb9-16"><a href="#cb9-16"></a>          <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Tbl 6. Logisitc Regression Model Results for Length with Outliers Removed</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">log Threat Pobability</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Log-Odds</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">CI</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">P-value</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Intercept</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-4.505 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-5.149&nbsp;–&nbsp;-3.958</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Length (cm)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.011 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.008&nbsp;–&nbsp;0.014</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">872</td>
+</tr>
+<tr class="even">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.1&nbsp;&nbsp;&nbsp;** p&lt;0.05&nbsp;&nbsp;&nbsp;*** p&lt;0.01</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Tbl 6. Logisitc Regression Model Results for Length with Outliers Removed</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">log Threat Pobability</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Log-Odds</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">P-value</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Intercept</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-4.505 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-5.149&nbsp;–&nbsp;-3.958</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Length (cm)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.011 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.008&nbsp;–&nbsp;0.014</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">872</td>
-</tr>
-<tr>
-<td colspan="4" style="font-style:italic; border-top:double black; text-align:right;">* p&lt;0.1&nbsp;&nbsp;&nbsp;** p&lt;0.05&nbsp;&nbsp;&nbsp;*** p&lt;0.01</td>
-</tr>
-
-</tbody></table>
 
 </div>
 </div>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Compute fitted probabilities</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>length_plus <span class="ot">&lt;-</span> mod_length <span class="sc">%&gt;%</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">augment</span>(<span class="at">type.predict =</span> <span class="st">"response"</span>) <span class="sc">%&gt;%</span></span>
@@ -688,7 +681,7 @@ background: $dark-teal;
 <p>Confusion Matrix:</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>length_plus <span class="ot">&lt;-</span> <span class="fu">augment</span>(mod_length, <span class="at">type.predict =</span> <span class="st">"response"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">mutate</span>(<span class="at">threatened_hat =</span> <span class="fu">round</span>(.fitted)) <span class="sc">%&gt;%</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">select</span>(is_of_concern, length_cm, .fitted, threatened_hat)</span>
@@ -710,25 +703,27 @@ background: $dark-teal;
 <span id="cb11-19"><a href="#cb11-19"></a>       <span class="at">show.rownames =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Tbl 7. Confusion Matrix Displaying Lenght Model Performance</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Row</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Predicted.Nonthreatend</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Predicted.Threatened</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Actually Nonthreatened</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">835</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">Actually Threatend</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">12</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Tbl 7. Confusion Matrix Displaying Lenght Model Performance</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">Row</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Predicted.Nonthreatend</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Predicted.Threatened</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Actually Nonthreatened</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">835</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">5</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">Actually Threatend</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">22</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">12</td>
-</tr>
-</tbody></table>
 
 </div>
 </div>
@@ -738,7 +733,7 @@ background: $dark-teal;
 <h5 class="anchored" data-anchor-id="full-model-operatornamelogitplog-leftfracp1-prightbeta_0beta_1-length-beta_2-reef-beta_3-endemic-varepsilon"><strong>Full Model</strong> <span class="math display">\[\operatorname{logit}(p)=\log \left(\frac{p}{1-p}\right)=\beta_0+\beta_1  (Length) + \beta_2  (Reef) + \beta_3  (Endemic) +\varepsilon \]</span></h5>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">tab_model</span>(mod,</span>
 <span id="cb12-2"><a href="#cb12-2"></a>          <span class="at">transform =</span> <span class="cn">NULL</span>,</span>
 <span id="cb12-3"><a href="#cb12-3"></a>          <span class="at">pred.labels =</span> <span class="fu">c</span>(<span class="st">"Intercept"</span>, <span class="st">"Length (cm)"</span>, </span>
@@ -753,52 +748,53 @@ background: $dark-teal;
 <span id="cb12-12"><a href="#cb12-12"></a>          <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Tbl 8. Logisitc Regression Model Results for Length, Reef Association, and Endemism</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">log Threat Pobability</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Log-Odds</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">CI</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">P-value</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Intercept</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-4.431 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-5.324&nbsp;–&nbsp;-3.694</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Length (cm)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.011 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.008&nbsp;–&nbsp;0.014</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Reef Association</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.048 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.972&nbsp;–&nbsp;0.869</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.918</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Endemic</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.989 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.972&nbsp;–&nbsp;3.798</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.071</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">650</td>
+</tr>
+<tr class="even">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.1&nbsp;&nbsp;&nbsp;** p&lt;0.05&nbsp;&nbsp;&nbsp;*** p&lt;0.01</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Tbl 8. Logisitc Regression Model Results for Length, Reef Association, and Endemism</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">log Threat Pobability</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Log-Odds</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">P-value</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Intercept</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-4.431 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-5.324&nbsp;–&nbsp;-3.694</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Length (cm)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.011 <sup>***</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.008&nbsp;–&nbsp;0.014</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Reef Association</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.048 <sup></sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.972&nbsp;–&nbsp;0.869</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.918</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Endemic</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.989 <sup>*</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.972&nbsp;–&nbsp;3.798</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.071</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">650</td>
-</tr>
-<tr>
-<td colspan="4" style="font-style:italic; border-top:double black; text-align:right;">* p&lt;0.1&nbsp;&nbsp;&nbsp;** p&lt;0.05&nbsp;&nbsp;&nbsp;*** p&lt;0.01</td>
-</tr>
-
-</tbody></table>
 
 </div>
 </div>
@@ -810,7 +806,7 @@ background: $dark-teal;
 <p>In this model, the smallest fish in the data set – <em>Melamphaes danae</em> (bigscale) at 2.30 cm – has a probability of being threatened of 0.012. The largest fish in the data set – <em>Rhincodon typus</em> (whale shark) at 1700 cm – has a probability of being threatened of 0.99. Here I use the model to predict the probabilities of being threatened for unlisted fish.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>tidy_pred_rank <span class="ot">&lt;-</span> tidy_pred_rank <span class="sc">%&gt;%</span> </span>
 <span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">select</span>(<span class="st">"genus_species"</span>, <span class="st">"length_cm"</span>, <span class="st">"coral_reefs"</span>, <span class="st">"main_common_name"</span>, <span class="st">"reef_associated"</span>, <span class="st">"endemic"</span>, <span class="st">"y_hat"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="fu">tab_df</span>(tidy_pred_rank[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,],</span>
@@ -820,64 +816,66 @@ background: $dark-teal;
 <span id="cb13-7"><a href="#cb13-7"></a>                          <span class="st">"Threatened"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Tbl 9. Top 5 Most Vulnerable Unranked Fish in Hawaii</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Genus species</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Length (cm)</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Reef Association</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Common Name</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Reef Association</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">Endemic</td>
+<td data-quarto-table-cell-role="th">Threatened</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Makaira mazara</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">500</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">NA</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td>0.74</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Istiompax indica</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">465</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Black Marlin</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yes</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td>0.65</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Echinorhinus cookei</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">400</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Prickly Shark</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td>0.49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Epinephelus lanceolatus</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">270</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Giant Grouper</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yes</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">no</td>
+<td>0.18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">Assurger anzac</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">250</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">NA</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">no</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: double;">no</td>
+<td>0.15</td>
+</tr>
+</tbody>
+</table>
 
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">Tbl 9. Top 5 Most Vulnerable Unranked Fish in Hawaii</caption>
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left; ">Genus species</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Length (cm)</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Reef Association</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Common Name</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Reef Association</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">Endemic</th>
-<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">Threatened</th>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Makaira mazara</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">500</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">NA</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.74</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Istiompax indica</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">465</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Black Marlin</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">yes</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.65</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Echinorhinus cookei</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">400</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Prickly Shark</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.49</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Epinephelus lanceolatus</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">270</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">1</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">Giant Grouper</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">yes</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">0.18</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; border-bottom: double; ">Assurger anzac</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">250</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">0</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">NA</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">no</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">0.15</td>
-</tr>
-</tbody></table>
 
 </div>
 </div>
@@ -904,15 +902,15 @@ Reference
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{windschitl2022,
-  author = {Elke Windschitl},
+  author = {Windschitl, Elke},
   title = {Identifying {Key} {Traits} in {Hawaiian} {Fish} That
     {Predict} {Risk} of {Extinction}},
   date = {2022-12-02},
   url = {https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-windschitl2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
-Elke Windschitl. 2022. <span>“Identifying Key Traits in Hawaiian Fish
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-windschitl2022" class="csl-entry quarto-appendix-citeas" role="listitem">
+Windschitl, Elke. 2022. <span>“Identifying Key Traits in Hawaiian Fish
 That Predict Risk of Extinction.”</span> December 2, 2022. <a href="https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis">https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -942,9 +940,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1060,6 +1072,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1421,6 +1519,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">Copyright 2022, Elke Windschitl</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Made with Quarto</div>
   </div>
 </footer>

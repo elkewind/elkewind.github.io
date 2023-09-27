@@ -2,7 +2,9 @@
 
 // Fonts
 //@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Noto+Serif+Gujarati&family=Raleway:wght@100;400;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Noto+Serif+Gujarati&family=Raleway:wght@100;400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Montserrat:wght@300;400;600&family=Noto+Serif+Gujarati&family=Raleway:wght@100;400;700&display=swap');
 
 // Colors
 $light-teal: #68b0ac;
@@ -34,15 +36,332 @@ h1, h3 {
   font-style: italic;
   color: $gray;
 }
+
+.custom-h1-light {
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 40px;
+  color: $light-gray;
+}
+
+.custom-h2-light {
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 32px;
+  color: $light-gray;
+}
+
+.custom-h2-dark {
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 32px;
+  color: $dark-teal;
+}
+
+.custom-h4-light {
+  letter-spacing: 1px;
+  font-weight: 450;
+  font-size: 20px;
+  color: $light-gray;
+  margin-bottom: 2px;
+}
+
+.custom-p-light {
+  letter-spacing: 1px;
+  font-weight: 450;
+  font-size: 14px;
+  color: $light-gray;
+}
+
+.custom-p-dark {
+  letter-spacing: 1px;
+  padding: 15px;
+  font-weight: 450;
+  font-size: 14px;
+  color: $gray;
+}
   
 .gray-bg {
-  background-color: rgba(166, 164, 161, 0.4);
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 5px;
+  background-color: $mid-gray;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 8px;
   padding-left: 8px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.teal-bg-left {
+  background-color: $dark-teal;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 0 25px 25px 0;
+  position: relative; 
+  z-index: 2; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; 
+  margin-right: 40px;
+  transform: translateX(-100%); /* Start off-screen to the left */
+  transition: transform 0.2s, opacity 0.2s; /* Add smooth transitions for both transform and opacity */
+}
+
+/* CSS for the animation */
+.teal-bg-left.slide-in {
+  transform: translateX(0%); /* Move to the original position */
+  opacity: 1; /* Fade in */
+}
+
+.teal-bg-left p {
+  margin: 0 0; /* Add margin to separate the paragraphs */
+  display: block; /* Ensure the paragraphs display as block elements */
+}
+
+.custom-circle-headshot {
+  position: relative;
+  padding-top: 45px;
+  left: 23%;
+  z-index: 3; /* Place the image above the background */
+  transition: transform 0.2s; /* Add a smooth transition effect */
+}
+
+.custom-circle-headshot:hover {
+  transform: scale(1.1); /* Increase the size on hover (1.1 times the original size) */
+}
+
+/* Media query for desktop screens */
+@media (min-width: 768px) { /* Adjust the breakpoint to your preference */
+  .custom-circle-headshot {
+  left: 30%;
+  padding-top: 20px;
+  }
+}
+
+.clickable-image {
+  margin-bottom: 15px;
+  z-index: 3; /* Place the image above the background */
+  transition: transform 0.2s; /* Add a smooth transition effect */
+}
+
+.clickable-image:hover {
+  transform: scale(1.08); /* Increase the size on hover (1.1 times the original size) */
+}
+
+.caption {
+  text-align: center;
+  display: none; /* Hide the caption initially */
+  background-color: $dark-teal;
+  color: $light-gray;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  border-radius: 0 0 20px 20px; /* Match the image border radius */
+}
+
+/* Style for the modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  padding: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  text-align: center;
+  margin-top: 50px; /* Adjust this value to set the desired margin */
+}
+
+/* Style for the close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Style for the modal content (the enlarged image) */
+.modal-content {
+  max-width: 50%; /* Adjust this value to make the modal narrower */
+  max-height: 50%; /* Adjust this value to make the modal shorter */
+  margin: 0 auto;
+}
+
+.teal-bg-right {
+  background-color: $dark-teal;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 25px 0 0 25px;
+  position: relative; 
+  z-index: 2; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  margin-left: 40px;
+  margin-top: 0px;
+  margin-bottom: 40px;
+  transform: translateX(100%); /* Start off-screen to the left */
+  transition: transform 0.2s, opacity 0.2s; /* Add smooth transitions for both transform and opacity */
+}
+
+/* Media query for desktop screens */
+@media (min-width: 768px) { /* Adjust the breakpoint to your preference */
+  .teal-bg-right {
+    margin-top: 100px;
+    margin-left: 0;/* Apply margin only on desktop screens */
+    margin-bottom: 10px;
+  }
+}
+
+/* CSS for the animation */
+.teal-bg-right.slide-in {
+  transform: translateX(0%); /* Move to the original position */
+  opacity: 1; /* Fade in */
+}
+
+.teal-bg {
+  background-color: $dark-teal;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 25px;
+  margin-top: 30px;
+}
+
+.teal-bg2 {
+  background-color: $dark-teal;
   border-radius: 15px;
 }
 
-  
-  
+.gray-bg {
+  background-color: $light-gray;
+  padding-left: 20px;
+  border-radius: 25px;
+}
+
+img.custom-banner {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Add this line */
+}
+
+.custom-footer {
+  width: 100%;
+  position: relative;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  z-index: 1;
+}
+
+.footer-container {
+  margin-bottom: -35px; /* Adjust this value to match the image height */
+  /* Add any other styles you need for your content container */
+}
+
+/* Media query for desktop screens */
+@media (max-width: 768px) { /* Adjust the breakpoint to your preference */
+  .footer-container {
+    margin-bottom: -20px;
+  }
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  align-items: center; /* Center buttons vertically */
+  margin-top: 25px;
+}
+
+.light-teal-button {
+  background-color: $light-gray;
+  color: $light-teal;
+  border: 2px solid $light-teal;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 25px; /* Add margin between buttons */
+  margin-left: 25px;
+}
+
+.light-teal-button:hover {
+  background-color: $light-teal; /* Change the fill color on hover */
+  color: $light-gray; /* Change the text color on hover */
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+  .button-container {
+    flex-direction: column; /* Stack buttons vertically on mobile */
+    text-align: center; /* Center button text on mobile */
+  }
+
+  .light-teal-button {
+    margin: 10px 0; /* Adjust margin for mobile spacing */
+  }
+}
+
+/* Style your custom TOC */
+.menu {
+  position: fixed;
+  top: 50%; /* Vertically center the TOC */
+  right: 10px; /* Adjust the left position as needed */
+  transform: translateY(-90%); /* Center it precisely */
+  background-color: $dark-teal; /* Background color */
+  padding: 10px; /* Add padding */
+  border: 1px solid $dark-teal; /* Add a border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow */
+  z-index: 3;
+}
+
+.menu li {
+  margin: 5px 0; /* Adjust spacing between TOC items */
+  list-style-type: none; /* Remove bullet points */
+}
+
+.menu a {
+  text-decoration: none; /* Remove underlines from links */
+  color: $light-gray /* Text color */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .menu {
+    display: none; /* Hide the menu completely on mobile */
+  }
+}
+
+.custom-list {
+  list-style-type: disc;
+  line-height: 1.2;
+  padding-top: 0;
+  padding-right: 10px;
+  margin-top: 0;
+  font-size: 14px; /* Adjust the font size as needed */
+}
+
+.custom-list li {
+  margin-bottom: 5px;
+  padding-top: 0;
+  margin-top: 0;
+  font-size: 14px; /* Adjust the font size as needed */
+}
+

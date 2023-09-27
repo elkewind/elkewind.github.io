@@ -1,19 +1,36 @@
 ---
-title: "About Me"
+page-layout: custom
+toc: false
 ---
+<!-- Image banner at top -->
+<img src="images/waves-dark.png" class="custom-banner" alt="Ocean waves."/> 
 
-<h4>A bit more about who I am, what I do, where I've been, and where I'm headed</h4>
+<!-- create custom layout for banner elements -->
+::::: {.grid}
+<!-- left side -->
+::: {.g-col-12 .g-col-md-6}
+::: {.teal-bg-left}
+<p class="custom-h1-light">About Me</p>
+<p class="custom-h2-light" style="font-size: 22px; font-weight: 200; padding-left: 40px; padding-right: 40px">A bit more about who I am, what I do, where I've been, and where I'm headed</p>
+:::
+<hr></hr>
+:::
+:::::
 
-------------------------------------------------------------------------
 
-::: panel-tabset
-## Full Bio
+<!-- create custom layout for page -->
+::::: {.grid}
+<!-- left pad -->
+::: {.g-col-2}
+:::
+<!-- middle content -->
+::: {.g-col-8}
 
-<h4>Biography</h4>
+<p class="custom-h2-dark" id="bio" style="margin-top: 40px">Background</p>
 
 I am a recent graduate of the Bren School of Environmental Science & Management at the University of California, Santa Barbara, where I earned a **master's degree in Environmental Data Science (MEDS)**. I also hold a BS in Biology from the College of Agriculture and Life Sciences at Iowa State University.
 
-Passionate about leveraging data science solutions to address environmental challenges, **I am focused on applying my skills in geospatial analysis, environmental modeling, machine learning, and data visualization to the fields of natural resource management and sustainable food production.**
+Passionate about leveraging data science solutions to address environmental challenges, **I am focused on applying my skills in geospatial analysis, data visualization, environmental modeling, and machine learning to the fields of natural resource management and sustainable food production.**
 
 During my time at the Bren School, I completed a capstone project in collaboration with UCSB researchers and Ocean Rainforest Inc., developing a data pipeline for kelp forest modeling to inform restoration and aquaculture efforts. Prior to that, I gained valuable experience working with the Janke Lab and the Iowa Department of Natural Resources, where I assessed new technologies for monitoring local wildlife.
 
@@ -21,27 +38,51 @@ Beyond my core areas of interest, I am an animal ecology nerd with a deep commit
 
 With my interdisciplinary background and strong skill set, I am ready to make an impact in the field of environmental data science, bridging the gap between scientific research, technological advancements, and practical conservation strategies.
 
-![](images/bainbridge.png)
+<div class="image-container">
+  <img src="images/about/final-prez.JPG" class="clickable-image" data-src="images/about/final-prez.JPG" style="border-radius: 20px; max-height: 500px; display: block; margin: 0 auto;" alt="Elke presenting her master's capstone project in front of a screen discussing kelp">
+</div>
 
-## Hobbies
 
-<h4>My Hobbies!</h4>
 
-What do I do outside of the office and classroom? I love hiking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it's most likely a mystery/thriller novel (find me on [Goodreads](https://www.goodreads.com/user/show/95038298-elke-windschitl)!) I spend a lot of time in the kitchen cooking and baking -- I picked up these two hobbies during the COVID-19 pandemic. Last, I dabble in digital illustration, graphic design, and photography. I have been selling prints and stickers since 2017.
+<p class="custom-h2-dark" id="hobbies">My Hobbies</p>
+
+What do I do outside of the office and classroom? I love walking, biking, swimming, and generally spending time outdoors. You can frequently catch me reading a book, and it's most likely a mystery/thriller novel (find me on [Goodreads](https://www.goodreads.com/user/show/95038298-elke-windschitl)!) I spend a lot of time in the kitchen cooking and baking -- I picked up these two hobbies during the COVID-19 shut down. Last, I dabble in digital illustration, graphic design, painting, and photography. I have been selling prints and stickers since 2017. Nature and the environment is a theme in much of my artwork. Read more about how I integrate art with science [here](https://elkewind.github.io/posts/2023-03-29-art-and-science/).
 
 ::: {layout-ncol="2"}
-![](images/butterflies.png)
+<div class="image-container">
+  <img src="images/about/book.jpg" class="clickable-image" data-src="images/about/book.jpg" style="border-radius: 20px;" alt="The novel 'The Overstory' held up in front of large trees.">
+</div>
 
-![](images/the_overstory.png)
+<div class="image-container">
+  <img src="images/about/butterflies.jpg" class="clickable-image" data-src="images/about/butterflies.jpg" style="border-radius: 20px;" alt="A cluster of Monarch butterflies.">
+</div>
 
-![](images/paddleboard.png)
+<div class="image-container">
+  <img src="images/about/paddleboard.jpg" class="clickable-image" data-src="images/about/paddleboard.jpg" style="border-radius: 20px;" alt="The nose of a paddleboard on a lake in fall.">
+</div>
 
-![](images/biking.png)
+<div class="image-container">
+  <img src="images/about/painting.jpg" class="clickable-image" data-src="images/about/painting.jpg" style="border-radius: 20px;" alt="Elke holding up a large colorful painting of mountains.">
+</div>
+
+<div class="image-container">
+  <img src="images/about/biking.jpg" class="clickable-image" data-src="images/about/biking.jpg" style="border-radius: 20px;" alt="A man biking through an old railroad bridge in rural Iowa.">
+</div>
+
+<div class="image-container">
+  <img src="images/about/hiking.jpg" class="clickable-image" data-src="images/about/hiking.jpg" style="border-radius: 20px;" alt="Elke crossing a stream with trees and mountains in the background.">
+</div>
+
 :::
 
-## Homes
+<div id="imageModal" class="modal">
+  <span id="closeModal" class="close">×</span>
+  <img id="modalImage" class="modal-content" alt="Enlarged Image">
+</div>
 
-<h4>My Homes</h4>
+
+
+<p class="custom-h2-dark" id="homes">Where I've Lived</p>
 
 I grew up in the state of Iowa, but I've moved around a lot in my adult life! I participated in multiple National Student Exchange programs, and I moved around for internships and fellowships. Check out all the places I've lived since I started college in 2016 -- size indicates relatively how long I lived there:
 
@@ -55,11 +96,61 @@ source("source/map_view.R")
 my_leaflet
 ```
 
-Map made using package leaflet and data from: <https://simplemaps.com/data/us-cities>
+Map made with *Leaflet* and city data from [simplemaps](https://simplemaps.com/data/us-cities).
 
-## What's Next
+<p class="custom-h2-dark" id="next">What's Next for Me?</p>
 
-<h4>What's Next for Me?</h4>
+I am excited to start my career as an environmental data scientist! Broadly, I hope to find a role where I can blend my quantitative and creative talents to contribute to an organization or research group focused on natural resource management, sustainable food systems, or biodiversity. I am ideally looking for jobs in Santa Barbara, or remote opportunities.
 
-I am looking to start my career as an environmental data scientist! Broadly, I hope to find a role where I can bring technical solutions to environmental challenges and contribute to an organization focused on natural resource management or sustainable food production. I am ideally looking for jobs in Santa Barbara, San Diego, or remote opportunities.
+<!-- end middle content -->
 :::
+<!-- right pad -->
+::: {.g-col-2}
+<ul class="menu">
+<p class="custom-p-light" style="font-size: 20px; font-weight: 400;">On This Page:</p>
+<li><a href="#bio">Background</a></li>
+<li><a href="#hobbies">My Hobbies</a></li>
+<li><a href="#homes">Where I've Lived</a></li>
+<li><a href="#next">What's Next for Me?</a></li>
+</ul>
+:::
+<br></br> 
+<!-- end custom layout for page -->
+:::::
+
+```{ojs style="display: none;"}
+//| echo: false
+//| output: false
+// Your JavaScript code goes here
+setTimeout(function() {
+  document.querySelector('.teal-bg-left').classList.add('slide-in');
+}, 300); // Adjust the delay (in milliseconds) as needed
+
+
+// Function to open the modal when an image is clicked
+document.querySelectorAll('.clickable-image').forEach(function(image) {
+  image.onclick = function() {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+
+    modal.style.display = 'block';
+    modalImage.src = this.getAttribute('data-src'); // Set the source of the enlarged image
+  };
+});
+
+// Function to close the modal
+document.getElementById('closeModal').onclick = function() {
+  const modal = document.getElementById('imageModal');
+  modal.style.display = 'none';
+};
+
+// Close the modal when clicking outside of it
+window.onclick = function(event) {
+  const modal = document.getElementById('imageModal');
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+};
+
+```
+

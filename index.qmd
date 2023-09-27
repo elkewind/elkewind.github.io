@@ -1,37 +1,132 @@
 ---
 title: "Elke Windschitl"
-image: Elke.jpg
-about: 
-  template: trestles
-  image-shape: round
-  image-width: 15em
-  links: 
-    - text: LinkedIn
-      href: https://www.linkedin.com/in/elke-windschitl-37a330149/
-    - text: GitHub
-      href: https://github.com/elkewind
-    - text: Twitter
-      href: https://twitter.com/Elke_Windschitl
+page-layout: custom
+execute:
+  echo: false
+  output: false
 ---
+<!-- Image banner at top -->
+<img src="images/leaves-dark.png" class="custom-banner" alt="Green leaves"/> 
 
-<h2>![](images/Hand.png){width="28"} Welcome!</h2>
+<!-- create custom layout for banner elements -->
+::::: {.grid}
+<!-- left side -->
+::: {.g-col-12 .g-col-md-6}
+::: {.teal-bg-left}
+<p class="custom-h1-light">Elke Windschitl</p>
+<p class="custom-h2-light" style="font-size: 24px; font-weight: 200;">Environmental Data Scientist</p>
+:::
+<img src="images/circle-headshot.png" class="custom-circle-headshot" alt="Elke Windschitl" width="220" id="enlargeImage" />
+:::
+<!-- right side -->
+::: {.g-col-12 .g-col-md-6}
+::: {.teal-bg-right}
+![](images/rect3.png){width="700"}
+:::
+:::
+:::::
 
-<p>
+<!-- Modal -->
+<div id="imageModal" class="modal">
+  <span id="closeModal" class="close">×</span>
+  <img id="modalImage" class="modal-content" alt="Enlarged Image">
+</div>
 
-A little bit about me:
+<!-- create custom layout for page -->
+::::: {.grid}
+<!-- left pad -->
+::: {.g-col-2}
+:::
+<!-- middle content -->
+::: {.g-col-8}
+<!-- ![](images/circle-headshot.png){width="280"}-->
+<p class="custom-h2-light" style="color: gray; text-align: center;">![](images/Hand.png){width="24"} Welcome!</p>
 
-I recently earned a Master of Environmental Data Science degree from the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about conservation, and I hope to build a career using data science tools to solve environmental problems.
+<p class="custom-p-light" style="color: gray"> A little bit about me: I recently earned a Master of Environmental Data Science degree from the [Bren School of Environmental Science & Management](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) at the University of California, Santa Barbara. I am passionate about conservation, and I hope to build a career using data science tools to solve environmental problems. Learn more and read my full bio on my [About Me page](https://elkewind.github.io/about.html).</p>
 
-</p>
+::: {.grid}
 
-------------------------------------------------------------------------
+::: {.g-col-12 .g-col-md-7}
+::: {.teal-bg}
+<p class="custom-h2-light" style="text-align: center;">![](images/Book.png){width="32"} Education</p>
 
-<h2>![](images/Book.png){width="32"} Education</h2>
+<p class="custom-h4-light">Master of Environmental Data Science</p>
 
-<h4>Master of Environmental Data Science</h4>
+<p class="custom-p-light" style="margin-top: 0px;">University of California, Santa Barbara \| June 2023</p>
 
-<p>University of California, Santa Barbara \| June 2023</p>
+<p class="custom-h4-light">Bachelor of Science in Biology with Honors</p>
 
-<h4>Bachelor of Science in Biology with Honors</h4>
+<p class="custom-p-light">Iowa State University \| May 2020</p>
+:::
+<div class="button-container">
+  <a href="https://github.com/elkewind" class="light-teal-button">GitHub</a>
+  <a href="https://twitter.com/Elke_Windschitl" class="light-teal-button">Twitter</a>
+  <a href="https://www.linkedin.com/in/elke-windschitl/" class="light-teal-button">LinkedIn</a>
+</div>
+:::
+  
+::: {.g-col-12 .g-col-md-5}
+::: {.teal-bg}
 
-<p>Iowa State University \| May 2020</p>
+<p class="custom-h2-light" style="text-align: center;">![](images/magnifying-glass.png){width="32"} My Interests</p>
+
+<p class="custom-p-light" style="font-size: 20px;">Spatial Data Science \| Data Visualization</p>
+
+<p class="custom-p-light" style="font-size: 18px;">Analytics \| Renewable Resources \| Sustainable Food Systems</p>
+
+<p class="custom-p-light" style="font-size: 14px;">Ecology \| Biodiversity \| Climate Solutions \| Environmental Justice \| Environmental Art</p>
+:::
+:::
+::: 
+<!-- end middle content -->
+:::
+<!-- right pad -->
+::: {.g-col-2}
+:::
+
+<br></br> 
+<!-- end custom layout for page -->
+:::::
+
+
+<!-- Image footer at bottom -->
+:::{.footer-container}
+<img src="images/footer.png" class="custom-footer" alt="A banner showing mountains, trees, waves."/> 
+:::
+```{ojs style="display: none;"}
+//| echo: false
+//| output: false
+// Your JavaScript code goes here
+setTimeout(function() {
+  document.querySelector('.teal-bg-left').classList.add('slide-in');
+  document.querySelector('.teal-bg-right').classList.add('slide-in');
+}, 300); // Adjust the delay (in milliseconds) as needed
+
+modal = {
+  const modal = document.getElementById("imageModal");
+  const modalImage = document.getElementById("modalImage");
+  const closeBtn = document.getElementById("closeModal");
+  const image = document.getElementById("enlargeImage");
+
+// Function to open the modal (only for desktop)
+image.onclick = function () {
+  if (window.innerWidth >= 768) { // Check if the screen width is greater than or equal to 768px (adjust this breakpoint as needed)
+    modal.style.display = "block";
+    modalImage.src = this.src; // Set the source of the enlarged image
+  }
+};
+
+// Function to close the modal
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+}
+
+
+```
