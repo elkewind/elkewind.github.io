@@ -3,7 +3,7 @@ page-layout: custom
 toc: false
 ---
 <!-- Image banner at top -->
-<img src="images/waves-dark.png" class="custom-banner" alt="Ocean waves."/> 
+<!-- <img src="images/waves-dark.png" class="custom-banner" alt="Ocean waves."/>  -->
 
 <!-- create custom layout for banner elements -->
 ::::: {.grid}
@@ -13,7 +13,7 @@ toc: false
 <p class="custom-h1-light">About Me</p>
 <p class="custom-h2-light" style="font-size: 22px; font-weight: 200; padding-left: 40px; padding-right: 40px">A bit more about who I am, what I do, where I've been, and where I'm headed</p>
 :::
-<hr></hr>
+<!-- <hr></hr> -->
 :::
 :::::
 <!-- create custom layout for page -->

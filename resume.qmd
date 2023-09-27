@@ -3,7 +3,7 @@ page-layout: custom
 toc: false
 ---
 <!-- Image banner at top -->
-<img src="images/leaves2-dark.png" class="custom-banner" alt="Large green leaves."/>  
+<!-- <img src="images/leaves2-dark.png" class="custom-banner" alt="Large green leaves."/>   -->
 
 <!-- create custom layout for banner elements -->
 ::::: {.grid}
@@ -27,7 +27,7 @@ toc: false
 :::: {.g-col-10 .g-col-md-8}
 
 <div class="button-container">
-  <a href="images/Windschitl_Elke_Resume.pdf" class="light-teal-button" style="margin-top: 25px">View/Download Resume PDF</a> 
+  <a href="images/Windschitl_Elke_Resume.pdf" class="light-teal-button" style="margin-top: 0px">View/Download Resume PDF</a> 
 </div>
 
 ::: {.teal-bg}

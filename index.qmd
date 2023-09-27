@@ -1,12 +1,11 @@
 ---
-title: "Elke Windschitl"
 page-layout: custom
 execute:
   echo: false
   output: false
 ---
 <!-- Image banner at top -->
-<img src="images/leaves-dark.png" class="custom-banner" alt="Green leaves"/> 
+<!-- <img src="images/leaves-dark.png" class="custom-banner" alt="Green leaves"/>  -->
 
 <!-- create custom layout for banner elements -->
 ::::: {.grid}
