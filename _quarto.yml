@@ -25,6 +25,8 @@ website:
         text: My Work
       - href: resume.qmd
         text: Resume
+      - href: test.qmd
+        text: test       
   page-footer: 
     background: $dark-teal
     left: "Copyright 2022, Elke Windschitl"

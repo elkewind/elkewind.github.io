@@ -235,13 +235,15 @@ h1, h3 {
   border-radius: 25px;
 }
 
-img.custom-banner {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-}
+.custom-banner {
+	width: 100%;
+	position: relative;
+	top: -100px;
+	left: 0;
+	z-index: -1;
+	padding: 0;
+	margin: 0;
+	}
 
 .custom-footer {
   width: 100%;
@@ -345,3 +347,84 @@ img.custom-banner {
   font-size: 14px; 
 }
 
+
+
+
+
+
+
+
+
+
+.banner-container{
+  position: relative;
+  top: -100px;
+  left: 0px;
+  width: 100%;
+}
+
+.banner-image{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: auto;
+  max-height: 500px;
+  z-index: 0;
+}
+
+.left-banner-box {
+  background-color: $dark-teal; /* Set the background color to teal */
+  color: $light-gray; /* Set the text color to white */
+  padding: 20px; /* Add some padding to the box for content spacing */
+  position: absolute; /* Position it as needed */
+  top: 150px; /* Adjust top positioning if necessary */
+  left: 0; /* Adjust left positioning if necessary */
+  z-index: 2; /* Ensure it's above other elements */
+  border-radius: 0 25px 25px 0;
+}
+
+.banner-headshot {
+  position: absolute;
+  top: 340px;
+  left: 210px;
+  z-index: 4; /* Place the image above the background */
+  transition: transform 0.2s; /* Add a smooth transition effect */
+}
+
+.right-banner-box {
+  background-color: $dark-teal; /* Set the background color to teal */
+  color: $light-gray; /* Set the text color to white */
+  padding: 20px; /* Add some padding to the box for content spacing */
+  position: absolute; /* Position it as needed */
+  top: 340px; /* Adjust top positioning if necessary */
+  right: 0; /* Adjust left positioning if necessary */
+  z-index: 2; /* Ensure it's above other elements */
+  border-radius: 25px 0px 0px 25px;
+}
+
+
+
+
+
+
+
+.grid-banner {
+  position: absolute; /* Change the positioning style as needed */
+  top: 150px; /* Adjust the top position as needed */
+  left: 0; /* Adjust the left position as needed */
+  display: grid; /* Add grid display as needed */
+  grid-template-columns: 1fr 1fr; /* Define the grid columns as needed */
+  grid-column-gap: 20px; /* Define the gap between grid columns as needed */
+}
+
+.child-one {
+  
+}
+
+.child-two {
+  
+}
+
+.child-three {
+  
+}

@@ -4,27 +4,39 @@ execute:
   echo: false
   output: false
 ---
-<!-- Image banner at top -->
-<!-- <img src="images/leaves-dark.png" class="custom-banner" alt="Green leaves"/>  -->
+<div class="banner-container">
+ <img class="banner-image" src="images/leaves-dark2.png" alt="Green leaves"/>
+ <div class="left-banner-box" style="padding-left: 130px; padding-right: 130px">
+ <p class="custom-h1-light" style="margin-bottom: 0px">Elke Windschitl</p>
+ <p class="custom-h2-light" style="font-size: 26px; font-weight: 200;">Environmental Data Scientist</p>
+ </div>
+ <img src="images/circle-headshot.png" class="banner-headshot" alt="Elke Windschitl" width="240" id="enlargeImage" />
+ <div class="right-banner-box" style="padding-right: 50px; padding-right: 50px">
+ <img src="images/rect3.png" style="width: 640px" alt="Icons of graphs and charts"/>
+ </div>
+</div>
+<!-- <!-- Image banner at top --> -->
+<!-- <img src="images/leaves-dark.png" class="custom-banner" alt="Green leaves"/> -->
 
-<!-- create custom layout for banner elements -->
-::::: {.grid}
 
-<!-- left side -->
-::: {.g-col-12 .g-col-md-6}
-::: {.teal-bg-left}
-<p class="custom-h1-light">Elke Windschitl</p>
-<p class="custom-h2-light" style="font-size: 26px; font-weight: 200;">Environmental Data Scientist</p>
-:::
-<img src="images/circle-headshot.png" class="custom-circle-headshot" alt="Elke Windschitl" width="240" id="enlargeImage" />
-:::
-<!-- right side -->
-::: {.g-col-12 .g-col-md-6}
-::: {.teal-bg-right}
-![](images/rect3.png){width="700"}
-:::
-:::
-:::::
+<!-- <!-- create custom layout for banner elements --> -->
+<!-- ::::: {.grid-banner} -->
+
+<!-- <!-- left side --> -->
+<!-- ::: {.g-col-12 .g-col-md-6} -->
+<!-- ::: {.teal-bg-left} -->
+<!-- <p class="custom-h1-light">Elke Windschitl</p> -->
+<!-- <p class="custom-h2-light" style="font-size: 26px; font-weight: 200;">Environmental Data Scientist</p> -->
+<!-- ::: -->
+<!-- <img src="images/circle-headshot.png" class="custom-circle-headshot" alt="Elke Windschitl" width="240" id="enlargeImage" /> -->
+<!-- ::: -->
+<!-- <!-- right side --> -->
+<!-- ::: {.g-col-12 .g-col-md-6} -->
+<!-- ::: {.teal-bg-right} -->
+<!-- ![](images/rect3.png){width="700"} -->
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::::: -->
 <!-- Modal -->
 <div id="imageModal" class="modal">
   <span id="closeModal" class="close">×</span>
