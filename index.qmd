@@ -4,6 +4,18 @@ execute:
   echo: false
   output: false
 ---
+::::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
+::: {.callout-caution collapse="false"}
+### Under construction
+Welcome to my site! I've recently made major aesthetic changes that I am very excited about. Unfortunately, there was a problem with my banner that I am now trouble-shooting. I've learned a lot about html, css, and positioning in the process :) I apologize for the inconvenience and thank you for your patience. Please check back again in a few days!
+:::
+:::
+::: {.g-col-1}
+:::
+:::::
 <!-- Image banner at top -->
 <!-- <img src="images/leaves-dark.png" class="custom-banner" alt="Green leaves"/>  -->
 
