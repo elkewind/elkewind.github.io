@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://elkewind.github.io/posts.html</loc>
-    <lastmod>2023-09-27T19:08:20.702Z</lastmod>
+    <lastmod>2023-09-29T19:20:28.310Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/index.html</loc>
-    <lastmod>2023-09-28T02:16:37.357Z</lastmod>
+    <lastmod>2023-09-29T19:38:55.023Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis/index.html</loc>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://elkewind.github.io/resume.html</loc>
-    <lastmod>2023-09-27T19:08:03.165Z</lastmod>
+    <lastmod>2023-09-29T19:38:20.162Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2023-08-19-python-viz/index.html</loc>
@@ -42,10 +42,14 @@
   </url>
   <url>
     <loc>https://elkewind.github.io/about.html</loc>
-    <lastmod>2023-09-27T21:56:43.768Z</lastmod>
+    <lastmod>2023-09-29T19:37:58.291Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/test.html</loc>
-    <lastmod>2023-09-28T00:42:42.046Z</lastmod>
+    <lastmod>2023-09-29T18:53:26.750Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/code.html</loc>
+    <lastmod>2023-09-29T18:42:48.209Z</lastmod>
   </url>
 </urlset>

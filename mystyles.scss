@@ -88,54 +88,6 @@ h1, h3 {
   margin-bottom: 20px;
 }
 
-.teal-bg-left {
-  background-color: $dark-teal;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
-  border-radius: 0 25px 25px 0;
-  position: relative; 
-  z-index: 3; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; 
-  margin-right: 40px;
-  margin-top: 20px;
-  transform: translateX(-100%); /* Start off-screen to the left */
-  transition: transform 0.2s, opacity 0.2s; /* Add smooth transitions for both transform and opacity */
-}
-
-.teal-bg-left.slide-in {
-  transform: translateX(0%); /* Move to the original position */
-  opacity: 1; /* Fade in */
-}
-
-.teal-bg-left p {
-  margin: 0 0; /* Add margin to separate the paragraphs */
-  display: block; /* Ensure the paragraphs display as block elements */
-}
-
-.custom-circle-headshot {
-  position: relative;
-  padding-top: 45px;
-  left: 23%;
-  z-index: 4; /* Place the image above the background */
-  transition: transform 0.2s; /* Add a smooth transition effect */
-}
-
-.custom-circle-headshot:hover {
-  transform: scale(1.1); /* Increase the size on hover (1.1 times the original size) */
-}
-
-@media (min-width: 768px) { 
-  .custom-circle-headshot {
-  left: 30%;
-  padding-top: 20px;
-  }
-}
-
 .clickable-image {
   margin-bottom: 15px;
   z-index: 4; 
@@ -182,38 +134,6 @@ h1, h3 {
   margin: 0 auto;
 }
 
-.teal-bg-right {
-  background-color: $dark-teal;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
-  border-radius: 25px 0 0 25px;
-  position: relative; 
-  z-index: 3; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center;
-  margin-left: 40px;
-  margin-top: 0px;
-  margin-bottom: 40px;
-  transform: translateX(100%); /* Start off-screen to the left */
-  transition: transform 0.2s, opacity 0.2s; /* Add smooth transitions for both transform and opacity */
-}
-
-@media (min-width: 768px) { 
-  .teal-bg-right {
-    margin-top: 135px;
-    margin-left: 0;/* Apply margin only on desktop screens */
-    margin-bottom: 10px;
-  }
-}
-
-.teal-bg-right.slide-in {
-  transform: translateX(0%); /* Move to the original position */
-  opacity: 1; /* Fade in */
-}
-
 .teal-bg {
   background-color: $dark-teal;
   padding-top: 20px;
@@ -235,16 +155,6 @@ h1, h3 {
   border-radius: 25px;
 }
 
-.custom-banner {
-	width: 100%;
-	position: relative;
-	top: -100px;
-	left: 0;
-	z-index: -1;
-	padding: 0;
-	margin: 0;
-	}
-
 .custom-footer {
   width: 100%;
   position: relative;
@@ -262,7 +172,6 @@ h1, h3 {
     margin-bottom: -20px;
   }
 }
-
 
 .button-container {
   display: flex;
@@ -358,7 +267,7 @@ h1, h3 {
 
 .banner-container{
   position: relative;
-  top: -100px;
+  top: -50px;
   left: 0px;
   width: 100%;
 }
@@ -367,8 +276,21 @@ h1, h3 {
   position: absolute;
   top: 0px;
   left: 0px;
-  height: auto;
-  max-height: 500px;
+  width: auto;
+  max-width: 100%;
+  height: 500px; /* Set a fixed height for the image */
+  object-fit: cover;
+  z-index: 0;
+}
+
+.banner-image-two{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: auto;
+  max-width: 120%;
+  height: 380px; /* Set a fixed height for the image */
+  object-fit: cover;
   z-index: 0;
 }
 
@@ -378,17 +300,32 @@ h1, h3 {
   padding: 20px; /* Add some padding to the box for content spacing */
   position: absolute; /* Position it as needed */
   top: 150px; /* Adjust top positioning if necessary */
+  width: 45rem;
   left: 0; /* Adjust left positioning if necessary */
   z-index: 2; /* Ensure it's above other elements */
   border-radius: 0 25px 25px 0;
+  padding-left: 200px; 
+  padding-right: 50px;
+  transform: translateX(-100%); /* Start off-screen to the left */
+  transition: transform 0.2s, opacity 0.2s; /* Add smooth transitions for both transform and opacity */
+}
+
+.left-banner-box.slide-in {
+  transform: translateX(0%); /* Move to the original position */
+  opacity: 1; /* Fade in */
 }
 
 .banner-headshot {
   position: absolute;
   top: 340px;
-  left: 210px;
+  left: 20%;
+  width: 14rem;
   z-index: 4; /* Place the image above the background */
   transition: transform 0.2s; /* Add a smooth transition effect */
+}
+
+.banner-headshot:hover {
+  transform: scale(1.1); /* Increase the size on hover (1.1 times the original size) */
 }
 
 .right-banner-box {
@@ -396,35 +333,123 @@ h1, h3 {
   color: $light-gray; /* Set the text color to white */
   padding: 20px; /* Add some padding to the box for content spacing */
   position: absolute; /* Position it as needed */
-  top: 340px; /* Adjust top positioning if necessary */
+  top: 380px; /* Adjust top positioning if necessary */
+  width: 45%;
   right: 0; /* Adjust left positioning if necessary */
   z-index: 2; /* Ensure it's above other elements */
   border-radius: 25px 0px 0px 25px;
+  padding-left: 100px; 
+  transform: translateX(100%); /* Start off-screen to the left */
+  transition: transform 0.2s, opacity 0.2s; /* Add smooth transitions for both transform and opacity */
 }
 
-
-
-
-
-
-
-.grid-banner {
-  position: absolute; /* Change the positioning style as needed */
-  top: 150px; /* Adjust the top position as needed */
-  left: 0; /* Adjust the left position as needed */
-  display: grid; /* Add grid display as needed */
-  grid-template-columns: 1fr 1fr; /* Define the grid columns as needed */
-  grid-column-gap: 20px; /* Define the gap between grid columns as needed */
+.right-banner-box.slide-in {
+  transform: translateX(0%); /* Move to the original position */
+  opacity: 1; /* Fade in */
 }
 
-.child-one {
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.gray-placeholder {
+  background-color: $light-gray;
+  padding-top: 400px;
+  padding-bottom: 470px;
+  padding-right: 8px;
+  padding-left: 8px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.gray-placeholder-two {
+  background-color: $light-gray;
+  padding-top: 400px;
+  padding-bottom: 70px;
+  padding-right: 8px;
+  padding-left: 8px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  .gray-placeholder {
+  padding-bottom: 500px;
+  }
+  .gray-placeholder-two {
+  padding-bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banner-image{
+  width: auto;
+  max-width: 100%;
+  height: 800px;
+  }
   
+  .left-banner-box {
+  padding: 10px; /* Add some padding to the box for content spacing */
+  top: 100px; /* Adjust top positioning if necessary */
+  width: 80%;
+  }
+
+  .banner-headshot {
+    left: 20%;
+    width: 200px;
+    top: 370px;
+    
+  }
+  
+  .right-banner-box {
+  padding: 10px;
+  top: 600px; 
+  width: 350px;
+  }
+
+  .gray-placeholder {
+  padding-bottom: 750px;
+  }
+  
+  .gray-placeholder-two {
+  padding-bottom: 100px;
+  }
 }
 
-.child-two {
+@media screen and (min-width: 1900px) {
+  .banner-image{
+  width: 100%;
+  max-width: 150%;
+  }
   
+  .banner-image-two{
+  width: 100%;
+  max-width: 150%;
+  }
+
+  .left-banner-box {
+  padding: 10px; /* Add some padding to the box for content spacing */
+  top: 150px; /* Adjust top positioning if necessary */
+  width: 50%;
+  padding-left: 20%;
+  }
+  
+  .right-banner-box {
+  padding: 10px;
+  top: 300px; 
+  }
+  
+  .banner-headshot {
+  top: 350px;
+  left: 30%;
+  width: 16rem;
+}
 }
 
-.child-three {
-  
-}
+
+
+
+
+
