@@ -348,6 +348,10 @@ h1, h3 {
   opacity: 1; /* Fade in */
 }
 
+.right-box-img {
+  width: 85%
+}
+
 .clearfix::after {
   content: "";
   display: table;
@@ -437,14 +441,18 @@ h1, h3 {
   }
   
   .right-banner-box {
-  padding: 10px;
-  top: 300px; 
+  top: 250;
+  width: 40%;
+  }
+  
+  .right-box-img {
+  width: 55%;
   }
   
   .banner-headshot {
   top: 350px;
   left: 30%;
-  width: 16rem;
+  width: 15rem;
 }
 }
 
