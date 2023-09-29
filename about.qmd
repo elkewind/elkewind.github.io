@@ -3,9 +3,17 @@ page-layout: custom
 toc: false
 ---
 <!-- Image banner at top -->
-<!-- <img src="images/waves-dark.png" class="custom-banner" alt="Ocean waves."/>  -->
+<div class="banner-container">
+ <img class="banner-image-two" src="images/waves-dark2.png" alt="Ocean waves"/>
+ <div class="left-banner-box">
+ <p class="custom-h1-light" style="margin-bottom: 0px">About Me</p>
+ </div>
+</div>
+<div class="gray-placeholder-two">
+</div>
 
 <!-- create custom layout for banner elements -->
+
 ::::: {.grid}
 <!-- left side -->
 ::: {.g-col-12 .g-col-md-6}
@@ -121,7 +129,7 @@ I am excited to start my career as an environmental data scientist! Broadly, I h
 //| echo: false
 //| output: false
 setTimeout(function() {
-  document.querySelector('.teal-bg-left').classList.add('slide-in');
+  document.querySelector('.left-banner-box').classList.add('slide-in');
 }, 300); // Adjust the delay (in milliseconds) as needed
 
 

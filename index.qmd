@@ -4,44 +4,27 @@ execute:
   echo: false
   output: false
 ---
-::::: {.grid}
-::: {.g-col-1}
-:::
-::: {.g-col-10}
-::: {.callout-caution collapse="false"}
-### Under construction
-Welcome to my site! I've recently made major aesthetic changes that I am very excited about. Unfortunately, there was a problem with my banner that I am now trouble-shooting. I've learned a lot about html, css, and positioning in the process :) I apologize for the inconvenience and thank you for your patience. Please check back again in a few days!
-:::
-:::
-::: {.g-col-1}
-:::
-:::::
-<!-- Image banner at top -->
-<!-- <img src="images/leaves-dark.png" class="custom-banner" alt="Green leaves"/>  -->
+<div class="banner-container">
+ <img class="banner-image" src="images/leaves-dark4.png" alt="Green leaves"/>
+ <div class="left-banner-box">
+ <p class="custom-h1-light" style="margin-bottom: 0px">Elke Windschitl</p>
+ <p class="custom-h2-light" style="font-size: 26px; font-weight: 200;">Environmental Data Scientist</p>
+ </div>
+ <img src="images/circle-headshot.png" class="banner-headshot" alt="Elke Windschitl" id="enlargeImage" />
+ <div class="right-banner-box">
+ <img class="right-box-img" src="images/rect3.png" alt="Icons of graphs and charts"/>
+ </div>
+</div>
+<div class="clearfix"></div> <!-- Add this clearfix element -->
 
-<!-- create custom layout for banner elements -->
-::::: {.grid}
-
-<!-- left side -->
-::: {.g-col-12 .g-col-md-6}
-::: {.teal-bg-left}
-<p class="custom-h1-light">Elke Windschitl</p>
-<p class="custom-h2-light" style="font-size: 26px; font-weight: 200;">Environmental Data Scientist</p>
-:::
-<img src="images/circle-headshot.png" class="custom-circle-headshot" alt="Elke Windschitl" width="240" id="enlargeImage" />
-:::
-<!-- right side -->
-::: {.g-col-12 .g-col-md-6}
-::: {.teal-bg-right}
-![](images/rect3.png){width="700"}
-:::
-:::
-:::::
 <!-- Modal -->
 <div id="imageModal" class="modal">
   <span id="closeModal" class="close">×</span>
   <img id="modalImage" class="modal-content" alt="Enlarged Image">
 </div>
+<div class="gray-placeholder">
+</div>
+
 <!-- create custom layout for page -->
 ::::: {.grid}
 <!-- left pad -->
@@ -97,12 +80,13 @@ Welcome to my site! I've recently made major aesthetic changes that I am very ex
 :::{.footer-container}
 <img src="images/footer.png" class="custom-footer" alt="A banner showing mountains, trees, waves."/> 
 :::
+
 ```{ojs style="display: none;"}
 //| echo: false
 //| output: false
-setTimeout(function() {
-  document.querySelector('.teal-bg-left').classList.add('slide-in');
-  document.querySelector('.teal-bg-right').classList.add('slide-in');
+setTimeout(function () {
+  document.querySelector('.left-banner-box').classList.add('slide-in');
+  document.querySelector('.right-banner-box').classList.add('slide-in');
 }, 300); // Adjust the delay (in milliseconds) as needed
 
 modal = {

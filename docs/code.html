@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Elke Windschitl - code</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/logo3.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="Elke Windschitl - code">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://elkewind.github.io/images/leaves-dark.png">
+<meta name="twitter:image-height" content="1250">
+<meta name="twitter:image-width" content="2526">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo3.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Elke Windschitl</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./posts.html" rel="" target="">
+ <span class="menu-text">My Work</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resume.html" rel="" target="">
+ <span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./test.html" rel="" target="">
+ <span class="menu-text">test</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/elkewind" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/Elke_Windschitl" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/elke-windschitl/" rel="" target=""><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">code</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- Image banner at top -->
+<p><img src="images/leaves-dark.png" class="custom-banner" alt="Green leaves"></p>
+<!-- create custom layout for banner elements -->
+<div class="grid-banner">
+<!-- left side -->
+<div class="g-col-12 g-col-md-6">
+<div class="teal-bg-left">
+<p class="custom-h1-light">
+Elke Windschitl
+</p>
+<p class="custom-h2-light" style="font-size: 26px; font-weight: 200;">
+Environmental Data Scientist
+</p>
+</div>
+<p><img src="images/circle-headshot.png" class="custom-circle-headshot" alt="Elke Windschitl" width="240" id="enlargeImage"></p>
+</div>
+<!-- right side -->
+<div class="g-col-12 g-col-md-6">
+<div class="teal-bg-right">
+<p><img src="images/rect3.png" class="img-fluid" width="700"></p>
+</div>
+</div>
+</div>
+<p>.teal-bg-left { background-color: $dark-teal; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; padding-left: 20px; border-radius: 0 25px 25px 0; position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: center; align-items: center; margin-right: 40px; margin-top: 20px; transform: translateX(-100%); /* Start off-screen to the left <em>/ transition: transform 0.2s, opacity 0.2s; /</em> Add smooth transitions for both transform and opacity */ }</p>
+<p>.teal-bg-left.slide-in { transform: translateX(0%); /* Move to the original position <em>/ opacity: 1; /</em> Fade in */ }</p>
+<p>.teal-bg-left p { margin: 0 0; /* Add margin to separate the paragraphs <em>/ display: block; /</em> Ensure the paragraphs display as block elements */ }</p>
+<p>.custom-circle-headshot { position: relative; padding-top: 45px; left: 23%; z-index: 4; /* Place the image above the background <em>/ transition: transform 0.2s; /</em> Add a smooth transition effect */ }</p>
+<p>.custom-circle-headshot:hover { transform: scale(1.1); /* Increase the size on hover (1.1 times the original size) */ }</p>
+<p><span class="citation" data-cites="media">@media</span> (min-width: 768px) { .custom-circle-headshot { left: 30%; padding-top: 20px; } }</p>
+<p>.clickable-image { margin-bottom: 15px; z-index: 4; transition: transform 0.2s; }</p>
+<p>.clickable-image:hover { transform: scale(1.08); }</p>
+<p><span class="citation" data-cites="media">@media</span> (max-width: 768px) { .clickable-image { max-width: 100%; /* Make the image width 100% of its container <em>/ max-height: auto; /</em> Allow the image to scale proportionally */ } }</p>
+<p>.modal { display: none; position: fixed; z-index: 4; padding: 100px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); text-align: center; margin-top: 50px; }</p>
+<p>.close { position: absolute; top: 10px; right: 10px; color: white; font-size: 30px; cursor: pointer; }</p>
+<p>.modal-content { max-width: 50%; /* Adjust this value to make the modal narrower <em>/ max-height: 50%; /</em> Adjust this value to make the modal shorter */ margin: 0 auto; }</p>
+<p>.teal-bg-right { background-color: $dark-teal; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; padding-left: 20px; border-radius: 25px 0 0 25px; position: relative; z-index: 3; display: flex; justify-content: center; align-items: center; margin-left: 40px; margin-top: 0px; margin-bottom: 40px; transform: translateX(100%); /* Start off-screen to the left <em>/ transition: transform 0.2s, opacity 0.2s; /</em> Add smooth transitions for both transform and opacity */ }</p>
+<p><span class="citation" data-cites="media">@media</span> (min-width: 768px) { .teal-bg-right { margin-top: 135px; margin-left: 0;/* Apply margin only on desktop screens */ margin-bottom: 10px; } }</p>
+<p>.teal-bg-right.slide-in { transform: translateX(0%); /* Move to the original position <em>/ opacity: 1; /</em> Fade in */ }</p>
+<p>.teal-bg { background-color: $dark-teal; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; padding-left: 20px; border-radius: 25px; margin-top: 30px; }</p>
+<p>.teal-bg2 { background-color: $dark-teal; border-radius: 15px; }</p>
+<p>.gray-bg { background-color: $light-gray; padding-left: 20px; border-radius: 25px; }</p>
+<p>.custom-banner { width: 100%; position: relative; top: -100px; left: 0; z-index: -1; padding: 0; margin: 0; }</p>
+<p>.custom-footer { width: 100%; position: relative; padding-bottom: 0; margin-bottom: 0; z-index: 2; }</p>
+<p>.footer-container { margin-bottom: -35px; /* Adjust this value to match the image height */ }</p>
+<p><span class="citation" data-cites="media">@media</span> (max-width: 768px) { .footer-container { margin-bottom: -20px; } }</p>
+<p>.button-container { display: flex; justify-content: center; align-items: center; margin-top: 25px; }</p>
+<p>.light-teal-button { background-color: $light-gray; color: $light-teal; border: 2px solid $light-teal; padding: 10px 20px; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; cursor: pointer; margin-right: 25px; margin-left: 25px; }</p>
+<p>.light-teal-button:hover { background-color: $light-teal; /* Change the fill color on hover <em>/ color: $light-gray; /</em> Change the text color on hover */ }</p>
+<p><span class="citation" data-cites="media">@media</span> (max-width: 768px) { .button-container { flex-direction: column; /* Stack buttons vertically on mobile <em>/ text-align: center; /</em> Center button text on mobile */ }</p>
+<p>.light-teal-button { margin: 10px 0; } }</p>
+<p>.menu { position: fixed; top: 50%; right: 10px; transform: translateY(-90%); background-color: $dark-teal; padding: 10px; border: 1px solid $dark-teal; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); z-index: 4; }</p>
+<p>.menu li { margin: 5px 0; /* Adjust spacing between items */ list-style-type: none; }</p>
+<p>.menu a { text-decoration: none; color: $light-gray }</p>
+<p><span class="citation" data-cites="media">@media</span> (max-width: 768px) { .menu { display: none; /* Hide the menu completely on mobile */ } }</p>
+<p>.custom-list { list-style-type: disc; line-height: 1.2; padding-top: 0; padding-right: 10px; margin-top: 0; font-size: 14px; }</p>
+<p>.custom-list li { margin-bottom: 5px; padding-top: 0; margin-top: 0; font-size: 14px; }</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Elke Windschitl</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Made with Quarto</div>
+  </div>
+</footer>
+
+
+
+</body></html>

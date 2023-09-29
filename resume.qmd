@@ -3,6 +3,15 @@ page-layout: custom
 toc: false
 ---
 <!-- Image banner at top -->
+<div class="banner-container">
+ <img class="banner-image-two" src="images/leaves2-dark2.png" alt="Large green leaves"/>
+ <div class="left-banner-box">
+ <p class="custom-h1-light" style="margin-bottom: 0px">Resume</p>
+ <p class="custom-h2-light" style="font-size: 22px; font-weight: 200;">Updated September 2023</p>
+ </div>
+</div>
+<div class="gray-placeholder-two">
+</div>
 <!-- <img src="images/leaves2-dark.png" class="custom-banner" alt="Large green leaves."/>   -->
 
 <!-- create custom layout for banner elements -->
@@ -244,7 +253,7 @@ Provided excellent customer service and communication while cashiering, bagging,
 //| output: false
 // Your JavaScript code goes here
 setTimeout(function() {
-  document.querySelector('.teal-bg-left').classList.add('slide-in');
+  document.querySelector('.left-banner-box').classList.add('slide-in');
 }, 300); // Adjust the delay (in milliseconds) as needed
 
 ```
