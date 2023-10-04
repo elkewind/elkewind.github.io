@@ -1,8 +1,7 @@
 # Personal Quarto Data Science Website
-### elkewind.github.io 
 
 ## Summary
-This is a personal data science website made with quarto. Here you can find out more about me, see my resume, and view examples of my work. This website was built in Quarto. R and Python are used in coding examples. HTML, CSS, SCSS, and Observable JavaScript are sprinkled throughout to aid with styling.
+This is [my personal data science website](https://elkewind.github.io/) made with quarto. Here you can find out more about me, see my resume, and view examples of my work. This website was built in Quarto. R and Python are used in coding examples. HTML, CSS, SCSS, and Observable JavaScript are sprinkled throughout to aid with styling.
 
 ## Background
 I am a recent graduate of the Bren School of Environmental Science & Management at the University of California, Santa Barbara, where I earned a master’s degree in Environmental Data Science (MEDS). I also hold a BS in Biology from the College of Agriculture and Life Sciences at Iowa State University.
