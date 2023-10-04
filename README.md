@@ -18,7 +18,7 @@ With my interdisciplinary background and strong skill set, I am ready to make an
 Read the rest of my [About Me](https://elkewind.github.io/about.html) page to learn more.
 
 ## My Work
-This page contains a number of examples of my data science and environmental science work. I showcase my master's and bachelor's capstone projects, code examples in R and Python, and how I integrate art into science and conservation.
+The [My Work](https://elkewind.github.io/posts.html) page contains a number of examples of my data science and environmental science work. I showcase my master's and bachelor's capstone projects, code examples in R and Python, and how I integrate art into science and conservation.
 
 ## Resume
 See my [Resume](https://elkewind.github.io/resume.html) page to get more details about my experience.
