@@ -7,7 +7,7 @@ author:
     affiliation-url: http://ucsb-meds.github.io
 description: "A Bren capstone project"
 date: 2023-07-02
-categories: [MEDS]
+categories: [M.E.D.S.]
 image: images/kelp-illustration.png
 citation: 
   url: https://elkewind.github.io/posts/2023-07-02-kelpGeoMod

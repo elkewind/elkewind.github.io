@@ -34,15 +34,18 @@ toc: false
 <!-- bio -->
 <p class="custom-h2-dark" id="bio" style="margin-top: 40px">Background</p>
 
-I am a recent graduate of the Bren School of Environmental Science & Management at the University of California, Santa Barbara, where I earned a **master's degree in Environmental Data Science (MEDS)**. I also hold a BS in Biology from the College of Agriculture and Life Sciences at Iowa State University.
+**I am a science-minded, environmentally-driven, data enthusiast** with a passion for pushing the boundaries of technology to address pressing environmental challenges. 
 
-Passionate about leveraging data science solutions to address environmental challenges, **I am focused on applying my skills in geospatial analysis, data visualization, environmental modeling, and machine learning to the fields of natural resource management and sustainable food production.**
+Historically, many environmental monitoring techniques were born out of existing technology from the military or big-tech world. While these tools are great, many environmental scientists are forced to work within the bounds of these pre-existing technologies, limiting their capabilities. **I imagine a world in which technology is created intentionally for environmental monitoring, research, and conservation.** 
 
-During my time at the Bren School, I completed a capstone project in collaboration with UCSB researchers and Ocean Rainforest Inc., developing a data pipeline for kelp forest modeling to inform restoration and aquaculture efforts. Prior to that, I gained valuable experience working with the Janke Lab and the Iowa Department of Natural Resources, where I assessed new technologies for monitoring local wildlife.
+With this vision in mind, I recently earned a Master of Environmental Data Science degree from the University of California, Santa Barbara’s Bren School of Environmental Science & Management. This degree supplements my Bachelor of Science in Biology degree from Iowa State University of Science and Technology’s College of Agriculture and Life Sciences. Through these degrees I have acquired significant **knowledge of environmental systems and a strong foundation in scientific programming, data analysis, GIS, machine learning, and data visualization.**
 
-Beyond my core areas of interest, I am an animal ecology nerd with a deep commitment to ocean conservation, climate solutions, and environmental justice. **I am driven to build a career as a data scientist dedicated to finding innovative environmental solutions that contribute to a sustainable future for all.**
+**I am a natural-born puzzler, problem-solver, and troubleshooter with inherent curiosity and a knack for asking the right questions.** My previous work has entertained questions such as “How can we use acoustic technology to monitor quail in Iowa in place of resource-intensive point count surveys?”, “How can we leverage emerging animal behavior tracking software to make science-based care changes for animals under human care?”, “How can we combine disparate data sources to model habitat suitability for kelp and identify areas most promising for aquaculture or restoration efforts?”. 
 
-With my interdisciplinary background and strong skill set, I am ready to make an impact in the field of environmental data science, bridging the gap between scientific research, technological advancements, and practical conservation strategies.
+Whether the goal is to track wildlife on protected lands, predict future crop yields, or regulate carbon emissions, **I aspire to put my skills and qualities to use at an organization that shares a vision similar to my own.** I am excited to ask questions such as “What insights can we derive from patterns in our data?”, “How can we effectively visualize and communicate data to important decision-makers?”, “How can we scale up our product or methodologies?”, “How can we automate a workflow for reproducibility and save valuable time?”
+
+As a lifelong learner, I am excited to grow into a career that will put me at the forefront of conservation technology. **I am driven to build a career as a data scientist dedicated to finding innovative environmental solutions that contribute to a sustainable future for all.**
+
 
 <div class="image-container">
   <img src="images/about/final-prez.JPG" class="clickable-image" data-src="images/about/final-prez.JPG" style="border-radius: 20px; max-height: 500px; display: block; margin: 0 auto;" alt="Elke presenting her master's capstone project in front of a screen discussing kelp">

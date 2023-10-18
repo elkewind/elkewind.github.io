@@ -21,7 +21,7 @@ draft: true
 
 ## Description:
 
-In this post, I attempt to reproduce work by [Elith et al. 2008](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2008.01390.x) \[1\] to model species distribution of short-finned eel (*Anguilla australis*) using Boosted Regression Trees. This analysis was created for an assignment for EDS 232 Machine Learning in Environmental Scinece -- a course in UCSB's Master's of Environmental Data Science curriculum taught by Mateo Robbins.
+In this post, I attempt to reproduce work by [Elith et al. 2008](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2008.01390.x) \[1\] to model species distribution of short-finned eel (*Anguilla australis*) using Boosted Regression Trees. This analysis was created for an assignment for EDS 232 Machine Learning in Environmental Science -- a course in UCSB's Master's of Environmental Data Science curriculum taught by Mateo Robbins.
 
 Boosting is a popular machine learning algorithm that builds models sequentially based on information learned from the previous model. Here, decision trees will be built in sequence using extreme gradient boosting to classify presence or absence of short-finned eel in a given location associated with environmental parameters such as temperature, slope, rainy days, etc. Elith et al. used package gbm in R, whereas I use a Tidymodels approach in R.
 
@@ -45,13 +45,13 @@ library(tidymodels)
 library(sjPlot)
 library(pROC)
 library(RColorBrewer)
+library(knitr)
 
 eel_data <- eel_data_raw %>%
   select(-Site) # remove site number from data frame
-eel_data$Angaus <- as.factor(eel_data$Angaus) # set outcome vaiable as a factor
+eel_data$Angaus <- as.factor(eel_data$Angaus) # set outcome variable as a factor
 
-tab_df(eel_data[1:5,],
-       title = "Table. 1")
+eel_data %>% slice_head(n = 5) %>% kable
 ```
 
 ### Split and Resample
@@ -74,7 +74,7 @@ cv_folds <- eel_train %>%
   vfold_cv(v=10, strata = "Angaus")
 ```
 
-### Preprocess
+### Preprocessing
 
 I created a recipe to prepare the data for the XGBoost model. I was interested in predicting the binary outcome variable Angaus which indicates presence or absence of the eel species *Anguilla australis*.
 
@@ -99,7 +99,7 @@ First I conducted tuning on just the learn_rate parameter.
 #| warning: false
 eel_spec <- parsnip::boost_tree(mode = "classification",
                                 engine = "xgboost",
-                                trees = 3000,
+                                trees = 1000,
                                 learn_rate = tune())
 
 ```
@@ -109,14 +109,14 @@ I set up a grid to tune my model by using a range of learning rate parameter val
 ```{r}
 #| warning: false
 # Set up tuning grid
-eel_grid <- expand.grid(learn_rate = seq(0.0001, 0.3, length.out = 30))
+eel_grid <- expand.grid(learn_rate = seq(0.0001, 0.5, length.out = 50))
 
 # Set up workflow
 wf_eel_tune <- workflow() %>% 
   add_recipe(eel_rec) %>% 
   add_model(eel_spec)
 
-doParallel::registerDoParallel()
+doParallel::registerDoParallel(cores = 3)
 set.seed(123)
 
 # Tune
@@ -133,10 +133,13 @@ eel_rs <- tune_grid(
 # Identify best values from the tuning process
 eel_rs %>%
   tune::show_best(metric = "accuracy") %>%
-  tab_df(title = "Table 2",
-         digits = 4,
-         footnote = "Performance of the best models and the associated estimates for the learning rate parameter values.",
-         show.footnote = TRUE)
+  slice_head(n = 5) %>% 
+  kable(caption = "Performance of the best models and the associated estimates for the learning rate parameter values.")
+
+  # tab_df(title = "Table 2",
+  #        digits = 4,
+  #        footnote = "Performance of the best models and the associated estimates for the learning rate parameter values.",
+  #        show.footnote = TRUE)
 
 eel_best_learn <- eel_rs %>%
   tune::select_best("accuracy")
@@ -153,7 +156,7 @@ I created a new specification where I set the learning rate and tune the tree pa
 #| warning: false
 eel_spec2 <- parsnip::boost_tree(mode = "classification",
                                 engine = "xgboost",
-                                trees = 3000,
+                                trees = 1000,
                                 learn_rate = eel_best_learn$learn_rate,
                                 min_n = tune(),
                                 tree_depth = tune(),
@@ -173,7 +176,7 @@ eel_params <- dials::parameters(
 )
 
 # Set up grid
-eel_grid2 <- dials::grid_max_entropy(eel_params, size = 30)
+eel_grid2 <- dials::grid_max_entropy(eel_params, size = 50)
 
 # Set up workflow
 wf_eel_tune2 <- workflow() %>% 
@@ -181,7 +184,7 @@ wf_eel_tune2 <- workflow() %>%
   add_model(eel_spec2)
 
 set.seed(123)
-doParallel::registerDoParallel()
+doParallel::registerDoParallel(cores = 3)
 
 # Tune
 eel_rs2 <- tune_grid(
@@ -196,11 +199,13 @@ eel_rs2 <- tune_grid(
 #| warning: false
 # Identify best values from the tuning process
 eel_rs2 %>%
-  tune::show_best(metric = "accuracy") %>%
-  tab_df(title = "Table 3",
-         digits = 4,
-         footnote = "Performance of the best models and the associated estimates for the tree parameter values.",
-         show.footnote = TRUE)
+  tune::show_best(metric = "accuracy") %>% 
+  slice_head(n = 5) %>% 
+  kable(caption = "Performance of the best models and the associated estimates for the tree parameter values.")
+  # tab_df(title = "Table 3",
+  #        digits = 4,
+  #        footnote = "Performance of the best models and the associated estimates for the tree parameter values.",
+  #        show.footnote = TRUE)
 
 eel_best_trees <- eel_rs2 %>%
   tune::select_best("accuracy")
@@ -217,7 +222,7 @@ I created another new specification where I set the learning rate and tree param
 #| warning: false
 eel_spec3 <- parsnip::boost_tree(mode = "classification",
                                 engine = "xgboost",
-                                trees = 3000,
+                                trees = 1000,
                                 learn_rate = eel_best_learn$learn_rate,
                                 min_n = eel_best_trees$min_n,
                                 tree_depth = eel_best_trees$tree_depth,
@@ -239,7 +244,7 @@ eel_params2 <- dials::parameters(
   stop_iter())
 
 # Set up grid
-eel_grid3 <- dials::grid_max_entropy(eel_params2, size = 30)
+eel_grid3 <- dials::grid_max_entropy(eel_params2, size = 50)
 
 # Set up workflow
 wf_eel_tune3 <- workflow() %>% 
@@ -247,7 +252,7 @@ wf_eel_tune3 <- workflow() %>%
   add_model(eel_spec3)
 
 set.seed(123)
-doParallel::registerDoParallel()
+doParallel::registerDoParallel(cores = 3)
 
 # Tune
 eel_rs3 <- tune_grid(
@@ -263,10 +268,12 @@ eel_rs3 <- tune_grid(
 # Identify best values from the tuning process
 eel_rs3 %>%
   tune::show_best(metric = "accuracy") %>%
-  tab_df(title = "Table 4",
-         digits = 4,
-         footnote = "Performance of the best models and the associated estimates for the stochastic parameter values.",
-         show.footnote = TRUE)
+  slice_head(n = 5) %>% 
+  kable(caption = "Performance of the best models and the associated estimates for the stochastic parameter values.")
+  # tab_df(title = "Table 4",
+  #        digits = 4,
+  #        footnote = "Performance of the best models and the associated estimates for the stochastic parameter values.",
+  #        show.footnote = TRUE)
 
 eel_best_stoch <- eel_rs3 %>%
   tune::select_best("accuracy")
@@ -283,7 +290,7 @@ I assembled my final workflow with all of my optimized parameters and did a fina
 #| warning: false
 eel_final_spec <- parsnip::boost_tree(mode = "classification",
                                 engine = "xgboost",
-                                trees = 3000,
+                                trees = 1000,
                                 learn_rate = eel_best_learn$learn_rate,
                                 min_n = eel_best_trees$min_n,
                                 tree_depth = eel_best_trees$tree_depth,
@@ -305,18 +312,24 @@ final_eel_fit <- last_fit(eel_final_spec, Angaus~., split) # does training fit t
 
 # Show predictions
 final_pred_tab <- as.data.frame(final_eel_fit$.predictions)
-tab_df(head(final_pred_tab),
-  title = "Table 5",
-  digits = 3,
-  footnote = "Predictions of Angaus presence on test data.",
-  show.footnote = TRUE)
+final_pred_tab %>% 
+  slice_head(n = 5) %>% 
+  kable(caption = "Predictions of Angaus presence on test data.")
+# tab_df(head(final_pred_tab),
+#   title = "Table 5",
+#   digits = 3,
+#   footnote = "Predictions of Angaus presence on test data.",
+#   show.footnote = TRUE)
 
 final_met_tab <- final_eel_fit$.metrics # Store metrics
-tab_df(final_met_tab,
-  title = "Table 6",
-  digits = 3,
-  footnote = "Accuracy and area under ther receiver operator curve of the final fit.",
-  show.footnote = TRUE)
+final_met_tab %>% 
+  slice_head(n = 5) %>% 
+  kable(caption = "Accuracy and area under ther receiver operator curve of the final fit.")
+# tab_df(final_met_tab,
+#   title = "Table 6",
+#   digits = 3,
+#   footnote = "Accuracy and area under ther receiver operator curve of the final fit.",
+#   show.footnote = TRUE)
 
 # Bind predictions and original data
 eel_test_rs <- cbind(eel_test, final_eel_fit$.predictions)
@@ -382,6 +395,8 @@ auc <- auc(eval_dat_pred$Angaus, eval_dat_pred$pred_num)
 
 How did my model perform on this data?
 
+The model had an accuracy of `accuracy` on these data, which isn't quite as good as the accuracy when applying the model to the testing data. However the difference is not too extreme and seems pretty good given that the dummy classifier would be 0.744. The model had an AUC of `round(auc[1], 2)` which does not seem great."
+
 ```{r}
 #| echo: false
 #| code-overflow: wrap
@@ -390,10 +405,12 @@ cat(paste0("The model had an accuracy of ", accuracy ," on these data, which isn
 
 How did my results compare to those of Elith et al.?
 
+The model here does not do as well as the model in Elith et al. which found a model AUC of 0.858. My AUC of `round(auc[1], 2)` is disappointingly far off. This could be because the data have imbalanced classes. I would guess that Elith et al. did more tuning to find the optimal values, where as I was more limited by computing power on my laptop. They also could have tuned the threshold for classification, which I did not do here.
+
 ```{r}
 #| echo: false
 #| code-overflow: wrap
-cat(paste0("The model here does not do as well as the model in Elith et al. which found a model AUC of 0.858. My AUC of ", round(auc[1], 2) , "is fairly far off. I would guess that Elith et al. did more tuning to find the optimal values, where as I was more limited by computing power."))
+cat(paste0("The model here does not do as well as the model in Elith et al. which found a model AUC of 0.858. My AUC of ", round(auc[1], 2) , " is fairly far off. I would guess that Elith et al. did more tuning to find the optimal values, where as I was more limited by computing power."))
 ```
 
 ## References

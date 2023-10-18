@@ -7,7 +7,7 @@ author:
     affiliation-url: http://ucsb-meds.github.io
 description: "A short podcast debate by Lewis White and Elke Windschitl"
 date: 2022-12-19
-categories: [MEDS]
+categories: [M.E.D.S.]
 citation: 
   url: https://elkewind.github.io/posts/2022-12-19-climate-ai-debate
 image: brain.jpg

@@ -7,7 +7,7 @@ author:
     affiliation-url: https://www.nrem.iastate.edu/
 description: "A research poster created for an undergraduate Honors capstone project"
 date: 2019-12-01
-categories: [ISU]
+categories: [B.S.]
 citation: 
   url: https://elkewind.github.io/posts/2019-12-01-bobwhite-aru-research
 image: bobwhite.jpg

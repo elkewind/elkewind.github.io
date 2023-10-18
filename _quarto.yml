@@ -6,7 +6,10 @@ website:
   site-url: "https://elkewind.github.io/"
   title: "Elke Windschitl"
   favicon: images/logo3.png
-  twitter-card: true
+  twitter-card:
+    image: about/final-prez.JPG
+    card-style: summary_large_image
+    creator: "@Elke_Windschitl"
   navbar:
     logo: images/logo3.png
     right: 

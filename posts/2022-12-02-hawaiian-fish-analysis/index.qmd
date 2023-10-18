@@ -7,7 +7,7 @@ author:
     affiliation-url: http://ucsb-meds.github.io
 description: "A logistic regression example with fish"
 date: 2022-12-02
-categories: [MEDS, Statistics, R]
+categories: [M.E.D.S., Statistics, R]
 citation: 
   url: https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis
 image: dive_mask.JPG
