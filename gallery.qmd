@@ -18,7 +18,7 @@ toc: false
 ::: {.g-col-12 .g-col-md-6}
 ::: {.teal-bg-left}
 <p class="custom-h1-light">Gallery</p>
-<p class="custom-h2-light" style="font-size: 22px; font-weight: 200; padding-left: 40px; padding-right: 40px">Maps and Data Viz -- Page in progress, so come back soon!</p>
+<p class="custom-h2-light" style="font-size: 22px; font-weight: 200; padding-left: 40px; padding-right: 40px">Maps and Data Viz -- Page in progress, so come back soon!</p> 
 :::
 <!-- <hr></hr> -->
 :::
