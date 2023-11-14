@@ -1,0 +1,107 @@
+---
+page-layout: custom
+toc: false
+---
+
+<!-- Image banner at top -->
+<div class="banner-container">
+ <img class="banner-image-two" src="images/flowers.png" alt="Ocean waves"/>
+ <div class="left-banner-box">
+ <p class="custom-h1-light" style="margin-bottom: 0px">Gallery</p>
+ </div>
+</div>
+<div class="gray-placeholder-two">
+</div>
+
+::::: {.grid}
+<!-- left side -->
+::: {.g-col-12 .g-col-md-6}
+::: {.teal-bg-left}
+<p class="custom-h1-light">Gallery</p>
+<p class="custom-h2-light" style="font-size: 22px; font-weight: 200; padding-left: 40px; padding-right: 40px">Maps and Data Viz -- Page in progress, so come back soon!</p>
+:::
+<!-- <hr></hr> -->
+:::
+:::::
+
+<!-- create custom layout for page -->
+::::: {.grid}
+<!-- left pad -->
+::: {.g-col-2}
+:::
+<!-- middle content -->
+::: {.g-col-8}
+<!-- bio -->
+<p class="custom-h2-dark" id="bio" style="margin-top: 40px">Maps and Visualizations</p>
+
+::: {layout-ncol="2"}
+<div class="image-container"> 
+  <figure>
+    <img src="images/data-viz/cafo-map.jpg" class="clickable-image" data-src="images/data-viz/cafo-map.jpg" style="border-radius: 20px;" alt="Map of Iowa showing the counts of concentrated animal feeding operations.">
+    <figcaption class="initially-hidden">Chloropleth map of Iowa showing the counts of concentrated animal feeding operations (CAFO) by county. Created in ArcGIS Pro.</figcaption>
+  </figure>
+</div>
+
+<div class="image-container">
+  <figure>
+    <img src="images/data-viz/kelp-map.png" class="clickable-image" data-src="images/data-viz/kelp-map.png" style="border-radius: 20px;" alt="Map of the Santa Barbara Channel showing locations where habitat is likely suitable for kelp aquaculture. Suitable locations occur off the coast of Santa Barbara County.">
+    <figcaption class="initially-hidden">Map of the Santa Barbara Channel showing locations where habitat is likely suitable for kelp aquaculture. Created with R and Inkscape.</figcaption>
+  </figure>
+</div>
+:::
+<div id="imageModal" class="modal">
+  <span id="closeModal" class="close">×</span>
+  <figure>
+    <img id="modalImage" class="modal-content" alt="Enlarged Image">
+    <figcaption id="modalCaption" class="modal-caption"></figcaption>
+  </figure>
+</div>
+
+
+<!-- end middle content -->
+:::
+<!-- right pad -->
+::: {.g-col-2}
+:::
+<br></br> 
+<!-- end custom layout for page -->
+:::::
+
+```{ojs style="display: none;"}
+//| echo: false
+//| output: false
+setTimeout(function() {
+  document.querySelector('.left-banner-box').classList.add('slide-in');
+}, 300); // Adjust the delay (in milliseconds) as needed
+
+
+// Function to open the modal when an image is clicked
+document.querySelectorAll('.clickable-image').forEach(function(image) {
+  image.onclick = function() {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const initialCaption = document.querySelector('.initially-hidden');
+
+    initialCaption.style.display = 'none'; // Hide the caption on the main page
+    modal.style.display = 'block';
+    modalImage.src = this.getAttribute('data-src'); // Set the source of the enlarged image
+    modalCaption.textContent = this.parentElement.querySelector('figcaption').textContent; // Set the caption text
+  };
+});
+
+// Function to close the modal
+document.getElementById('closeModal').onclick = function() {
+  const modal = document.getElementById('imageModal');
+  modal.style.display = 'none';
+};
+
+// Close the modal when clicking outside of it
+window.onclick = function(event) {
+  const modal = document.getElementById('imageModal');
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+};
+
+```

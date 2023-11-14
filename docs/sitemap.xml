@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://elkewind.github.io/posts.html</loc>
-    <lastmod>2023-10-18T18:49:14.894Z</lastmod>
+    <lastmod>2023-11-13T23:00:09.519Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/index.html</loc>
-    <lastmod>2023-10-18T18:49:09.156Z</lastmod>
+    <lastmod>2023-11-13T23:04:46.165Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2022-12-02-hawaiian-fish-analysis/index.html</loc>
@@ -26,11 +26,11 @@
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2023-08-19-python-viz/index.html</loc>
-    <lastmod>2023-10-18T18:48:52.575Z</lastmod>
+    <lastmod>2023-11-13T23:00:14.136Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/resume.html</loc>
-    <lastmod>2023-10-18T18:48:49.181Z</lastmod>
+    <lastmod>2023-11-13T23:08:01.168Z</lastmod>
   </url>
   <url>
     <loc>https://elkewind.github.io/posts/2019-12-01-bobwhite-aru-research/index.html</loc>
@@ -46,6 +46,10 @@
   </url>
   <url>
     <loc>https://elkewind.github.io/about.html</loc>
-    <lastmod>2023-10-18T18:49:14.209Z</lastmod>
+    <lastmod>2023-11-13T23:04:42.666Z</lastmod>
+  </url>
+  <url>
+    <loc>https://elkewind.github.io/gallery.html</loc>
+    <lastmod>2023-11-13T23:07:30.379Z</lastmod>
   </url>
 </urlset>
