@@ -20,11 +20,12 @@ format:
 toc: true
 draft: false
 page-layout: full
+jupyter: python3
 ---
 
 ## Visualizing Various Data Types from the kelpGeoMod Data Repository
 
-This post uses data from the kelpGeoMod data repository and provides examples of data visualization in Python using Folium, Plotly, Matplotlib, and Rasterio.
+This post uses data from the kelpGeoMod data repository and provides examples of data visualization in Python using Plotly, Matplotlib, and Rasterio.
 
 ```{python}
 # Import necessary libraries
@@ -82,7 +83,7 @@ These data come from the Santa Barbara Channel between 2014-2022.
 aoi_84 = aoi.to_crs(epsg=4326)
 
 # Create a Folium map centered around the AOI
-m = folium.Map(location=[aoi_84['geometry'].centroid.y.mean(), aoi_84['geometry'].centroid.x.mean()], zoom_start=9, tiles='Stamen Terrain')
+m = folium.Map(location=[aoi_84['geometry'].centroid.y.mean(), aoi_84['geometry'].centroid.x.mean()], zoom_start=9, tiles='openstreetmap')
 
 # Define a function to set shape color based on properties
 def style_function(feature):
@@ -330,6 +331,7 @@ average_2016 = pd.DataFrame({'Nutrient': average_2016.index, 'Concentration': av
 # Create the bar chart
 fig, ax = plt.subplots(figsize=(9.3, 6))  # Adjusted figsize
 ax.set_facecolor('#333333')  # Set the background color for the plotting area
+fig.set_facecolor('#333333') 
 
 colors = ['#D28077', '#93C2E2', '#036554', '#BCD79D']
 
@@ -357,6 +359,8 @@ ax.set_axisbelow(True)
 # Adding white spines (lines along the axes)
 ax.spines['bottom'].set_color('white')
 ax.spines['left'].set_color('white')
+ax.spines['bottom'].set_color('#333333')
+ax.spines['left'].set_color('#333333')
 
 plt.tight_layout()
 
