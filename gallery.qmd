@@ -35,7 +35,10 @@ toc: false
 <!-- bio -->
 <p class="custom-h2-dark" id="bio" style="margin-top: 40px">Maps and Visualizations</p>
 
-::: {layout-ncol="2"}
+<!-- subgrid -->
+::: {.grid}
+::: {.g-col-12 .g-col-md-6}
+::: {layout-ncol="1"}
 <div class="image-container"> 
   <figure>
     <img src="images/data-viz/cafo-map.jpg" class="clickable-image" data-src="images/data-viz/cafo-map.jpg" style="border-radius: 20px;" alt="Map of Iowa showing the counts of concentrated animal feeding operations.">
@@ -45,10 +48,29 @@ toc: false
 
 <div class="image-container">
   <figure>
+    <img src="images/data-viz/bubble-decision-layout.png" class="clickable-image" data-src="images/data-viz/bubble-decision-layout.png" style="border-radius: 20px;" alt="Three possible views within a Shiny Application for users to assess the results of their weighted and sequential decision-making regarding various treatment options for kidney disease.">
+    <figcaption class="initially-hidden">Three possible views within a Shiny Application for users to assess the results of their weighted and sequential decision-making regarding various treatment options for kidney disease. Created with R, laid out with Inkscape</figcaption>
+  </figure>
+</div>
+:::
+:::
+::: {.g-col-12 .g-col-md-6}
+::: {layout-ncol="1"}
+<div class="image-container">
+  <figure>
     <img src="images/data-viz/kelp-map.png" class="clickable-image" data-src="images/data-viz/kelp-map.png" style="border-radius: 20px;" alt="Map of the Santa Barbara Channel showing locations where habitat is likely suitable for kelp aquaculture. Suitable locations occur off the coast of Santa Barbara County.">
     <figcaption class="initially-hidden">Map of the Santa Barbara Channel showing locations where habitat is likely suitable for kelp aquaculture. Created with R and Inkscape.</figcaption>
   </figure>
 </div>
+
+<div class="image-container">
+  <figure>
+    <img src="images/data-viz/music-dashboard.png" class="clickable-image" data-src="images/data-viz/music-dashboard.png" style="border-radius: 20px;" alt="Two plots showing Elke's top Spotify artists and listening throughout the year.">
+    <figcaption class="initially-hidden">Dashboard of Spotify listening history displaying a bar chart of Elke's top 10 artists by minutes played split by song, and a timeseries of Elke's top 3 artist minutes played throughout the year. Created with Tableau.</figcaption>
+  </figure>
+</div>
+:::
+:::
 :::
 <div id="imageModal" class="modal">
   <span id="closeModal" class="close">×</span>
